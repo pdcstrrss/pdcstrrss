@@ -1,12 +1,10 @@
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration
-} from "remix";
+import normalize from "normalize.css";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "remix";
 import type { MetaFunction } from "remix";
+
+export function links() {
+  return [{ rel: "stylesheet", href: normalize }];
+}
 
 export const meta: MetaFunction = () => {
   return { title: "New Remix App" };
@@ -21,7 +19,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.66", color: '#111' }}>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
