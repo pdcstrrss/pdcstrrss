@@ -1,8 +1,8 @@
 import { useLoaderData } from "remix";
 import type { LoaderFunction } from "remix";
-import { FeedData, read } from "feed-reader";
-import { parse } from "node-html-parser";
 import { useInView } from "react-intersection-observer";
+import aggregator, { Feed } from "~/lib/aggregator";
+import { useEffect, useState } from "react";
 
 interface Episode {
   podcastTitle: string;
@@ -10,61 +10,21 @@ interface Episode {
   title: string;
   url: string;
   description: string;
-  audioSource?: string;
-  published: string;
-}
-
-interface ShopTalkShowEntry {
-  title: string;
-  link: string;
-  description: string;
   published: string;
 }
 
 interface IndexLoaderData {
   episodes: Episode[];
-  feeds: FeedData[];
-}
-
-async function getAudioSource(url: string) {
-  const html = await fetch(url).then((res) => res.text());
-  const parsed = parse(html);
-  return parsed.querySelector("audio")?.getAttribute("src");
+  feeds: Feed[];
 }
 
 export const loader: LoaderFunction = async (): Promise<IndexLoaderData> => {
-  const feedUrls = ["https://shoptalkshow.com/feed/"];
-  const feeds = await Promise.all(feedUrls.map(async (feedUrl) => read(feedUrl)));
-  const episodes = await Promise.all(
-    feeds
-      .reduce((acc, feed) => {
-        const entries = feed.entries.map(({ title, description, link, published }: ShopTalkShowEntry) => {
-          return {
-            podcastTitle: feed.title,
-            podcastDescription: feed.description,
-            title,
-            url: link,
-            description,
-            published,
-          };
-        });
-        return [...acc, ...entries];
-      }, [] as Episode[])
-      .filter((ep, index) => index < 10)
-      .map(async (ep): Promise<Episode> => {
-        const audioSource = await getAudioSource(ep.url);
-        return {
-          ...ep,
-          audioSource,
-        };
-      })
-  );
-
+  const { episodes, feeds } = await aggregator();
   return { episodes, feeds };
 };
 
 export default function Index() {
-  const { episodes, feeds } = useLoaderData<IndexLoaderData>();
+  const { episodes } = useLoaderData<IndexLoaderData>();
 
   return (
     <div
@@ -76,11 +36,25 @@ export default function Index() {
       }}
     >
       <h1 style={{ margin: ".75rem 0 0 0", fontSize: "1.5rem" }}>PODCSTRRSS</h1>
-      {episodes.map(({ title, url, podcastTitle, published, audioSource }) => {
+      {episodes.map(({ title, url, podcastTitle, published }) => {
+        const [audioSource, setAudioSource] = useState<string | undefined>(undefined);
         const { ref, inView, entry } = useInView({
           threshold: 0,
-          triggerOnce: false,
+          triggerOnce: true,
         });
+
+        useEffect(() => {
+          if (inView) {
+            const audioApiUrl = new URL(document.location + "audio");
+            audioApiUrl.searchParams.append("url", url);
+            const fetchAudioSource = async () => {
+              const data = await fetch(audioApiUrl.toString()).then((res) => res.json());
+              setAudioSource(data);
+            };
+            fetchAudioSource().catch(console.error);
+          }
+        }, [inView]);
+
         return (
           <article key={url} style={{ border: "1px solid #111", padding: "1rem" }}>
             <h2 style={{ margin: "0 0 .5rem", lineHeight: 1, fontSize: "1.125rem" }}>{title}</h2>
@@ -89,11 +63,9 @@ export default function Index() {
               <span> - </span>
               <span>{Intl.DateTimeFormat(["sv-SE"]).format(new Date(published))}</span>
             </p>
-            {audioSource && (
-              <div ref={ref} style={{ height: "54px" }}>
-                {inView && <audio src={audioSource} controls style={{}} />}
-              </div>
-            )}
+            <div ref={ref} style={{ height: "54px" }}>
+              {inView && <audio src={audioSource} controls />}
+            </div>
           </article>
         );
       })}
