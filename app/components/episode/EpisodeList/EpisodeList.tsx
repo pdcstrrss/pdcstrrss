@@ -1,0 +1,43 @@
+import { PlayIcon } from "@heroicons/react/solid";
+import { Button, links as buttonLinks } from "~/components/Button/Button";
+import type { Episode } from "~/lib/types";
+import styles from "./EpisodeList.css";
+
+interface EpisodeListItemProps extends Episode {}
+
+interface EpisodeListProps {
+  episodes: Episode[];
+}
+
+export const links = () => [...buttonLinks(), { rel: "stylesheet", href: styles }];
+
+export const EpisodeListItem = ({ title, url, podcastTitle, published }: EpisodeListItemProps) => {
+  const handleOnClick = (url: string) => {
+    console.log(url);
+  };
+
+  return (
+    <article key={url} data-episode>
+      <h2 data-episode-title>{title}</h2>
+      <div data-episode-meta>
+        <a href={url}>{podcastTitle}</a>
+        <time dateTime={new Date(published).toISOString()}>
+          {Intl.DateTimeFormat(["sv-SE"]).format(new Date(published))}
+        </time>
+        <Button onClick={() => handleOnClick(url)} data-episode-media-button reset aria-label={`Play episode ${title} of ${podcastTitle}`}>
+          <svg data-episode-media-icon data-icon>
+            <use xlinkHref="#play" />
+          </svg>
+        </Button>
+      </div>
+    </article>
+  );
+};
+
+export const EpisodeList = ({ episodes }: EpisodeListProps) => (
+  <>
+    {episodes.map((episode) => (
+      <EpisodeListItem key={episode.url} {...episode} />
+    ))}
+  </>
+);

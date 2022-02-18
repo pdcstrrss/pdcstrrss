@@ -1,30 +1,7 @@
 import { read } from "feed-reader";
 import type { FeedData } from "feed-reader";
 import get from "lodash/get";
-
-interface Episode {
-  podcastTitle: string;
-  podcastDescription: string;
-  title: string;
-  url: string;
-  description: string;
-  audioSource?: string;
-  published: string;
-}
-
-export interface Feed {
-  url: string;
-  audioSourceSelector: string;
-  keyMapping: Record<string, string>;
-  data: FeedData;
-}
-
-interface FeedEntry {
-  title: string;
-  link: string;
-  description: string;
-  published: string;
-}
+import type { Feed, Episode } from "./types";
 
 const _config = {
   feeds: [
@@ -52,7 +29,7 @@ const getFeedsData = (config: typeof _config): Promise<Feed[]> =>
     })
   );
 
-export const getEpisodes = (feeds: Feed[], start = 0, end = 9) =>
+export const getEpisodes = (feeds: Feed[], offset = 0, limit = 10) =>
   Promise.all(
     feeds
       .reduce((acc, feed) => {
@@ -72,7 +49,7 @@ export const getEpisodes = (feeds: Feed[], start = 0, end = 9) =>
         });
         return [...acc, ...entries];
       }, [] as Episode[])
-      .filter((_, index) => index >= start && index <= end)
+      .filter((_, index) => index >= offset && index < limit)
   );
 
 export default async () => {
