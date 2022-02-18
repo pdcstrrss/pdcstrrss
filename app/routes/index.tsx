@@ -7,13 +7,12 @@ import { AppHeader } from "~/components/app/AppHeader/AppHeader";
 import { EpisodeList, links as episodeListLinks } from "~/components/episode/EpisodeList/EpisodeList";
 import type { Feed } from "~/lib/types";
 import { Pagination, links as paginationLinks } from "~/components/Pagination/Pagination";
+import { BASE_URL } from "~/lib/constants";
 
 interface IndexLoaderData {
   episodes: EpisodesData;
   feeds: Feed[];
 }
-
-const BASE_URL = "https://pdcstrrss.com";
 
 export function links() {
   return [...episodeListLinks(), ...paginationLinks(), { rel: "stylesheet" }];
@@ -50,7 +49,7 @@ export default function Index() {
   const getLimit = (page: number) => (page - 1) * pageSize + pageSize;
 
   const handlePaginationChange = (page: number) => {
-    const url = new URL(document?.location.href || BASE_URL);
+    const url = new URL(document?.location.href);
     url.searchParams.set("offset", `${getOffset(page)}`);
     url.searchParams.set("limit", `${getLimit(page)}`);
     window.location.href = url.toString().replace(BASE_URL, "");
@@ -61,33 +60,8 @@ export default function Index() {
     type: "page" | "prev" | "next" | "jump-prev" | "jump-next",
     element: React.ReactNode
   ) => {
-    const url = new URL(BASE_URL);
-    if (["prev", "next"].includes(type)) {
-      let icon;
-      if (type === "prev") {
-        if (offset === 0) {
-          return;
-        }
-        url.searchParams.set("offset", `${getOffset(page)}`);
-        url.searchParams.set("limit", `${getLimit(page)}`);
-        icon = "#chevron-left";
-      }
-      if (type === "next") {
-        if (offset + pageSize > totalCount) {
-          return;
-        }
-        url.searchParams.set("offset", `${getOffset(page)}`);
-        url.searchParams.set("limit", `${getLimit(page)}`);
-        icon = "#chevron-right";
-      }
-
-      return (
-        <a href={url.toString().replace(BASE_URL, "")}>
-          <svg>
-            <use xlinkHref={icon} />
-          </svg>
-        </a>
-      );
+    if ((type === "prev" && offset === 0) || (type === "next" && offset + pageSize > totalCount)) {
+      return;
     }
     return element;
   };

@@ -1,5 +1,6 @@
-import { PlayIcon } from "@heroicons/react/solid";
+import { useNavigate } from "remix";
 import { Button, links as buttonLinks } from "~/components/Button/Button";
+import { BASE_URL } from "~/lib/constants";
 import type { Episode } from "~/lib/types";
 import styles from "./EpisodeList.css";
 
@@ -12,8 +13,12 @@ interface EpisodeListProps {
 export const links = () => [...buttonLinks(), { rel: "stylesheet", href: styles }];
 
 export const EpisodeListItem = ({ title, url, podcastTitle, published }: EpisodeListItemProps) => {
-  const handleOnClick = (url: string) => {
-    console.log(url);
+  let navigate = useNavigate();
+
+  const handleOnClick = (episodeUrl: string) => {
+    const url = new URL(document.location.href);
+    url.searchParams.set("episode", episodeUrl);
+    window.location.href = url.toString();
   };
 
   return (
@@ -24,7 +29,12 @@ export const EpisodeListItem = ({ title, url, podcastTitle, published }: Episode
         <time dateTime={new Date(published).toISOString()}>
           {Intl.DateTimeFormat(["sv-SE"]).format(new Date(published))}
         </time>
-        <Button onClick={() => handleOnClick(url)} data-episode-media-button reset aria-label={`Play episode ${title} of ${podcastTitle}`}>
+        <Button
+          onClick={() => handleOnClick(url)}
+          data-episode-media-button
+          reset
+          aria-label={`Play episode ${title} of ${podcastTitle}`}
+        >
           <svg data-episode-media-icon data-icon>
             <use xlinkHref="#play" />
           </svg>
