@@ -3,6 +3,13 @@ import type { FeedData } from "feed-reader";
 import get from "lodash/get";
 import type { Feed, Episode } from "./types";
 
+export interface EpisodesData {
+  data: Episode[];
+  totalCount: number;
+  offset: number;
+  limit: number;
+}
+
 const _config = {
   feeds: [
     {
@@ -29,31 +36,37 @@ const getFeedsData = (config: typeof _config): Promise<Feed[]> =>
     })
   );
 
-export const getEpisodes = (feeds: Feed[], offset = 0, limit = 10) =>
-  Promise.all(
-    feeds
-      .reduce((acc, feed) => {
-        const entries = feed.data.entries.map((entry: any) => {
-          const episodeData = Object.entries(feed.keyMapping).reduce((acc, [episodeDataKey, feedEntryKey]) => {
-            return {
-              ...acc,
-              [episodeDataKey]: get(entry, feedEntryKey),
-            };
-          }, {});
-
+export const getEpisodes = async (feeds: Feed[], offset = 0, limit = 10): Promise<EpisodesData> => {
+  const allData = await Promise.all(
+    feeds.reduce((acc, feed) => {
+      const entries = feed.data.entries.map((entry: any) => {
+        const episodeData = Object.entries(feed.keyMapping).reduce((acc, [episodeDataKey, feedEntryKey]) => {
           return {
-            podcastTitle: feed.data.title,
-            podcastDescription: feed.data.description,
-            ...episodeData,
+            ...acc,
+            [episodeDataKey]: get(entry, feedEntryKey),
           };
-        });
-        return [...acc, ...entries];
-      }, [] as Episode[])
-      .filter((_, index) => index >= offset && index < limit)
-  );
+        }, {});
 
-export default async () => {
+        return {
+          podcastTitle: feed.data.title,
+          podcastDescription: feed.data.description,
+          ...episodeData,
+        };
+      });
+      return [...acc, ...entries];
+    }, [] as Episode[])
+  );
+  const data = allData.filter((_, index) => index >= offset && index < limit);
+  return { data, totalCount: allData.length, limit, offset };
+};
+
+export interface AggregatorParams {
+  offset?: number;
+  limit?: number;
+}
+
+export default async ({ offset, limit }: AggregatorParams = {}) => {
   const feeds = await getFeedsData(_config);
-  const episodes = await getEpisodes(feeds);
+  const episodes = await getEpisodes(feeds, offset, limit);
   return { feeds, episodes };
 };
