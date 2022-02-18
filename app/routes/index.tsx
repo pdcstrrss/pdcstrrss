@@ -50,7 +50,7 @@ export default function Index() {
   const getLimit = (page: number) => (page - 1) * pageSize + pageSize;
 
   const handlePaginationChange = (page: number) => {
-    const url = new URL(BASE_URL);
+    const url = new URL(document?.location.href || BASE_URL);
     url.searchParams.set("offset", `${getOffset(page)}`);
     url.searchParams.set("limit", `${getLimit(page)}`);
     window.location.href = url.toString().replace(BASE_URL, "");
