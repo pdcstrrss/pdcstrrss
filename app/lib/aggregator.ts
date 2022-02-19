@@ -1,6 +1,6 @@
 import { read } from "feed-reader";
 import type { FeedData } from "feed-reader";
-import get from "lodash/get";
+import {get, orderBy} from "lodash";
 import type { Feed, Episode } from "./types";
 
 export interface EpisodesData {
@@ -14,6 +14,16 @@ const _config = {
   feeds: [
     {
       url: "https://shoptalkshow.com/feed/",
+      audioSourceSelector: "audio",
+      keyMapping: {
+        title: "title",
+        description: "description",
+        url: "link",
+        published: "published",
+      },
+    },
+    {
+      url: "https://feed.syntax.fm/rss",
       audioSourceSelector: "audio",
       keyMapping: {
         title: "title",
@@ -56,7 +66,8 @@ export const getEpisodes = async (feeds: Feed[], offset = 0, limit = 10): Promis
       return [...acc, ...entries];
     }, [] as Episode[])
   );
-  const data = allData.filter((_, index) => index >= offset && index < limit);
+  const orderedData = orderBy(allData, ['published'], ['desc'])
+  const data = orderedData.filter((_, index) => index >= offset && index < limit);
   return { data, totalCount: allData.length, limit, offset };
 };
 
