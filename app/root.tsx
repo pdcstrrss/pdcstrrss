@@ -45,7 +45,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body data-body-with-audio-player={audioSource}>
         <SvgSprite />
         <Outlet />
         {audioSource && (

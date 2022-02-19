@@ -43,6 +43,10 @@ body {
   max-width: 700px;
 }
 
+[data-body-with-audio-player] {
+  padding-bottom: calc(var(--space) * 3);
+}
+
 h1,
 h2,
 h3,

@@ -8,8 +8,11 @@ async function getAudioSource(url: string, selector: string = "audio") {
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const urlParam = new URL(request.url).searchParams.get('url')
+  const urlParam = new URL(request.url).searchParams.get("url");
   if (urlParam) {
+    if (urlParam.includes(".mp3")) {
+      return urlParam;
+    }
     const source = await getAudioSource(urlParam);
     if (source) {
       return source;
