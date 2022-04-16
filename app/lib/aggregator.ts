@@ -29,6 +29,9 @@ const CONFIG: AggregatorConfig = {
     {
       url: "https://feed.syntax.fm/rss",
     },
+    {
+      url: "https://feeds.soundcloud.com/users/soundcloud:users:293803449/sounds.rss",
+    }
   ],
 };
 
