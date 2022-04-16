@@ -12,7 +12,7 @@ interface EpisodeListProps {
 
 export const links = () => [...buttonLinks(), { rel: "stylesheet", href: styles }];
 
-export const EpisodeListItem = ({ title, url, podcastTitle, published }: EpisodeListItemProps) => {
+export const EpisodeListItem = ({ title, url, podcastTitle, published, image }: EpisodeListItemProps) => {
   let navigate = useNavigate();
 
   const handleOnClick = (episodeUrl: string) => {
@@ -23,7 +23,13 @@ export const EpisodeListItem = ({ title, url, podcastTitle, published }: Episode
 
   return (
     <article key={url} data-episode>
-      <h2 data-episode-title>{title}</h2>
+      
+      <header data-episode-header>
+        <h2 data-episode-title>{title}</h2>
+      </header>
+
+      <figure data-episode-media>{image && <img data-episode-image src={image} alt={title} />}</figure>
+
       <div data-episode-meta>
         <a href={url}>{podcastTitle}</a>
         <time data-episode-datetime dateTime={new Date(published).toISOString()}>

@@ -16,6 +16,7 @@ export interface Episode {
   description: string;
   audioSource?: string;
   published: string;
+  image?: string;
 }
 
 export interface AggregatorFeedDefaultConfig {

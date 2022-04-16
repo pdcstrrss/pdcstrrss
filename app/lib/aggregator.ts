@@ -17,6 +17,7 @@ const aggregatorFeedDefaultConfig: AggregatorFeedDefaultConfig = {
     description: "description",
     url: ["enclosure.@_url", "link"],
     published: "pubDate",
+    image: ["['itunes:image']['@_href']", "image.url"],
   },
 };
 
