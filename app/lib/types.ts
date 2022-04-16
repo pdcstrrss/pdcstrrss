@@ -18,13 +18,15 @@ export interface Episode {
   published: string;
 }
 
-export interface FeedsConfig {
-  url: string;
-  audioSourceSelector: string;
+export interface AggregatorFeedDefaultConfig {
   keyMapping: Record<string, string | string[]>;
 }
 
-export interface Feed extends FeedsConfig {
+export interface AggregatorFeedConfig extends Partial<AggregatorFeedDefaultConfig> {
+  url: string;
+}
+
+export interface Feed extends Required<AggregatorFeedConfig> {
   data: FeedData;
 }
 
@@ -43,7 +45,11 @@ export interface EpisodesData {
 }
 
 export interface AggregatorConfig {
-  feeds: FeedsConfig[];
+  feeds: AggregatorFeedConfig[];
+}
+
+export interface AggregatorMergedConfig {
+  feeds: Feed[];
 }
 
 export interface AggregatorParams {
