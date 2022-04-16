@@ -31,7 +31,16 @@ const CONFIG: AggregatorConfig = {
     },
     {
       url: "https://feeds.soundcloud.com/users/soundcloud:users:293803449/sounds.rss",
-    }
+    },
+    {
+      url: "https://changelog.com/jsparty/feed",
+    },
+    {
+      url: "https://changelog.com/podcast/feed",
+    },
+    {
+      url: "https://feed.podbean.com/thedownbeat/feed.xml",
+    },
   ],
 };
 
