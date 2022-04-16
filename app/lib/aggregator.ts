@@ -1,16 +1,8 @@
-import { read } from "feed-reader";
-import type { FeedData } from "feed-reader";
-import {get, orderBy} from "lodash";
-import type { Feed, Episode } from "./types";
+import { get, orderBy } from "lodash";
+import type { Feed, Episode, AggregatorConfig, EpisodesData, AggregatorParams } from "./types";
+import { parseRSS } from "./rss";
 
-export interface EpisodesData {
-  data: Episode[];
-  totalCount: number;
-  offset: number;
-  limit: number;
-}
-
-const _config = {
+const _config: AggregatorConfig = {
   feeds: [
     {
       url: "https://shoptalkshow.com/feed/",
@@ -19,7 +11,7 @@ const _config = {
         title: "title",
         description: "description",
         url: "link",
-        published: "published",
+        published: "pubDate",
       },
     },
     {
@@ -28,53 +20,68 @@ const _config = {
       keyMapping: {
         title: "title",
         description: "description",
-        url: "link",
-        published: "published",
+        url: ["enclosure.@_url", "link"],
+        published: "pubDate",
       },
     },
   ],
 };
 
-const getFeedsData = (config: typeof _config): Promise<Feed[]> =>
-  Promise.all(
-    config.feeds.map(async (feed) => {
-      const data = await read(feed.url);
-      return {
-        ...feed,
+const getFeedsData = async (config: typeof _config): Promise<Feed[]> => {
+  const feedsRss = await Promise.all(config.feeds.map((feed) => fetch(feed.url).then((res) => res.text())));
+  return (
+    feedsRss
+      .map(parseRSS)
+      .filter((feedRssObj) => !!feedRssObj)
+      // @ts-ignore
+      .map((data: FeedData, index) => ({
+        ...config.feeds[index],
         data,
-      };
-    })
+      }))
   );
+};
 
 export const getEpisodes = async (feeds: Feed[], offset = 0, limit = 10): Promise<EpisodesData> => {
-  const allData = await Promise.all(
-    feeds.reduce((acc, feed) => {
-      const entries = feed.data.entries.map((entry: any) => {
-        const episodeData = Object.entries(feed.keyMapping).reduce((acc, [episodeDataKey, feedEntryKey]) => {
-          return {
-            ...acc,
-            [episodeDataKey]: get(entry, feedEntryKey),
-          };
-        }, {});
+  const allEpisodes = feeds
+    .reduce((previousEpisodes, currentFeed) => {
+      if (!currentFeed?.data?.entries) {
+        return previousEpisodes;
+      }
+
+      const entries = currentFeed.data.entries.map((entry: any) => {
+        const episodeData: any = Object.entries(currentFeed.keyMapping).reduce(
+          (acc, [episodeDataKey, feedEntryKey]) => {
+            if (feedEntryKey instanceof Array) {
+              const feedEntryKeyWithValueIndex = feedEntryKey.findIndex((key) => get(entry, key));
+              if (feedEntryKeyWithValueIndex !== -1) {
+                return {
+                  ...acc,
+                  [episodeDataKey]: get(entry, feedEntryKey[feedEntryKeyWithValueIndex]),
+                };
+              }
+            }
+
+            return {
+              ...acc,
+              [episodeDataKey]: get(entry, feedEntryKey),
+            };
+          },
+          {}
+        );
 
         return {
-          podcastTitle: feed.data.title,
-          podcastDescription: feed.data.description,
+          podcastTitle: currentFeed.data.title,
+          podcastDescription: currentFeed.data.description,
           ...episodeData,
         };
       });
-      return [...acc, ...entries];
+      return previousEpisodes.concat(entries); 
     }, [] as Episode[])
-  );
-  const orderedData = orderBy(allData, ['published'], ['desc'])
+    .map(({ published, ...episode }) => ({ ...episode, published: new Date(published).toJSON() }));
+  const orderedData = orderBy(allEpisodes, ["published"], ["desc"]);
   const data = orderedData.filter((_, index) => index >= offset && index < limit);
-  return { data, totalCount: allData.length, limit, offset };
+  return { data, totalCount: allEpisodes.length, limit, offset };
 };
-
-export interface AggregatorParams {
-  offset?: number;
-  limit?: number;
-}
 
 export default async ({ offset, limit }: AggregatorParams = {}) => {
   const feeds = await getFeedsData(_config);

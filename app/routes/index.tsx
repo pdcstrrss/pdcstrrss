@@ -28,6 +28,8 @@ export default function Index() {
   let [pageSize, setPageSize] = useState<number>(loaderData.episodes.limit - loaderData.episodes.offset);
   let [currentPage, setCurrentPage] = useState<number>(loaderData.episodes.offset / pageSize + 1);
 
+  // console.log(episodesData)
+
   const getOffset = (page: number) => (page - 1) * pageSize;
   const getLimit = (page: number) => (page - 1) * pageSize + pageSize;
   const updateAggregateData = async (url: string) => {

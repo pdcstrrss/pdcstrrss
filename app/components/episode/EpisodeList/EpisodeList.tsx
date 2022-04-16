@@ -26,20 +26,20 @@ export const EpisodeListItem = ({ title, url, podcastTitle, published }: Episode
       <h2 data-episode-title>{title}</h2>
       <div data-episode-meta>
         <a href={url}>{podcastTitle}</a>
-        <time dateTime={new Date(published).toISOString()}>
+        <time data-episode-datetime dateTime={new Date(published).toISOString()}>
           {Intl.DateTimeFormat(["sv-SE"]).format(new Date(published))}
         </time>
-        <Button
-          onClick={() => handleOnClick(url)}
-          data-episode-media-button
-          reset
-          aria-label={`Play episode ${title} of ${podcastTitle}`}
-        >
-          <svg data-episode-media-icon data-icon>
-            <use xlinkHref="#play" />
-          </svg>
-        </Button>
       </div>
+      <Button
+        onClick={() => handleOnClick(url)}
+        data-episode-media-button
+        reset
+        aria-label={`Play episode ${title} of ${podcastTitle}`}
+      >
+        <svg data-episode-media-icon data-icon>
+          <use xlinkHref="#play" />
+        </svg>
+      </Button>
     </article>
   );
 };

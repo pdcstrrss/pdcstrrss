@@ -1,4 +1,12 @@
-import type { FeedData } from "feed-reader";
+export interface FeedData {
+  link?: string;
+  title?: string;
+  description?: string;
+  generator?: string;
+  language?: string;
+  published?: Date;
+  entries?: Array<any>;
+}
 
 export interface Episode {
   podcastTitle: string;
@@ -10,10 +18,13 @@ export interface Episode {
   published: string;
 }
 
-export interface Feed {
+export interface FeedsConfig {
   url: string;
   audioSourceSelector: string;
-  keyMapping: Record<string, string>;
+  keyMapping: Record<string, string | string[]>;
+}
+
+export interface Feed extends FeedsConfig {
   data: FeedData;
 }
 
@@ -22,4 +33,20 @@ export interface FeedEntry {
   link: string;
   description: string;
   published: string;
+}
+
+export interface EpisodesData {
+  data: Episode[];
+  totalCount: number;
+  offset: number;
+  limit: number;
+}
+
+export interface AggregatorConfig {
+  feeds: FeedsConfig[];
+}
+
+export interface AggregatorParams {
+  offset?: number;
+  limit?: number;
 }
