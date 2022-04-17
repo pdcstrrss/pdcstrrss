@@ -102,3 +102,20 @@ a:focus {
 [data-audio-player] audio {
   width: 100%;
 }
+
+[data-page-index] {
+  display: flex;
+  gap: var(--space);
+  flex-direction: column;
+  padding: var(--space);
+}
+
+[data-anonymous-index] {
+  text-align: center;
+  display: flex;
+  gap: var(--space);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-block-size: calc(100vh - var(--space) * 2);
+}

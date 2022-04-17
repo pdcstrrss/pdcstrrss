@@ -1,10 +1,10 @@
 import normalize from "normalize.css";
 import root from "./root.css";
 import { links as appHeaderLinks } from "~/components/app/AppHeader/AppHeader";
-import { Links, LiveReload, LoaderFunction, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "remix";
-import type { MetaFunction } from "remix";
 import SvgSprite from "~/components/SvgSprite";
 import isURL from "validator/lib/isURL";
+import { useLoaderData, Meta, Links, Outlet, ScrollRestoration, Scripts, LiveReload } from "@remix-run/react";
+import { MetaFunction, LoaderFunction } from "@remix-run/server-runtime";
 
 export function links() {
   return [

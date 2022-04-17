@@ -1,6 +1,4 @@
-import { useLoaderData, useNavigate } from "remix";
 import { useState } from "react";
-import type { LoaderFunction } from "remix";
 import { AggregateResponse } from "./aggregate";
 import { AppHeader } from "~/components/app/AppHeader/AppHeader";
 import { EpisodeList, links as episodeListLinks } from "~/components/episode/EpisodeList/EpisodeList";
@@ -8,7 +6,8 @@ import { Pagination, links as paginationLinks } from "~/components/Pagination/Pa
 import { authenticator } from "~/services/auth.server";
 import { User } from "@prisma/client";
 import { Button } from "~/components/Button/Button";
-import styles from "./index.css";
+import { LoaderFunction } from "@remix-run/server-runtime";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 
 async function getAggregateData(url: string) {
   const _url = new URL(url);
@@ -17,7 +16,7 @@ async function getAggregateData(url: string) {
 }
 
 export function links() {
-  return [...episodeListLinks(), ...paginationLinks(), { rel: "stylesheet", href: styles }];
+  return [...episodeListLinks(), ...paginationLinks(), { rel: "stylesheet" }];
 }
 
 export const loader: LoaderFunction = async ({ request }): Promise<{ data?: AggregateResponse; user: User | null }> => {
@@ -41,7 +40,9 @@ function AnonymousIndex() {
       <p>The RSS PodCast PWA</p>
       <ul className="list-unstyled">
         <li>Login with GitHub</li>
-        <li>Sponsor the project for only <strong>$1 / month</strong></li>
+        <li>
+          Sponsor the project for only <strong>$1 / month</strong>
+        </li>
         <li>Configure</li>
         <li>Listen</li>
       </ul>

@@ -1,4 +1,4 @@
-import { useNavigate } from "remix";
+import { useNavigate } from "@remix-run/react";
 import { Button, links as buttonLinks } from "~/components/Button/Button";
 import { BASE_URL } from "~/lib/constants";
 import type { Episode } from "~/lib/types";
