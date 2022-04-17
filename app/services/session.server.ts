@@ -1,4 +1,4 @@
-import { createSessionStorage, SessionData } from "@remix-run/server-runtime";
+import { createSessionStorage, SessionData } from "@remix-run/node";
 import { db } from "./database.server";
 
 function createDatabaseSessionStorage({ cookie }: { cookie: any }) {
