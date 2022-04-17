@@ -60,3 +60,20 @@ export default function App() {
     </html>
   );
 }
+
+export function ErrorBoundary({ error }: { error: any }) {
+  process.env.NODE_ENV !== "production" && console.error(error);
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* add the UI you want your users to see */}
+        <Scripts />
+      </body>
+    </html>
+  );
+}

@@ -58,11 +58,8 @@ h6 {
   letter-spacing: -0.025em;
 }
 
-[data-page-index] {
-  display: flex;
-  gap: var(--space);
-  flex-direction: column;
-  padding: var(--space);
+p, ul {
+  margin-bottom: var(--space);
 }
 
 svg {
@@ -84,6 +81,11 @@ a:focus {
   background-color: var(--brand-primary);
   padding: 0 0.25em;
   margin: 0 -0.25em;
+}
+
+.list-unstyled {
+  list-style: none;
+  padding: 0;
 }
 
 [data-audio-player] {

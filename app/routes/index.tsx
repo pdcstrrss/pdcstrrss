@@ -5,6 +5,10 @@ import { AggregateResponse } from "./aggregate";
 import { AppHeader } from "~/components/app/AppHeader/AppHeader";
 import { EpisodeList, links as episodeListLinks } from "~/components/episode/EpisodeList/EpisodeList";
 import { Pagination, links as paginationLinks } from "~/components/Pagination/Pagination";
+import { authenticator } from "~/services/auth.server";
+import { User } from "@prisma/client";
+import { Button } from "~/components/Button/Button";
+import styles from "./index.css";
 
 async function getAggregateData(url: string) {
   const _url = new URL(url);
@@ -13,22 +17,51 @@ async function getAggregateData(url: string) {
 }
 
 export function links() {
-  return [...episodeListLinks(), ...paginationLinks(), { rel: "stylesheet" }];
+  return [...episodeListLinks(), ...paginationLinks(), { rel: "stylesheet", href: styles }];
 }
 
-export const loader: LoaderFunction = async ({ request }): Promise<AggregateResponse> => {
-  const data = await getAggregateData(request.url);
-  return data;
+export const loader: LoaderFunction = async ({ request }): Promise<{ data?: AggregateResponse; user: User | null }> => {
+  try {
+    const user = await authenticator.isAuthenticated(request);
+    if (user) {
+      const data = await getAggregateData(request.url);
+      return { data, user };
+    } else {
+      return { user };
+    }
+  } catch (error: any) {
+    throw new Error(error);
+  }
 };
 
-export default function Index() {
-  const loaderData = useLoaderData<AggregateResponse>();
+function AnonymousIndex() {
+  return (
+    <div data-anonymous-index>
+      <h1>PDCSTRRSS</h1>
+      <p>The RSS PodCast PWA</p>
+      <ul className="list-unstyled">
+        <li>Login with GitHub</li>
+        <li>Sponsor the project for only <strong>$1 / month</strong></li>
+        <li>Configure</li>
+        <li>Listen</li>
+      </ul>
+      <form action="/auth/github" method="post" style={{ display: "inline-block" }}>
+        <Button>
+          <svg style={{ inlineSize: "var(--space)", blockSize: "var(--space)" }}>
+            <use xlinkHref="#github" />
+          </svg>
+          <span>Login with GitHub</span>
+        </Button>
+      </form>
+    </div>
+  );
+}
+
+function AuthenticatedIndex({ loaderData, user }: { loaderData: AggregateResponse; user: User }) {
   let navigate = useNavigate();
   let [episodesData, setEpisodesData] = useState<AggregateResponse["episodes"]>(loaderData.episodes);
   let [pageSize, setPageSize] = useState<number>(loaderData.episodes.limit - loaderData.episodes.offset);
   let [currentPage, setCurrentPage] = useState<number>(loaderData.episodes.offset / pageSize + 1);
-
-  // console.log(episodesData)
 
   const getOffset = (page: number) => (page - 1) * pageSize;
   const getLimit = (page: number) => (page - 1) * pageSize + pageSize;
@@ -61,8 +94,8 @@ export default function Index() {
   };
 
   return (
-    <div data-page-index>
-      <AppHeader />
+    <>
+      <AppHeader user={user} />
       <EpisodeList episodes={episodesData.data} />
       <Pagination
         simple
@@ -72,6 +105,14 @@ export default function Index() {
         pageSize={pageSize}
         itemRender={itemRender}
       />
-    </div>
+    </>
+  );
+}
+
+export default function Index() {
+  const { data, user } = useLoaderData<{ data: AggregateResponse; user: User }>();
+
+  return (
+    <div data-page-index>{!!user ? <AuthenticatedIndex loaderData={data} user={user} /> : <AnonymousIndex />}</div>
   );
 }

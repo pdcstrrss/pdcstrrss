@@ -1,14 +1,17 @@
-import React from "react";
+import { User } from "@prisma/client";
 import styles from "./AppHeader.css";
 
-export const links = () => [
-  { rel: "stylesheet", href: styles }
-];
+export const links = () => [{ rel: "stylesheet", href: styles }];
 
-export const AppHeader = React.forwardRef(
-  ({ children, ...props }, ref: any) => {
-    return <header {...props} ref={ref}>
+interface AppHeaderProps {
+  user: User;
+}
+
+export function AppHeader({ user }: AppHeaderProps) {
+  return (
+    <header data-app-header>
       <h1 data-app-header-title>PODCSTRRSS</h1>
-    </header>;
-  }
-);
+      {user.image && <img  data-app-header-image src={user.image} alt={user.name} />}
+    </header>
+  );
+}

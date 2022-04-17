@@ -1,8 +1,7 @@
 import { LoaderFunction } from "remix";
 import isNumeric from "validator/lib/isNumeric";
-import type { EpisodesData } from "~/lib/aggregator";
 import aggregator from "~/lib/aggregator";
-import type { Feed } from "~/lib/types";
+import type { EpisodesData, Feed } from "~/lib/types";
 
 export interface AggregateResponse {
   episodes: EpisodesData;

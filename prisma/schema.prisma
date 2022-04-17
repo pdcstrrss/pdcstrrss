@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  githubId  String   @unique
+  image     String?
+  name      String
+  // feeds     FeedsOfUsers[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  data      Json
+}
+
+model Feed {
+  id          String    @id @default(uuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  link        String
+  title       String
+  description String
+  generator   String
+  language    String
+  published   String
+  episodes    Episode[]
+  // users       FeedsOfUsers[]
+}
+
+model Episode {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  url         String
+  description String
+  published   DateTime
+  image       String?
+  feed        Feed     @relation(fields: [feedId], references: [id])
+  feedId      String
+
+  @@index([feedId])
+}
+
+// https://github.com/prisma/prisma/issues/10758#issuecomment-1098430578
+
+// model FeedsOfUsers {
+//   user   User   @relation(fields: [userId], references: [id], onUpdate: NoAction)
+//   userId String
+
+//   feed   Feed   @relation(fields: [feedId], references: [id], onUpdate: NoAction)
+//   feedId String
+
+//   @@id([userId, feedId])
+//   @@index([userId, feedId])
+// }
