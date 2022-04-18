@@ -8,6 +8,7 @@ import { User } from "@prisma/client";
 import { Button } from "~/components/Button/Button";
 import { LoaderFunction } from "@remix-run/server-runtime";
 import { useLoaderData, useNavigate } from "@remix-run/react";
+import { db } from "~/services/database.server";
 
 async function getAggregateData(url: string) {
   const _url = new URL(url);
@@ -21,12 +22,13 @@ export function links() {
 
 export const loader: LoaderFunction = async ({ request }): Promise<{ data?: AggregateResponse; user: User | null }> => {
   try {
-    const user = await authenticator.isAuthenticated(request);
-    if (user) {
+    const userId = await authenticator.isAuthenticated(request);
+    if (userId) {
       const data = await getAggregateData(request.url);
+      const user = await db.user.findUnique({ where: { id: userId } });
       return { data, user };
     } else {
-      return { user };
+      return { user: null };
     }
   } catch (error: any) {
     throw new Error(error);

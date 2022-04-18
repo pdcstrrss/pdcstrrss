@@ -6,7 +6,7 @@ import { db } from "./database.server";
 
 // Create an instance of the authenticator, pass a generic with what
 // strategies will return and will store in the session
-export let authenticator = new Authenticator<User>(sessionStorage);
+export let authenticator = new Authenticator<string>(sessionStorage);
 
 let gitHubStrategy = new GitHubStrategy(
   {
@@ -41,7 +41,7 @@ let gitHubStrategy = new GitHubStrategy(
       create: newData,
     });
 
-    return user;
+    return user.id;
   }
 );
 
