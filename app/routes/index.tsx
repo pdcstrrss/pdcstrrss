@@ -115,8 +115,6 @@ function AuthenticatedIndex({ loaderData, user }: { loaderData: AggregateRespons
 export default function Index() {
   const { data, user } = useLoaderData<{ data: AggregateResponse; user: User }>();
 
-  console.log(data, user);
-
   return (
     <div data-page-index>{!!user ? <AuthenticatedIndex loaderData={data} user={user} /> : <AnonymousIndex />}</div>
   );

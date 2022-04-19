@@ -1,11 +1,10 @@
-import { LoaderFunction } from "remix";
+import { LoaderFunction } from "@remix-run/server-runtime";
 import isNumeric from "validator/lib/isNumeric";
 import aggregator from "~/lib/aggregator";
 import type { EpisodesData, Feed } from "~/lib/types";
 
 export interface AggregateResponse {
   episodes: EpisodesData;
-  feeds: Feed[];
 }
 export const loader: LoaderFunction = async ({ request }): Promise<AggregateResponse> => {
   const url = new URL(request.url);
@@ -22,6 +21,6 @@ export const loader: LoaderFunction = async ({ request }): Promise<AggregateResp
     offset = isNumeric(offsetParam) ? Number(offsetParam) : undefined;
   }
 
-  const { episodes, feeds } = await aggregator({ limit, offset });
-  return { episodes, feeds };
+  const { episodes } = await aggregator({ limit, offset });
+  return { episodes };
 };
