@@ -61,7 +61,7 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: { error: any }) {
-  process.env.NODE_ENV !== "production" && console.error(error);
+  console.error(error)
   return (
     <html>
       <head>
