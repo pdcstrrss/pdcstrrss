@@ -39,7 +39,7 @@ export interface FeedEntry {
 }
 
 export interface EpisodesData {
-  data: Episode[];
+  episodes: Episode[];
   totalCount: number;
   offset: number;
   limit: number;

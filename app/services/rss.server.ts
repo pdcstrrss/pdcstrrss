@@ -1,5 +1,5 @@
 import { XMLParser } from "fast-xml-parser";
-import { FeedData } from "./types";
+import { FeedData } from "../lib/types";
 
 export function parseRSS(rss: string): FeedData | undefined {
   const parser = new XMLParser({ ignoreAttributes: false });

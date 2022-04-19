@@ -2,9 +2,8 @@ import normalize from "normalize.css";
 import root from "./root.css";
 import { links as appHeaderLinks } from "~/components/app/AppHeader/AppHeader";
 import SvgSprite from "~/components/SvgSprite";
-import isURL from "validator/lib/isURL";
-import { useLoaderData, Meta, Links, Outlet, ScrollRestoration, Scripts, LiveReload } from "@remix-run/react";
-import { MetaFunction, LoaderFunction } from "@remix-run/server-runtime";
+import { Meta, Links, Outlet, ScrollRestoration, Scripts } from "@remix-run/react";
+import { MetaFunction } from "@remix-run/server-runtime";
 
 export function links() {
   return [
@@ -20,23 +19,7 @@ export const meta: MetaFunction = () => {
   return { title: "PDCSTRRSS" };
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const url = new URL(request.url);
-  let urlParam = url.searchParams.get("episode");
-  urlParam = isURL(urlParam || "") ? urlParam : null;
-  if (urlParam) {
-    const fetchUrl = new URL(url.origin + "/audio");
-    fetchUrl.searchParams.set("url", urlParam);
-    const audioSource = await fetch(fetchUrl.toString()).then((res) => res.json());
-    return { audioSource };
-  }
-
-  return {};
-};
-
 export default function App() {
-  const { audioSource } = useLoaderData();
-
   return (
     <html lang="en">
       <head>
@@ -45,14 +28,9 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body data-body-with-audio-player={audioSource}>
+      <body>
         <SvgSprite />
         <Outlet />
-        {audioSource && (
-          <div data-audio-player>
-            <audio src={audioSource} controls />
-          </div>
-        )}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -61,7 +39,7 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: { error: any }) {
-  console.error(error)
+  console.error(error);
   return (
     <html>
       <head>
@@ -70,6 +48,9 @@ export function ErrorBoundary({ error }: { error: any }) {
         <Links />
       </head>
       <body>
+        <div data-anonymous-index>
+          <h1>Error</h1>
+        </div>
         {/* add the UI you want your users to see */}
         <Scripts />
       </body>

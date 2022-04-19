@@ -8,8 +8,8 @@ import type {
   AggregatorFeedDefaultConfig,
   AggregatorMergedConfig,
   FeedData,
-} from "./types";
-import { parseRSS } from "./rss";
+} from "../lib/types";
+import { parseRSS } from "~/services/rss.server";
 
 const aggregatorFeedDefaultConfig: AggregatorFeedDefaultConfig = {
   keyMapping: {
@@ -101,12 +101,12 @@ export const getEpisodes = async (feeds: Feed[], offset = 0, limit = 10): Promis
     .map(({ published, ...episode }) => ({ ...episode, published: new Date(published).toJSON() }));
   const orderedData = orderBy(allEpisodes, ["published"], ["desc"]);
   const data = orderedData.filter((_, index) => index >= offset && index < limit);
-  return { data, totalCount: allEpisodes.length, limit, offset };
+  return { episodes: data, totalCount: allEpisodes.length, limit, offset };
 };
 
 export default async ({ offset, limit }: AggregatorParams = {}) => {
   const fullConfig = getFullConfig(CONFIG);
-  const feeds = await getFeedsData(fullConfig);
-  const episodes = await getEpisodes(feeds, offset, limit);
-  return { feeds, episodes };
+  const feedsData = await getFeedsData(fullConfig);
+  const episodesData = await getEpisodes(feedsData, offset, limit);
+  return { feedsData, episodesData };
 };

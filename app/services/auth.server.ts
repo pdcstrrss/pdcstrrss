@@ -26,12 +26,12 @@ let gitHubStrategy = new GitHubStrategy(
       throw new Error("No email for GitHub account found");
     }
 
-    const newData: Pick<User, 'email' | 'githubId' | 'image' | 'name'> = {
+    const newData: Pick<User, "email" | "githubId" | "image" | "name"> = {
       githubId,
       email,
       image: profile.photos?.[0].value,
       name: profile.displayName,
-    }
+    };
 
     const user = await db.user.upsert({
       where: {
@@ -46,3 +46,9 @@ let gitHubStrategy = new GitHubStrategy(
 );
 
 authenticator.use(gitHubStrategy);
+
+export async function getUser({ request }: { request: Request }) {
+  const userId = await authenticator.isAuthenticated(request);
+  if (!userId) return null;
+  return db.user.findUnique({ where: { id: userId } });
+}

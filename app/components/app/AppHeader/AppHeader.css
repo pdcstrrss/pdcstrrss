@@ -1,6 +1,7 @@
 [data-app-header] {
   display: flex;
   align-items: center;
+  padding: var(--space);
 }
 
 [data-app-header-title] {
