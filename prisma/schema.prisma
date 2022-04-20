@@ -13,13 +13,14 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  githubId  String   @unique
-  image     String?
-  name      String
+  id            String         @id @default(uuid())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  email         String         @unique
+  githubId      String         @unique
+  image         String?
+  displayName   String
+  oauthSessions OauthSession[]
   // feeds     FeedsOfUsers[]
 }
 
@@ -28,6 +29,16 @@ model Session {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   data      Json
+}
+
+model OauthSession {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  accessToken  String   @unique
+  refreshToken String?
+  User         User     @relation(fields: [userId], references: [id])
+  userId       String
 }
 
 model Feed {

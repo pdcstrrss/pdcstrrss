@@ -1,54 +1,58 @@
-import { User } from "@prisma/client";
 import { Authenticator } from "remix-auth";
-import { GitHubStrategy } from "remix-auth-github";
+import { OAuth2StrategyVerifyParams } from "remix-auth-oauth2";
+import { GitHubExtraParams, GitHubProfile, GitHubStrategy, GitHubStrategyOptions } from "remix-auth-github";
 import { sessionStorage } from "~/services/session.server";
-import { db } from "./database.server";
+import {
+  getById as getUserById,
+  upsertWithOAuthSession as upsertUserWithOAuthSession,
+} from "~/repositories/user.repository";
 
-// Create an instance of the authenticator, pass a generic with what
-// strategies will return and will store in the session
-export let authenticator = new Authenticator<string>(sessionStorage);
+const gitHubStrategyOptions: GitHubStrategyOptions = {
+  clientID: process.env.GH_OAUTH_CLIENT_ID || "",
+  clientSecret: process.env.GH_OAUTH_CLIENT_SECRET || "",
+  callbackURL: `${process.env.BASE_URL}/auth/github/callback`,
+};
 
-let gitHubStrategy = new GitHubStrategy(
-  {
-    clientID: process.env.GH_OAUTH_CLIENT_ID || "",
-    clientSecret: process.env.GH_OAUTH_CLIENT_SECRET || "",
-    callbackURL: `${process.env.BASE_URL}/auth/github/callback`,
-  },
-  async ({ accessToken, extraParams, profile }) => {
-    const email = profile.emails?.[0].value?.toUpperCase();
-    const githubId = profile.id;
+async function verifyCallBack({
+  accessToken,
+  refreshToken,
+  extraParams,
+  profile,
+  context,
+}: OAuth2StrategyVerifyParams<GitHubProfile, GitHubExtraParams>): Promise<string> {
+  const email = profile.emails?.[0].value?.toUpperCase();
+  const githubId = profile.id;
 
-    if (!githubId) {
-      throw new Error("No githubId for GitHub account found");
-    }
-
-    if (!email) {
-      throw new Error("No email for GitHub account found");
-    }
-
-    const newData: Pick<User, "email" | "githubId" | "image" | "name"> = {
-      githubId,
-      email,
-      image: profile.photos?.[0].value,
-      name: profile.displayName,
-    };
-
-    const user = await db.user.upsert({
-      where: {
-        githubId,
-      },
-      update: newData,
-      create: newData,
-    });
-
-    return user.id;
+  if (!githubId) {
+    throw new Error("No githubId for GitHub account found");
   }
-);
 
+  if (!email) {
+    throw new Error("No email for GitHub account found");
+  }
+
+  const user = await upsertUserWithOAuthSession({
+    githubId,
+    email,
+    image: profile.photos?.[0].value,
+    displayName: profile.displayName,
+    accessToken,
+    refreshToken,
+  });
+
+  if (!user) {
+    throw new Error("No user found");
+  }
+  
+  return user.id;
+}
+
+export const authenticator = new Authenticator<string>(sessionStorage);
+const gitHubStrategy = new GitHubStrategy(gitHubStrategyOptions, verifyCallBack);
 authenticator.use(gitHubStrategy);
 
 export async function getUser({ request }: { request: Request }) {
   const userId = await authenticator.isAuthenticated(request);
   if (!userId) return null;
-  return db.user.findUnique({ where: { id: userId } });
+  return getUserById(userId);
 }
