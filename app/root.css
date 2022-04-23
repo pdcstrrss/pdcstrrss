@@ -52,10 +52,18 @@ h6 {
   line-height: 1;
   color: var(--foreground-color-intense);
   letter-spacing: -0.025em;
+
+  margin-top: 0;
+  margin-bottom: var(--space);
+}
+
+[data-title] {
+  font-weight: 900;
 }
 
 p,
 ul {
+  margin-top: 0;
   margin-bottom: var(--space);
 }
 
@@ -119,4 +127,13 @@ a:focus {
   justify-content: center;
   align-items: center;
   min-block-size: calc(100vh - var(--space) * 2);
+}
+
+[data-card] {
+  border: var(--border-width) solid var(--border-color);
+  outline: var(--border-width) solid var(--background-color-mild);
+  padding: var(--space);
+  margin: -2px;
+  box-shadow: calc(var(--border-width) * 2) calc(var(--border-width) * 2) 0 0 var(--foreground-color-intense);
+  background: var(--background-color-intense);
 }
