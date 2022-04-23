@@ -13,15 +13,16 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  email         String         @unique
-  githubId      String         @unique
-  image         String?
-  displayName   String
-  oauthSessions OauthSession[]
+  id              String            @id @default(uuid())
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  email           String            @unique
+  githubId        String            @unique
+  image           String?
+  displayName     String
+  oauthSessions   OauthSession[]
   // feeds     FeedsOfUsers[]
+  // EpisodesOfUsers EpisodesOfUsers[]
 }
 
 model Session {
@@ -67,6 +68,7 @@ model Episode {
   feed        Feed     @relation(fields: [feedId], references: [id])
   feedId      String
 
+  // EpisodesOfUsers EpisodesOfUsers[]
   @@index([feedId])
 }
 
@@ -81,4 +83,28 @@ model Episode {
 
 //   @@id([userId, feedId])
 //   @@index([userId, feedId])
+// }
+
+// enum EpisodeStatus {
+//   NEW
+//   READ
+//   PLAYING
+//   PAUSED
+//   FINISHED
+//   SKIPPED
+// }
+
+// model EpisodesOfUsers {
+
+//   user   User   @relation(fields: [userId], references: [id], onUpdate: NoAction)
+//   userId String
+
+//   episode   Episode @relation(fields: [episodeId], references: [id], onUpdate: NoAction)
+//   episodeId String
+
+//   currentTime Float
+//   status EpisodeStatus
+
+//   @@id([userId, episodeId])
+//   @@index([userId, episodeId])
 // }
