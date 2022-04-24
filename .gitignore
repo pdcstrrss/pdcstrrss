@@ -49,3 +49,6 @@ build
 public/build
 api/_build
 netlify/functions/server/build
+
+# Local Netlify folder
+.netlify

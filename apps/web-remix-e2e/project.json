@@ -1,0 +1,43 @@
+{
+  "root": "apps/web-remix-e2e",
+  "sourceRoot": "apps/web-remix-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx nx run web-remix:dev"
+          },
+          {
+            "command": "npx cypress run -P apps/web-remix-e2e"
+          }
+        ],
+        "readyWhen": "Run Finished"
+      },
+      "configurations": {
+        "watch": {
+          "commands": [
+            {
+              "command": "npx nx run web-remix:dev"
+            },
+            {
+              "command": "npx cypress open -P apps/web-remix-e2e"
+            }
+          ],
+          "parallel": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web-remix-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["web-remix"]
+}
