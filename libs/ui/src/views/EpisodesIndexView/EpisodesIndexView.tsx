@@ -1,17 +1,13 @@
-import { User } from '@pdcstrrss/database';
 import { PropsWithChildren } from 'react';
-import { AppHeader } from '..';
+import { AppHeader } from '../../';
+import type { AppHeaderUser } from '../../';
 
 export interface IEpisodesIndexViewProps {
-  user: User;
+  user: AppHeaderUser;
   audioSource?: string;
 }
 
-export function EpisodesIndexView({
-  children,
-  user,
-  audioSource,
-}: PropsWithChildren<IEpisodesIndexViewProps>) {
+export function EpisodesIndexView({ children, user, audioSource }: PropsWithChildren<IEpisodesIndexViewProps>) {
   return (
     <>
       <AppHeader user={user} />

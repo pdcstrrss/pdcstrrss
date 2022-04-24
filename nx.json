@@ -4,7 +4,7 @@
     "defaultBase": "main"
   },
   "cli": {
-    "defaultCollection": "@nrwl/remix"
+    "defaultCollection": "@nrwl/react"
   },
   "implicitDependencies": {
     "package.json": {
@@ -43,10 +43,9 @@
   },
   "defaultProject": "web-remix",
   "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
+    "@nrwl/react:component": {
+      "pascalCaseFiles": true,
+      "pascalCaseDirectory": true
     }
   }
 }

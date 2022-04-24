@@ -3,8 +3,10 @@ import styles from "./AppHeader.css";
 
 export const AppHeaderLinks = () => [{ rel: "stylesheet", href: styles }];
 
+export type AppHeaderUser = Pick<User, "displayName" | "image">;
+
 interface AppHeaderProps {
-  user: User;
+  user: AppHeaderUser;
 }
 
 export function AppHeader({ user }: AppHeaderProps) {

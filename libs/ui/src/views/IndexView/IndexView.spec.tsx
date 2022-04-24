@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Ui from './ui';
+import { IndexView } from './IndexView';
 
-describe('Ui', () => {
+describe('IndexView', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Ui />);
+    const { baseElement } = render(<IndexView />);
     expect(baseElement).toBeTruthy();
   });
 });
