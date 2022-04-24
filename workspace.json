@@ -62,10 +62,30 @@
       "projectType": "application",
       "targets": {
         "e2e": {
-          "executor": "@nrwl/cypress:cypress",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "cypressConfig": "apps/web-remix-e2e/cypress.json",
-            "devServerTarget": "web-remix:dev"
+            "commands": [
+              {
+                "command": "npx nx run web-remix:dev"
+              },
+              {
+                "command": "npx cypress run -P apps/web-remix-e2e"
+              }
+            ],
+            "readyWhen": "Run Finished"
+          },
+          "configurations": {
+            "watch": {
+              "commands": [
+                {
+                  "command": "npx nx run web-remix:dev"
+                },
+                {
+                  "command": "npx cypress open -P apps/web-remix-e2e"
+                }
+              ],
+              "parallel": true
+            }
           }
         },
         "lint": {
