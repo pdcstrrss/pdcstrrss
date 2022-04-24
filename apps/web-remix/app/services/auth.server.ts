@@ -1,13 +1,13 @@
 import { Authenticator } from 'remix-auth';
 import { OAuth2StrategyVerifyParams } from 'remix-auth-oauth2';
-import {
-  GitHubExtraParams,
-  GitHubProfile,
-  GitHubStrategy,
-  GitHubStrategyOptions,
-} from 'remix-auth-github';
+import { GitHubExtraParams, GitHubProfile, GitHubStrategy, GitHubStrategyOptions } from 'remix-auth-github';
 import { sessionStorage } from './session.server';
 import { getUserById, upsertUserWithOAuthSession } from '@pdcstrrss/database';
+
+export interface IAuthenticationCookie {
+  id: string;
+  accessToken: string;
+}
 
 const gitHubStrategyOptions: GitHubStrategyOptions = {
   clientID: process.env.GH_OAUTH_CLIENT_ID || '',
@@ -18,15 +18,10 @@ const gitHubStrategyOptions: GitHubStrategyOptions = {
 async function verifyCallBack({
   accessToken,
   refreshToken,
-  extraParams,
   profile,
-  context,
-}: OAuth2StrategyVerifyParams<
-  GitHubProfile,
-  GitHubExtraParams
->): Promise<string> {
+}: OAuth2StrategyVerifyParams<GitHubProfile, GitHubExtraParams>): Promise<IAuthenticationCookie> {
   const email = profile.emails?.[0].value?.toUpperCase();
-  const githubId = profile.id;
+  const githubId = profile._json.login;
 
   if (!githubId) {
     throw new Error('No githubId for GitHub account found');
@@ -49,18 +44,9 @@ async function verifyCallBack({
     throw new Error('No user found');
   }
 
-  return user.id;
+  return { id: user.id, accessToken };
 }
 
-export const authenticator = new Authenticator<string>(sessionStorage);
-const gitHubStrategy = new GitHubStrategy(
-  gitHubStrategyOptions,
-  verifyCallBack
-);
+export const authenticator = new Authenticator<IAuthenticationCookie>(sessionStorage);
+const gitHubStrategy = new GitHubStrategy(gitHubStrategyOptions, verifyCallBack);
 authenticator.use(gitHubStrategy);
-
-export async function getUserByRequest({ request }: { request: Request }) {
-  const userId = await authenticator.isAuthenticated(request);
-  if (!userId) return null;
-  return getUserById(userId);
-}

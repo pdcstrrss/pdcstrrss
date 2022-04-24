@@ -1,12 +1,14 @@
-import { OauthSession, User } from "@prisma/client";
-import { db } from "./database.service";
+import { OauthSession, User } from '@prisma/client';
+import { db } from './database.service';
 
-type UserUpsert = Pick<User, "email" | "githubId" | "image" | "displayName">;
-type UserOauthSessionUpsert = Pick<OauthSession, "accessToken" | "refreshToken">;
+type UserUpsert = Pick<User, 'email' | 'githubId' | 'image' | 'displayName'>;
+type UserOauthSessionUpsert = Pick<OauthSession, 'accessToken' | 'refreshToken'>;
 type UserWithOAuthSessionUpsert = UserUpsert & UserOauthSessionUpsert;
 
 export async function getUserById(id: string) {
-  return db.user.findUnique({ where: { id } });
+  return db.user.findUnique({
+    where: { id },
+  });
 }
 
 export async function upsertUser(newUserData: UserUpsert) {
@@ -27,7 +29,7 @@ export async function upsertUserWithOAuthSession({
   const oauthSessionData = {
     accessToken: accessToken,
     refreshToken: refreshToken,
-  }
+  };
 
   return db.user
     .upsert({
@@ -37,11 +39,12 @@ export async function upsertUserWithOAuthSession({
       update: {
         ...newUserData,
         oauthSessions: {
-          updateMany: {
+          upsert: {
             where: {
               accessToken,
             },
-            data: oauthSessionData,
+            create: oauthSessionData,
+            update: oauthSessionData,
           },
         },
       },
@@ -54,5 +57,6 @@ export async function upsertUserWithOAuthSession({
     })
     .catch((error) => {
       console.error(error);
+      throw new Error(error);
     });
 }

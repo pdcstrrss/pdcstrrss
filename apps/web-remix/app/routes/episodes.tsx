@@ -1,8 +1,8 @@
-import { User } from "@pdcstrrss/database";
-import { EpisodesIndexView } from "@pdcstrrss/ui";
-import { Outlet, useLoaderData } from "@remix-run/react";
-import { LoaderFunction, redirect } from "@remix-run/server-runtime";
-import { getUserByRequest } from "../services/auth.server";
+import { User } from '@pdcstrrss/database';
+import { EpisodesIndexView } from '@pdcstrrss/ui';
+import { Outlet, useLoaderData } from '@remix-run/react';
+import { LoaderFunction, redirect } from '@remix-run/server-runtime';
+import { initializeUserByRequest } from '../services/user.server';
 import isURL from 'validator/lib/isURL';
 
 interface EpisodesLoaderResponse {
@@ -17,9 +17,7 @@ async function getAudioSource({ request }: { request: Request }) {
   if (urlParam) {
     const fetchUrl = new URL(url.origin + '/audio');
     fetchUrl.searchParams.set('url', urlParam);
-    const audioSource: string = await fetch(fetchUrl.toString()).then((res) =>
-      res.json()
-    );
+    const audioSource: string = await fetch(fetchUrl.toString()).then((res) => res.json());
     return audioSource;
   }
   return;
@@ -27,10 +25,11 @@ async function getAudioSource({ request }: { request: Request }) {
 
 export const loader: LoaderFunction = async ({ request }): Promise<EpisodesLoaderResponse | Response> => {
   try {
-    const user = await getUserByRequest({ request });
+    const { user, userSponsorship } = (await initializeUserByRequest({ request })) || {};
+    if (!userSponsorship?.sponsor && !userSponsorship?.contributer) return redirect('/pricing');
     const audioSource = await getAudioSource({ request });
     if (!user) {
-      return redirect("/");
+      return redirect('/');
     }
     return { user, audioSource };
   } catch (error: any) {
