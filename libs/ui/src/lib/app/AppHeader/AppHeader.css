@@ -1,0 +1,20 @@
+[data-app-header] {
+  display: flex;
+  align-items: center;
+  padding: var(--space);
+}
+
+[data-app-header-title] {
+  margin: 0.75rem 0 0 0;
+  font-size: 1.5rem;
+  font-weight: 900;
+  flex-grow: 1;
+}
+
+[data-app-header-image] {
+  inline-size: calc(var(--space) * 2);
+  aspect-ratio: 1 / 1;
+  border: var(--border-width) solid var(--border-color);
+  outline: var(--border-width) solid var(--background-color-mild);
+  box-shadow: calc(var(--border-width) * 2) calc(var(--border-width) * 2) 0 0 var(--foreground-color-intense);
+}
