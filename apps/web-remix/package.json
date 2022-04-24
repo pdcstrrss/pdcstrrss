@@ -8,17 +8,24 @@
     "dev": "cross-env NODE_ENV=development netlify dev"
   },
   "dependencies": {
+    "@remix-run/netlify": "^1.4.0",
+    "@netlify/functions": "^0.10.0",
+    "@remix-run/server-runtime": "^1.4.0",
+    "@remix-run/node": "^1.4.0",
     "@remix-run/react": "^1.4.0",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "remix": "^1.4.0",
-    "@remix-run/serve": "^1.4.0"
+    "@remix-run/serve": "^1.4.0",
+    "remix-auth": "^3.2.1",
+    "remix-auth-github": "^1.1.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.4.0",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
-    "typescript": "~4.6.2"
+    "typescript": "~4.6.2",
+    "netlify-cli": "^9.6.4"
   },
   "engines": {
     "node": ">=14"

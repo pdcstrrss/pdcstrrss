@@ -1,12 +1,10 @@
+import { IEpisodesData } from "@pdcstrrss/core";
+import { EpisodeList, EpisodeListLinks, PaginationLinks } from "@pdcstrrss/ui";
 import { useLoaderData, useNavigate } from "@remix-run/react";
 import { LoaderFunction } from "@remix-run/server-runtime";
 import Pagination from "rc-pagination";
 import { useState } from "react";
-import { EpisodeList } from "~/components/episode/EpisodeList/EpisodeList";
-import { EpisodesData } from "~/lib/types";
-import { AggregateResponse } from "~/routes/aggregate";
-import { links as episodeListLinks } from "~/components/episode/EpisodeList/EpisodeList";
-import { links as paginationLinks } from "~/components/Pagination/Pagination";
+import { AggregateResponse } from "../aggregate";
 
 async function getAggregateData(url: string): Promise<AggregateResponse> {
   const _url = new URL(url);
@@ -15,11 +13,11 @@ async function getAggregateData(url: string): Promise<AggregateResponse> {
 }
 
 interface EpisodesIndexLoaderResponse {
-  episodesData: EpisodesData;
+  episodesData: IEpisodesData;
 }
 
 export function links() {
-  return [...episodeListLinks(), ...paginationLinks()];
+  return [...EpisodeListLinks(), ...PaginationLinks()];
 }
 
 export const loader: LoaderFunction = async ({ request }): Promise<EpisodesIndexLoaderResponse> => {
@@ -34,7 +32,7 @@ export const loader: LoaderFunction = async ({ request }): Promise<EpisodesIndex
 export default function Episodes() {
   const { episodesData: data } = useLoaderData<EpisodesIndexLoaderResponse>();
   let navigate = useNavigate();
-  let [episodesData, setEpisodesData] = useState<EpisodesData>(data);
+  let [episodesData, setEpisodesData] = useState<IEpisodesData>(data);
   let [pageSize, setPageSize] = useState<number>(data.limit - data.offset);
   let [currentPage, setCurrentPage] = useState<number>(data.offset / pageSize + 1);
 
@@ -82,3 +80,4 @@ export default function Episodes() {
     </>
   );
 }
+

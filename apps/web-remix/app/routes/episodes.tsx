@@ -1,18 +1,33 @@
-import { User } from "@prisma/client";
+import { User } from "@pdcstrrss/database";
+import { EpisodesIndexView } from "@pdcstrrss/ui";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { LoaderFunction, redirect } from "@remix-run/server-runtime";
-import { AppHeader } from "~/components/app/AppHeader/AppHeader";
-import { getAudioSource } from "~/services/audio.service";
-import { getUser } from "~/services/auth.server";
+import { getUserByRequest } from "../services/auth.server";
+import isURL from 'validator/lib/isURL';
 
 interface EpisodesLoaderResponse {
   user: User;
   audioSource?: string;
 }
 
+async function getAudioSource({ request }: { request: Request }) {
+  const url = new URL(request.url);
+  let urlParam = url.searchParams.get('episode');
+  urlParam = isURL(urlParam || '') ? urlParam : null;
+  if (urlParam) {
+    const fetchUrl = new URL(url.origin + '/audio');
+    fetchUrl.searchParams.set('url', urlParam);
+    const audioSource: string = await fetch(fetchUrl.toString()).then((res) =>
+      res.json()
+    );
+    return audioSource;
+  }
+  return;
+}
+
 export const loader: LoaderFunction = async ({ request }): Promise<EpisodesLoaderResponse | Response> => {
   try {
-    const user = await getUser({ request });
+    const user = await getUserByRequest({ request });
     const audioSource = await getAudioSource({ request });
     if (!user) {
       return redirect("/");
@@ -26,16 +41,8 @@ export const loader: LoaderFunction = async ({ request }): Promise<EpisodesLoade
 export default function Episodes() {
   const { user, audioSource } = useLoaderData<EpisodesLoaderResponse>();
   return (
-    <>
-      <AppHeader user={user} />
-      <main data-page-index data-page-index-with-audio-player={audioSource}>
-        <Outlet />
-        {audioSource && (
-          <div data-audio-player>
-            <audio src={audioSource} controls />
-          </div>
-        )}
-      </main>
-    </>
+    <EpisodesIndexView user={user} audioSource={audioSource}>
+      <Outlet />
+    </EpisodesIndexView>
   );
 }

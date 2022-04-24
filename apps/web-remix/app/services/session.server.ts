@@ -1,5 +1,5 @@
+import { createSession, getSessionById, upsertSessionById, deleteSessionById } from "@pdcstrrss/database";
 import { createSessionStorage, SessionData } from "@remix-run/node";
-import { createSession, deleteSessionById, getSessionById, upsertSessionById } from "~/repositories/session.repository";
 
 function createDatabaseSessionStorage({ cookie }: { cookie: any }) {
   return createSessionStorage({

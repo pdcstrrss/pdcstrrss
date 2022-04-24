@@ -1,18 +1,15 @@
 import { useNavigate } from "@remix-run/react";
-import { Button, links as buttonLinks } from "~/components/Button/Button";
-import { BASE_URL } from "~/lib/constants";
-import type { Episode } from "~/lib/types";
+import { Button, ButtonLinks } from "@pdcstrrss/ui";
+import type { IEpisode } from "@pdcstrrss/core";
 import styles from "./EpisodeList.css";
 
-interface EpisodeListItemProps extends Episode {}
-
-interface EpisodeListProps {
-  episodes: Episode[];
+interface IEpisodeListProps {
+  episodes: IEpisode[];
 }
 
-export const links = () => [...buttonLinks(), { rel: "stylesheet", href: styles }];
+export const EpisodeListLinks = () => [...ButtonLinks(), { rel: "stylesheet", href: styles }];
 
-export const EpisodeListItem = ({ title, url, podcastTitle, published, image }: EpisodeListItemProps) => {
+export const EpisodeListItem = ({ title, url, podcastTitle, published, image }: IEpisode) => {
   let navigate = useNavigate();
 
   const handleOnClick = (episodeUrl: string) => {
@@ -23,7 +20,7 @@ export const EpisodeListItem = ({ title, url, podcastTitle, published, image }: 
 
   return (
     <article key={url} data-episode>
-      
+
       <header data-episode-header>
         <h2 data-episode-title>{title}</h2>
       </header>
@@ -50,7 +47,7 @@ export const EpisodeListItem = ({ title, url, podcastTitle, published, image }: 
   );
 };
 
-export const EpisodeList = ({ episodes }: EpisodeListProps) => (
+export const EpisodeList = ({ episodes }: IEpisodeListProps) => (
   <>
     {episodes.map((episode) => (
       <EpisodeListItem key={episode.url} {...episode} />

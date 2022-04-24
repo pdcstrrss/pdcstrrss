@@ -5,7 +5,7 @@ interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   reset?: boolean;
 }
 
-export const links = () => [{ rel: "stylesheet", href: styles }];
+export const ButtonLinks = () => [{ rel: "stylesheet", href: styles }];
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ children, reset = false, ...props }, ref) => {
   return (

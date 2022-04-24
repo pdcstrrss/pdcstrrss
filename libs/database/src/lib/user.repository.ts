@@ -1,15 +1,15 @@
 import { OauthSession, User } from "@prisma/client";
-import { db } from "~/services/database.server";
+import { db } from "./database.service";
 
 type UserUpsert = Pick<User, "email" | "githubId" | "image" | "displayName">;
 type UserOauthSessionUpsert = Pick<OauthSession, "accessToken" | "refreshToken">;
 type UserWithOAuthSessionUpsert = UserUpsert & UserOauthSessionUpsert;
 
-export async function getById(id: string) {
+export async function getUserById(id: string) {
   return db.user.findUnique({ where: { id } });
 }
 
-export async function upsert(newUserData: UserUpsert) {
+export async function upsertUser(newUserData: UserUpsert) {
   return db.user.upsert({
     where: {
       githubId: newUserData.githubId,
@@ -19,7 +19,7 @@ export async function upsert(newUserData: UserUpsert) {
   });
 }
 
-export async function upsertWithOAuthSession({
+export async function upsertUserWithOAuthSession({
   accessToken,
   refreshToken,
   ...newUserData

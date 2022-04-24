@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pdcstrrss-nx2/core": ["libs/core/src/index.ts"],
-      "@pdcstrrss-nx2/database": ["libs/database/src/index.ts"],
-      "@pdcstrrss-nx2/ui": ["libs/ui/src/index.ts"]
+      "@pdcstrrss/core": ["libs/core/src/index.ts"],
+      "@pdcstrrss/database": ["libs/database/src/index.ts"],
+      "@pdcstrrss/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

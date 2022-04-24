@@ -42,10 +42,10 @@ Thumbs.db
 .env
 
 # Remix files
-apps/**/build
-apps/**/.cache
-apps/**/.vercel
-apps/**/.output
-apps/**/public/build
-apps/**/api/_build
-apps/**/netlify/functions/server/build
+build
+.cache
+.vercel
+.output
+public/build
+api/_build
+netlify/functions/server/build

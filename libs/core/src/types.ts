@@ -1,4 +1,4 @@
-export interface FeedData {
+export interface IFeedData {
   link?: string;
   title?: string;
   description?: string;
@@ -8,7 +8,7 @@ export interface FeedData {
   entries?: Array<any>;
 }
 
-export interface Episode {
+export interface IEpisode {
   podcastTitle: string;
   podcastDescription: string;
   title: string;
@@ -19,41 +19,41 @@ export interface Episode {
   image?: string;
 }
 
-export interface AggregatorFeedDefaultConfig {
+export interface IAggregatorFeedDefaultConfig {
   keyMapping: Record<string, string | string[]>;
 }
 
-export interface AggregatorFeedConfig extends Partial<AggregatorFeedDefaultConfig> {
+export interface IAggregatorFeedConfig extends Partial<IAggregatorFeedDefaultConfig> {
   url: string;
 }
 
-export interface Feed extends Required<AggregatorFeedConfig> {
-  data: FeedData;
+export interface IFeed extends Required<IAggregatorFeedConfig> {
+  data: IFeedData;
 }
 
-export interface FeedEntry {
+export interface IFeedEntry {
   title: string;
   link: string;
   description: string;
   published: string;
 }
 
-export interface EpisodesData {
-  episodes: Episode[];
+export interface IEpisodesData {
+  episodes: IEpisode[];
   totalCount: number;
   offset: number;
   limit: number;
 }
 
-export interface AggregatorConfig {
-  feeds: AggregatorFeedConfig[];
+export interface IAggregatorConfig {
+  feeds: IAggregatorFeedConfig[];
 }
 
-export interface AggregatorMergedConfig {
-  feeds: Feed[];
+export interface IAggregatorMergedConfig {
+  feeds: IFeed[];
 }
 
-export interface AggregatorParams {
+export interface IAggregatorParams {
   offset?: number;
   limit?: number;
 }

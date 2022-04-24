@@ -1,5 +1,5 @@
 import { SessionData } from "@remix-run/node";
-import { db } from "~/services/database.server";
+import { db } from "./database.service";
 
 export async function getSessionById(id: string) {
   return db.session.findUnique({ where: { id } });

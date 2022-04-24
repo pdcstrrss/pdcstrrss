@@ -2,9 +2,38 @@
   "root": "libs/database",
   "sourceRoot": "libs/database/src",
   "targets": {
+    "push": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx prisma db push"
+          }
+        ],
+        "cwd": "libs/database"
+      }
+    },
+
+    "generate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx prisma generate"
+          }
+        ],
+        "cwd": "libs/database"
+      }
+    },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": [
+        {
+          "target": "generate",
+          "projects": "self"
+        }
+      ],
       "options": {
         "outputPath": "dist/libs/database",
         "main": "libs/database/src/index.ts",

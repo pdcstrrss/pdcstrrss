@@ -1,7 +1,7 @@
 // import { AuthorizationError } from "remix-auth";
 import { LoaderFunction, redirect } from "@remix-run/server-runtime";
-import { authenticator } from "~/services/auth.server";
-import { commitSession, getSession } from "~/services/session.server";
+import { authenticator } from "../../../services/auth.server";
+import { commitSession, getSession } from "../../../services/session.server";
 
 export let loader: LoaderFunction = async ({ request }) => {
   let user = await authenticator.authenticate("github", request, {

@@ -1,68 +1,67 @@
-import { defaultsDeep, get, orderBy } from "lodash";
+import { defaultsDeep, get, orderBy } from 'lodash';
 import type {
-  Feed,
-  Episode,
-  AggregatorConfig,
-  EpisodesData,
-  AggregatorParams,
-  AggregatorFeedDefaultConfig,
-  AggregatorMergedConfig,
-  FeedData,
-} from "../lib/types";
-import { parseRSS } from "~/services/rss.server";
+  IFeed,
+  IEpisode,
+  IAggregatorConfig,
+  IEpisodesData,
+  IAggregatorParams,
+  IAggregatorFeedDefaultConfig,
+  IAggregatorMergedConfig,
+} from '../types';
+import { parseRSS } from './rss.service';
 
-const aggregatorFeedDefaultConfig: AggregatorFeedDefaultConfig = {
+const aggregatorFeedDefaultConfig: IAggregatorFeedDefaultConfig = {
   keyMapping: {
-    title: "title",
-    description: "description",
-    url: ["enclosure.@_url", "link"],
-    published: "pubDate",
-    image: ["['itunes:image']['@_href']", "image.url"],
+    title: 'title',
+    description: 'description',
+    url: ['enclosure.@_url', 'link'],
+    published: 'pubDate',
+    image: ["['itunes:image']['@_href']", 'image.url'],
   },
 };
 
-const CONFIG: AggregatorConfig = {
+const CONFIG: IAggregatorConfig = {
   feeds: [
     {
-      url: "https://shoptalkshow.com/feed/",
+      url: 'https://shoptalkshow.com/feed/',
     },
     {
-      url: "https://feed.syntax.fm/rss",
+      url: 'https://feed.syntax.fm/rss',
     },
     {
-      url: "https://feeds.soundcloud.com/users/soundcloud:users:293803449/sounds.rss",
+      url: 'https://feeds.soundcloud.com/users/soundcloud:users:293803449/sounds.rss',
     },
     {
-      url: "https://changelog.com/jsparty/feed",
+      url: 'https://changelog.com/jsparty/feed',
     },
     {
-      url: "https://changelog.com/podcast/feed",
+      url: 'https://changelog.com/podcast/feed',
     },
     {
-      url: "https://feed.podbean.com/thedownbeat/feed.xml",
+      url: 'https://feed.podbean.com/thedownbeat/feed.xml',
     },
   ],
 };
 
-const getFullConfig = (config: AggregatorConfig): AggregatorMergedConfig => {
+const getFullConfig = (config: IAggregatorConfig): IAggregatorMergedConfig => {
   return {
     ...config,
     feeds: config.feeds.map((feed) => defaultsDeep(feed, aggregatorFeedDefaultConfig)),
   };
 };
 
-const getFeedsData = async (config: AggregatorMergedConfig): Promise<Feed[]> => {
+const getFeedsData = async (config: IAggregatorMergedConfig): Promise<IFeed[]> => {
   const feedsRss = await Promise.all(config.feeds.map((feed) => fetch(feed.url).then((res) => res.text())));
   return feedsRss
     .map(parseRSS)
     .filter((feedRssObj) => !!feedRssObj)
-    .map((data: any, index) => ({
+    .map((data: any, index: number) => ({
       ...config.feeds[index],
       data,
     }));
 };
 
-export const getEpisodes = async (feeds: Feed[], offset = 0, limit = 10): Promise<EpisodesData> => {
+export const getEpisodes = async (feeds: IFeed[], offset = 0, limit = 10): Promise<IEpisodesData> => {
   const allEpisodes = feeds
     .reduce((previousEpisodes, currentFeed) => {
       if (!currentFeed?.data?.entries) {
@@ -84,7 +83,7 @@ export const getEpisodes = async (feeds: Feed[], offset = 0, limit = 10): Promis
 
             return {
               ...acc,
-              [episodeDataKey]: get(entry, feedEntryKey),
+              [episodeDataKey]: get(entry, feedEntryKey as string),
             };
           },
           {}
@@ -97,16 +96,19 @@ export const getEpisodes = async (feeds: Feed[], offset = 0, limit = 10): Promis
         };
       });
       return previousEpisodes.concat(entries);
-    }, [] as Episode[])
-    .map(({ published, ...episode }) => ({ ...episode, published: new Date(published).toJSON() }));
-  const orderedData = orderBy(allEpisodes, ["published"], ["desc"]);
+    }, [] as IEpisode[])
+    .map(({ published, ...episode }: IEpisode) => ({
+      ...episode,
+      published: new Date(published).toJSON(),
+    }));
+  const orderedData = orderBy(allEpisodes, ['published'], ['desc']);
   const data = orderedData.filter((_, index) => index >= offset && index < limit);
   return { episodes: data, totalCount: allEpisodes.length, limit, offset };
 };
 
-export default async ({ offset, limit }: AggregatorParams = {}) => {
+export async function aggregateEpisodesAndFeeds({ offset, limit }: IAggregatorParams = {}) {
   const fullConfig = getFullConfig(CONFIG);
   const feedsData = await getFeedsData(fullConfig);
   const episodesData = await getEpisodes(feedsData, offset, limit);
   return { feedsData, episodesData };
-};
+}

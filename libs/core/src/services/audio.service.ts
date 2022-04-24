@@ -1,13 +1,7 @@
-import isURL from "validator/lib/isURL";
+import parse from "node-html-parser";
 
-export async function getAudioSource({ request }: { request: Request }) {
-  const url = new URL(request.url);
-  let urlParam = url.searchParams.get("episode");
-  urlParam = isURL(urlParam || "") ? urlParam : null;
-  if (urlParam) {
-    const fetchUrl = new URL(url.origin + "/audio");
-    fetchUrl.searchParams.set("url", urlParam);
-    const audioSource: string = await fetch(fetchUrl.toString()).then((res) => res.json());
-    return audioSource;
-  }
+export async function getAudioSourceFromExternalWebPage(url: string, selector = "audio") {
+  const html = await fetch(url).then((res) => res.text());
+  const parsed = parse(html);
+  return parsed.querySelector(selector)?.getAttribute("src");
 }
