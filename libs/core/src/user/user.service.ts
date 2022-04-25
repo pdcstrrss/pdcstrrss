@@ -1,7 +1,15 @@
+import { getUserById } from "@pdcstrrss/database";
+import { IAuthenticationCookie } from "..";
+
 export interface IGetUserSponsorshipParams {
   githubId: string;
   accessToken: string;
 }
+
+interface IInitializeUserByRequestParams {
+  getAuthenticationCookie: Promise<IAuthenticationCookie | null>;
+}
+
 
 export async function getUserSponsorship({ githubId, accessToken }: IGetUserSponsorshipParams) {
   const body = JSON.stringify({
@@ -33,6 +41,18 @@ export async function getUserSponsorship({ githubId, accessToken }: IGetUserSpon
 
   return {
     sponsor: !!data?.data?.user?.isSponsoredBy,
-    contributer: !!data?.data?.user?.contributionsCollection?.hasAnyContributions,
+    contributor: !!data?.data?.user?.contributionsCollection?.hasAnyContributions,
   };
+}
+
+export async function initializeUserByRequest({ getAuthenticationCookie }: IInitializeUserByRequestParams) {
+  const { id, accessToken } = (await getAuthenticationCookie) || {};
+  if (!id || !accessToken) return null;
+  const user = await getUserById(id);
+  if (!user) return null;
+  const userSponsorship = await getUserSponsorship({
+    githubId: user.githubId,
+    accessToken: accessToken,
+  });
+  return { user, userSponsorship };
 }

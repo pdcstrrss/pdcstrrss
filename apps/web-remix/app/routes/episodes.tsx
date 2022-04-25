@@ -2,8 +2,9 @@ import { User } from '@pdcstrrss/database';
 import { EpisodesIndexView } from '@pdcstrrss/ui';
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { LoaderFunction, redirect } from '@remix-run/server-runtime';
-import { initializeUserByRequest } from '../services/user.server';
 import isURL from 'validator/lib/isURL';
+import { authenticator } from '../services/auth.server';
+import { initializeUserByRequest } from '../services/user.server';
 
 interface EpisodesLoaderResponse {
   user: User;
@@ -25,12 +26,19 @@ async function getAudioSource({ request }: { request: Request }) {
 
 export const loader: LoaderFunction = async ({ request }): Promise<EpisodesLoaderResponse | Response> => {
   try {
-    const { user, userSponsorship } = (await initializeUserByRequest({ request })) || {};
-    if (!userSponsorship?.sponsor && !userSponsorship?.contributer) return redirect('/pricing');
-    const audioSource = await getAudioSource({ request });
+    const getAuthenticationCookie = authenticator.isAuthenticated(request);
+    const { user, userSponsorship } = (await initializeUserByRequest({ getAuthenticationCookie })) || {};
+
+    if (!userSponsorship?.sponsor && !userSponsorship?.contributor) {
+      return redirect('/pricing');
+    }
+
     if (!user) {
       return redirect('/');
     }
+
+    const audioSource = await getAudioSource({ request });
+
     return { user, audioSource };
   } catch (error: any) {
     throw new Error(error);

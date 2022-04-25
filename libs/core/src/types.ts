@@ -57,3 +57,8 @@ export interface IAggregatorParams {
   offset?: number;
   limit?: number;
 }
+
+export interface IAuthenticationCookie {
+  id: string;
+  accessToken: string;
+}

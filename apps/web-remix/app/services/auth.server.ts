@@ -2,12 +2,8 @@ import { Authenticator } from 'remix-auth';
 import { OAuth2StrategyVerifyParams } from 'remix-auth-oauth2';
 import { GitHubExtraParams, GitHubProfile, GitHubStrategy, GitHubStrategyOptions } from 'remix-auth-github';
 import { sessionStorage } from './session.server';
-import { getUserById, upsertUserWithOAuthSession } from '@pdcstrrss/database';
-
-export interface IAuthenticationCookie {
-  id: string;
-  accessToken: string;
-}
+import { upsertUserWithOAuthSession } from '@pdcstrrss/database';
+import type { IAuthenticationCookie } from '@pdcstrrss/core';
 
 const gitHubStrategyOptions: GitHubStrategyOptions = {
   clientID: process.env.GH_OAUTH_CLIENT_ID || '',
