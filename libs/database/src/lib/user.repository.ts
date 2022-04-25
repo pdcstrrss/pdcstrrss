@@ -5,6 +5,10 @@ type UserUpsert = Pick<User, 'email' | 'githubId' | 'image' | 'displayName'>;
 type UserOauthSessionUpsert = Pick<OauthSession, 'accessToken' | 'refreshToken'>;
 type UserWithOAuthSessionUpsert = UserUpsert & UserOauthSessionUpsert;
 
+export async function getAllUsers() {
+  return db.user.findMany();
+}
+
 export async function getUserById(id: string) {
   return db.user.findUnique({
     where: { id },
@@ -59,4 +63,12 @@ export async function upsertUserWithOAuthSession({
       console.error(error);
       throw new Error(error);
     });
+}
+
+export async function deleteUserById(id: string) {
+  return db.user.delete({
+    where: {
+      id,
+    },
+  });
 }
