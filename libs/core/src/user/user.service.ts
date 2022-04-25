@@ -37,8 +37,6 @@ export async function getUserSponsorship({ githubId, accessToken }: IGetUserSpon
       throw new Error('Failed to fetch user sponsorship data \n ' + ex);
     });
 
-    console.log(data);
-
   return {
     sponsor: !!data?.data?.user?.isSponsoredBy,
     contributor: !!data?.data?.user?.contributionsCollection?.hasAnyContributions,
