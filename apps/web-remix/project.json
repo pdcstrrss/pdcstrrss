@@ -20,7 +20,7 @@
       "options": {
         "commands": [
           {
-            "command": "netlify build"
+            "command": "remix build"
           }
         ],
         "cwd": "apps/web-remix"
