@@ -1,5 +1,5 @@
-import { getUserById } from "@pdcstrrss/database";
-import { IAuthenticationCookie } from "..";
+import { getUserById } from '@pdcstrrss/database';
+import { IAuthenticationCookie } from '..';
 
 export interface IGetUserSponsorshipParams {
   githubId: string;
@@ -9,7 +9,6 @@ export interface IGetUserSponsorshipParams {
 interface IInitializeUserByRequestParams {
   getAuthenticationCookie: Promise<IAuthenticationCookie | null>;
 }
-
 
 export async function getUserSponsorship({ githubId, accessToken }: IGetUserSponsorshipParams) {
   const body = JSON.stringify({

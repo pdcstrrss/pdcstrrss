@@ -1,3 +1,4 @@
+import { getEpisodesByUserId } from '@pdcstrrss/core';
 import { User } from '@pdcstrrss/database';
 import { EpisodesIndexView } from '@pdcstrrss/ui';
 import { Outlet, useLoaderData } from '@remix-run/react';
@@ -29,12 +30,12 @@ export const loader: LoaderFunction = async ({ request }): Promise<EpisodesLoade
     const getAuthenticationCookie = authenticator.isAuthenticated(request);
     const { user, userSponsorship } = (await initializeUserByRequest({ getAuthenticationCookie })) || {};
 
-    if (!userSponsorship?.sponsor && !userSponsorship?.contributor) {
-      return redirect('/pricing');
-    }
-
     if (!user) {
       return redirect('/');
+    }
+
+    if (!userSponsorship?.sponsor && !userSponsorship?.contributor) {
+      return redirect('/pricing');
     }
 
     const audioSource = await getAudioSource({ request });

@@ -6,6 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "lint": "nx lint",
     "postinstall": "remix setup node"
   },
   "private": true,
@@ -19,6 +20,7 @@
     "nanoid": "^3.3.2",
     "node-html-parser": "^5.3.3",
     "normalize.css": "^8.0.1",
+    "object-hash": "^3.0.0",
     "rc-pagination": "^3.1.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -42,6 +44,7 @@
     "@types/jest": "27.4.1",
     "@types/lodash": "^4.14.178",
     "@types/node": "16.11.7",
+    "@types/object-hash": "^2.2.1",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "@types/validator": "^13.7.1",

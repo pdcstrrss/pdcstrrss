@@ -1,4 +1,4 @@
-import { getAudioSourceFromExternalWebPage } from 'libs/core/src/services/audio.service';
+import { getAudioSourceFromExternalWebPage } from 'libs/core/src/audio/audio.service';
 import { LoaderFunction } from 'remix';
 
 export const loader: LoaderFunction = async ({ request }) => {

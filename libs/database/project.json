@@ -11,15 +11,33 @@
           }
         ],
         "cwd": "libs/database"
+      },
+      "configurations": {
+        "acceptdataloss": {
+          "command": "npx prisma db push --accept-data-loss"
+        },
+        "reset": {
+          "command": "npx prisma db push --force-reset"
+        }
       }
     },
-
     "generate": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
           {
             "command": "npx prisma generate"
+          }
+        ],
+        "cwd": "libs/database"
+      }
+    },
+    "studio": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx prisma studio"
           }
         ],
         "cwd": "libs/database"

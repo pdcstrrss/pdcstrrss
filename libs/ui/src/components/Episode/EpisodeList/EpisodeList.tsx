@@ -9,7 +9,7 @@ interface IEpisodeListProps {
 
 export const EpisodeListLinks = () => [...ButtonLinks(), { rel: "stylesheet", href: styles }];
 
-export const EpisodeListItem = ({ title, url, podcastTitle, published, image }: IEpisode) => {
+export const EpisodeListItem = ({ title, url, feed, published, image }: IEpisode) => {
   let navigate = useNavigate();
 
   const handleOnClick = (episodeUrl: string) => {
@@ -28,7 +28,7 @@ export const EpisodeListItem = ({ title, url, podcastTitle, published, image }: 
       <figure data-episode-media>{image && <img data-episode-image src={image} alt={title} />}</figure>
 
       <div data-episode-meta>
-        <a href={url}>{podcastTitle}</a>
+        <a href={url}>{feed.title}</a>
         <time data-episode-datetime dateTime={new Date(published).toISOString()}>
           {Intl.DateTimeFormat(["sv-SE"]).format(new Date(published))}
         </time>
@@ -37,7 +37,7 @@ export const EpisodeListItem = ({ title, url, podcastTitle, published, image }: 
         onClick={() => handleOnClick(url)}
         data-episode-media-button
         reset
-        aria-label={`Play episode ${title} of ${podcastTitle}`}
+        aria-label={`Play episode ${title} of ${feed.title}`}
       >
         <svg data-episode-media-icon data-icon>
           <use xlinkHref="#play" />
