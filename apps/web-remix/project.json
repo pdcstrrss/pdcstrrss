@@ -25,6 +25,13 @@
         ],
         "cwd": "apps/web-remix"
       }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web-remix/**/*.{js,ts}"]
+      }
     }
   }
 }
