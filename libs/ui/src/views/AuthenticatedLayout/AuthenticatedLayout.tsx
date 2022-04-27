@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { AppHeader } from '../../';
-import type { AppHeaderUser } from '../../';
+import { AppHeader } from '../..';
+import type { AppHeaderUser } from '../..';
 
 export interface IEpisodesIndexViewProps {
   user: AppHeaderUser;

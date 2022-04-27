@@ -1,16 +1,16 @@
 import { render } from '@testing-library/react';
 import { AppHeaderUser } from '../../components/App/AppHeader/AppHeader';
 
-import { EpisodesIndexView } from './EpisodesIndexView';
+import { AuthenticatedLayout } from './AuthenticatedLayout';
 
 const mockedUser: AppHeaderUser = {
   displayName: 'Test User',
   image: 'https://example.com/image.png',
 };
 
-describe('EpisodesIndexView', () => {
+describe('AuthenticatedLayout', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<EpisodesIndexView user={mockedUser} />);
+    const { baseElement } = render(<AuthenticatedLayout user={mockedUser} />);
     expect(baseElement).toBeTruthy();
   });
 });

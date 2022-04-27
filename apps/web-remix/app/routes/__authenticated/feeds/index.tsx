@@ -3,10 +3,10 @@ import {
   assignFeedsToUser,
   getFeedsSubscribedByUser,
   IGetFeedsSubscribedByUserData,
-} from '../../services/core.server';
+} from '../../../services/core.server';
 import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import { ActionFunction, LoaderFunction, redirect } from '@remix-run/server-runtime';
-import { authenticator } from '../../services/auth.server';
+import { authenticator } from '../../../services/auth.server';
 import { Button, FeedList, FeedListLinks } from '@pdcstrrss/ui';
 
 interface UserFeedsIndexLoaderResponse {
