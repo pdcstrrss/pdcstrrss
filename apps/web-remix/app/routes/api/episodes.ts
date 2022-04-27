@@ -26,10 +26,11 @@ export const loader: LoaderFunction = async ({ request }): Promise<IGetEpisodesA
     const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
     if (!userId) throw new Error('User not found');
 
-    const episodesData = await getEpisodesData({ userId });
+    const episodesData = await getEpisodesData({ userId, limit, offset });
     return { episodesData };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error(error);
-    return new Response(error.message, { status: 400 });
+    return new Response(error.message || error, { status: 400 });
   }
 };
