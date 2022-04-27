@@ -16,6 +16,7 @@
   cursor: pointer;
   fill: currentColor;
   font-weight: bold;
+  text-align: center;
 }
 
 [data-button]:hover,
