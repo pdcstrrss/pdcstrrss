@@ -1,7 +1,13 @@
-import { createSession, getSessionById, upsertSessionById, deleteSessionById } from "@pdcstrrss/database";
-import { createSessionStorage, SessionData } from "@remix-run/node";
+import { createSession, getSessionById, upsertSessionById, deleteSessionById } from '@pdcstrrss/database';
+import { createSessionStorage, SessionData, CookieOptions, Cookie } from '@remix-run/node';
 
-function createDatabaseSessionStorage({ cookie }: { cookie: any }) {
+type ICreateSessionStorageCookie =
+  | Cookie
+  | (CookieOptions & {
+      name?: string;
+    });
+
+function createDatabaseSessionStorage({ cookie }: { cookie: ICreateSessionStorageCookie }) {
   return createSessionStorage({
     cookie,
     createData: createSession,
@@ -14,15 +20,27 @@ function createDatabaseSessionStorage({ cookie }: { cookie: any }) {
   });
 }
 
-export const sessionStorage = createDatabaseSessionStorage({
-  cookie: {
-    name: "__session",
-    sameSite: "strict",
-    secrets: [process.env.SIGNING_SECRET],
-    httpOnly: true,
-    path: "/",
-    secure: process.env.NODE_ENV === "production",
-  },
-});
+interface ICreateAppSessionStorageParams {
+  signingSecret?: string;
+}
 
-export const { commitSession, getSession, destroySession } = sessionStorage;
+export const createAppSessionStorage = ({ signingSecret }: ICreateAppSessionStorageParams) => {
+  if (!signingSecret) {
+    throw new Error('signingSecret is required');
+  }
+
+  return createDatabaseSessionStorage({
+    cookie: {
+      name: '__session',
+      sameSite: 'strict',
+      secrets: [signingSecret],
+      httpOnly: true,
+      path: '/',
+      secure: process.env.NODE_ENV === 'production',
+    },
+  });
+};
+
+export const { commitSession, getSession, destroySession } = createAppSessionStorage({
+  signingSecret: process.env.SIGNING_SECRET,
+});
