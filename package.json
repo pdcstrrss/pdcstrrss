@@ -8,7 +8,8 @@
     "test": "nx test",
     "lint": "nx run-many --target=lint --all",
     "typecheck": "nx run-many --target=typecheck --all",
-    "postinstall": "remix setup node"
+    "postinstall": "remix setup node",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -62,7 +63,9 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.4.0",
+    "husky": "^7.0.4",
     "jest": "27.5.1",
+    "lint-staged": "^12.4.1",
     "netlify-cli": "^9.6.4",
     "nx": "13.9.6",
     "prettier": "^2.5.1",
