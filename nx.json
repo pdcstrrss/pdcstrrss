@@ -1,5 +1,5 @@
 {
-  "npmScope": "pdcstrrss-nx2",
+  "npmScope": "pdcstrrss",
   "affected": {
     "defaultBase": "main"
   },
@@ -17,7 +17,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e", "check"]
+        "cacheableOperations": ["build", "lint", "test", "e2e", "typecheck"]
       }
     }
   },

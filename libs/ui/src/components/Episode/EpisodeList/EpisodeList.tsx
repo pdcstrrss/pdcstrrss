@@ -1,5 +1,5 @@
 import { useNavigate } from "@remix-run/react";
-import { Button, ButtonLinks } from "@pdcstrrss/ui";
+import { Button, ButtonLinks } from "../../Button";
 import type { IEpisode } from "@pdcstrrss/core";
 import styles from "./EpisodeList.css";
 
@@ -10,7 +10,7 @@ interface IEpisodeListProps {
 export const EpisodeListLinks = () => [...ButtonLinks(), { rel: "stylesheet", href: styles }];
 
 export const EpisodeListItem = ({ title, url, feed, published, image }: IEpisode) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleOnClick = (episodeUrl: string) => {
     const url = new URL(document.location.href);

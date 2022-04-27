@@ -1,4 +1,4 @@
-import { Button, ButtonLinks } from '@pdcstrrss/ui';
+import { Button, ButtonLinks } from '../../';
 
 export const IndexViewLinks = () => [...ButtonLinks()];
 

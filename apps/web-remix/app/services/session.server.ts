@@ -41,6 +41,8 @@ export const createAppSessionStorage = ({ signingSecret }: ICreateAppSessionStor
   });
 };
 
-export const { commitSession, getSession, destroySession } = createAppSessionStorage({
+export const sessionStorage = createAppSessionStorage({
   signingSecret: process.env.SIGNING_SECRET,
 });
+
+export const { commitSession, getSession, destroySession } = sessionStorage;

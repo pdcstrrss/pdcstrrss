@@ -59,6 +59,13 @@
         "assets": ["libs/database/*.md"]
       }
     },
+    "typecheck": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "libs/database"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

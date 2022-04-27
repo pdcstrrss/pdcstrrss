@@ -1,5 +1,5 @@
 import { useNavigate } from '@remix-run/react';
-import { Button, ButtonLinks } from '@pdcstrrss/ui';
+import { Button, ButtonLinks } from '../../Button';
 import type { IFeed } from '@pdcstrrss/core';
 import styles from './FeedList.css';
 

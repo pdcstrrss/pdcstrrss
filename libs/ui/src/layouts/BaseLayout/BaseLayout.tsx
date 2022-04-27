@@ -1,4 +1,4 @@
-import { AppHeaderLinks, SvgSprite } from '@pdcstrrss/ui';
+import { AppHeaderLinks, SvgSprite } from '../../';
 import { ReactNode } from 'react';
 
 import normalize from 'normalize.css';
