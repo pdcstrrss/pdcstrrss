@@ -3,7 +3,7 @@ import { EpisodeList, EpisodeListLinks, PaginationLinks } from '@pdcstrrss/ui';
 import { useLoaderData, useNavigate } from '@remix-run/react';
 import { LoaderFunction, redirect } from '@remix-run/server-runtime';
 import Pagination from 'rc-pagination';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { authenticator } from '../../services/auth.server';
 import { IGetEpisodesApiResponse } from '../api/episodes';
 
@@ -39,10 +39,10 @@ export const loader: LoaderFunction = async ({ request }): Promise<EpisodesIndex
 
 export default function Episodes() {
   const { episodesData: data } = useLoaderData<EpisodesIndexLoaderResponse>();
-  let navigate = useNavigate();
-  let [episodesData, setEpisodesData] = useState<IEpisodesData>(data);
-  let [pageSize, setPageSize] = useState<number>(data.limit - data.offset);
-  let [currentPage, setCurrentPage] = useState<number>(data.offset / pageSize + 1);
+  const navigate = useNavigate();
+  const [episodesData, setEpisodesData] = useState<IEpisodesData>(data);
+  const [pageSize, setPageSize] = useState<number>(data.limit - data.offset);
+  const [currentPage, setCurrentPage] = useState<number>(data.offset / pageSize + 1);
 
   const getOffset = (page: number) => (page - 1) * pageSize;
   const getLimit = (page: number) => (page - 1) * pageSize + pageSize;
@@ -63,7 +63,7 @@ export default function Episodes() {
   const itemRender = (
     page: number,
     type: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
-    element: React.ReactNode
+    element: ReactNode
   ) => {
     if (
       (type === 'prev' && episodesData.offset === 0) ||

@@ -102,8 +102,8 @@ model EpisodesOfUsers {
   episode   Episode @relation(fields: [episodeId], references: [id], onUpdate: NoAction)
   episodeId String
 
-  currentTime Float
-  status      EpisodeStatus
+  currentTime Float         @default(0)
+  status      EpisodeStatus @default(NEW)
 
   @@id([userId, episodeId])
   @@index([userId, episodeId])

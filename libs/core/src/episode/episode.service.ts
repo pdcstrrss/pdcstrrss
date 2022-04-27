@@ -43,13 +43,14 @@ export function getAllEpisodes(): Promise<IEpisode[]> {
   });
 }
 
-export function getEpisodes(params?: IGetEpisodesParams): Promise<IEpisode[]> {
+export async function getEpisodes(params?: IGetEpisodesParams): Promise<IEpisode[]> {
   const { userId, offset, limit, orderBy } = defaultsDeep(
     params,
     DEFAULT_GET_EPISODE_PARAMS
   ) as IRequiredRepositoryFilters<IGetEpisodesParams>;
+
   return db.episode.findMany({
-    ...(userId && { where: { users: { every: { userId } } } }),
+    ...(userId && { where: { users: { some: { userId } } } }),
     orderBy,
     take: limit,
     skip: offset,

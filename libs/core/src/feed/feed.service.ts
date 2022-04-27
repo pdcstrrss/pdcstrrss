@@ -64,7 +64,7 @@ export async function getFeedsSubscribedByUser(params?: IGetFeedsParams): Promis
           published: 'desc',
         },
         take: 1,
-      }
+      },
     },
   });
   const totalCount = allFeeds.length;
@@ -77,4 +77,40 @@ export async function getFeedsSubscribedByUser(params?: IGetFeedsParams): Promis
     }))
     .filter((_, index) => index >= offset && index < limit);
   return { feeds, totalCount, limit, offset };
+}
+
+interface IAssignFeedToUserParams {
+  feedIds: string[];
+  userId: string;
+}
+
+export async function assignFeedsToUser({ feedIds, userId }: IAssignFeedToUserParams) {
+  const episodesOfFeeds = await db.episode.findMany({ where: { feedId: { in: feedIds } } });
+
+  await db.$transaction([
+    db.episodesOfUsers.deleteMany({
+      where: {
+        userId,
+        episode: {
+          is: {
+            feedId: { in: feedIds },
+          },
+        },
+      },
+    }),
+    db.feedsOfUsers.deleteMany({
+      where: {
+        userId,
+      },
+    }),
+    db.episodesOfUsers.createMany({
+      data: episodesOfFeeds.map(({ id }) => ({
+        userId,
+        episodeId: id,
+      })),
+    }),
+    db.feedsOfUsers.createMany({
+      data: feedIds.map((feedId) => ({ feedId, userId })),
+    }),
+  ]);
 }

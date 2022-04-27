@@ -2,6 +2,12 @@
   --feed-icon-size: calc(var(--space) * 2);
 }
 
+[data-feed-list] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) / 1);
+}
+
 [data-feed] {
   display: grid;
   grid-template:
