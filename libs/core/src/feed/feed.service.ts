@@ -84,33 +84,40 @@ interface IAssignFeedToUserParams {
   userId: string;
 }
 
-export async function assignFeedsToUser({ feedIds, userId }: IAssignFeedToUserParams) {
+export async function toggleUserFeedSubscription({ feedIds, userId }: IAssignFeedToUserParams) {
   const episodesOfFeeds = await db.episode.findMany({ where: { feedId: { in: feedIds } } });
 
-  await db.$transaction([
-    db.episodesOfUsers.deleteMany({
-      where: {
-        userId,
-        episode: {
-          is: {
-            feedId: { in: feedIds },
-          },
-        },
-      },
-    }),
-    db.feedsOfUsers.deleteMany({
-      where: {
-        userId,
-      },
-    }),
-    db.episodesOfUsers.createMany({
-      data: episodesOfFeeds.map(({ id }) => ({
-        userId,
-        episodeId: id,
-      })),
-    }),
-    db.feedsOfUsers.createMany({
-      data: feedIds.map((feedId) => ({ feedId, userId })),
-    }),
-  ]);
+  await Promise.all(
+    feedIds.map(async (feedId) => {
+      const userIsSubscribedToFeed = !!(await db.feedsOfUsers.findUnique({
+        where: { userId_feedId: { userId, feedId } },
+      }));
+
+      if (userIsSubscribedToFeed) {
+        return db.$transaction([
+          db.feedsOfUsers.deleteMany({
+            where: { userId, feedId },
+          }),
+          db.episodesOfUsers.deleteMany({
+            where: {
+              userId,
+              episode: {
+                feedId,
+              },
+            },
+          }),
+        ]);
+      } else {
+        return db.$transaction([
+          db.episodesOfUsers.createMany({
+            data: episodesOfFeeds.map(({ id }) => ({
+              userId,
+              episodeId: id,
+            })),
+          }),
+          db.feedsOfUsers.create({ data: { userId, feedId } }),
+        ]);
+      }
+    })
+  );
 }

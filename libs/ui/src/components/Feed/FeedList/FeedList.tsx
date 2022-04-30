@@ -1,26 +1,36 @@
-import { Form } from '@remix-run/react';
-import { useNavigate } from '@remix-run/react';
 import { Button, ButtonLinks } from '../../Button';
 import type { IFeed } from '@pdcstrrss/core';
 import styles from './FeedList.css';
+import { useState } from 'react';
 
-export type IFeedListItemProps = IFeed;
+export type IFeedListItemOnChangeParams = { feedId: string; event: React.FormEvent<HTMLButtonElement> };
+
+export type IFeedListItemOnChange = (params: IFeedListItemOnChangeParams) => void;
+
+export type IFeedListOnChangeParams = IFeedListItemOnChangeParams;
+
+export type IFeedListOnChange = IFeedListItemOnChange;
+
+export type IFeedListItemProps = IFeed & {
+  onChange?: IFeedListItemOnChange;
+};
 
 interface IFeedListProps {
   feeds: IFeedListItemProps[];
+  onChange?: IFeedListOnChange;
 }
 
 export const FeedListLinks = () => [...ButtonLinks(), { rel: 'stylesheet', href: styles }];
 
-export const FeedListItem = ({ id, title, url, latestEpisodePublished, image, subscribed }: IFeedListItemProps) => {
-  // let navigate = useNavigate();
-
-  // const handleOnClick = (feedUrl: string) => {
-  //   const url = new URL(document.location.href);
-  //   url.searchParams.set("feed", feedUrl);
-  //   window.location.href = url.toString();
-  // };
-
+export const FeedListItem = ({
+  id,
+  title,
+  url,
+  latestEpisodePublished,
+  image,
+  subscribed,
+  onChange,
+}: IFeedListItemProps) => {
   return (
     <article key={id} data-feed>
       <header data-feed-header>
@@ -35,25 +45,21 @@ export const FeedListItem = ({ id, title, url, latestEpisodePublished, image, su
         </time>
       </div>
 
-      <input type="checkbox" name='feeds' value={id} defaultChecked={subscribed} />
-      {/* <Button
-        onClick={() => handleOnClick(url)}
-        data-feed-media-button
-        reset
-        aria-label={`Play feed ${title} of ${feed.title}`}
-      >
-        <svg data-feed-media-icon data-icon>
-          <use xlinkHref="#play" />
-        </svg>
-      </Button> */}
+      <div data-feed-actions>
+        <Button type="submit" reset={subscribed} name="feeds" value={id}>
+          {subscribed ? 'Unsubscribe' : 'Subscribe'}
+        </Button>
+      </div>
     </article>
   );
 };
 
-export const FeedList = ({ feeds }: IFeedListProps) => (
-  <div data-feed-list>
-    {feeds.map((feed) => (
-      <FeedListItem key={feed.url} {...feed} />
-    ))}
-  </div>
-);
+export const FeedList = ({ feeds, onChange }: IFeedListProps) => {
+  return (
+    <div data-feed-list>
+      {feeds.map((feed) => (
+        <FeedListItem key={feed.url} {...feed} onChange={onChange} />
+      ))}
+    </div>
+  );
+};

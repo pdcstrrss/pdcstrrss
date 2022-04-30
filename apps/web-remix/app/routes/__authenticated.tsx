@@ -1,5 +1,5 @@
 import { User } from '@pdcstrrss/database';
-import { EpisodesIndexView } from '@pdcstrrss/ui';
+import { AuthenticatedLayout } from '@pdcstrrss/ui';
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { LoaderFunction, redirect } from '@remix-run/server-runtime';
 import isURL from 'validator/lib/isURL';
@@ -10,6 +10,10 @@ interface EpisodesLoaderResponse {
   user: User;
   audioSource?: string;
 }
+
+export type AuthenticatedLayoutContextType = {
+  user: User;
+};
 
 async function getAudioSource({ request }: { request: Request }) {
   const url = new URL(request.url);
@@ -48,8 +52,8 @@ export const loader: LoaderFunction = async ({ request }): Promise<EpisodesLoade
 export default function Episodes() {
   const { user, audioSource } = useLoaderData<EpisodesLoaderResponse>();
   return (
-    <EpisodesIndexView user={user} audioSource={audioSource}>
+    <AuthenticatedLayout user={user} audioSource={audioSource}>
       <Outlet />
-    </EpisodesIndexView>
+    </AuthenticatedLayout>
   );
 }

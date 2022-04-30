@@ -1,6 +1,7 @@
 :root {
   --button-color: var(--background-color);
   --button-background-color: var(--foreground-color-intense);
+  --button-padding: calc(var(--space) / 3) calc(var(--space) / 2);
 }
 
 [data-button] {
@@ -28,11 +29,24 @@
 [data-button]:not([data-button-reset="true"]) {
   color: var(--button-color);
   background-color: var(--button-background-color);
-  padding: calc(var(--space) / 3) calc(var(--space) / 2);
+  padding: var(--button-padding);
 }
 
 [data-button]:not([data-button-reset="true"]):hover,
 [data-button]:not([data-button-reset="true"]):focus {
   --button-color: var(--background-color);
   --button-background-color: var(--brand-primary);
+}
+
+[data-button-reset="true"]:hover,
+[data-button-reset="true"]:focus {
+  text-decoration: underline;
+}
+
+[data-button-primary] {
+  --button-background-color: var(--brand-primary);
+}
+
+[data-button-wide] {
+  --button-padding: calc(var(--space) / 3) calc(var(--space) / 1);
 }

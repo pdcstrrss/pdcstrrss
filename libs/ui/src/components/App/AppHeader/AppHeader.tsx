@@ -11,10 +11,11 @@ interface AppHeaderProps {
 
 export function AppHeader({ user }: AppHeaderProps) {
   return (
-    <header data-app-header>
+    <header data-app-header data-container>
       <h1 data-app-header-title>PODCSTRRSS</h1>
       <nav>
-        <a href="/episodes">Episodes</a>
+        <a href=
+        "/episodes">Episodes</a>
         <a href="/feeds">Feeds</a>
       </nav>
       {user.image && <img data-app-header-image src={user.image} alt={user.displayName} />}

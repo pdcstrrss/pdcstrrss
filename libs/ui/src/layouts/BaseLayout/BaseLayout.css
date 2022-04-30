@@ -18,11 +18,11 @@
   --background-color: var(--color-slate-50);
   --background-color-mild: var(--color-slate-100);
 
-  --space: 1.5rem;
+  --space: clamp(1.125rem, 5vw, 1.5rem);
   --border-width: 2px;
   --border-color: var(--foreground-color);
 
-  --font-family-base: "Inter", sans-serif;
+  --font-family-base: 'Inter', sans-serif;
 
   --brand-primary: #5800ff;
   --brand-primary-contrast: #ffffff;
@@ -30,8 +30,12 @@
 
 @supports (font-variation-settings: normal) {
   :root {
-    --font-family-base: "Inter var", sans-serif;
+    --font-family-base: 'Inter var', sans-serif;
   }
+}
+
+html {
+  font-size: clamp(14px, 2vw, 18px);
 }
 
 body {
@@ -39,8 +43,6 @@ body {
   line-height: 1.66;
   color: var(--foreground-color);
   background-color: var(--background-color-mild);
-  margin: 0 auto;
-  max-width: 700px;
 }
 
 h1,
@@ -91,6 +93,11 @@ a:focus {
 .list-unstyled {
   list-style: none;
   padding: 0;
+}
+
+[data-container] {
+  margin: 0 auto;
+  max-width: 700px;
 }
 
 [data-audio-player] {

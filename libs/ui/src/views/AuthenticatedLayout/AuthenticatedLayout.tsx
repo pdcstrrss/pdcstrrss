@@ -2,16 +2,16 @@ import { PropsWithChildren } from 'react';
 import { AppHeader } from '../..';
 import type { AppHeaderUser } from '../..';
 
-export interface IEpisodesIndexViewProps {
+export interface IAuthenticatedLayoutProps {
   user: AppHeaderUser;
   audioSource?: string;
 }
 
-export function EpisodesIndexView({ children, user, audioSource }: PropsWithChildren<IEpisodesIndexViewProps>) {
+export function AuthenticatedLayout({ children, user, audioSource }: PropsWithChildren<IAuthenticatedLayoutProps>) {
   return (
     <>
       <AppHeader user={user} />
-      <main data-page-index data-page-index-with-audio-player={audioSource}>
+      <main data-page-index data-page-index-with-audio-player={audioSource} data-container>
         {children}
         {audioSource && (
           <div data-audio-player>

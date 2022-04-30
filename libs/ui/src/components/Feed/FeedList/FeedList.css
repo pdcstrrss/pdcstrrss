@@ -12,7 +12,7 @@
   display: grid;
   grid-template:
     "header header" auto
-    "meta button" auto / auto auto;
+    "meta actions" auto / auto auto;
   gap: calc(var(--space) / 4) calc(var(--space));
 
   border: var(--border-width) solid var(--border-color);
@@ -27,7 +27,7 @@
   [data-feed] {
     grid-template:
       "media header header" auto
-      "media meta button" auto / calc(var(--space) * 4) 1fr auto;
+      "media meta actions" auto / calc(var(--space) * 4) 1fr auto;
   }
 }
 
@@ -54,8 +54,9 @@
   white-space: nowrap;
 }
 
-[data-feed-media-button] {
-  grid-area: button;
+[data-feed-actions] {
+  grid-area: actions;
+  align-self: center;
 }
 
 [data-feed-media-icon] {
