@@ -26,6 +26,9 @@
 
   --brand-primary: #5800ff;
   --brand-primary-contrast: #ffffff;
+
+  --brand-danger: #ef4444;
+  --brand-danger-dark: #b91c1c;
 }
 
 @supports (font-variation-settings: normal) {
@@ -86,6 +89,10 @@ a:focus {
   display: inline-block;
   color: var(--brand-primary-contrast);
   background-color: var(--brand-primary);
+}
+
+a:not([data-button]):hover,
+a:not([data-button]):focus {
   padding: 0 0.25em;
   margin: 0 -0.25em;
 }
@@ -144,3 +151,26 @@ a:focus {
   box-shadow: calc(var(--border-width) * 2) calc(var(--border-width) * 2) 0 0 var(--foreground-color-intense);
   background: var(--background-color-intense);
 }
+
+[data-clear-inner-space] > *:first-child {
+  margin-top: 0;
+}
+
+[data-clear-inner-space] > *:last-child {
+  margin-bottom: 0;
+}
+
+
+[data-page-header] {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: var(--space);
+}
+
+[data-page-title] {
+  font-size: 3rem;
+  flex-grow: 1;
+  margin: 0;
+}
+
+[data-page-actions] {}

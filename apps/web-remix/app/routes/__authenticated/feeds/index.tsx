@@ -1,41 +1,26 @@
 import {
-  aggregateFeedsAndEpisodes,
-  getFeedsSubscribedByUser,
-  IGetFeedsSubscribedByUserData,
-  toggleUserFeedSubscription,
+  getFeedsOfUser,
+  IGetFeedsOfUserData,
 } from '../../../services/core.server';
-import { Form, useLoaderData } from '@remix-run/react';
-import { ActionFunction, LoaderFunction, redirect } from '@remix-run/server-runtime';
+import { Link, useLoaderData } from '@remix-run/react';
+import { LoaderFunction } from '@remix-run/server-runtime';
 import { authenticator } from '../../../services/auth.server';
 import { FeedList, FeedListLinks } from '@pdcstrrss/ui';
 import styles from '../../../styles/AuthenticatedFeedsIndex.css';
 
 interface AuthenticatedFeedsIndexLoaderResponse {
-  feedsData: IGetFeedsSubscribedByUserData;
+  feedsData: IGetFeedsOfUserData;
 }
 
 export function links() {
   return [...FeedListLinks(), { rel: 'stylesheet', href: styles }];
 }
 
-export const action: ActionFunction = async ({ request }) => {
-  const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
-  if (!userId) throw new Error('User not found');
-  const formData = await request.formData();
-  const selectedFeeds = formData.getAll('feeds') as string[];
-  await toggleUserFeedSubscription({ feedIds: selectedFeeds, userId });
-  return redirect('/feeds');
-};
-
 export const loader: LoaderFunction = async ({ request }): Promise<AuthenticatedFeedsIndexLoaderResponse> => {
   try {
     const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
     if (!userId) throw new Error('User not found');
-    let feedsData = await getFeedsSubscribedByUser({ userId });
-    if (!feedsData.feeds.length) {
-      await aggregateFeedsAndEpisodes();
-      feedsData = await getFeedsSubscribedByUser({ userId });
-    }
+    const feedsData = await getFeedsOfUser({ userId });
     return { feedsData };
   } catch (error: any) {
     throw new Error(error);
@@ -46,8 +31,17 @@ export default function AuthenticatedFeedsIndex() {
   const { feedsData } = useLoaderData<AuthenticatedFeedsIndexLoaderResponse>();
 
   return (
-    <Form data-authenticated-feeds method="post">
-      <FeedList feeds={feedsData.feeds} />
-    </Form>
+    <div data-authenticated-feeds>
+      <header data-page-header>
+        <h1 data-page-title>Feeds</h1>
+        <div data-page-actions>
+          <Link data-button data-button-primary to="create">
+            <span>Add feed</span>
+          </Link>
+        </div>
+      </header>
+
+      {feedsData.feeds.length ? <FeedList feeds={feedsData.feeds} /> : <div data-card>No feeds found</div>}
+    </div>
   );
 }

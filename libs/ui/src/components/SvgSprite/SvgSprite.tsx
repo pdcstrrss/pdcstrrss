@@ -27,6 +27,17 @@ export const SvgSprite = () => (
         <symbol viewBox="0 0 24 24" id="check">
           <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"></path>
         </symbol>
+
+        <symbol viewBox="0 0 24 24" id="trash">
+          <path
+            fill="currentColor"
+            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+          ></path>
+        </symbol>
+
+        <symbol viewBox="0 0 24 24" id="ic-plus">
+          <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"></path>
+        </symbol>
       </defs>
     </svg>
   </div>

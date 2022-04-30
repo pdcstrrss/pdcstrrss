@@ -1,38 +1,19 @@
-import { Button, ButtonLinks } from '../../Button';
+import { Link } from '@remix-run/react';
+import { ButtonLinks } from '../../Button';
 import type { IFeed } from '@pdcstrrss/core';
 import styles from './FeedList.css';
-import { useState } from 'react';
 
-export type IFeedListItemOnChangeParams = { feedId: string; event: React.FormEvent<HTMLButtonElement> };
-
-export type IFeedListItemOnChange = (params: IFeedListItemOnChangeParams) => void;
-
-export type IFeedListOnChangeParams = IFeedListItemOnChangeParams;
-
-export type IFeedListOnChange = IFeedListItemOnChange;
-
-export type IFeedListItemProps = IFeed & {
-  onChange?: IFeedListItemOnChange;
-};
+export type IFeedListItemProps = IFeed;
 
 interface IFeedListProps {
   feeds: IFeedListItemProps[];
-  onChange?: IFeedListOnChange;
 }
 
 export const FeedListLinks = () => [...ButtonLinks(), { rel: 'stylesheet', href: styles }];
 
-export const FeedListItem = ({
-  id,
-  title,
-  url,
-  latestEpisodePublished,
-  image,
-  subscribed,
-  onChange,
-}: IFeedListItemProps) => {
+export const FeedListItem = ({ id, title, url, latestEpisodePublished, image }: IFeedListItemProps) => {
   return (
-    <article key={id} data-feed>
+    <article key={id} data-feed data-card>
       <header data-feed-header>
         <h2 data-feed-title>{title}</h2>
       </header>
@@ -46,19 +27,21 @@ export const FeedListItem = ({
       </div>
 
       <div data-feed-actions>
-        <Button type="submit" reset={subscribed} name="feeds" value={id}>
-          {subscribed ? 'Unsubscribe' : 'Subscribe'}
-        </Button>
+        <Link data-button data-button-reset data-button-square to={`/feeds/${id}/delete`}>
+          <svg>
+            <use xlinkHref="#trash" />
+          </svg>
+        </Link>
       </div>
     </article>
   );
 };
 
-export const FeedList = ({ feeds, onChange }: IFeedListProps) => {
+export const FeedList = ({ feeds }: IFeedListProps) => {
   return (
     <div data-feed-list>
       {feeds.map((feed) => (
-        <FeedListItem key={feed.url} {...feed} onChange={onChange} />
+        <FeedListItem key={feed.url} {...feed} />
       ))}
     </div>
   );

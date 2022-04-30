@@ -85,14 +85,14 @@ const CONFIG: IAggregatorConfig = {
   ],
 };
 
-const getFullConfig = (config: IAggregatorConfig): IAggregatorMergedConfig => {
+export const getFullConfig = (config: IAggregatorConfig): IAggregatorMergedConfig => {
   return {
     ...config,
     feeds: config.feeds.map((feed) => defaultsDeep(feed, aggregatorFeedDefaultConfig)),
   };
 };
 
-const getFeeds = async (config: IAggregatorMergedConfig): Promise<IGetFeedData[]> => {
+export const getFeedsFromRss = async (config: IAggregatorMergedConfig): Promise<IGetFeedData[]> => {
   const feedsRss = await Promise.all(config.feeds.map((feed) => fetch(feed.url).then((res) => res.text())));
   return feedsRss
     .map(parseRSS)
@@ -103,7 +103,7 @@ const getFeeds = async (config: IAggregatorMergedConfig): Promise<IGetFeedData[]
     }));
 };
 
-async function saveFeeds(feeds: IGetFeedData[]): Promise<IFeedIdsWithEntries[]> {
+export async function saveFeeds(feeds: IGetFeedData[]): Promise<IFeedIdsWithEntries[]> {
   const feedsToCreate = feeds.reduce((previousData, currentFeed) => {
     const { link, title, description, generator, language, url } = currentFeed;
     if (!title || !url) {
@@ -223,10 +223,11 @@ const getEpisodesFromFeedIdsWithEntries = async (feeds: IFeedIdsWithEntries[]) =
   }, [] as IEpisodeFromFeed[]);
 };
 
-export async function aggregateFeedsAndEpisodes() {
-  const fullConfig = getFullConfig(CONFIG);
-  const feeds = await getFeeds(fullConfig);
+export async function aggregateFeedsAndEpisodes(config: IAggregatorConfig) {
+  const fullConfig = getFullConfig(config);
+  const feeds = await getFeedsFromRss(fullConfig);
   const feedIdsWithEntries = await saveFeeds(feeds);
   const episodesFromFeeds = await getEpisodesFromFeedIdsWithEntries(feedIdsWithEntries);
   await saveEpisodes(episodesFromFeeds);
+  return feedIdsWithEntries.map(({ feedId }) => feedId);
 }

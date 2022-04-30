@@ -1,10 +1,10 @@
 :root {
   --button-color: var(--background-color);
   --button-background-color: var(--foreground-color-intense);
-  --button-padding: calc(var(--space) / 3) calc(var(--space) / 2);
 }
 
 [data-button] {
+  --button-padding: 0;
   appearance: none;
   border: 0;
   display: flex;
@@ -12,7 +12,7 @@
   align-items: center;
   background-color: transparent;
   color: var(--foreground-color-intense);
-  padding: 0;
+  padding: var(--button-padding);
   margin: 0;
   cursor: pointer;
   fill: currentColor;
@@ -20,31 +20,47 @@
   text-align: center;
 }
 
+[data-button-square] {
+  --button-padding: calc(var(--space) / 4);
+}
+
+[data-button] svg {
+  inline-size: var(--space);
+  block-size: var(--space);
+}
+
 [data-button]:hover,
 [data-button]:focus {
   --button-color: var(--brand-primary);
   color: var(--button-color);
+  display: flex;
 }
 
-[data-button]:not([data-button-reset="true"]) {
+[data-button]:not([data-button-reset='true']) {
+  --button-padding: calc(var(--space) / 3) calc(var(--space) / 2);
   color: var(--button-color);
   background-color: var(--button-background-color);
-  padding: var(--button-padding);
+  text-decoration: none;
 }
 
-[data-button]:not([data-button-reset="true"]):hover,
-[data-button]:not([data-button-reset="true"]):focus {
+[data-button]:not([data-button-reset='true']):hover,
+[data-button]:not([data-button-reset='true']):focus {
   --button-color: var(--background-color);
   --button-background-color: var(--brand-primary);
 }
 
-[data-button-reset="true"]:hover,
-[data-button-reset="true"]:focus {
+[data-button-reset='true']:hover,
+[data-button-reset='true']:focus {
+  --button-color: var(--background-color);
   text-decoration: underline;
 }
 
 [data-button-primary] {
   --button-background-color: var(--brand-primary);
+}
+
+[data-button-danger] {
+  --button-background-color: var(--brand-danger-dark);
 }
 
 [data-button-wide] {
