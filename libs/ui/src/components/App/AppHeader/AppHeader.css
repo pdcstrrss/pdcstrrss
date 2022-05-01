@@ -8,8 +8,25 @@
 [data-app-header] nav {
   display: flex;
   align-items: center;
-  gap: var(--space);
+  gap: calc(var(--space) / 4);
   font-weight: bold;
+}
+
+[data-app-header] nav a {
+  padding: calc(var(--space) / 8) calc(var(--space) / 4);
+  margin: 0;
+  text-decoration: none;
+}
+
+[data-app-header] nav a:not([data-button]):where(.active, :hover, :focus) {
+  color: var(--background-color);
+  background-color: var(--brand-primary);
+  padding: calc(var(--space) / 8) calc(var(--space) / 4);
+  margin: 0;
+}
+
+[data-app-header] nav a:not([data-button]).active {
+  background-color: var(--foreground-color);
 }
 
 [data-app-header-title] {
