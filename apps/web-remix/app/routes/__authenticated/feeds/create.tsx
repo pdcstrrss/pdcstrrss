@@ -1,8 +1,8 @@
 import isUrl from 'validator/lib/isUrl';
 import { Button, ButtonLinks } from '@pdcstrrss/ui';
 import { Link, useActionData, useTransition } from '@remix-run/react';
-import { ActionFunction, redirect } from '@remix-run/server-runtime';
-import { addFeedsToUser, createFeedByUrl, getFeedByUrl } from '../../../services/core.server';
+import { ActionFunction, LoaderFunction, redirect } from '@remix-run/server-runtime';
+import { addFeedsToUser, createFeedByUrl, exceedsFreeFeedThreshold, getFeedByUrl, getUserById, getUserSponsorship } from '../../../services/core.server';
 import { authenticator } from '../../../services/auth.server';
 
 export const links = () => [...ButtonLinks()];
@@ -31,7 +31,28 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect(`/feeds`);
 };
 
-export default function AuthenticatedFeedsDelete() {
+export const loader: LoaderFunction = async ({ request }): Promise<Response> => {
+  try {
+    const { id: userId, accessToken } = (await authenticator.isAuthenticated(request)) || {};
+    if (!userId || !accessToken) throw new Response('User not authenticated', { status: 401 });
+
+    const user = await getUserById(userId);
+    if (!user) throw new Response('User not found', { status: 400 });
+
+    const sponsorship = await getUserSponsorship({ githubId: user.githubId, accessToken });
+    const canCreateFreeFeeds = await exceedsFreeFeedThreshold({ userId });
+    const canCreateFeed = canCreateFreeFeeds || sponsorship.sponsor || sponsorship.contributor;
+    if (!canCreateFeed) {
+      throw new Response('User not authorized', { status: 403 });
+    }
+
+    return new Response(null, { status: 200 });
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
+export default function AuthenticatedFeedsCreate() {
   const error = useActionData();
   const transition = useTransition();
   return (

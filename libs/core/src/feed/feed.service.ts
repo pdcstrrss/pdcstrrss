@@ -32,6 +32,8 @@ export interface IGetFeedsOfUserData extends Omit<IRequiredRepositoryFilters<IGe
   totalCount: number;
 }
 
+export const FREE_FEED_THRESHOLD = 3;
+
 export async function getFeeds(params?: IGetFeedsParams): Promise<Feed[]> {
   const { userId, offset, limit, orderBy } = defaultsDeep(params, defaultGetFeedsParams);
   return db.feed.findMany({
@@ -141,4 +143,9 @@ export async function deleteFeedsOfUser({ feedIds, userId }: IAssignFeedToUserPa
 export async function createFeedByUrl(url: string) {
   const feedIds = await aggregateFeedsAndEpisodes({ feeds: [{ url }] });
   return getFeedById(feedIds[0]);
+}
+
+export async function exceedsFreeFeedThreshold({ userId }: { userId: string }) {
+  const feedCount = await db.feed.count({where: { users: { some: { userId } } }});
+  return feedCount < FREE_FEED_THRESHOLD;
 }
