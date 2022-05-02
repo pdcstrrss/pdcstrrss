@@ -24,11 +24,18 @@
 
   --font-family-base: 'Inter', sans-serif;
 
+  --brand-primary-light: #e0e7ff;
   --brand-primary: #5800ff;
+  --brand-primary-dark: #312e81;
   --brand-primary-contrast: #ffffff;
 
+  --brand-danger-light: #fee2e2;
   --brand-danger: #ef4444;
   --brand-danger-dark: #b91c1c;
+
+  --brand-success-light: #d1fae5;
+  --brand-success: #10b981;
+  --brand-success-dark: #064e3b;
 }
 
 @supports (font-variation-settings: normal) {
@@ -39,6 +46,13 @@
 
 html {
   font-size: clamp(14px, 2vw, 18px);
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 body {
@@ -160,7 +174,6 @@ a:not([data-button]):focus {
   margin-bottom: 0;
 }
 
-
 [data-page-header] {
   display: flex;
   align-items: flex-end;
@@ -173,4 +186,60 @@ a:not([data-button]):focus {
   margin: 0;
 }
 
-[data-page-actions] {}
+[data-page-actions] {
+}
+
+/* =================================
+ * Forms
+ ================================= */
+label {
+  display: block;
+}
+
+input {
+  width: 100%;
+  display: block;
+  padding: calc(var(--space) / 4) calc(var(--space) / 2);
+  border: var(--border-width) solid var(--border-color);
+  background-color: var(--background-color-intense);
+  color: var(--foreground-color);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+input:not(:placeholder-shown):invalid {
+  border-color: var(--brand-danger);
+}
+
+input:not(:placeholder-shown):valid {
+  border-color: var(--brand-success);
+}
+
+/* =================================
+ * Alerts
+ ================================= */
+[data-alert] {
+  --alert-color: var(--brand-primary-dark);
+  --alert-background-color: var(--brand-primary-light);
+  --alert-border-color: var(--brand-primary-dark);
+
+  padding: calc(var(--space) / 2) var(--space);
+  margin-bottom: var(--space);
+  border: var(--border-width) solid var(--alert-border-color);
+  background-color: var(--alert-background-color);
+  color: var(--alert-color);
+}
+
+[data-alert-danger] {
+  --alert-color: var(--brand-danger-dark);
+  --alert-background-color: var(--brand-danger-light);
+  --alert-border-color: var(--brand-danger-dark);
+}

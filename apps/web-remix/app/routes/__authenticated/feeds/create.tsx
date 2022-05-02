@@ -1,6 +1,6 @@
 import isUrl from 'validator/lib/isUrl';
 import { Button, ButtonLinks } from '@pdcstrrss/ui';
-import { Link } from '@remix-run/react';
+import { Link, useActionData, useTransition } from '@remix-run/react';
 import { ActionFunction, redirect } from '@remix-run/server-runtime';
 import { addFeedsToUser, createFeedByUrl, getFeedByUrl } from '../../../services/core.server';
 import { authenticator } from '../../../services/auth.server';
@@ -32,19 +32,26 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function AuthenticatedFeedsDelete() {
+  const error = useActionData();
+  const transition = useTransition();
   return (
     <div>
       <header data-page-header>
         <h1 data-page-title>Add feed</h1>
       </header>
       <form method="post">
+        {error && (
+          <div data-alert data-alert-danger>
+            {error}
+          </div>
+        )}
         <div data-card data-clear-inner-space>
-          <label htmlFor="url">Url:</label>
-          <input id="url" type="text" name="url" />
+          <label htmlFor="url">Url</label>
+          <input id="url" type="url" name="url" required placeholder="https://example.com/feed" />
         </div>
         <div style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'var(--space)' }}>
-          <Button type="submit" data-button-primary>
-            Add
+          <Button type="submit" data-button-primary disabled={!!transition.submission}>
+            {transition.submission ? 'Adding feed...' : 'Add feed'}
           </Button>
           <Link to="/feeds">Cancel</Link>
         </div>
