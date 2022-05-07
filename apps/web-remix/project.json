@@ -39,6 +39,13 @@
       "options": {
         "lintFilePatterns": ["apps/web-remix/**/*.{js,ts}"]
       }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "echo 'No tests yet'",
+        "cwd": "apps/web-remix"
+      }
     }
   }
 }
