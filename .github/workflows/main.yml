@@ -25,10 +25,10 @@ jobs:
           node-version: 16.x
       - uses: nrwl/nx-set-shas@v2
       - uses: bahmutov/npm-install@v1
-      - run: npx nx affected --target=typecheck --parallel=3
-      - run: npx nx affected --target=lint --parallel=3
-      - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
-      - run: npx nx affected --target=build --parallel=3
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run build
 
       - name: Archive build output
         uses: actions/upload-artifact@v3
