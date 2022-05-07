@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "nx serve",
+    "generate": "nx run-many --target=generate --all",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx run-many --target=lint --all",
