@@ -38,8 +38,6 @@ jobs:
           path: |
             apps/web-remix/public
             apps/web-remix/netlify
-            apps/web-remix/netlify.toml
-            apps/web-remix/package.json
           retention-days: 1
 
   deploy:
@@ -48,23 +46,28 @@ jobs:
     needs: workspace
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
     steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v3
+      - uses: actions/checkout@v2
         with:
-          name: build
+          fetch-depth: 0
 
       - uses: bahmutov/npm-install@v1
         env:
           NODE_ENV: production
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: apps/web-remix
 
       - name: Deploy production to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
           production-branch: main
           production-deploy: true
-          publish-dir: ./public
-          functions-dir: ./netlify/functions
-          netlify-config-path: ./netlify.toml
+          publish-dir: ./apps/web-remix/public
+          functions-dir: ./apps/web-remix/netlify/functions
+          netlify-config-path: ./apps/web-remix/netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
