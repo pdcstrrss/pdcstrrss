@@ -17,12 +17,12 @@ jobs:
       SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: nrwl/nx-set-shas@v2
       - uses: bahmutov/npm-install@v1
       - run: npm run generate
@@ -31,40 +31,8 @@ jobs:
       - run: npm run test
       - run: npm run build
 
-      - name: Archive build output
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: |
-            apps/web-remix/public
-            apps/web-remix/netlify
-          retention-days: 1
-
-  deploy:
-    name: Publish to Netlify
-    runs-on: ubuntu-latest
-    needs: workspace
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - uses: bahmutov/npm-install@v1
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
-      - uses: nrwl/nx-set-shas@v2
-
-      - name: Download build artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: apps/web-remix
-
       - name: Deploy production to Netlify
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
         uses: nwtgck/actions-netlify@v1.2
         with:
           production-branch: main
@@ -76,4 +44,3 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
-
