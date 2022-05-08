@@ -3,7 +3,7 @@ import { User } from '@pdcstrrss/database';
 import { AuthenticatedLayout } from '@pdcstrrss/ui';
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { LoaderFunction } from '@remix-run/server-runtime';
-import isURL from 'validator/lib/isURL';
+import validator from 'validator';
 import { authenticator } from '../services/auth.server';
 
 interface EpisodesLoaderResponse {
@@ -18,7 +18,7 @@ export type AuthenticatedLayoutContextType = {
 async function getAudioSource({ request }: { request: Request }) {
   const url = new URL(request.url);
   let urlParam = url.searchParams.get('episode');
-  urlParam = isURL(urlParam || '') ? urlParam : null;
+  urlParam = validator.isURL(urlParam || '') ? urlParam : null;
   if (urlParam) {
     const fetchUrl = new URL(url.origin + '/audio');
     fetchUrl.searchParams.set('url', urlParam);

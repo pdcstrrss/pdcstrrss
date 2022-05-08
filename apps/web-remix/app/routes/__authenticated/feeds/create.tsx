@@ -1,8 +1,15 @@
-import isUrl from 'validator/lib/isUrl';
+import validator from 'validator';
 import { Button, ButtonLinks } from '@pdcstrrss/ui';
 import { Link, useActionData, useTransition } from '@remix-run/react';
 import { ActionFunction, LoaderFunction, redirect } from '@remix-run/server-runtime';
-import { addFeedsToUser, createFeedByUrl, exceedsFreeFeedThreshold, getFeedByUrl, getUserById, getUserSponsorship } from '../../../services/core.server';
+import {
+  addFeedsToUser,
+  createFeedByUrl,
+  exceedsFreeFeedThreshold,
+  getFeedByUrl,
+  getUserById,
+  getUserSponsorship,
+} from '../../../services/core.server';
 import { authenticator } from '../../../services/auth.server';
 
 export const links = () => [...ButtonLinks()];
@@ -13,7 +20,7 @@ export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const url = formData.get('url')?.toString();
 
-  if (!url || !isUrl(url)) {
+  if (!url || !validator.isURL(url)) {
     throw new Response(null, { status: 400 });
   }
 
