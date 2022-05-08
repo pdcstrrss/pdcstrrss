@@ -39,6 +39,7 @@ jobs:
             apps/web-remix/public
             apps/web-remix/netlify
             apps/web-remix/netlify.toml
+            apps/web-remix/package.json
           retention-days: 1
 
   deploy:
@@ -51,6 +52,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
+
+      - uses: bahmutov/npm-install@v1
+        env:
+          NODE_ENV: production
 
       - name: Deploy production to Netlify
         uses: nwtgck/actions-netlify@v1.2
