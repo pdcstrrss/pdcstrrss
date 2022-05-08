@@ -9,7 +9,7 @@
     "test": "nx test",
     "lint": "nx run-many --target=lint --all",
     "typecheck": "nx run-many --target=typecheck --all",
-    "postinstall": "npx remix setup node",
+    "postinstall": "remix setup node",
     "prepare": "husky install"
   },
   "private": true,
