@@ -3,6 +3,7 @@
   "license": "GNU AGPLv3",
   "version": "0.1.0",
   "scripts": {
+    "dev": "nx run-many --target=dev --all",
     "start": "nx serve",
     "generate": "nx run-many --target=generate --all",
     "build": "nx build",
