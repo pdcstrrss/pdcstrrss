@@ -79,6 +79,10 @@ export async function getFeedsOfUser(params?: IGetFeedsParams): Promise<IGetFeed
     where: { users: { some: { userId } } },
     include: {
       episodes: {
+        select: {
+          image: true,
+          published: true,
+        },
         orderBy: {
           published: 'desc',
         },

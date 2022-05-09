@@ -70,7 +70,7 @@ model Episode {
   feedId      String
 
   users EpisodesOfUsers[]
-  @@index([feedId])
+  @@index([feedId, published])
 }
 
 // https://github.com/prisma/prisma/issues/10758#issuecomment-1098430578
