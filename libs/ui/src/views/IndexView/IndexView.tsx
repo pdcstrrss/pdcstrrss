@@ -18,7 +18,7 @@ export function IndexView({loginWithGitHubAction = '/auth/github'}: IIndexViewPr
           <ul className="list-unstyled">
             <li>Login with GitHub</li>
             <li>
-              Sponsor the project for only <strong>$1 / month</strong>
+              Sponsor the project for only <strong>$2 / month</strong>
             </li>
             <li>Configure</li>
             <li>Listen</li>
