@@ -9,9 +9,12 @@ export type IEpisode = Pick<Episode, 'id' | 'title' | 'url' | 'published' | 'ima
   };
 };
 
-export interface IGetEpisodesParams extends IRepositoryFilters {
+export interface IGetEpisodeParams {
+  id: string;
   userId?: string;
 }
+
+export type IGetEpisodesParams = Partial<IGetEpisodeParams> & IRepositoryFilters;
 
 export interface IEpisodesData extends Omit<IRequiredRepositoryFilters<IGetEpisodesParams>, 'orderBy'> {
   episodes: IEpisode[];
@@ -45,6 +48,16 @@ const DEFAULT_GET_EPISODE_PARAMS = {
 export function getAllEpisodes(): Promise<IEpisode[]> {
   return db.episode.findMany({
     ...DEFAULT_EPISODE_QUERY,
+  });
+}
+
+export async function getEpisodeById({ id, userId }: IGetEpisodeParams): Promise<IEpisode | null> {
+  return db.episode.findUnique({
+    ...DEFAULT_EPISODE_QUERY,
+    where: {
+      id,
+      ...(userId && { users: { some: { userId } } }),
+    },
   });
 }
 

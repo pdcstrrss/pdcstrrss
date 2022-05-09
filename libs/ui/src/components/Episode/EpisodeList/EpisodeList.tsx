@@ -1,5 +1,5 @@
-import { useNavigate } from "@remix-run/react";
-import { Button, ButtonLinks } from "../../Button";
+import { Link } from "@remix-run/react";
+import { ButtonLinks } from "../../Button";
 import type { IEpisode } from "@pdcstrrss/core";
 import styles from "./EpisodeList.css";
 
@@ -9,15 +9,7 @@ interface IEpisodeListProps {
 
 export const EpisodeListLinks = () => [...ButtonLinks(), { rel: "stylesheet", href: styles }];
 
-export const EpisodeListItem = ({ title, url, feed, published, image }: IEpisode) => {
-  const navigate = useNavigate();
-
-  const handleOnClick = (episodeUrl: string) => {
-    const url = new URL(document.location.href);
-    url.searchParams.set("episode", episodeUrl);
-    window.location.href = url.toString();
-  };
-
+export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpisode) => {
   return (
     <article key={url} data-episode>
 
@@ -33,16 +25,16 @@ export const EpisodeListItem = ({ title, url, feed, published, image }: IEpisode
           {Intl.DateTimeFormat(["sv-SE"]).format(new Date(published))}
         </time>
       </div>
-      <Button
-        onClick={() => handleOnClick(url)}
+      <Link
+        className="link-icon"
+        to={{search: `?episode=${id}`}}
         data-episode-media-button
-        reset
         aria-label={`Play episode ${title} of ${feed.title}`}
       >
         <svg data-episode-media-icon data-icon>
           <use xlinkHref="#play" />
         </svg>
-      </Button>
+      </Link>
     </article>
   );
 };

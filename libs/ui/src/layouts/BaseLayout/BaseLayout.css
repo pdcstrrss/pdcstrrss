@@ -98,8 +98,7 @@ a {
   color: var(--foreground-color);
 }
 
-a:hover,
-a:focus {
+a:not(.link-icon):where(:hover, :focus) {
   display: inline-block;
   color: var(--brand-primary-contrast);
   background-color: var(--brand-primary);
@@ -109,6 +108,10 @@ a:not([data-button]):hover,
 a:not([data-button]):focus {
   padding: 0 0.25em;
   margin: 0 -0.25em;
+}
+
+a.link-icon:where(:hover, :focus) {
+  color: var(--brand-primary);
 }
 
 .list-unstyled {
@@ -126,7 +129,7 @@ a:not([data-button]):focus {
   bottom: 0;
   left: 0;
   right: 0;
-  width: calc(100% - 3rem);
+  width: 100%;
   padding: 0.5rem 1.5rem;
   border-top: var(--border-width) solid var(--border-color);
   background-color: var(--background-color-intense);
