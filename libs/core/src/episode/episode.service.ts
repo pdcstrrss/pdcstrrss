@@ -2,7 +2,7 @@ import { db, Episode } from '@pdcstrrss/database';
 import { defaultsDeep } from 'lodash';
 import { IRepositoryFilters, IRequiredRepositoryFilters } from '..';
 
-export type IEpisode = Episode & {
+export type IEpisode = Pick<Episode, 'id' | 'title' | 'url' | 'published' | 'image'> & {
   feed: {
     title: string;
     description: string | null;
@@ -19,7 +19,12 @@ export interface IEpisodesData extends Omit<IRequiredRepositoryFilters<IGetEpiso
 }
 
 const DEFAULT_EPISODE_QUERY = {
-  include: {
+  select: {
+    id: true,
+    title: true,
+    url: true,
+    published: true,
+    image: true,
     feed: {
       select: {
         title: true,

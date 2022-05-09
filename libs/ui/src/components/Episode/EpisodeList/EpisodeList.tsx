@@ -50,7 +50,7 @@ export const EpisodeListItem = ({ title, url, feed, published, image }: IEpisode
 export const EpisodeList = ({ episodes }: IEpisodeListProps) => (
   <>
     {episodes.map((episode) => (
-      <EpisodeListItem key={episode.url} {...episode} />
+      <EpisodeListItem key={episode.id} {...episode} />
     ))}
   </>
 );
