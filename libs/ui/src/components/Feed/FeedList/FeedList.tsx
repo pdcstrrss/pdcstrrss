@@ -1,5 +1,4 @@
 import { Link } from '@remix-run/react';
-import { ButtonLinks } from '../../Button';
 import type { IFeed } from '@pdcstrrss/core';
 import styles from './FeedList.css';
 
@@ -9,13 +8,13 @@ interface IFeedListProps {
   feeds: IFeedListItemProps[];
 }
 
-export const FeedListLinks = () => [...ButtonLinks(), { rel: 'stylesheet', href: styles }];
+export const FeedListLinks = () => [{ rel: 'stylesheet', href: styles }];
 
 export const FeedListItem = ({ id, title, url, latestEpisodePublished, image }: IFeedListItemProps) => {
   return (
     <article key={id} data-feed data-card>
       <header data-feed-header>
-        <h2 data-feed-title>{title}</h2>
+        <h2 className='h4 feed-title'>{title}</h2>
       </header>
 
       <figure data-feed-media>{image && <img data-feed-image src={image} alt={title} />}</figure>
@@ -27,7 +26,7 @@ export const FeedListItem = ({ id, title, url, latestEpisodePublished, image }: 
       </div>
 
       <div data-feed-actions>
-        <Link data-button data-button-reset data-button-square to={`/feeds/${id}/delete`}>
+        <Link className='button button-square button-link' to={`/app/feeds/${id}/delete`}>
           <svg>
             <use xlinkHref="#trash" />
           </svg>

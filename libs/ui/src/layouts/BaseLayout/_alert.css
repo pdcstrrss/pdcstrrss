@@ -1,0 +1,17 @@
+[data-alert] {
+  --alert-color: var(--brand-primary-dark);
+  --alert-background-color: var(--brand-primary-light);
+  --alert-border-color: var(--brand-primary-dark);
+
+  padding: calc(var(--space) / 2) var(--space);
+  margin-bottom: var(--space);
+  border: var(--border-width) solid var(--alert-border-color);
+  background-color: var(--alert-background-color);
+  color: var(--alert-color);
+}
+
+[data-alert-danger] {
+  --alert-color: var(--brand-danger-dark);
+  --alert-background-color: var(--brand-danger-light);
+  --alert-border-color: var(--brand-danger-dark);
+}

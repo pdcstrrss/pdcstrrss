@@ -36,10 +36,4 @@
   flex-grow: 1;
 }
 
-[data-app-header-image] {
-  inline-size: calc(var(--space) * 2);
-  aspect-ratio: 1 / 1;
-  border: var(--border-width) solid var(--border-color);
-  outline: var(--border-width) solid var(--background-color-mild);
-  box-shadow: calc(var(--border-width) * 2) calc(var(--border-width) * 2) 0 0 var(--foreground-color-intense);
-}
+

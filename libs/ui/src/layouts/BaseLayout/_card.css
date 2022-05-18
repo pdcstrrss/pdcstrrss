@@ -1,0 +1,6 @@
+[data-card] {
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--space);
+  background: var(--background-color-intense);
+}

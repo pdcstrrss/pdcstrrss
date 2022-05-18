@@ -38,6 +38,21 @@ export const SvgSprite = () => (
         <symbol viewBox="0 0 24 24" id="ic-plus">
           <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"></path>
         </symbol>
+
+        <symbol id="logo" viewBox="0 0 54 54">
+          <path
+            d="M4.5 54C6.98528 54 9 51.9853 9 49.5C9 47.0147 6.98528 45 4.5 45C2.01472 45 2.15529e-07 47.0147 4.81397e-07 49.5C7.47265e-07 51.9853 2.01472 54 4.5 54Z"
+            fill="var(--logo-layer-1, #6366F1)"
+          />
+          <path
+            d="M3.26274 23.76C18.162 23.76 30.2402 35.8382 30.2402 50.7375C30.2402 65.6367 -11.6365 23.76 3.26274 23.76Z"
+            fill="var(--logo-layer-2, #5EEAD4)"
+          />
+          <path
+            d="M5.73471 3.0293e-06C32.3909 1.35626e-06 54 21.6091 54 48.2653C54 74.9215 -20.9215 4.70234e-06 5.73471 3.0293e-06Z"
+            fill="var(--logo-layer-1, #6366F1)"
+          />
+        </symbol>
       </defs>
     </svg>
   </div>

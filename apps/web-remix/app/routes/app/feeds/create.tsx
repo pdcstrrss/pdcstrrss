@@ -1,5 +1,4 @@
 import validator from 'validator';
-import { Button, ButtonLinks } from '@pdcstrrss/ui';
 import { Link, useActionData, useTransition } from '@remix-run/react';
 import { ActionFunction, LoaderFunction, redirect } from '@remix-run/server-runtime';
 import {
@@ -11,8 +10,6 @@ import {
   getUserSponsorship,
 } from '../../../services/core.server';
 import { authenticator } from '../../../services/auth.server';
-
-export const links = () => [...ButtonLinks()];
 
 export const action: ActionFunction = async ({ request }) => {
   const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
@@ -77,11 +74,11 @@ export default function AuthenticatedFeedsCreate() {
           <label htmlFor="url">Url</label>
           <input id="url" type="url" name="url" required placeholder="https://example.com/feed" />
         </div>
-        <div style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'var(--space)' }}>
-          <Button type="submit" data-button-primary disabled={!!transition.submission}>
+        <div style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'calc(var(--space) / 2)' }}>
+          <button className='button button-primary' type="submit"  disabled={!!transition.submission}>
             {transition.submission ? 'Adding feed...' : 'Add feed'}
-          </Button>
-          <Link to="/feeds">Cancel</Link>
+          </button>
+          <Link className='button button-link' to="/app/feeds">Cancel</Link>
         </div>
       </form>
     </div>

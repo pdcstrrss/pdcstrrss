@@ -1,0 +1,80 @@
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1140,20,1.25,10,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+
+:root {
+  --step--2: clamp(0.79rem, calc(0.79rem + 0.02vw), 0.8rem);
+  --step--1: clamp(0.89rem, calc(0.85rem + 0.22vw), 1rem);
+  --step-0: clamp(1rem, calc(0.9rem + 0.49vw), 1.25rem);
+  --step-1: clamp(1.13rem, calc(0.95rem + 0.85vw), 1.56rem);
+  --step-2: clamp(1.27rem, calc(1rem + 1.34vw), 1.95rem);
+  --step-3: clamp(1.42rem, calc(1.03rem + 1.99vw), 2.44rem);
+  --step-4: clamp(1.6rem, calc(1.04rem + 2.83vw), 3.05rem);
+  --step-5: clamp(1.8rem, calc(1.02rem + 3.93vw), 3.82rem);
+  --step-6: clamp(2.03rem, calc(0.96rem + 5.35vw), 4.77rem);
+  --step-7: clamp(2.28rem, calc(0.84rem + 7.18vw), 5.96rem);
+  --step-8: clamp(2.57rem, calc(0.66rem + 9.53vw), 7.45rem);
+  --step-9: clamp(2.89rem, calc(0.38rem + 12.54vw), 9.31rem);
+  --step-10: clamp(3.25rem, calc(-0.03rem + 16.38vw), 11.64rem);
+
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+
+  --color-indigo-50: #eef2ff;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-800: #3730a3;
+
+  --color-teal-50: #f0fdfa;
+  --color-teal-300: #5eead4;
+  --color-teal-500: #14b8a6;
+  --color-teal-700: #0f766e;
+  --color-teal-800: #115e59;
+
+  --brand-primary-light: var(--color-indigo-50);
+  --brand-primary: var(--color-indigo-600);
+  --brand-primary-dark: var(--color-indigo-800);
+  --brand-primary-contrast: #ffffff;
+
+  --brand-secondary-light: var(--color-teal-50);
+  --brand-secondary: var(--color-teal-500);
+  --brand-secondary-dark: var(--color-teal-800);
+  --brand-secondary-contrast: var(--color-slate-900);
+
+  --brand-danger-light: #fee2e2;
+  --brand-danger: #ef4444;
+  --brand-danger-dark: #b91c1c;
+
+  --brand-success-light: #d1fae5;
+  --brand-success: #10b981;
+  --brand-success-dark: #064e3b;
+
+  --foreground-color: var(--color-slate-700);
+  --foreground-color-intense: var(--color-slate-900);
+  --foreground-color-mild: var(--color-slate-600);
+
+  --background-color-intense: #ffffff;
+  --background-color: var(--color-indigo-50);
+  --background-color-mild: var(--color-indigo-100);
+
+  --space: var(--step-2, clamp(1.125rem, calc(0.9rem + 0.49vw), 1.5rem));
+  --border-width: 3px;
+  --border-color: var(--foreground-color);
+  --border-radius: .5em;
+
+  --font-family-base: 'roc-grotesk', sans-serif;
+  --font-family-wide: 'roc-grotesk-wide', sans-serif;
+
+  --logo-primary-color: var(--color-indigo-500);
+  --logo-secondary-color: var(--color-teal-500);
+  --logo-layer-1: var(--logo-primary-color);
+  --logo-layer-2: var(--logo-secondary-color);
+  --logo-layer-3: var(--logo-primary-color);
+}

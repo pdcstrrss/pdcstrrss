@@ -1,0 +1,31 @@
+label {
+  display: block;
+}
+
+input {
+  width: 100%;
+  display: block;
+  padding: calc(var(--space) / 4) calc(var(--space) / 2);
+  border: var(--border-width) solid var(--border-color);
+  background-color: var(--background-color-intense);
+  color: var(--foreground-color);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  transition: border-color 0.2s ease-in-out;
+  border-radius: var(--border-radius);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+input:not(:placeholder-shown):invalid {
+  border-color: var(--brand-danger);
+}
+
+input:not(:placeholder-shown):valid {
+  border-color: var(--brand-success);
+}

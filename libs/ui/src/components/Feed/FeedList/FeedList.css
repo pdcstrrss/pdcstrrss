@@ -28,9 +28,8 @@
   grid-area: header;
 }
 
-[data-feed-title] {
+.feed-title {
   margin: 0;
-  font-size: 1.5rem;
   grid-area: title;
 }
 

@@ -1,0 +1,43 @@
+html {
+  font-size: clamp(14px, 2vw, 18px);
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--step-0);
+  font-weight: 500;
+  line-height: 1.66;
+  color: var(--foreground-color);
+  background-color: var(--background-color-mild);
+}
+
+p,
+ul {
+  margin-top: 0;
+  margin-bottom: var(--space);
+}
+
+.list-unstyled {
+  list-style: none;
+  padding: 0;
+}
+
+[data-container] {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* =================================
+ * Container
+ ================================= */
+
+.container {
+  padding-inline: clamp(1.50rem, calc(-0.21rem + 8.57vw), 7.50rem);
+}

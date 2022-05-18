@@ -1,20 +1,19 @@
-import { Link } from "@remix-run/react";
-import { ButtonLinks } from "../../Button";
-import type { IEpisode } from "@pdcstrrss/core";
-import styles from "./EpisodeList.css";
+import { Link } from '@remix-run/react';
+
+import type { IEpisode } from '@pdcstrrss/core';
+import styles from './EpisodeList.css';
 
 interface IEpisodeListProps {
   episodes: IEpisode[];
 }
 
-export const EpisodeListLinks = () => [...ButtonLinks(), { rel: "stylesheet", href: styles }];
+export const EpisodeListLinks = () => [{ rel: 'stylesheet', href: styles }];
 
 export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpisode) => {
   return (
-    <article key={url} data-episode>
-
+    <article key={url} data-episode data-card>
       <header data-episode-header>
-        <h2 data-episode-title>{title}</h2>
+        <h2 className='h5 mb-0'>{title}</h2>
       </header>
 
       <figure data-episode-media>{image && <img data-episode-image src={image} alt={title} />}</figure>
@@ -22,12 +21,12 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
       <div data-episode-meta>
         <a href={url}>{feed.title}</a>
         <time data-episode-datetime dateTime={new Date(published).toISOString()}>
-          {Intl.DateTimeFormat(["sv-SE"]).format(new Date(published))}
+          {Intl.DateTimeFormat(['sv-SE']).format(new Date(published))}
         </time>
       </div>
       <Link
         className="link-icon"
-        to={{search: `?episode=${id}`}}
+        to={{ search: `?episode=${id}` }}
         data-episode-media-button
         aria-label={`Play episode ${title} of ${feed.title}`}
       >

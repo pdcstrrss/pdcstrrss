@@ -7,13 +7,8 @@ import validator from 'validator';
 import { authenticator } from '../services/auth.server';
 
 interface EpisodesLoaderResponse {
-  user: User;
   audioSource?: string;
 }
-
-export type AuthenticatedLayoutContextType = {
-  user: User;
-};
 
 async function getAudioSource({ request }: { request: Request }) {
   const { origin, searchParams } = new URL(request.url);
@@ -36,16 +31,16 @@ export const loader: LoaderFunction = async ({ request }): Promise<EpisodesLoade
     const user = await getUserById(userId);
     if (!user) throw new Response('User not found', { status: 400 });
     const audioSource = await getAudioSource({ request });
-    return { user, audioSource };
+    return { audioSource };
   } catch (error: any) {
     throw new Error(error);
   }
 };
 
 export default function Episodes() {
-  const { user, audioSource } = useLoaderData<EpisodesLoaderResponse>();
+  const { audioSource } = useLoaderData<EpisodesLoaderResponse>();
   return (
-    <AuthenticatedLayout user={user} audioSource={audioSource}>
+    <AuthenticatedLayout audioSource={audioSource}>
       <Outlet />
     </AuthenticatedLayout>
   );

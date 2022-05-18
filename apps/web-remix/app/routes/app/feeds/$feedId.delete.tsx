@@ -1,6 +1,5 @@
 import invariant from 'tiny-invariant';
-import { Button, ButtonLinks } from '@pdcstrrss/ui';
-import { Form, Link, useLoaderData } from '@remix-run/react';
+import { Link, useLoaderData } from '@remix-run/react';
 import { ActionFunction, LoaderFunction, redirect } from '@remix-run/server-runtime';
 import { deleteFeedsOfUser, getFeedById } from '../../../services/core.server';
 import { authenticator } from '../../../services/auth.server';
@@ -9,8 +8,6 @@ import { Feed } from '@pdcstrrss/database';
 interface AuthenticatedFeedsDeleteLoaderResponse {
   feed: Feed;
 }
-
-export const links = () => [...ButtonLinks()];
 
 export const action: ActionFunction = async ({ request, params }) => {
   try {
@@ -24,7 +21,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     await deleteFeedsOfUser({ userId, feedIds: [feed.id] });
 
-    return redirect(`/feeds`);
+    return redirect(`/app/feeds`);
   } catch (error: any) {
     throw new Response(error, { status: 400 });
   }
@@ -60,9 +57,9 @@ export default function AuthenticatedFeedsDelete() {
         </p>
         <p>This action will remove all episode data and preferences of this feed linked to your account.</p>
       </div>
-      <div style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'var(--space)' }}>
-        <Button data-button-danger>Delete</Button>
-        <Link to="/feeds">Cancel</Link>
+      <div style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'calc(var(--space) / 2)' }}>
+        <button className='button button-danger'>Delete</button>
+        <Link className='button button-link' to="/app/feeds">Cancel</Link>
       </div>
     </form>
   );

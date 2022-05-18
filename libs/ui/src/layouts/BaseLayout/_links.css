@@ -1,0 +1,44 @@
+:root {
+  --link-padding-base: clamp(1.125em, calc(0.9em + 0.49vw), 1.5em);
+  --link-padding-shift: calc(1em / 10);
+  --link-padding-block-base: calc(var(--link-padding-base) / 8);
+  --link-padding-block-start: calc(var(--link-padding-block-base) + var(--link-padding-shift));
+  --link-padding-block-end: calc(var(--link-padding-block-base) - var(--link-padding-shift));
+  --link-padding-inline: calc(var(--link-padding-base) / 3);
+  --link-border-radius: var(--border-radius);
+
+  --link-margin-block-start: calc(var(--link-padding-block-start) * -1);
+  --link-margin-block-end: calc(var(--link-padding-block-end) * -1);
+  --link-margin-inline: calc(var(--link-padding-inline) * -1);
+}
+
+a {
+  display: inline-block;
+  color: var(--foreground-color);
+  border-radius: var(--link-border-radius);
+  text-decoration: underline;
+
+  padding-block-start: var(--link-padding-block-start);
+  padding-block-end: var(--link-padding-block-end);
+  padding-inline: var(--link-padding-inline);
+
+  margin-block-start: var(--link-margin-block-start);
+  margin-block-end: var(--link-margin-block-end);
+  margin-inline: var(--link-margin-inline);
+}
+
+a:where(:hover, :focus, .active) {
+  color: var(--brand-primary-contrast);
+  background-color: var(--brand-primary-dark);
+  text-decoration: none;
+}
+
+a.link-icon {
+  display: flex;
+}
+
+a.link-icon:where(:hover, :focus) {
+  padding: 0;
+  margin: 0;
+  color: var(--brand-primary-dark);
+}

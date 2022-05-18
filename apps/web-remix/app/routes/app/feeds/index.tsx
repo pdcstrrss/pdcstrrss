@@ -46,7 +46,7 @@ export default function AuthenticatedFeedsIndex() {
         <h1 data-page-title>Feeds</h1>
         <div data-page-actions>
           {canCreateFeed ? (
-            <Link data-button data-button-primary to="create">
+            <Link className='button button-primary' to="create">
               <span>Add feed</span>
             </Link>
           ) : (

@@ -1,38 +1,67 @@
-import { NavLink } from '@remix-run/react';
+import { NavLink, Link } from '@remix-run/react';
 import { User } from '@pdcstrrss/database';
 import styles from './AppHeader.css';
+import type { To } from 'history';
+import clsx from 'clsx';
+import { TRANSLATIONS } from '../../../constants';
 
 export const AppHeaderLinks = () => [{ rel: 'stylesheet', href: styles }];
 
 export type AppHeaderUser = Pick<User, 'displayName' | 'image'>;
+export type AppHeaderNavLinks = { title: string; to: To }[];
 
-interface AppHeaderProps {
-  user: AppHeaderUser;
+export interface IAppHeaderProps {
+  user?: AppHeaderUser;
+  inverted?: boolean;
 }
 
 const navLinks = [
   {
-    title: 'Episodes',
-    to: '/episodes',
+    title: TRANSLATIONS.episodes,
+    to: '/app/episodes',
   },
   {
-    title: 'Feeds',
-    to: '/feeds',
+    title: TRANSLATIONS.feeds,
+    to: '/app/feeds',
   },
 ];
 
-export function AppHeader({ user }: AppHeaderProps) {
+export function AppHeader(props: IAppHeaderProps) {
+  const { user, inverted } = props;
+
   return (
-    <header data-app-header data-container>
-      <h1 data-app-header-title>PODCSTRRSS</h1>
-      <nav>
-        {navLinks.map(({ title, to }) => (
-          <NavLink key={to} className={({ isActive }) => (isActive ? 'active' : undefined)} to={to}>
-            {title}
-          </NavLink>
-        ))}
+    <header className={clsx('app-header container', { 'app-header-inverted': inverted })}>
+      <Link to="/" className="logo app-header-logo">
+        <svg className="logo-icon" role="presentation">
+          <use xlinkHref="#logo" />
+        </svg>
+        <div className="logo-text">{TRANSLATIONS.title}</div>
+      </Link>
+      <nav className="app-header-nav">
+        {user ? (
+          navLinks &&
+          navLinks.map(({ title, to }) => (
+            <NavLink
+              key={title}
+              className={({ isActive }) => clsx({ active: isActive }, 'app-header-nav-link')}
+              to={to}
+            >
+              {title}
+            </NavLink>
+          ))
+        ) : (
+          <>
+            <Link to="/login">{TRANSLATIONS.login}</Link>
+            <a href="https://github.com/pdcstrrss" target="_blank" rel="noreferrer" className="link-icon">
+              <svg className="app-header-nav-icon" aria-label={TRANSLATIONS.github}>
+                <use xlinkHref="#github" />
+              </svg>
+            </a>
+          </>
+        )}
       </nav>
-      {user.image && <img data-app-header-image src={user.image} alt={user.displayName} />}
+
+      {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} />}
     </header>
   );
 }

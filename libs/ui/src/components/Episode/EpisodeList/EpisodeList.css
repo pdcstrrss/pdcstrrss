@@ -8,12 +8,6 @@
     "header header" auto
     "meta button" auto / auto auto;
   gap: calc(var(--space) / 4) calc(var(--space));
-
-  border: var(--border-width) solid var(--border-color);
-  outline: var(--border-width) solid var(--background-color-mild);
-  padding: var(--space);
-  margin: -2px;
-  box-shadow: calc(var(--border-width) * 2) calc(var(--border-width) * 2) 0 0 var(--foreground-color-intense);
   background: var(--background-color-intense);
 }
 

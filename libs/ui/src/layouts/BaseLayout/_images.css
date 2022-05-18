@@ -1,0 +1,7 @@
+svg {
+  color: currentColor;
+}
+
+svg[data-icon] {
+  fill: currentColor;
+}

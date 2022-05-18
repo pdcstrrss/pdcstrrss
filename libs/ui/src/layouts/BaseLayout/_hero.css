@@ -1,0 +1,17 @@
+.hero {
+  --hero-color: var(--color-indigo-50);
+  text-align: center;
+  background-color: var(--color-indigo-500);
+  color: var(--hero-color);
+
+  padding-top: calc(var(--space) * 7);
+  margin-top: calc(var(--space) * -5);
+  padding-bottom: calc(var(--space) * 2);
+}
+
+.hero-title {
+  font-family: var(--font-family-wide);
+  font-size: var(--step-8);
+  line-height: 1;
+  color: var(--hero-color);
+}

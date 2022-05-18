@@ -1,6 +1,6 @@
-import { getAudioSourceFromExternalWebPage, getEpisodeById } from '../services/core.server';
+import { getAudioSourceFromExternalWebPage, getEpisodeById } from '../../services/core.server';
 import { LoaderFunction } from '@remix-run/server-runtime';
-import { authenticator } from '../services/auth.server';
+import { authenticator } from '../../services/auth.server';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const { id: userId, accessToken } = (await authenticator.isAuthenticated(request)) || {};

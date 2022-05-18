@@ -1,0 +1,46 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space) / 1);
+  padding-block: var(--space);
+  position: relative;
+  z-index: 1;
+}
+
+.app-header-inverted {
+  --foreground-color: var(--color-indigo-50);
+  --foreground-color-intense: var(--color-teal-50);
+  --logo-layer-1: var(--color-teal-300);
+  --logo-layer-2: var(--color-teal-50);
+  --border-color: var(--color-indigo-800);
+}
+
+.app-header-logo {
+  padding-block: var(--link-padding-inline);
+  margin-block: calc(var(--link-padding-inline) * -1);
+}
+
+.app-header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+  gap: calc(var(--space) / 1);
+}
+
+.app-header-nav-link {
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.app-header-nav-icon {
+  --nav-icon-size: var(--step-4);
+  inline-size: var(--nav-icon-size);
+  block-size: var(--nav-icon-size);
+}
+
+.app-header-image {
+  inline-size: calc(var(--space) * 2);
+  aspect-ratio: 1 / 1;
+  border: var(--border-width) solid var(--border-color);
+}
