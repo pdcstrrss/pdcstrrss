@@ -25,7 +25,7 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
         </time>
       </div>
       <Link
-        className="link-icon"
+        className="link-icon link-icon-primary"
         to={{ search: `?episode=${id}` }}
         data-episode-media-button
         aria-label={`Play episode ${title} of ${feed.title}`}

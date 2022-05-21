@@ -26,7 +26,7 @@ export const FeedListItem = ({ id, title, url, latestEpisodePublished, image }: 
       </div>
 
       <div data-feed-actions>
-        <Link className='button button-square button-link' to={`/app/feeds/${id}/delete`}>
+        <Link className='link-icon' to={`/app/feeds/${id}/delete`}>
           <svg>
             <use xlinkHref="#trash" />
           </svg>

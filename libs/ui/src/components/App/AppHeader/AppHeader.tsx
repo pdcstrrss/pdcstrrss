@@ -1,11 +1,8 @@
 import { NavLink, Link } from '@remix-run/react';
 import { User } from '@pdcstrrss/database';
-import styles from './AppHeader.css';
 import type { To } from 'history';
 import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
-
-export const AppHeaderLinks = () => [{ rel: 'stylesheet', href: styles }];
 
 export type AppHeaderUser = Pick<User, 'displayName' | 'image'>;
 export type AppHeaderNavLinks = { title: string; to: To }[];

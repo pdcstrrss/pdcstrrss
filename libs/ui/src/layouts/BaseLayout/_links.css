@@ -1,4 +1,8 @@
 :root {
+  --link-color: var(--foreground-color);
+  --link-color-hover: var(--brand-primary-contrast);
+  --link-background-color-hover: var(--brand-primary-dark);
+
   --link-padding-base: clamp(1.125em, calc(0.9em + 0.49vw), 1.5em);
   --link-padding-shift: calc(1em / 10);
   --link-padding-block-base: calc(var(--link-padding-base) / 8);
@@ -10,11 +14,13 @@
   --link-margin-block-start: calc(var(--link-padding-block-start) * -1);
   --link-margin-block-end: calc(var(--link-padding-block-end) * -1);
   --link-margin-inline: calc(var(--link-padding-inline) * -1);
+
+  --link-icon-size: var(--step-3);
 }
 
 a {
   display: inline-flex;
-  color: var(--foreground-color);
+  color: var(--link-color);
   border-radius: var(--link-border-radius);
   text-decoration: underline;
 
@@ -28,18 +34,32 @@ a {
 }
 
 a:where(:hover, :focus, .active) {
-  color: var(--brand-primary-contrast);
-  background-color: var(--brand-primary-dark);
+  color: var(--link-color-hover);
+  background-color: var(--link-background-color-hover);
   text-decoration: none;
 }
 
-a.link-icon {
+.link-icon {
   --link-padding-block: var(--link-padding-block-base);
   display: flex;
-}
-
-a.link-icon:where(:hover, :focus) {
   padding: 0;
   margin: 0;
-  /* color: var(--brand-primary-dark); */
+}
+
+.link-icon svg {
+  inline-size: var(--link-icon-size);
+  block-size: var(--link-icon-size);
+}
+
+.link-icon:where(:hover, :focus) {
+  --link-color-hover: var(--brand-primary);
+  --link-background-color-hover: transparent;
+}
+
+.link-icon-primary {
+  --link-color: var(--brand-primary);
+}
+
+.link-icon-primary:where(:hover, :focus) {
+  --link-color-hover: var(--brand-secondary);
 }

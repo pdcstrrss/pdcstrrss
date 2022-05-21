@@ -49,8 +49,7 @@
 }
 
 [data-episode-media-icon] {
-  width: var(--episode-icon-size);
-  height: var(--episode-icon-size);
+  --link-icon-size: var(--step-6);
 }
 
 [data-episode-media] {
