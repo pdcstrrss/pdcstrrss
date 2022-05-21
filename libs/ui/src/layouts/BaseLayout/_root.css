@@ -16,6 +16,13 @@ body {
   line-height: 1.66;
   color: var(--foreground-color);
   background-color: var(--background-color-mild);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
 }
 
 p,
@@ -39,10 +46,14 @@ ul {
  ================================= */
 
 .container {
-  padding-inline: clamp(1.50rem, calc(-0.21rem + 8.57vw), 7.50rem);
+  padding-inline: clamp(1.5rem, calc(-0.21rem + 8.57vw), 7.5rem);
   margin: 0 auto;
 }
 
 .container-md {
   max-width: 1280px;
+}
+
+.container-xs {
+  max-width: 640px;
 }

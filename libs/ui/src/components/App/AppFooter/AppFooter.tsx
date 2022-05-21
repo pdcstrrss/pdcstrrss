@@ -6,12 +6,7 @@ export function AppFooter() {
   return (
     <footer className={clsx('app-footer container')}>
       <div className="app-footer-logo">
-        <Link to="/" className="logo">
-          <svg className="logo-icon" role="presentation">
-            <use xlinkHref="#logo" />
-          </svg>
-          <div className="logo-text">{TRANSLATIONS.title}</div>
-        </Link>
+        <Link to="/">{TRANSLATIONS.title}</Link>
       </div>
 
       <a href="https://github.com/pdcstrrss" target="_blank" rel="noreferrer" className="link-icon">

@@ -1,5 +1,5 @@
 :root {
-  --link-color: var(--foreground-color);
+  --link-color: currentColor;
   --link-color-hover: var(--brand-primary-contrast);
   --link-background-color-hover: var(--brand-primary-dark);
 

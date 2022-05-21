@@ -9,7 +9,7 @@ export const handle = {
 
 export default function Index() {
   return (
-    <main>
+    <>
       <section className="container hero" style={{ paddingBlockEnd: 'var(--step-8)' }}>
         <h1 className="hero-title">
           Play podcasts <span className="text-no-wrap">via RSS</span>
@@ -43,6 +43,6 @@ export default function Index() {
           </Link>
         </div>
       </section>
-    </main>
+    </>
   );
 }

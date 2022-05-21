@@ -10,11 +10,12 @@
   padding-block: var(--space);
   position: relative;
   z-index: 1;
+  inline-size: 100%;
 }
 
 .app-header-inverted,
 .app-footer-inverted {
-  --foreground-color: var(--color-indigo-50);
+  color: var(--color-indigo-50);
   --foreground-color-intense: var(--color-teal-50);
   --logo-layer-1: var(--color-teal-300);
   --logo-layer-2: var(--color-teal-50);

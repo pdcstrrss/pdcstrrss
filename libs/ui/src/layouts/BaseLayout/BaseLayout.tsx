@@ -13,7 +13,6 @@ import forms from './_forms.css';
 import images from './_images.css';
 import links from './_links.css';
 import button from './_button.css';
-import page from './_page.css';
 import spacing from './_spacing.css';
 import heading from './_heading.css';
 import app from './_app.css';
@@ -35,7 +34,6 @@ export function BaseLayoutLinks() {
       forms,
       spacing,
       app,
-      page,
       alert,
       audio,
       card,
@@ -66,7 +64,7 @@ export function BaseLayout({ children, head, hero, user }: IBaseLayoutProps): JS
       <body className={clsx({ 'body-with-hero': !!hero })}>
         <SvgSprite />
         <AppHeader {...{ user, inverted: hero }} />
-        {children}
+        <main>{children}</main>
         <AppFooter />
       </body>
     </html>
