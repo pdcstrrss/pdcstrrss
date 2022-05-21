@@ -64,7 +64,7 @@ export const SvgSprite = () => (
               height="140%"
               filterUnits="objectBoundingBox"
               primitiveUnits="userSpaceOnUse"
-              color-interpolation-filters="linearRGB"
+              colorInterpolationFilters="linearRGB"
             >
               <feTurbulence
                 type="fractalNoise"
@@ -82,7 +82,7 @@ export const SvgSprite = () => (
                 surfaceScale="13"
                 specularConstant="3"
                 specularExponent="20"
-                lighting-color="#6366f1"
+                lightingColor="#6366f1"
                 x="0%"
                 y="0%"
                 width="100%"
