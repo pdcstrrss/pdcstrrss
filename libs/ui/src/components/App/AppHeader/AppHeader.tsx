@@ -31,12 +31,14 @@ export function AppHeader(props: IAppHeaderProps) {
 
   return (
     <header className={clsx('app-header container', { 'app-header-inverted': inverted })}>
-      <Link to="/" className="logo app-header-logo">
-        <svg className="logo-icon" role="presentation">
-          <use xlinkHref="#logo" />
-        </svg>
-        <div className="logo-text">{TRANSLATIONS.title}</div>
-      </Link>
+      <div className="app-header-logo">
+        <Link to="/" className="logo">
+          <svg className="logo-icon" role="presentation">
+            <use xlinkHref="#logo" />
+          </svg>
+          <div className="logo-text">{TRANSLATIONS.title}</div>
+        </Link>
+      </div>
       <nav className="app-header-nav">
         {user ? (
           navLinks &&
@@ -51,8 +53,15 @@ export function AppHeader(props: IAppHeaderProps) {
           ))
         ) : (
           <>
-            <Link to="/login">{TRANSLATIONS.login}</Link>
-            <a href="https://github.com/pdcstrrss" target="_blank" rel="noreferrer" className="link-icon">
+            <Link className="app-header-nav-link" to="/login">
+              {TRANSLATIONS.login}
+            </Link>
+            <a
+              href="https://github.com/pdcstrrss"
+              target="_blank"
+              rel="noreferrer"
+              className="app-header-nav-link link-icon"
+            >
               <svg className="app-header-nav-icon" aria-label={TRANSLATIONS.github}>
                 <use xlinkHref="#github" />
               </svg>

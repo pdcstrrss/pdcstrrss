@@ -13,7 +13,7 @@
 }
 
 a {
-  display: inline-block;
+  display: inline-flex;
   color: var(--foreground-color);
   border-radius: var(--link-border-radius);
   text-decoration: underline;
@@ -34,11 +34,12 @@ a:where(:hover, :focus, .active) {
 }
 
 a.link-icon {
+  --link-padding-block: var(--link-padding-block-base);
   display: flex;
 }
 
 a.link-icon:where(:hover, :focus) {
   padding: 0;
   margin: 0;
-  color: var(--brand-primary-dark);
+  /* color: var(--brand-primary-dark); */
 }

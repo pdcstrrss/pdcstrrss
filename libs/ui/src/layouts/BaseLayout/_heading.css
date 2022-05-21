@@ -5,9 +5,6 @@ h4,
 h5,
 h6 {
   line-height: 1;
-  color: var(--foreground-color-intense);
-  letter-spacing: -0.025em;
-
   margin-top: 0;
   margin-bottom: var(--space);
 }
@@ -46,4 +43,8 @@ h5,
 h6,
 .h6 {
   font-size: var(--step-1);
+}
+
+.display-heading {
+  font-family: var(--font-family-wide);
 }

@@ -82,6 +82,7 @@ button:where(:hover, :focus),
 .button svg {
   inline-size: var(--space);
   block-size: var(--space);
+  margin-block-start: calc(var(--button-padding-block-end) / -2);
 }
 
 /* =================================

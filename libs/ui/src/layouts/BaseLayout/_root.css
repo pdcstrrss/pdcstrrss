@@ -40,4 +40,9 @@ ul {
 
 .container {
   padding-inline: clamp(1.50rem, calc(-0.21rem + 8.57vw), 7.50rem);
+  margin: 0 auto;
+}
+
+.container-md {
+  max-width: 1280px;
 }

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
-import { AppHeader, SvgSprite, IAppHeaderProps } from '../../';
+import { AppHeader, SvgSprite, IAppHeaderProps, AppFooter } from '../../';
 
 import normalize from 'normalize.css';
 import variables from './_variables.css';
@@ -67,6 +67,7 @@ export function BaseLayout({ children, head, hero, user }: IBaseLayoutProps): JS
         <SvgSprite />
         <AppHeader {...{ user, inverted: hero }} />
         {children}
+        <AppFooter />
       </body>
     </html>
   );
