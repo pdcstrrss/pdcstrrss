@@ -3,6 +3,8 @@ import { User } from '@pdcstrrss/database';
 import type { To } from 'history';
 import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
+import Dropdown from '../../Dropdown/Dropdown';
+import { Button } from '../../Button';
 
 export type AppHeaderUser = Pick<User, 'displayName' | 'image'>;
 export type AppHeaderNavLinks = { title: string; to: To }[];
@@ -66,8 +68,18 @@ export function AppHeader(props: IAppHeaderProps) {
           </>
         )}
       </nav>
-
-      {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} />}
+      {user && (
+        <Dropdown
+          toggle={() => (
+            <button className='button-reset'>
+              {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} />}
+            </button>
+          )}
+        >
+          <Link to="/profile">Profile</Link>
+          <Link to="/logout">Logout</Link>
+        </Dropdown>
+      )}
     </header>
   );
 }

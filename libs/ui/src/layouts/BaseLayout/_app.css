@@ -25,7 +25,7 @@
 .app-header-logo .logo,
 .app-footer-logo .logo {
   padding-block: var(--link-padding-inline);
-  margin-block: calc(var(--link-padding-inline) * -1);
+  margin-block: 0;
 }
 
 .app-header-nav,
@@ -41,6 +41,7 @@
 .app-footer-nav-link {
   text-decoration: none;
   font-weight: 800;
+  margin-block: 0;
 }
 
 .app-header-nav-icon,

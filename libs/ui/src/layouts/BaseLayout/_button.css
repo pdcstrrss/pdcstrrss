@@ -11,7 +11,7 @@
   --button-border-color-hover: var(--button-border-color);
 
   --button-padding-base: clamp(1.125em, calc(0.9em + 0.49vw), 1.5em);
-  --button-padding-shift: calc(1em / 10);
+  --button-padding-shift: calc(1em / 15);
   --button-padding-block-base: calc(var(--button-padding-base) / 3);
   --button-padding-block-start: calc(var(--button-padding-block-base) + var(--button-padding-shift));
   --button-padding-block-end: calc(var(--button-padding-block-base) - var(--button-padding-shift));
@@ -23,19 +23,23 @@
  * Defaults
  ================================= */
 button,
-.button {
+.button,
+.button-reset {
   appearance: none;
   border: 0;
   display: inline-flex;
   gap: calc(var(--space) / 2);
   align-items: center;
-  border-radius: var(--button-border-radius);
+  cursor: pointer;
+}
 
+button:not(.button-reset),
+.button:not(.button-reset) {
+  border-radius: var(--button-border-radius);
   padding-inline: var(--button-padding-inline);
   padding-block-start: var(--button-padding-block-start);
   padding-block-end: var(--button-padding-block-end);
   margin: 0;
-  cursor: pointer;
   fill: currentColor;
   font-weight: 500;
   text-align: center;
@@ -46,11 +50,15 @@ button,
   text-decoration: none;
 }
 
-button:where(:hover, :focus),
-.button:where(:hover, :focus) {
+button:not(.button-reset):where(:hover, :focus),
+.button:not(.button-reset):where(:hover, :focus) {
   color: var(--button-color-hover);
   background-color: var(--button-background-color-hover);
   border-color: var(--button-border-color-hover);
+}
+
+.button-reset {
+  padding: 0;
 }
 
 /* =================================
