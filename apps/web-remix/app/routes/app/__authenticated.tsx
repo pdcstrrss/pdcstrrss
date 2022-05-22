@@ -1,10 +1,8 @@
-import { getEpisodes, getUserById } from '../services/core.server';
-import { User } from '@pdcstrrss/database';
+import { getUserById } from '../../services/core.server';
 import { AuthenticatedLayout } from '@pdcstrrss/ui';
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { LoaderFunction } from '@remix-run/server-runtime';
-import validator from 'validator';
-import { authenticator } from '../services/auth.server';
+import { authenticator } from '../../services/auth.server';
 
 interface EpisodesLoaderResponse {
   audioSource?: string;
@@ -26,12 +24,13 @@ async function getAudioSource({ request }: { request: Request }) {
 
 export const loader: LoaderFunction = async ({ request }): Promise<EpisodesLoaderResponse | Response> => {
   try {
-    const { id: userId, accessToken } = (await authenticator.isAuthenticated(request)) || {};
-    if (!userId || !accessToken) throw new Response('User not authenticated', { status: 401 });
+    const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
+    if (!userId ) throw new Response('User not authenticated', { status: 401 });
     const user = await getUserById(userId);
     if (!user) throw new Response('User not found', { status: 400 });
     const audioSource = await getAudioSource({ request });
     return { audioSource };
+
   } catch (error: any) {
     throw new Error(error);
   }

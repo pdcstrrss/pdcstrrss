@@ -4,12 +4,11 @@ import {
   getUserSponsorship,
   IGetFeedsOfUserData,
   getUserById,
-} from '../../../services/core.server';
+} from '../../../../services/core.server';
 import { Link, useLoaderData } from '@remix-run/react';
 import { LoaderFunction } from '@remix-run/server-runtime';
-import { authenticator } from '../../../services/auth.server';
+import { authenticator } from '../../../../services/auth.server';
 import { FeedList, FeedListLinks } from '@pdcstrrss/ui';
-import styles from '../../../styles/AuthenticatedFeedsIndex.css';
 
 interface AuthenticatedFeedsIndexLoaderResponse {
   feedsData: IGetFeedsOfUserData;
@@ -17,7 +16,7 @@ interface AuthenticatedFeedsIndexLoaderResponse {
 }
 
 export function links() {
-  return [...FeedListLinks(), { rel: 'stylesheet', href: styles }];
+  return [...FeedListLinks()];
 }
 
 export const loader: LoaderFunction = async ({ request }): Promise<AuthenticatedFeedsIndexLoaderResponse> => {
@@ -41,21 +40,20 @@ export const loader: LoaderFunction = async ({ request }): Promise<Authenticated
 export default function AuthenticatedFeedsIndex() {
   const { feedsData, canCreateFeed } = useLoaderData<AuthenticatedFeedsIndexLoaderResponse>();
   return (
-    <div data-authenticated-feeds>
-      <header data-page-header>
-        <h1 data-page-title>Feeds</h1>
-        <div data-page-actions>
+    <>
+      <header className='page-header'>
+        <h1 className='page-header-title'>Feeds</h1>
+        <div className='page-header-action'>
           {canCreateFeed ? (
             <Link className='button button-primary' to="create">
               <span>Add feed</span>
             </Link>
           ) : (
-            <Link to="/pricing">Want to add more feeds?</Link>
+            <Link to="/account">Want to add more feeds?</Link>
           )}
         </div>
       </header>
-
       {feedsData.feeds.length ? <FeedList feeds={feedsData.feeds} /> : <div data-card>No feeds found</div>}
-    </div>
+    </>
   );
 }

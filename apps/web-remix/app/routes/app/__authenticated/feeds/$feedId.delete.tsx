@@ -1,8 +1,8 @@
 import invariant from 'tiny-invariant';
 import { Link, useLoaderData } from '@remix-run/react';
 import { ActionFunction, LoaderFunction, redirect } from '@remix-run/server-runtime';
-import { deleteFeedsOfUser, getFeedById } from '../../../services/core.server';
-import { authenticator } from '../../../services/auth.server';
+import { deleteFeedsOfUser, getFeedById } from '../../../../services/core.server';
+import { authenticator } from '../../../../services/auth.server';
 import { Feed } from '@pdcstrrss/database';
 
 interface AuthenticatedFeedsDeleteLoaderResponse {
@@ -51,7 +51,7 @@ export default function AuthenticatedFeedsDelete() {
   return (
     <form method="post">
       <h1>Remove</h1>
-      <div data-card data-clear-inner-space>
+      <div className='card clear-inner-space'>
         <p>
           Are you sure you want to remove <strong>{feed?.title}</strong> from your list of feeds?
         </p>

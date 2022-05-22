@@ -1,8 +1,8 @@
-[data-clear-inner-space] > *:first-child {
+.clear-inner-space > *:first-child {
   margin-top: 0;
 }
 
-[data-clear-inner-space] > *:last-child {
+.clear-inner-space > *:last-child {
   margin-bottom: 0;
 }
 

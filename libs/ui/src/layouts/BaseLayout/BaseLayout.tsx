@@ -19,6 +19,7 @@ import app from './_app.css';
 import logo from './_logo.css';
 import hero from './_hero.css';
 import dropdown from './_dropdown.css';
+import viewAccount from '../../views/AccountIndexView/AccountIndexView.css';
 import utilities from './_utilities.css';
 
 export function BaseLayoutLinks() {
@@ -41,6 +42,7 @@ export function BaseLayoutLinks() {
       logo,
       hero,
       dropdown,
+      viewAccount,
       utilities,
     ].map((href) => ({
       href,

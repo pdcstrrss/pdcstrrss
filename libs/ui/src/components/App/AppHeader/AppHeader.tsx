@@ -52,9 +52,9 @@ export function AppHeader(props: IAppHeaderProps) {
           ))
         ) : (
           <>
-            <Link className="app-header-nav-link" to="/login">
+            <a className="app-header-nav-link" href="/login">
               {TRANSLATIONS.login}
-            </Link>
+            </a>
             <a
               href="https://github.com/pdcstrrss"
               target="_blank"
@@ -71,12 +71,12 @@ export function AppHeader(props: IAppHeaderProps) {
       {user && (
         <Dropdown
           toggle={() => (
-            <button className='button-reset'>
+            <button className="button-reset">
               {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} />}
             </button>
           )}
         >
-          <Link to="/profile">Profile</Link>
+          <Link to="/app/account">Account</Link>
           <Link to="/logout">Logout</Link>
         </Dropdown>
       )}

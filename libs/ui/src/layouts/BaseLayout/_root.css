@@ -22,6 +22,8 @@ body {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }
 
@@ -36,11 +38,6 @@ ul {
   padding: 0;
 }
 
-[data-container] {
-  margin: 0 auto;
-  max-width: 700px;
-}
-
 /* =================================
  * Container
  ================================= */
@@ -48,6 +45,7 @@ ul {
 .container {
   padding-inline: clamp(1.5rem, calc(-0.21rem + 8.57vw), 7.5rem);
   margin: 0 auto;
+  inline-size: 100%;
 }
 
 .container-md {
@@ -56,4 +54,21 @@ ul {
 
 .container-xs {
   max-width: 640px;
+}
+
+/* =================================
+ * Page
+ ================================= */
+.page-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space);
+  margin-block: var(--space);
+}
+
+.page-header-title {
+  flex-grow: 1;
+  margin: 0;
+  align-items: center;
+  transform: translateY(33%);
 }

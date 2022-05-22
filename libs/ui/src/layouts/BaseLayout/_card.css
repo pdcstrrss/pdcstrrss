@@ -1,6 +1,62 @@
+.card,
 [data-card] {
-  border: var(--border-width) solid var(--border-color);
+  --card-border-color: var(--border-color);
+  --card-background-color: var(--background-color-intense);
+  --card-color: var(--foreground-color);
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: var(--border-width) solid var(--card-border-color);
   border-radius: var(--border-radius);
   padding: var(--space);
-  background: var(--background-color-intense);
+  background: var(--card-background-color);
+}
+
+.card-success {
+  --card-border-color: var(--brand-success);
+  --card-background-color: var(--color-teal-50);
+}
+
+.card-pink {
+  --card-border-color: var(--color-pink-600);
+  --card-background-color: var(--color-pink-50);
+}
+
+.card-fuchsia {
+  --card-border-color: var(--color-fuchsia-600);
+  --card-background-color: var(--color-fuchsia-50);
+}
+
+.card-body {
+  flex-grow: 1;
+}
+
+.card-badge {
+  --card-badge-size: var(--step-4);
+  --card-badge-inset: calc(var(--card-badge-size) / -2);
+
+  position: absolute;
+  inset-block-start: var(--card-badge-inset);
+  inset-inline-start: var(--card-badge-inset);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--card-border-color);
+  color: var(--card-background-color);
+  inline-size: var(--card-badge-size);
+  block-size: var(--card-badge-size);
+  border-radius: 50%;
+}
+
+.card-badge-icon {
+  --card-badge-icon-size: var(--step-2);
+  inline-size: var(--card-badge-icon-size);
+  block-size: var(--card-badge-icon-size);
+}
+
+.card-badge-text {
+  position: relative;
+  inset-block-start: 0.075em;
 }

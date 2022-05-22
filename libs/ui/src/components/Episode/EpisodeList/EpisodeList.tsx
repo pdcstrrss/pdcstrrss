@@ -39,9 +39,9 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
 };
 
 export const EpisodeList = ({ episodes }: IEpisodeListProps) => (
-  <>
+  <div className='episodes'>
     {episodes.map((episode) => (
       <EpisodeListItem key={episode.id} {...episode} />
     ))}
-  </>
+  </div>
 );

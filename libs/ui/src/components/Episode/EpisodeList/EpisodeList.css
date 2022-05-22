@@ -2,6 +2,12 @@
   --episode-icon-size: calc(var(--space) * 2);
 }
 
+.episodes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+}
+
 [data-episode] {
   display: grid;
   grid-template:

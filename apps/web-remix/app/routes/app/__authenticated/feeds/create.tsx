@@ -8,8 +8,8 @@ import {
   getFeedByUrl,
   getUserById,
   getUserSponsorship,
-} from '../../../services/core.server';
-import { authenticator } from '../../../services/auth.server';
+} from '../../../../services/core.server';
+import { authenticator } from '../../../../services/auth.server';
 
 export const action: ActionFunction = async ({ request }) => {
   const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
@@ -60,9 +60,9 @@ export default function AuthenticatedFeedsCreate() {
   const error = useActionData();
   const transition = useTransition();
   return (
-    <div>
-      <header data-page-header>
-        <h1 data-page-title>Add feed</h1>
+    <>
+      <header className='page-header'>
+        <h1 className='page-header-title'>Add feed</h1>
       </header>
       <form method="post">
         {error && (
@@ -70,7 +70,7 @@ export default function AuthenticatedFeedsCreate() {
             {error}
           </div>
         )}
-        <div data-card data-clear-inner-space>
+        <div className='card clear-inner-space'>
           <label htmlFor="url">Url</label>
           <input id="url" type="url" name="url" required placeholder="https://example.com/feed" />
         </div>
@@ -81,6 +81,6 @@ export default function AuthenticatedFeedsCreate() {
           <Link className='button button-link' to="/app/feeds">Cancel</Link>
         </div>
       </form>
-    </div>
+    </>
   );
 }

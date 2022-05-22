@@ -1,11 +1,11 @@
-import { getEpisodesData, getFeeds, IEpisodesData } from '../../../services/core.server';
+import { getEpisodesData, getFeeds, IEpisodesData } from '../../../../services/core.server';
 import { EpisodeList, EpisodeListLinks, PaginationLinks } from '@pdcstrrss/ui';
 import { useLoaderData, useNavigate } from '@remix-run/react';
 import { LoaderFunction, redirect } from '@remix-run/server-runtime';
 import Pagination from 'rc-pagination';
 import { ReactNode, useState } from 'react';
-import { authenticator } from '../../../services/auth.server';
-import { IGetEpisodesApiResponse } from '../../api/episodes';
+import { authenticator } from '../../../../services/auth.server';
+import { IGetEpisodesApiResponse } from '../../../api/episodes';
 
 interface EpisodesIndexLoaderResponse {
   episodesData: IEpisodesData;
