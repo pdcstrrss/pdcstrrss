@@ -59,6 +59,13 @@ ul {
 /* =================================
  * Page
  ================================= */
+.page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--space);
+}
+
 .page-header {
   display: flex;
   align-items: baseline;

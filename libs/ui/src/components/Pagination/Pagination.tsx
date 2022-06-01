@@ -11,15 +11,15 @@ export const Pagination = (props: PaginationProps) => (
     {...props}
     locale={locale}
     prevIcon={
-      <button>
-        <svg>
+      <button aria-label={locale.prev_page}>
+        <svg focusable="false">
           <use xlinkHref="#chevron-left" />
         </svg>
       </button>
     }
     nextIcon={
-      <button>
-        <svg>
+      <button aria-label={locale.next_page}>
+        <svg focusable="false">
           <use xlinkHref="#chevron-right" />
         </svg>
       </button>

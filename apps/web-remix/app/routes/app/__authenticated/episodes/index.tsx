@@ -1,9 +1,9 @@
+import clsx from 'clsx';
 import { getEpisodesData, getFeeds, IEpisodesData } from '../../../../services/core.server';
-import { EpisodeList, EpisodeListLinks, PaginationLinks } from '@pdcstrrss/ui';
+import { EpisodeList, EpisodeListLinks, Pagination, PaginationLinks } from '@pdcstrrss/ui';
 import { useLoaderData, useNavigate } from '@remix-run/react';
 import { LoaderFunction, redirect } from '@remix-run/server-runtime';
-import Pagination from 'rc-pagination';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { authenticator } from '../../../../services/auth.server';
 import { IGetEpisodesApiResponse } from '../../../api/episodes';
 
@@ -26,7 +26,10 @@ export const loader: LoaderFunction = async ({ request }): Promise<EpisodesIndex
     const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
     if (!userId) throw new Error('User not found');
 
-    const episodesData = await getEpisodesData({ userId });
+    const url = new URL(request.url);
+    const offset = Number(url.searchParams.get('offset')) ?? undefined;
+    const limit = Number(url.searchParams.get('limit')) ?? undefined;
+    const episodesData = await getEpisodesData({ userId, offset, limit });
     if (!episodesData.totalCount) {
       const feeds = await getFeeds({ userId });
       if (!feeds.length) return redirect('/feeds');
@@ -60,22 +63,8 @@ export default function Episodes() {
     updateAggregateData(url.toString()).catch(console.error);
   };
 
-  const itemRender = (
-    page: number,
-    type: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
-    element: ReactNode
-  ) => {
-    if (
-      (type === 'prev' && episodesData.offset === 0) ||
-      (type === 'next' && episodesData.offset + pageSize > episodesData.totalCount)
-    ) {
-      return;
-    }
-    return element;
-  };
-
   return (
-    <>
+    <div className={clsx('page container container-md')}>
       <EpisodeList episodes={episodesData.episodes} />
       <Pagination
         simple
@@ -83,8 +72,7 @@ export default function Episodes() {
         current={currentPage}
         total={episodesData.totalCount}
         pageSize={pageSize}
-        itemRender={itemRender}
       />
-    </>
+    </div>
   );
 }

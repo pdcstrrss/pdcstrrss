@@ -1,21 +1,27 @@
 .rc-pagination {
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   list-style: none;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
 .rc-pagination li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
-  border: var(--border-width) solid var(--border-color);
-  margin: 0 -1px;
+  margin: 0 calc(var(--border-width) * -1);
+  border-left: var(--border-width) solid var(--border-color);
 }
 
-.rc-pagination li:empty {
+.rc-pagination li:last-child {
+  border-right: var(--border-width) solid var(--border-color);
+}
+
+.rc-pagination li.rc-pagination-disabled {
   display: none;
 }
 
@@ -28,8 +34,7 @@
   gap: calc(var(--space) / 3);
 }
 
-.rc-pagination button,
-.rc-pagination a {
+.rc-pagination :where(button, a) {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,12 +44,10 @@
   background-color: var(--background-color-intense);
   border: 0;
   padding: calc(var(--space) / 2) var(--space);
+  border-radius: 0;
 }
 
-.rc-pagination button:hover,
-.rc-pagination button:focus,
-.rc-pagination a:hover,
-.rc-pagination a:focus {
+.rc-pagination :where(button, a):where(:hover, :focus) {
   background-color: var(--brand-primary);
   color: var(--brand-primary-contrast);
   cursor: pointer;
