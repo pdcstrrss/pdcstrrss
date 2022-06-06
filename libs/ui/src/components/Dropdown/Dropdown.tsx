@@ -7,12 +7,12 @@ export type DropdownProps = React.PropsWithChildren<{
 }>;
 
 export function DropdownItem(item: ReactElement) {
-  const toggleElement = cloneElement(item, {
+  const extendedItem = cloneElement(item, {
     className: clsx(item.props.className, 'dropdown-menu-item-content'),
   });
   return (
     <li className="dropdown-menu-item" key={item.props.children}>
-      {toggleElement}
+      {extendedItem}
     </li>
   );
 }

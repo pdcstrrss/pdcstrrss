@@ -4,4 +4,6 @@ export const TRANSLATIONS = {
   github: 'Github',
   episodes: 'Episodes',
   feeds: 'Feeds',
+  account: 'Account',
+  logout: 'Logout',
 };

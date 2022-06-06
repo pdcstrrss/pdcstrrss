@@ -25,8 +25,10 @@ export const loader: LoaderFunction = async ({ request }): Promise<AccountIndexL
 export default function AccountIndex() {
   const { user, sponsorship } = useLoaderData<AccountIndexLoaderResponse>();
   return (
-    <div className="container">
-      <h1>{user ? 'Account' : 'Create an account'}</h1>
+    <div className="page container">
+      <header className="page-header">
+        <h1 className="page-header-title">{user ? 'Account' : 'Create an account'}</h1>
+      </header>
       <div className="page-account-container">
         <div className={clsx('card clear-inner-space', { 'card-success': !!user })}>
           <div className="card-header">

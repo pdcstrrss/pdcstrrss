@@ -4,7 +4,6 @@ import type { To } from 'history';
 import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
 import Dropdown from '../../Dropdown/Dropdown';
-import { Button } from '../../Button';
 
 export type AppHeaderUser = Pick<User, 'displayName' | 'image'>;
 export type AppHeaderNavLinks = { title: string; to: To }[];
@@ -14,7 +13,7 @@ export interface IAppHeaderProps {
   inverted?: boolean;
 }
 
-const navLinks = [
+const navLinks: AppHeaderNavLinks = [
   {
     title: TRANSLATIONS.episodes,
     to: '/app/episodes',
@@ -25,36 +24,48 @@ const navLinks = [
   },
 ];
 
+const dropdownLinks: AppHeaderNavLinks = [
+  {
+    title: TRANSLATIONS.account,
+    to: '/app/account',
+  },
+  {
+    title: TRANSLATIONS.logout,
+    to: '/logout',
+  },
+];
+
+function renderNavLinks(navLinks: AppHeaderNavLinks) {
+  return navLinks.map(({ title, to }) => (
+    <NavLink key={title} className={({ isActive }) => clsx({ active: isActive }, 'app-header-nav-link')} to={to}>
+      {title}
+    </NavLink>
+  ));
+}
+
 export function AppHeader(props: IAppHeaderProps) {
   const { user, inverted } = props;
 
   return (
     <header className={clsx('app-header container', { 'app-header-inverted': inverted })}>
       <div className="app-header-logo">
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" aria-labelledby="appHeaderLogoText">
           <svg className="logo-icon" role="presentation">
             <use xlinkHref="#logo" />
           </svg>
-          <div className="logo-text">{TRANSLATIONS.title}</div>
+          <div id="appHeaderLogoText" className="logo-text">
+            {TRANSLATIONS.title}
+          </div>
         </Link>
       </div>
       <nav className="app-header-nav">
         {user ? (
-          navLinks &&
-          navLinks.map(({ title, to }) => (
-            <NavLink
-              key={title}
-              className={({ isActive }) => clsx({ active: isActive }, 'app-header-nav-link')}
-              to={to}
-            >
-              {title}
-            </NavLink>
-          ))
+          navLinks && renderNavLinks(navLinks)
         ) : (
           <>
-            <a className="app-header-nav-link" href="/login">
+            <Link className="app-header-nav-link" to="/login">
               {TRANSLATIONS.login}
-            </a>
+            </Link>
             <a
               href="https://github.com/pdcstrrss"
               target="_blank"
@@ -70,14 +81,13 @@ export function AppHeader(props: IAppHeaderProps) {
       </nav>
       {user && (
         <Dropdown
-          toggle={() => (
-            <button className="button-reset">
+          toggle={({ visibility }) => (
+            <button className="button-reset" aria-label={`Click to ${visibility ? 'close' : 'open'} account options`}>
               {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} />}
             </button>
           )}
         >
-          <Link to="/app/account">Account</Link>
-          <Link to="/logout">Logout</Link>
+          {renderNavLinks(dropdownLinks)}
         </Dropdown>
       )}
     </header>

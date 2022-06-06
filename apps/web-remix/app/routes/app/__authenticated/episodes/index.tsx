@@ -78,7 +78,10 @@ export default function Episodes() {
   };
 
   return (
-    <div className={clsx('page container container-md')}>
+    <div className="page container container-md">
+      <header className="page-header">
+        <h1 className="page-header-title">Episodes</h1>
+      </header>
       {episodesData.episodes.length > 0 ? (
         <>
           <EpisodeList episodes={episodesData.episodes} />

@@ -22,6 +22,11 @@
   --border-color: var(--color-indigo-800);
 }
 
+.app-header-inverted .link-icon,
+.app-footer-inverted .link-icon {
+  --link-color-hover: var(--color-teal-300);
+}
+
 .app-header-logo .logo,
 .app-footer-logo .logo {
   padding-block: var(--link-padding-inline);

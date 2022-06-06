@@ -60,9 +60,9 @@ export default function AuthenticatedFeedsCreate() {
   const error = useActionData();
   const transition = useTransition();
   return (
-    <>
-      <header className='page-header'>
-        <h1 className='page-header-title'>Add feed</h1>
+    <div className="page container container-md">
+      <header className="page-header">
+        <h1 className="page-header-title">Add feed</h1>
       </header>
       <form method="post">
         {error && (
@@ -70,17 +70,21 @@ export default function AuthenticatedFeedsCreate() {
             {error}
           </div>
         )}
-        <div className='card clear-inner-space'>
+        <div className="clear-inner-space">
           <label htmlFor="url">Url</label>
           <input id="url" type="url" name="url" required placeholder="https://example.com/feed" />
         </div>
-        <div style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'calc(var(--space) / 2)' }}>
-          <button className='button button-primary' type="submit"  disabled={!!transition.submission}>
+        <div
+          style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'calc(var(--space) / 2)' }}
+        >
+          <button className="button button-primary" type="submit" disabled={!!transition.submission}>
             {transition.submission ? 'Adding feed...' : 'Add feed'}
           </button>
-          <Link className='button button-link' to="/app/feeds">Cancel</Link>
+          <Link className="button button-link" to="/app/feeds">
+            Cancel
+          </Link>
         </div>
       </form>
-    </>
+    </div>
   );
 }

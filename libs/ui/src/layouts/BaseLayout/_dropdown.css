@@ -33,7 +33,7 @@
   text-decoration: none;
 }
 
-.dropdown-menu-item-content:where(:hover, :focus) {
+.dropdown-menu-item-content:where(:hover, :focus, .active) {
   color: var(--brand-primary-contrast);
   background-color: var(--brand-primary);
 }

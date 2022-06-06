@@ -12,7 +12,7 @@
   display: grid;
   grid-template:
     "header header" auto
-    "meta actions" auto / auto auto;
+    "meta actions" auto / 1fr auto;
   gap: calc(var(--space) / 4) calc(var(--space));
 }
 

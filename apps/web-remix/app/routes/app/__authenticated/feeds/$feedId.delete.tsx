@@ -49,18 +49,24 @@ export const loader: LoaderFunction = async ({
 export default function AuthenticatedFeedsDelete() {
   const { feed } = useLoaderData<AuthenticatedFeedsDeleteLoaderResponse>();
   return (
-    <form method="post">
-      <h1>Remove</h1>
-      <div className='card clear-inner-space'>
-        <p>
-          Are you sure you want to remove <strong>{feed?.title}</strong> from your list of feeds?
-        </p>
-        <p>This action will remove all episode data and preferences of this feed linked to your account.</p>
-      </div>
-      <div style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'calc(var(--space) / 2)' }}>
-        <button className='button button-danger'>Delete</button>
-        <Link className='button button-link' to="/app/feeds">Cancel</Link>
-      </div>
-    </form>
+    <div className="page container container-md">
+      <form method="post">
+        <h1>Remove feed</h1>
+        <div className="card clear-inner-space">
+          <p>
+            Are you sure you want to remove <strong>{feed?.title}</strong> from your list of feeds?
+          </p>
+          <p>This action will remove all episode data and preferences of this feed linked to your account.</p>
+        </div>
+        <div
+          style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'calc(var(--space) / 2)' }}
+        >
+          <button className="button button-danger">Delete</button>
+          <Link className="button button-link" to="/app/feeds">
+            Cancel
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 }

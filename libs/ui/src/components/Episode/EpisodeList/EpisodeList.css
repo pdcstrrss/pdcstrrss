@@ -11,8 +11,8 @@
 [data-episode] {
   display: grid;
   grid-template:
-    "header header" auto
-    "meta button" auto / auto auto;
+    'header header' auto
+    'meta button' auto / 1fr auto;
   gap: calc(var(--space) / 4) calc(var(--space));
   background: var(--background-color-intense);
 }
@@ -20,8 +20,8 @@
 @media (min-width: 500px) {
   [data-episode] {
     grid-template:
-      "media header header" auto
-      "media meta button" auto / calc(var(--space) * 4) 1fr auto;
+      'media header header' auto
+      'media meta button' auto / calc(var(--space) * 4) 1fr auto;
   }
 }
 
@@ -40,8 +40,19 @@
   line-height: 1;
   grid-area: meta;
   display: flex;
-  gap: var(--space);
-  align-items: center;
+
+  gap: calc(var(--space) / 2);
+  flex-direction: column;
+  margin-top: calc(var(--space) / 4);
+}
+
+@media (min-width: 700px) {
+  [data-episode-meta] {
+    gap: var(--space);
+    align-items: center;
+    flex-direction: row;
+    margin-top: calc(var(--episode-icon-size) / -6);
+  }
 }
 
 [data-episode-datetime] {
