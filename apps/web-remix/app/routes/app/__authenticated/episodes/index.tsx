@@ -21,14 +21,28 @@ export function links() {
   return [...EpisodeListLinks(), ...PaginationLinks()];
 }
 
+export function searchParamToNumberOrUndefined(url: string, searchParamKey: string) {
+  return new Promise<number | undefined>((resolve, reject) => {
+    try {
+      const _url = new URL(url);
+      const param = _url.searchParams.get(searchParamKey);
+      if (param && !Number.isNaN(parseInt(param))) {
+        resolve(parseInt(param));
+      } else {
+        resolve(undefined);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 export const loader: LoaderFunction = async ({ request }): Promise<EpisodesIndexLoaderResponse | Response> => {
   try {
     const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
     if (!userId) throw new Error('User not found');
-
-    const url = new URL(request.url);
-    const offset = Number(url.searchParams.get('offset')) ?? undefined;
-    const limit = Number(url.searchParams.get('limit')) ?? undefined;
+    const offset = await searchParamToNumberOrUndefined(request.url, 'offset');
+    const limit = await searchParamToNumberOrUndefined(request.url, 'limit');
     const episodesData = await getEpisodesData({ userId, offset, limit });
     if (!episodesData.totalCount) {
       const feeds = await getFeeds({ userId });
@@ -45,7 +59,7 @@ export default function Episodes() {
   const navigate = useNavigate();
   const [episodesData, setEpisodesData] = useState<IEpisodesData>(data);
   const [pageSize, setPageSize] = useState<number>(data.limit - data.offset);
-  const [currentPage, setCurrentPage] = useState<number>(data.offset / pageSize + 1);
+  const [currentPage, setCurrentPage] = useState<number>((pageSize === 0 ? 0 : data.offset / pageSize) + 1);
 
   const getOffset = (page: number) => (page - 1) * pageSize;
   const getLimit = (page: number) => (page - 1) * pageSize + pageSize;
@@ -65,14 +79,20 @@ export default function Episodes() {
 
   return (
     <div className={clsx('page container container-md')}>
-      <EpisodeList episodes={episodesData.episodes} />
-      <Pagination
-        simple
-        onChange={handlePaginationChange}
-        current={currentPage}
-        total={episodesData.totalCount}
-        pageSize={pageSize}
-      />
+      {episodesData.episodes.length > 0 ? (
+        <>
+          <EpisodeList episodes={episodesData.episodes} />
+          <Pagination
+            simple
+            onChange={handlePaginationChange}
+            current={currentPage}
+            total={episodesData.totalCount}
+            pageSize={pageSize}
+          />
+        </>
+      ) : (
+        <div className="card">No episodes found.</div>
+      )}
     </div>
   );
 }

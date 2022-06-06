@@ -64,13 +64,13 @@ ul {
   flex-direction: column;
   flex-grow: 1;
   gap: var(--space);
+  margin-block: var(--space);
 }
 
 .page-header {
   display: flex;
   align-items: baseline;
   gap: var(--space);
-  margin-block: var(--space);
 }
 
 .page-header-title {

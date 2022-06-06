@@ -9,6 +9,7 @@ import { Link, useLoaderData } from '@remix-run/react';
 import { LoaderFunction } from '@remix-run/server-runtime';
 import { authenticator } from '../../../../services/auth.server';
 import { FeedList, FeedListLinks } from '@pdcstrrss/ui';
+import clsx from 'clsx';
 
 interface AuthenticatedFeedsIndexLoaderResponse {
   feedsData: IGetFeedsOfUserData;
@@ -40,12 +41,12 @@ export const loader: LoaderFunction = async ({ request }): Promise<Authenticated
 export default function AuthenticatedFeedsIndex() {
   const { feedsData, canCreateFeed } = useLoaderData<AuthenticatedFeedsIndexLoaderResponse>();
   return (
-    <>
-      <header className='page-header'>
-        <h1 className='page-header-title'>Feeds</h1>
-        <div className='page-header-action'>
+    <div className={clsx('page container container-md')}>
+      <header className="page-header">
+        <h1 className="page-header-title">Feeds</h1>
+        <div className="page-header-action">
           {canCreateFeed ? (
-            <Link className='button button-primary' to="create">
+            <Link className="button button-primary" to="create">
               <span>Add feed</span>
             </Link>
           ) : (
@@ -54,6 +55,6 @@ export default function AuthenticatedFeedsIndex() {
         </div>
       </header>
       {feedsData.feeds.length ? <FeedList feeds={feedsData.feeds} /> : <div data-card>No feeds found</div>}
-    </>
+    </div>
   );
 }
