@@ -63,6 +63,8 @@ export function BaseLayout({ children, head, hero, user }: IBaseLayoutProps): JS
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
         {head}
       </head>
       <body className={clsx({ 'body-with-hero': !!hero })}>
