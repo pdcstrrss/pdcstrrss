@@ -12,7 +12,7 @@ async function getAudioSource({ request }: { request: Request }) {
   const { origin, searchParams } = new URL(request.url);
   const urlParam = searchParams.get('episode');
   if (urlParam) {
-    const fetchUrl = new URL(origin + '/audio');
+    const fetchUrl = new URL(origin + '/api/audio');
     fetchUrl.searchParams.set('episode', urlParam);
     const audioSource: string = await fetch(fetchUrl.toString(), { headers: request.headers }).then((res) =>
       res.json()

@@ -1,4 +1,4 @@
-[data-audio-player] {
+.audio-player {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -7,8 +7,10 @@
   padding: 0.5rem 1.5rem;
   border-top: var(--border-width) solid var(--border-color);
   background-color: var(--background-color-intense);
+  display: flex;
+  align-items: center;
 }
 
-[data-audio-player] audio {
+.audio-player audio {
   width: 100%;
 }

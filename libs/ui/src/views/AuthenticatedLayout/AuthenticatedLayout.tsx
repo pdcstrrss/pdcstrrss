@@ -9,7 +9,7 @@ export function AuthenticatedLayout({ children, audioSource }: PropsWithChildren
     <>
       {children}
       {audioSource && (
-        <div data-audio-player>
+        <div className='audio-player'>
           <audio src={audioSource} controls />
         </div>
       )}
