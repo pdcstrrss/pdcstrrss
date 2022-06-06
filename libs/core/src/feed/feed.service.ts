@@ -1,5 +1,5 @@
 import { db, Feed } from '@pdcstrrss/database';
-import { defaultsDeep } from 'lodash';
+import defaultsDeep from 'lodash/defaultsDeep';
 import { IRepositoryFilters, IRequiredRepositoryFilters } from '..';
 import { aggregateFeedsAndEpisodes } from '../aggregator';
 

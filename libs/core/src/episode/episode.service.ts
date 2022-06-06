@@ -1,5 +1,5 @@
 import { db, Episode } from '@pdcstrrss/database';
-import { defaultsDeep } from 'lodash';
+import defaultsDeep from 'lodash/defaultsDeep';
 import { IRepositoryFilters, IRequiredRepositoryFilters } from '..';
 
 export type IEpisode = Pick<Episode, 'id' | 'title' | 'url' | 'published' | 'image'> & {

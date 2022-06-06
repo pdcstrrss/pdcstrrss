@@ -1,10 +1,12 @@
 // TODO: Stick in background function
 import { db, Prisma } from '@pdcstrrss/database';
 import objectHash from 'object-hash';
-import { isValid } from 'date-fns';
-import { defaultsDeep, get, partition } from 'lodash';
+import isValid from 'date-fns/isValid';
 import pMap from 'p-map';
 import { IRssFeedData, parseRSS } from '../rss/rss.service';
+import defaultsDeep from 'lodash/defaultsDeep';
+import partition from 'lodash/partition';
+import get from 'lodash/get';
 
 export interface IAggregatorFeedDefaultConfig {
   keyMapping: Record<string, string | string[]>;

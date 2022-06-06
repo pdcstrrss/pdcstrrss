@@ -1,4 +1,4 @@
-import { SessionData } from "@remix-run/node";
+import type { SessionData } from "@remix-run/node";
 import { db } from "./database.service";
 
 export async function getSessionById(id: string) {

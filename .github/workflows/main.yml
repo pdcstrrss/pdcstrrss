@@ -31,7 +31,7 @@ jobs:
       - run: npm run lint
       - run: npm run test
       - run: npm run build
-
+      - run: npx rimraf node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node
       - name: Deploy production to Netlify
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
         uses: nwtgck/actions-netlify@v1.2
@@ -45,4 +45,4 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 5
+        timeout-minutes: 2

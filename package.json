@@ -7,6 +7,8 @@
     "start": "nx serve",
     "generate": "nx run-many --target=generate --all",
     "build": "nx build",
+    "predeploy": "npx rimraf node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node",
+    "deploy": "netlify deploy --dir ./apps/web-remix/public --functions ./apps/web-remix/netlify/functions --debug",
     "test": "nx test",
     "lint": "nx run-many --target=lint --all",
     "typecheck": "nx run-many --target=typecheck --all",
@@ -16,7 +18,7 @@
   "private": true,
   "dependencies": {
     "@netlify/functions": "^0.10.0",
-    "@prisma/client": "^3.12.0",
+    "@prisma/client": "^3.14.0",
     "@remix-run/netlify": "1.4.0",
     "@remix-run/node": "1.4.0",
     "@remix-run/react": "1.4.0",
@@ -89,7 +91,7 @@
     "netlify-cli": "^9.6.4",
     "nx": "13.9.6",
     "prettier": "^2.5.1",
-    "prisma": "^3.12.0",
+    "prisma": "^3.14.0",
     "react-test-renderer": "^17.0.2",
     "ts-jest": "27.1.4",
     "ts-node": "9.1.1",
@@ -102,6 +104,7 @@
   ],
   "overrides": {
     "@typescript-eslint/eslint-plugin": "~5.10.0",
-    "@typescript-eslint/parser": "~5.10.0"
+    "@typescript-eslint/parser": "~5.10.0",
+    "remix-utils": "2.9.0"
   }
 }
