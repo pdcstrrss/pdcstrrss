@@ -35,7 +35,7 @@ export interface IAggregatorMergedConfig {
 
 type FeedKeyMapping = Record<string, string | string[]>;
 
-interface IFeedIdsWithEntries {
+export interface IFeedIdsWithEntries {
   feedId: string;
   entries: any[] | undefined;
   keyMapping: FeedKeyMapping;
@@ -62,29 +62,6 @@ const aggregatorFeedDefaultConfig: IAggregatorFeedDefaultConfig = {
     published: 'pubDate',
     image: ["['itunes:image']['@_href']", 'image.url'],
   },
-};
-
-const CONFIG: IAggregatorConfig = {
-  feeds: [
-    {
-      url: 'https://shoptalkshow.com/feed/',
-    },
-    {
-      url: 'https://feed.syntax.fm/rss',
-    },
-    {
-      url: 'https://feeds.soundcloud.com/users/soundcloud:users:293803449/sounds.rss',
-    },
-    {
-      url: 'https://changelog.com/jsparty/feed',
-    },
-    {
-      url: 'https://changelog.com/podcast/feed',
-    },
-    {
-      url: 'https://feed.podbean.com/thedownbeat/feed.xml',
-    },
-  ],
 };
 
 export const getFullConfig = (config: IAggregatorConfig): IAggregatorMergedConfig => {
@@ -139,7 +116,7 @@ function compareEpisodes(a: IEpisodeToCompare, b: IEpisodeToCompare) {
   return aHash === bHash;
 }
 
-async function saveEpisodes(episodes: IEpisodeFromFeed[]): Promise<void> {
+export async function getEpisodesToUpsert(episodes: IEpisodeFromFeed[]) {
   const existingEpisodes = await db.episode.findMany({
     select: { title: true, description: true, published: true, url: true, image: true, feedId: true },
   });
@@ -178,8 +155,12 @@ async function saveEpisodes(episodes: IEpisodeFromFeed[]): Promise<void> {
       return !sameContent;
     });
 
-  if (!changedEpisodesToUpdate && !episodesToCreate.length) return;
+  return { changedEpisodesToUpdate, episodesToCreate };
+}
 
+export async function saveEpisodes(episodes: IEpisodeFromFeed[]): Promise<void> {
+  const { changedEpisodesToUpdate, episodesToCreate } = await getEpisodesToUpsert(episodes);
+  if (!changedEpisodesToUpdate && !episodesToCreate.length) return;
   await db.$transaction([
     ...changedEpisodesToUpdate.map((data) => {
       return db.episode.updateMany({ where: { url: data.url }, data });
@@ -209,7 +190,7 @@ function mapEpisodeKeys(entry: any, keyMapping: FeedKeyMapping) {
   return episodeData;
 }
 
-const getEpisodesFromFeedIdsWithEntries = async (feeds: IFeedIdsWithEntries[]) => {
+export const getEpisodesFromFeedIdsWithEntries = async (feeds: IFeedIdsWithEntries[]) => {
   return feeds.reduce((previousEpisodes, currentFeed) => {
     if (!currentFeed?.entries) {
       return previousEpisodes;

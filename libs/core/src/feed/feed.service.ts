@@ -44,6 +44,17 @@ export async function getFeeds(params?: IGetFeedsParams): Promise<Feed[]> {
   });
 }
 
+export async function getFeedUrls(): Promise<
+  {
+    id: string;
+    url: string;
+  }[]
+> {
+  return db.feed.findMany({
+    select: { id: true, url: true },
+  });
+}
+
 export async function getFeedById(feedId: string, params?: IGetFeedParams): Promise<Feed | null> {
   if (params?.userId) {
     const feedOfUser = await db.feedsOfUsers.findUnique({
@@ -150,6 +161,6 @@ export async function createFeedByUrl(url: string) {
 }
 
 export async function exceedsFreeFeedThreshold({ userId }: { userId: string }) {
-  const feedCount = await db.feed.count({where: { users: { some: { userId } } }});
+  const feedCount = await db.feed.count({ where: { users: { some: { userId } } } });
   return feedCount < FREE_FEED_THRESHOLD;
 }

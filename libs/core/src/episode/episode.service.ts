@@ -88,3 +88,35 @@ export async function getEpisodesData(params?: IGetEpisodesParams): Promise<IEpi
   const totalCount = await getTotalEpisodeCount(userId);
   return { episodes, totalCount, limit, offset };
 }
+
+export async function linkUnlinkedEpisodes() {
+  const unlinkedEpisodes = await db.episode.findMany({
+    where: { users: { none: {} } },
+    select: { id: true, feedId: true },
+  });
+
+  const feedIdsToUpdate = unlinkedEpisodes.reduce((acc, { feedId }) => {
+    if (acc.includes(feedId)) return acc;
+    return [...acc, feedId];
+  }, [] as string[]);
+
+  const feedsOfUsersToUpdate = await db.feedsOfUsers.findMany({
+    where: { feedId: { in: feedIdsToUpdate } },
+    select: { userId: true, feedId: true },
+  });
+
+  const updatedFeedsOfUsers = await Promise.all(
+    feedsOfUsersToUpdate.map(async ({ feedId, userId }) =>
+      db.episodesOfUsers.createMany({
+        data: unlinkedEpisodes
+          .filter(({ feedId: episodeFeedId }) => episodeFeedId === feedId)
+          .map(({ id }) => ({
+            userId,
+            episodeId: id,
+          })),
+      })
+    )
+  );
+
+  return updatedFeedsOfUsers.reduce((acc, { count }) => acc + count, 0);
+}
