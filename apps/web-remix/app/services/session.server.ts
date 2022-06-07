@@ -32,7 +32,7 @@ export const createAppSessionStorage = ({ signingSecret }: ICreateAppSessionStor
   return createDatabaseSessionStorage({
     cookie: {
       name: '__session',
-      sameSite: 'strict',
+      sameSite: 'lax',
       secrets: [signingSecret],
       httpOnly: true,
       path: '/',
