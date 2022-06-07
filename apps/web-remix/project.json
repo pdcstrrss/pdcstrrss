@@ -37,7 +37,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/web-remix/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/web-remix/**/*.{js,ts}"],
+        "ignorePath": ".gitignore"
       }
     },
     "test": {
