@@ -7,6 +7,8 @@ import { IRssFeedData, parseRSS } from '../rss/rss.service';
 import defaultsDeep from 'lodash/defaultsDeep';
 import partition from 'lodash/partition';
 import get from 'lodash/get';
+import { linkUnlinkedEpisodes } from '../episode';
+import { getFeedUrls } from '../feed';
 
 export interface IAggregatorFeedDefaultConfig {
   keyMapping: Record<string, string | string[]>;
@@ -213,4 +215,19 @@ export async function aggregateFeedsAndEpisodes(config: IAggregatorConfig) {
   const episodesFromFeeds = await getEpisodesFromFeedIdsWithEntries(feedIdsWithEntries);
   await saveEpisodes(episodesFromFeeds);
   return feedIdsWithEntries.map(({ feedId }) => feedId);
+}
+
+export async function aggregateNewEpisodes() {
+  const feedIdNUrls = await getFeedUrls();
+  const fullConfig = getFullConfig({ feeds: feedIdNUrls.map(({ url }) => ({ url })) });
+  const feedsData = await getFeedsFromRss(fullConfig);
+  const feedIdsWithEntries = feedsData.reduce((acc, feedData) => {
+    const feedIdNUrl = feedIdNUrls.find(({ url }) => url === feedData.url);
+    if (!feedIdNUrl) return acc;
+    return [...acc, { feedId: feedIdNUrl.id, entries: feedData.entries, keyMapping: feedData.keyMapping }];
+  }, [] as IFeedIdsWithEntries[]);
+  const episodesFromFeeds = await getEpisodesFromFeedIdsWithEntries(feedIdsWithEntries);
+  await saveEpisodes(episodesFromFeeds);
+  const linkedEpisodesCount = await linkUnlinkedEpisodes();
+  return { episodesCount: episodesFromFeeds.length, feedCount: feedIdsWithEntries.length, linkedEpisodesCount };
 }

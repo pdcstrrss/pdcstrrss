@@ -17,3 +17,6 @@
   for = "/build/*"
   [headers.values]
     "Cache-Control" = "public, max-age=31536000, s-maxage=31536000"
+
+[functions."aggregate"]
+schedule = "@hourly"
