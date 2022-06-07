@@ -1,7 +1,27 @@
-const path = require("path");
-const { createRequestHandler } = require("@remix-run/netlify");
+const prismaClient = require('@prisma/client');
+const Sentry = require('@sentry/node');
+const Tracing = require('@sentry/tracing');
+const path = require('path');
+const { registerSentry, createRequestHandler } = require('./sentry-remix-netlify');
 
-const BUILD_DIR = path.join(process.cwd(), "netlify");
+const BUILD_DIR = path.join(process.cwd(), 'netlify');
+
+const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
+
+function loadBuild() {
+  let build = require('./build');
+  build = registerSentry(build);
+  return build;
+}
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  integrations: [
+    new Sentry.Integrations.Http({ tracing: true }),
+    new Tracing.Integrations.Prisma({ client: prismaClient }),
+  ],
+  tracesSampleRate: 1.0,
+});
 
 function purgeRequireCache() {
   // purge require cache on requests for "server side HMR" this won't let
@@ -16,13 +36,15 @@ function purgeRequireCache() {
   }
 }
 
+const createRequestHandlerOptions = {
+  build: loadBuild(),
+  mode,
+};
+
 exports.handler =
-  process.env.NODE_ENV === "production"
-    ? createRequestHandler({ build: require("./build") })
+  process.env.NODE_ENV === 'production'
+    ? createRequestHandler(createRequestHandlerOptions)
     : (event, context) => {
         purgeRequireCache();
-        return createRequestHandler({ build: require("./build") })(
-          event,
-          context
-        );
+        return createRequestHandler(createRequestHandlerOptions)(event, context);
       };
