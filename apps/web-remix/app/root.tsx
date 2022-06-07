@@ -1,21 +1,13 @@
 import { getUserById } from './services/core.server';
 import { BaseLayout, BaseLayoutLinks } from '@pdcstrrss/ui';
-import {
-  useMatches,
-  Meta,
-  Links,
-  Outlet,
-  ScrollRestoration,
-  Scripts,
-  useCatch,
-  useLoaderData,
-} from '@remix-run/react';
+import { useMatches, Meta, Links, Outlet, ScrollRestoration, Scripts, useCatch, useLoaderData } from '@remix-run/react';
 import { LoaderFunction, MetaFunction } from '@remix-run/server-runtime';
 import { authenticator } from './services/auth.server';
 import type { User } from '@pdcstrrss/database';
 
 interface RootLoaderData {
   user?: User;
+  GLOBALS: string;
 }
 
 export function links() {
@@ -30,17 +22,21 @@ export const loader: LoaderFunction = async ({ request }): Promise<RootLoaderDat
   try {
     const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
     const user = userId ? (await getUserById(userId)) || undefined : undefined;
-    return { user };
+    return {
+      user,
+      GLOBALS: JSON.stringify({
+        SENTRY_DSN: process.env.SENTRY_DSN,
+      }),
+    };
   } catch (error: any) {
     throw new Error(error);
   }
 };
 
 export default function App() {
-  const { user } = useLoaderData<RootLoaderData>();
+  const { user, GLOBALS } = useLoaderData<RootLoaderData>();
   const matches = useMatches();
   const hasHero = !!matches.find(({ handle }) => handle && handle.hero);
-
   return (
     <BaseLayout
       hero={hasHero}
@@ -54,12 +50,19 @@ export default function App() {
     >
       <Outlet />
       <ScrollRestoration />
+      <script
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: `window.GLOBALS=${GLOBALS};`,
+        }}
+      />
       <Scripts />
     </BaseLayout>
   );
 }
 
 export function ErrorBoundary({ error }: { error: any }) {
+  const { GLOBALS } = useLoaderData<RootLoaderData>();
   console.error(error);
   return (
     <BaseLayout
@@ -74,12 +77,19 @@ export function ErrorBoundary({ error }: { error: any }) {
       <div data-anonymous-index>
         <h1>Error</h1>
       </div>
+      <script
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: `window.GLOBALS=${GLOBALS};`,
+        }}
+      />
       <Scripts />
     </BaseLayout>
   );
 }
 
 export function CatchBoundary() {
+  const { GLOBALS } = useLoaderData<RootLoaderData>();
   const caught = useCatch();
   return (
     <BaseLayout
@@ -97,6 +107,12 @@ export function CatchBoundary() {
           <p>{caught.statusText}</p>
         </div>
       </div>
+      <script
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: `window.GLOBALS=${GLOBALS};`,
+        }}
+      />
       <Scripts />
     </BaseLayout>
   );

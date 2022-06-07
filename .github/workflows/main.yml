@@ -15,6 +15,7 @@ jobs:
       GH_OAUTH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
       BASE_URL: ${{ secrets.BASE_URL }}
       SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
     steps:
       - uses: actions/setup-node@v3
