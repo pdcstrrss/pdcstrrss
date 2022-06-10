@@ -6,5 +6,6 @@
     "ui": "libs/ui",
     "web-remix": "apps/web-remix",
     "web-remix-e2e": "apps/web-remix-e2e"
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

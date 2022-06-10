@@ -1,5 +1,5 @@
 {
-  "root": "libs/database",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/database/src",
   "targets": {
     "push": {
@@ -45,7 +45,9 @@
     },
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "dependsOn": [
         {
           "target": "generate",
@@ -56,7 +58,9 @@
         "outputPath": "dist/libs/database",
         "main": "libs/database/src/index.ts",
         "tsConfig": "libs/database/tsconfig.lib.json",
-        "assets": ["libs/database/*.md"]
+        "assets": [
+          "libs/database/*.md"
+        ]
       }
     },
     "typecheck": {
@@ -68,14 +72,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/database/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/database/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/database"],
+      "outputs": [
+        "coverage/libs/database"
+      ],
       "options": {
         "jestConfig": "libs/database/jest.config.ts",
         "passWithNoTests": true
