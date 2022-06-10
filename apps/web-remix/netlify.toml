@@ -2,6 +2,7 @@
   command = "remix build"
   functions = "netlify/functions"
   publish = "public"
+  node_bundler = "esbuild"
 
 [dev]
   command = "remix watch"
