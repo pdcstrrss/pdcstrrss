@@ -26,6 +26,8 @@ jobs:
           fetch-depth: 0
       - uses: nrwl/nx-set-shas@v2
       - uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm ci --legacy-peer-deps
       - run: npx rimraf apps/web-remix/{public/build,netlify/functions/server/build}
       - run: npm run generate
       - run: npm run typecheck
