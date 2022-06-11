@@ -17,7 +17,7 @@ input {
   border-radius: var(--border-radius);
 }
 
-input:focus {
+input:focus-visible {
   outline: none;
   border-color: var(--brand-primary);
 }

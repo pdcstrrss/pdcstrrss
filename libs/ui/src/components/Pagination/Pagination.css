@@ -47,7 +47,7 @@
   border-radius: 0;
 }
 
-.rc-pagination :where(button, a):where(:hover, :focus) {
+.rc-pagination :where(button, a):where(:hover, :focus-visible) {
   background-color: var(--brand-primary);
   color: var(--brand-primary-contrast);
   cursor: pointer;

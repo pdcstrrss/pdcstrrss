@@ -50,8 +50,8 @@ button,
   text-decoration: none;
 }
 
-button:where(:hover, :focus),
-.button:where(:hover, :focus) {
+button:where(:hover, :focus-visible),
+.button:where(:hover, :focus-visible) {
   color: var(--button-color-hover);
   background-color: var(--button-background-color-hover);
   border-color: var(--button-border-color-hover);

@@ -33,7 +33,7 @@ a {
   margin-inline: var(--link-margin-inline);
 }
 
-a:where(:hover, :focus, .active) {
+a:where(:hover, :focus-visible, .active) {
   color: var(--link-color-hover);
   background-color: var(--link-background-color-hover);
   text-decoration: none;
@@ -51,7 +51,7 @@ a:where(:hover, :focus, .active) {
   block-size: var(--link-icon-size);
 }
 
-.link-icon:where(:hover, :focus) {
+.link-icon:where(:hover, :focus-visible) {
   --link-color-hover: var(--brand-primary);
   --link-background-color-hover: transparent;
 }
@@ -60,6 +60,6 @@ a:where(:hover, :focus, .active) {
   --link-color: var(--brand-primary);
 }
 
-.link-icon-primary:where(:hover, :focus) {
+.link-icon-primary:where(:hover, :focus-visible) {
   --link-color-hover: var(--brand-secondary);
 }
