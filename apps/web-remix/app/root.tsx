@@ -51,7 +51,7 @@ const Layout = ({ hero, user, globals, title, header, footer, children }: PropsW
     footer={footer}
     head={
       <>
-        <title>{title}</title>
+        {title && <title>{title}</title>}
         <Meta />
         <Links />
         <script defer data-domain="pdcstrrss.app" src="/js/stats.js" data-api="/stats/event"></script>
