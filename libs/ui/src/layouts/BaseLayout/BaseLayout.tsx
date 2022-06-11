@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
-import 'focus-visible';
 
 import { AppHeader, SvgSprite, IAppHeaderProps, AppFooter } from '../../';
 
