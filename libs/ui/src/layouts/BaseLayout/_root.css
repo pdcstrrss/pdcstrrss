@@ -67,6 +67,11 @@ ul {
   margin-block: var(--space);
 }
 
+.page-centered {
+  align-items: center;
+  justify-content: center;
+}
+
 .page-header {
   display: flex;
   align-items: end;

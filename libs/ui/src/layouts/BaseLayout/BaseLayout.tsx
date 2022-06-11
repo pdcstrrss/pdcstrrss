@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import defaultsDeep from 'lodash/defaultsDeep';
 
 import { AppHeader, SvgSprite, IAppHeaderProps, AppFooter } from '../../';
 
@@ -55,9 +56,17 @@ export type IBaseLayoutProps = Pick<IAppHeaderProps, 'user'> & {
   children: ReactNode;
   head: ReactNode;
   hero?: boolean;
+  header?: boolean;
+  footer?: boolean;
 };
 
-export function BaseLayout({ children, head, hero, user }: IBaseLayoutProps): JSX.Element {
+const defaultBaseLayoutProps: Partial<IBaseLayoutProps> = {
+  header: true,
+  footer: true,
+};
+
+export function BaseLayout({ children, head, hero, user, ...baseLayoutProps }: IBaseLayoutProps): JSX.Element {
+  const { header, footer } = defaultsDeep({}, baseLayoutProps, defaultBaseLayoutProps);
   return (
     <html lang="en">
       <head>
@@ -67,11 +76,12 @@ export function BaseLayout({ children, head, hero, user }: IBaseLayoutProps): JS
         <link rel="icon" type="image/png" href="/favicon.png" />
         {head}
       </head>
+
       <body className={clsx({ 'body-with-hero': !!hero })}>
         <SvgSprite />
-        <AppHeader {...{ user, inverted: hero }} />
+        {header && <AppHeader {...{ user, inverted: hero }} />}
         <main>{children}</main>
-        <AppFooter />
+        {footer && <AppFooter />}
       </body>
     </html>
   );

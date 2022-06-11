@@ -4,6 +4,7 @@ import { useMatches, Meta, Links, Outlet, ScrollRestoration, Scripts, useCatch, 
 import { LoaderFunction, MetaFunction } from '@remix-run/server-runtime';
 import { authenticator } from './services/auth.server';
 import type { User } from '@pdcstrrss/database';
+import type { PropsWithChildren } from 'react';
 
 interface RootLoaderData {
   user?: User;
@@ -33,87 +34,77 @@ export const loader: LoaderFunction = async ({ request }): Promise<RootLoaderDat
   }
 };
 
+interface LayoutProps {
+  hero?: boolean;
+  user?: User;
+  globals?: string;
+  title?: string;
+  header?: boolean;
+  footer?: boolean;
+}
+
+const Layout = ({ hero, user, globals, title, header, footer, children }: PropsWithChildren<LayoutProps>) => (
+  <BaseLayout
+    hero={hero}
+    user={user}
+    header={header}
+    footer={footer}
+    head={
+      <>
+        <title>{title}</title>
+        <Meta />
+        <Links />
+      </>
+    }
+  >
+    {children}
+    {globals && (
+      <script
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: `window.GLOBALS=${globals};`,
+        }}
+      />
+    )}
+    <Scripts />
+  </BaseLayout>
+);
+
 export default function App() {
   const { user, GLOBALS } = useLoaderData<RootLoaderData>();
   const matches = useMatches();
   const hasHero = !!matches.find(({ handle }) => handle && handle.hero);
   return (
-    <BaseLayout
-      hero={hasHero}
-      user={user}
-      head={
-        <>
-          <Meta />
-          <Links />
-        </>
-      }
-    >
+    <Layout hero={hasHero} user={user} globals={GLOBALS}>
       <Outlet />
       <ScrollRestoration />
-      <script
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `window.GLOBALS=${GLOBALS};`,
-        }}
-      />
-      <Scripts />
-    </BaseLayout>
+    </Layout>
   );
 }
 
 export function ErrorBoundary({ error }: { error: any }) {
-  const { GLOBALS } = useLoaderData<RootLoaderData>();
+  const title = 'Error';
   console.error(error);
   return (
-    <BaseLayout
-      head={
-        <>
-          <title>Oh no!</title>
-          <Meta />
-          <Links />
-        </>
-      }
-    >
-      <div data-anonymous-index>
+    <Layout title={title} header={false} footer={false}>
+      <div className="page container page-centered text-center">
         <h1>Error</h1>
       </div>
-      <script
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `window.GLOBALS=${GLOBALS};`,
-        }}
-      />
-      <Scripts />
-    </BaseLayout>
+    </Layout>
   );
 }
 
 export function CatchBoundary() {
-  const { GLOBALS } = useLoaderData<RootLoaderData>();
   const caught = useCatch();
+  const title = 'Oh no';
   return (
-    <BaseLayout
-      head={
-        <>
-          <title>Oh no!</title>
-          <Meta />
-          <Links />
-        </>
-      }
-    >
-      <div data-anonymous-index>
+    <Layout title={title}>
+      <div className="page container page-centered text-center">
         <div>
-          <h1 style={{ fontSize: '6rem' }}>{caught.status}</h1>
+          <h1 style={{ fontSize: 'var(--step-10)' }}>{caught.status}</h1>
           <p>{caught.statusText}</p>
         </div>
       </div>
-      <script
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `window.GLOBALS=${GLOBALS};`,
-        }}
-      />
-      <Scripts />
-    </BaseLayout>
+    </Layout>
   );
 }

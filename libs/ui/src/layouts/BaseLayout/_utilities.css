@@ -1,3 +1,7 @@
+.text-center {
+  text-align: center;
+}
+
 .text-no-wrap {
   white-space: nowrap;
 }
