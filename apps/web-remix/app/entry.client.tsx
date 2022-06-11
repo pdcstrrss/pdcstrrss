@@ -17,6 +17,9 @@ Sentry.init({
 
 hydrateRoot(document, <RemixBrowser />);
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore
 import('focus-visible');
+// @ts-ignore
+import('inert-polyfill');
+/* eslint-enable @typescript-eslint/ban-ts-comment */

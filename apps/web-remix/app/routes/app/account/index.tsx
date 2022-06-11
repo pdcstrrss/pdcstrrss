@@ -30,7 +30,7 @@ export default function AccountIndex() {
         <h1 className="page-header-title">{user ? 'Account' : 'Create an account'}</h1>
       </header>
       <div className="page-account-container">
-        <div className={clsx('card clear-inner-space', { 'card-success': !!user })}>
+        <div className={clsx('card clear-inner-space', { 'card-success': !!user })}  inert={user ? 'true' : undefined}>
           <div className="card-header">
             <h2 className="h4">{user ? 'Logged in' : 'Login'}</h2>
           </div>
@@ -64,6 +64,7 @@ export default function AccountIndex() {
         </div>
         <div
           className={clsx('card clear-inner-space', { 'card-success': !!sponsorship, disabled: !user || !sponsorship })}
+          inert={user ? 'true' : undefined}
         >
           <div className="card-header">
             <h2 className="h4">Sponsor</h2>
