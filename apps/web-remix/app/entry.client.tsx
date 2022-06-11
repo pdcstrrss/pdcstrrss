@@ -1,7 +1,7 @@
-import { RemixBrowser } from "@remix-run/react";
-import { hydrate } from "react-dom";
-import * as Sentry from "@sentry/browser";
-import { Integrations } from "@sentry/tracing";
+import { RemixBrowser } from '@remix-run/react';
+import { hydrateRoot } from 'react-dom/client';
+import * as Sentry from '@sentry/browser';
+import { Integrations } from '@sentry/tracing';
 
 declare global {
   interface Window {
@@ -15,4 +15,4 @@ Sentry.init({
   integrations: [new Integrations.BrowserTracing()],
 });
 
-hydrate(<RemixBrowser />, document);
+hydrateRoot(document, <RemixBrowser />);
