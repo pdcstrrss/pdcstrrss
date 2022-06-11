@@ -1,10 +1,31 @@
 import { IndexViewLinks } from '@pdcstrrss/ui';
 import { Link } from '@remix-run/react';
+import { json, LoaderFunction, redirect } from '@remix-run/server-runtime';
+import { authenticator } from '../services/auth.server';
+import { passedIndexCookie } from '../services/cookie.server';
 
 export const links = () => [...IndexViewLinks()];
 
 export const handle = {
   hero: true,
+};
+
+export const loader: LoaderFunction = async ({ request }): Promise<Response | void> => {
+  try {
+    const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
+    const { passedGo } = (await passedIndexCookie.parse(request.headers.get('Cookie'))) || {};
+    if (userId && !passedGo) {
+      return redirect('/app/episodes', {
+        headers: {
+          'Set-Cookie': await passedIndexCookie.serialize({ passedGo: true }),
+        },
+      });
+    } else {
+      return json({ passedGo });
+    }
+  } catch (error: any) {
+    throw new Error(error);
+  }
 };
 
 export default function Index() {
