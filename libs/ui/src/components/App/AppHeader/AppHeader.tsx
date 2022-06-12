@@ -83,7 +83,7 @@ export function AppHeader(props: IAppHeaderProps) {
         <Dropdown
           toggle={({ visibility }) => (
             <button type='button' className="button-reset" aria-label={`Click to ${visibility ? 'close' : 'open'} account options`}>
-              {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} />}
+              {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} width='100px' height='100px' />}
             </button>
           )}
         >

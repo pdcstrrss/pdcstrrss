@@ -59,6 +59,7 @@
 .app-header-image,
 .app-footer-image {
   inline-size: calc(var(--space) * 2);
+  block-size: calc(var(--space) * 2);
   aspect-ratio: 1 / 1;
   border: var(--border-width) solid var(--border-color);
 }
