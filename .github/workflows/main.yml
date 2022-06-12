@@ -28,7 +28,6 @@ jobs:
       - uses: bahmutov/npm-install@v1
         with:
           install-command: npm ci --legacy-peer-deps
-      - run: npx rimraf apps/web-remix/{public/build,netlify/functions/server/build}
       - run: npm run generate
       - run: npm run typecheck
       - run: npm run lint
@@ -42,7 +41,7 @@ jobs:
           production-branch: main
           production-deploy: github.ref == 'refs/heads/main'
           publish-dir: ./dist/apps/web-remix/public
-          functions-dir: ./dist/apps/web-remix/netlify/functions
+          functions-dir: ./dist/apps/web-remix/functions
           netlify-config-path: ./netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
