@@ -42,9 +42,9 @@ jobs:
           deploy-message: ${{ github.event.head_commit.message }}
           production-branch: main
           production-deploy: true
-          publish-dir: ./apps/web-remix/public
-          functions-dir: ./apps/web-remix/netlify/functions
-          netlify-config-path: ./apps/web-remix/netlify.toml
+          publish-dir: ./dist/apps/web-remix/public
+          functions-dir: ./dist/apps/web-remix/netlify/functions
+          netlify-config-path: ./netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

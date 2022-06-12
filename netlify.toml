@@ -1,0 +1,37 @@
+[build]
+  command = "npm run build"
+  functions = "../../dist/apps/web-remix/functions"
+  publish = "../../dist/apps/web-remix/public"
+
+[dev]
+  command = "npm run watch --workspace=@pdcstrrss/web-remix"
+  port = 3000
+  autoLaunch = false
+
+[functions."aggregate"]
+schedule = "@hourly"
+
+[[redirects]]
+  from = "/js/stats.js"
+  to = "https://plausible.io/js/script.js"
+  status = 200
+
+[[redirects]]
+  from = "/stats/event"
+  to = "https://plausible.io/api/event"
+  status = 200
+
+[[redirects]]
+  from = "/api/aggregate"
+  to = "/.netlify/functions/aggregate"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
+
+[[headers]]
+  for = "/build/*"
+  [headers.values]
+    "Cache-Control" = "public, max-age=31536000, s-maxage=31536000"

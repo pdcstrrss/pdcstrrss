@@ -1,11 +1,14 @@
 {
   "private": true,
-  "name": "web-remix",
+  "name": "@pdcstrrss/web-remix",
   "description": "",
   "license": "",
   "scripts": {
+    "watch": "remix watch",
+    "prebuild": "node scripts/prebuild.js",
     "build": "remix build",
-    "dev": "cross-env NODE_ENV=development netlify dev"
+    "predev": "node scripts/prebuild.js",
+    "dev": "cd ../../ && cross-env NODE_ENV=development netlify dev"
   },
   "dependencies": {
     "@netlify/functions": "^0.10.0",

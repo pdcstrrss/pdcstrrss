@@ -1,6 +1,5 @@
-import { Handler } from '@netlify/functions';
-import { aggregateNewEpisodes } from '@pdcstrrss/core';
-import { installGlobals } from '@remix-run/node';
+const { aggregateNewEpisodes } = require('@pdcstrrss/core');
+const { installGlobals } = require('@remix-run/node');
 
 installGlobals();
 
@@ -19,4 +18,4 @@ const handler = async () => {
   }
 };
 
-export { handler };
+module.exports.handler = handler;
