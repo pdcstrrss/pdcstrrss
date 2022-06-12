@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/function-aggregate/src",
+  "targets": {
+    "build": {
+      "executor": "@wanews/nx-esbuild:build",
+      "options": {
+        "platform": "node",
+        "target": "node16",
+        "outfile": "./dist/apps/web-remix/functions/function-aggregate/index.js",
+        "entryPoints": ["./apps/function-aggregate/src/index.ts"],
+        "external": ["@prisma/client"]
+      }
+    },
+    "package": {
+      "executor": "@wanews/nx-esbuild:package",
+      "options": {
+        "platform": "node",
+        "target": "node16",
+        "outfile": "./dist/apps/web-remix/functions/function-aggregate/index.js",
+        "entryPoints": ["./apps/function-aggregate/src/index.ts"],
+        "external": ["@prisma/client"]
+      }
+    },
+    "dev": {
+      "executor": "@wanews/nx-esbuild:serve",
+      "options": {
+        "platform": "node",
+        "target": "node16",
+        "outfile": "./dist/apps/web-remix/functions/function-aggregate/index.js",
+        "entryPoints": ["./apps/function-aggregate/src/index.ts"],
+        "external": ["@prisma/client"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/function-aggregate/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx vitest --run",
+        "cwd": "apps/function-aggregate"
+      }
+    }
+  },
+  "tags": []
+}

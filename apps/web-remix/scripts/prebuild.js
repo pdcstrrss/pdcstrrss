@@ -10,8 +10,8 @@ const FUNCTIONS_BUILD_DIR = resolve(BUILD_DIR, 'functions');
 const PUBLIC_BUILD_DIR = resolve(BUILD_DIR, 'public');
 
 (async () => {
-  await rimraf.sync(resolve(PUBLIC_SRC_DIR, 'build'));
-  await rimraf.sync(BUILD_DIR);
+  await rimraf.sync(resolve(FUNCTIONS_SRC_DIR, 'server'));
+  await rimraf.sync(resolve(PUBLIC_SRC_DIR));
   await copy(FUNCTIONS_SRC_DIR, FUNCTIONS_BUILD_DIR);
   await copy(PUBLIC_SRC_DIR, PUBLIC_BUILD_DIR);
 })();

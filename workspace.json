@@ -3,6 +3,7 @@
   "projects": {
     "core": "libs/core",
     "database": "libs/database",
+    "function-aggregate": "apps/function-aggregate",
     "ui": "libs/ui",
     "web-remix": "apps/web-remix",
     "web-remix-e2e": "apps/web-remix-e2e"

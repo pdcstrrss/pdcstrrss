@@ -8,7 +8,7 @@
   port = 3000
   autoLaunch = false
 
-[functions."aggregate"]
+[functions."function-aggregate"]
 schedule = "@hourly"
 
 [[redirects]]
@@ -23,7 +23,7 @@ schedule = "@hourly"
 
 [[redirects]]
   from = "/api/aggregate"
-  to = "/.netlify/functions/aggregate"
+  to = "/.netlify/functions/function-aggregate"
   status = 200
 
 [[redirects]]
