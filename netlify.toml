@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
-  functions = "../../dist/apps/web-remix/functions"
-  publish = "../../dist/apps/web-remix/public"
+  functions = "dist/apps/web-remix/functions"
+  publish = "dist/apps/web-remix/public"
 
 [dev]
   command = "npm run watch --workspace=@pdcstrrss/web-remix"

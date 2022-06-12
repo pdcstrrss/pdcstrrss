@@ -8,7 +8,7 @@
     "generate": "nx run-many --target=generate --all",
     "build": "nx run-many --target=build --all",
     "predeploy": "rimraf node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node",
-    "deploy": "netlify deploy --dir ./apps/web-remix/public --functions ./apps/web-remix/netlify/functions --debug",
+    "deploy": "netlify deploy --dir ./dist/apps/web-remix/public --functions ./dist/apps/web-remix/functions --debug",
     "test": "nx test",
     "lint": "nx run-many --target=lint --all",
     "typecheck": "nx run-many --target=typecheck --all",
