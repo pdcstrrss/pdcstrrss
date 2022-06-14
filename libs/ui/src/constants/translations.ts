@@ -1,5 +1,5 @@
 export const TRANSLATIONS = {
-  title: 'PDCSTRSSS',
+  title: 'PDCSTRRSS',
   login: 'Login',
   github: 'Github',
   episodes: 'Episodes',
