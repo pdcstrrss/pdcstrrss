@@ -8,6 +8,11 @@
   port = 3000
   autoLaunch = false
 
+[functions]
+# https://github.com/netlify/zip-it-and-ship-it/issues/67#issuecomment-549837499
+node_bundler="esbuild"
+external_node_modules = ["fs"]
+
 [functions."function-aggregate"]
 schedule = "@hourly"
 
