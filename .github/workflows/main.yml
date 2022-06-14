@@ -33,21 +33,12 @@ jobs:
       - run: npm run lint
       - run: npm run test
       - run: npm run build
-      - run: npx rimraf node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
-        with:
-          deploy-message: ${{ github.event.head_commit.message }}
-          production-branch: main
-          production-deploy: github.ref == 'refs/heads/main'
-          publish-dir: ./dist/apps/web-remix/public
-          functions-dir: ./dist/apps/web-remix/functions
-          netlify-config-path: ./netlify.toml
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 2
-
+      - name: Deploy to production
+        if: github.ref == 'refs/heads/main'
+        run: npm run deploy -- --prod
+      - name: Deploy to preview
+        if: github.ref != 'refs/heads/main'
+        run: npm run deploy
       - name: Create Sentry release
         uses: getsentry/action-release@v1
         if: github.ref == 'refs/heads/main'
