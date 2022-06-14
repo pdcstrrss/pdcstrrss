@@ -12,8 +12,8 @@
 schedule = "@hourly"
 
 [[redirects]]
-  from = "https://pdcstrrss.netlify.app"
-  to = "https://pdcstrrss.app"
+  from = "https://pdcstrrss.netlify.app/*"
+  to = "https://pdcstrrss.app/:splat"
 
 [[redirects]]
   from = "/js/stats.js"
