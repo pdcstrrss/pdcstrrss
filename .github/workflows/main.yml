@@ -36,9 +36,15 @@ jobs:
       - name: Deploy to production
         if: github.ref == 'refs/heads/main'
         run: npm run deploy -- --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Deploy to preview
         if: github.ref != 'refs/heads/main'
         run: npm run deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Create Sentry release
         uses: getsentry/action-release@v1
         if: github.ref == 'refs/heads/main'
