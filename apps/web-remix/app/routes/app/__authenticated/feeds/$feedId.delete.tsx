@@ -4,6 +4,7 @@ import { ActionFunction, LoaderFunction, redirect } from '@remix-run/server-runt
 import { deleteFeedsOfUser, getFeedById } from '../../../../services/core.server';
 import { authenticator } from '../../../../services/auth.server';
 import { Feed } from '@pdcstrrss/database';
+import routes from '../../../../lib/routes';
 
 interface AuthenticatedFeedsDeleteLoaderResponse {
   feed: Feed;
@@ -21,7 +22,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     await deleteFeedsOfUser({ userId, feedIds: [feed.id] });
 
-    return redirect(`/app/feeds`);
+    return redirect(routes.feeds);
   } catch (error: any) {
     throw new Response(error, { status: 400 });
   }
@@ -62,7 +63,7 @@ export default function AuthenticatedFeedsDelete() {
           style={{ marginTop: 'var(--space)', display: 'flex', alignItems: 'center', gap: 'calc(var(--space) / 2)' }}
         >
           <button className="button button-danger">Delete</button>
-          <Link className="button button-link" to="/app/feeds">
+          <Link className="button button-link" to={routes.feeds}>
             Cancel
           </Link>
         </div>

@@ -6,6 +6,7 @@ import { LoaderFunction, redirect } from '@remix-run/server-runtime';
 import { useState } from 'react';
 import { authenticator } from '../../../../services/auth.server';
 import { IGetEpisodesApiResponse } from '../../../api/episodes';
+import routes from '../../../../lib/routes';
 
 interface EpisodesIndexLoaderResponse {
   episodesData: IEpisodesData;
@@ -46,7 +47,7 @@ export const loader: LoaderFunction = async ({ request }): Promise<EpisodesIndex
     const episodesData = await getEpisodesData({ userId, offset, limit });
     if (!episodesData.totalCount) {
       const feeds = await getFeeds({ userId });
-      if (!feeds.length) return redirect('/feeds');
+      if (!feeds.length) return redirect(routes.feeds);
     }
     return { episodesData };
   } catch (error: any) {

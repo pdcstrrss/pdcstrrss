@@ -1,6 +1,7 @@
 import { IndexViewLinks } from '@pdcstrrss/ui';
 import { Link } from '@remix-run/react';
 import { json, LoaderFunction, redirect } from '@remix-run/server-runtime';
+import routes from '../lib/routes';
 import { authenticator } from '../services/auth.server';
 import { passedIndexCookie } from '../services/cookie.server';
 
@@ -15,7 +16,7 @@ export const loader: LoaderFunction = async ({ request }): Promise<Response | vo
     const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
     const { passedGo } = (await passedIndexCookie.parse(request.headers.get('Cookie'))) || {};
     if (userId && !passedGo) {
-      return redirect('/app/episodes', {
+      return redirect(routes.episodes, {
         headers: {
           'Set-Cookie': await passedIndexCookie.serialize({ passedGo: true }),
         },
@@ -37,7 +38,7 @@ export default function Index() {
         </h1>
         <p>Why the fancy marketing lingo?</p>
         <p>
-          <Link to="/app/account" className="button button-secondary button-wide">
+          <Link to={routes.account} className="button button-secondary button-wide">
             Create a free account
           </Link>
         </p>
@@ -56,7 +57,7 @@ export default function Index() {
             By sponsoring only <strong className="text-primary">$2 a month</strong>, you’ll be able to add{' '}
             <strong className="text-primary">more than 3 feeds</strong> and you’ll help us keep our machines running.
           </p>
-          <Link to="/app/account" className="button button-primary button-wide">
+          <Link to={routes.account} className="button button-primary button-wide">
             <svg>
               <use xlinkHref="#github" />
             </svg>

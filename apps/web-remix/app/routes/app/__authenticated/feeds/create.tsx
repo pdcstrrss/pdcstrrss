@@ -10,6 +10,7 @@ import {
   getUserSponsorship,
 } from '../../../../services/core.server';
 import { authenticator } from '../../../../services/auth.server';
+import routes from '../../../../lib/routes';
 
 export const action: ActionFunction = async ({ request }) => {
   const { id: userId } = (await authenticator.isAuthenticated(request)) || {};
@@ -32,7 +33,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   await addFeedsToUser({ userId, feedIds: [feed.id] });
 
-  return redirect(`/feeds`);
+  return redirect(routes.feeds);
 };
 
 export const loader: LoaderFunction = async ({ request }): Promise<Response> => {
@@ -80,7 +81,7 @@ export default function AuthenticatedFeedsCreate() {
           <button className="button button-primary" type="submit" disabled={!!transition.submission}>
             {transition.submission ? 'Adding feed...' : 'Add feed'}
           </button>
-          <Link className="button button-link" to="/app/feeds">
+          <Link className="button button-link" to={routes.feeds}>
             Cancel
           </Link>
         </div>

@@ -1,4 +1,5 @@
 import { LoaderFunction, redirect } from '@remix-run/server-runtime';
+import routes from '../../lib/routes';
 
 import { redirectCookie } from '../../services/cookie.server';
 
@@ -20,9 +21,9 @@ export const loader: LoaderFunction = async ({ request }) => {
     const { pathname } = new URL(referer);
     if (['/app/account'].includes(pathname)) {
       const headers = new Headers({ 'Set-Cookie': await redirectCookie.serialize(pathname) });
-      return redirect('/auth/github', { headers });
+      return redirect(routes.github, { headers });
     }
   }
 
-  return redirect('/auth/github');
+  return redirect(routes.github);
 };

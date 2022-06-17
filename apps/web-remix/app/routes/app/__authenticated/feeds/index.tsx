@@ -10,6 +10,7 @@ import { LoaderFunction } from '@remix-run/server-runtime';
 import { authenticator } from '../../../../services/auth.server';
 import { FeedList, FeedListLinks } from '@pdcstrrss/ui';
 import clsx from 'clsx';
+import routes from '../../../../lib/routes';
 
 interface AuthenticatedFeedsIndexLoaderResponse {
   feedsData: IGetFeedsOfUserData;
@@ -46,7 +47,7 @@ export default function AuthenticatedFeedsIndex() {
         <h1 className="page-header-title">Feeds</h1>
         <div className="page-header-action">
           {canCreateFeed ? (
-            <Link className="button button-primary" to="create">
+            <Link className="button button-primary" to={routes.feedsCreate}>
               <span>Add feed</span>
             </Link>
           ) : (
