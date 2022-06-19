@@ -15,11 +15,15 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
       <header data-episode-header>
         <h2 className="h5 mb-0">{title}</h2>
       </header>
-
       <figure data-episode-media>
-        {image && <img data-episode-image src={image} alt={title} width="100px" height="100px" />}
+        {image ? (
+          <img data-episode-image src={image} alt={title} width="100px" height="100px" />
+        ) : (
+          <svg data-episode-image-empty>
+            <use xlinkHref="#image-remove" />
+          </svg>
+        )}
       </figure>
-
       <div data-episode-meta>
         {feed.link ? (
           <a href={feed.link} target="_blank" rel="noopener noreferrer">
