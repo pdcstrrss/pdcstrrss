@@ -11,20 +11,20 @@ export const EpisodeListLinks = () => [{ rel: 'stylesheet', href: styles }];
 
 export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpisode) => {
   return (
-    <article key={url} data-episode data-card>
-      <header data-episode-header>
+    <article key={url} className="episode card">
+      <header className="episode-header">
         <h2 className="h5 mb-0">{title}</h2>
       </header>
-      <figure data-episode-media>
+      <figure className="episode-media">
         {image ? (
-          <img data-episode-image src={image} alt={title} width="100px" height="100px" />
+          <img className="episode-image" src={image} alt={title} width="100px" height="100px" />
         ) : (
-          <svg data-episode-image-empty>
+          <svg className="episode-image-empty">
             <use xlinkHref="#image-remove" />
           </svg>
         )}
       </figure>
-      <div data-episode-meta>
+      <div className="episode-meta">
         {feed.link ? (
           <a href={feed.link} target="_blank" rel="noopener noreferrer">
             {feed.title}
@@ -32,17 +32,16 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
         ) : (
           <span>{feed.title}</span>
         )}
-        <time data-episode-datetime dateTime={new Date(published).toISOString()}>
+        <time className="episode-datetime" dateTime={new Date(published).toISOString()}>
           {Intl.DateTimeFormat(['sv-SE']).format(new Date(published))}
         </time>
       </div>
       <Link
-        className="link-icon link-icon-primary"
+        className="link-icon link-icon-primary episode-media-button"
         to={{ search: `?episode=${id}` }}
-        data-episode-media-button
         aria-label={`Play episode ${title} of ${feed.title}`}
       >
-        <svg data-episode-media-icon data-icon>
+        <svg className="episode-media-icon" data-icon>
           <use xlinkHref="#play" />
         </svg>
       </Link>

@@ -8,7 +8,7 @@
   gap: var(--space);
 }
 
-[data-episode] {
+.episode {
   display: grid;
   grid-template:
     'header header' auto
@@ -18,24 +18,24 @@
 }
 
 @media (min-width: 500px) {
-  [data-episode] {
+  .episode {
     grid-template:
       'media header header' auto
       'media meta button' auto / calc(var(--space) * 4) 1fr auto;
   }
 }
 
-[data-episode-header] {
+.episode-header {
   grid-area: header;
 }
 
-[data-episode-title] {
+.episode-title {
   margin: 0;
   font-size: 1.5rem;
   grid-area: title;
 }
 
-[data-episode-meta] {
+.episode-meta {
   margin: calc(var(--episode-icon-size) / -6) 0;
   line-height: 1;
   grid-area: meta;
@@ -46,7 +46,7 @@
 }
 
 @media (min-width: 700px) {
-  [data-episode-meta] {
+  .episode-meta {
     gap: var(--space);
     align-items: center;
     flex-direction: row;
@@ -54,21 +54,21 @@
   }
 }
 
-[data-episode-datetime] {
+.episode-datetime {
   white-space: nowrap;
 }
 
-[data-episode-media-button] {
+.episode-media-button {
   grid-area: button;
   display: flex;
   align-items: center;
 }
 
-[data-episode-media-icon] {
+.episode-media-icon {
   --link-icon-size: var(--step-6);
 }
 
-[data-episode-media] {
+.episode-media {
   position: relative;
   display: none;
   grid-area: media;
@@ -80,18 +80,18 @@
 }
 
 @media (min-width: 500px) {
-  [data-episode-media] {
+  .episode-media {
     display: flex;
   }
 }
 
-[data-episode-image] {
+.episode-image {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
 }
 
-[data-episode-image-empty] {
+.episode-image-empty {
   position: absolute;
   inline-size: 50%;
   block-size: 50%;
