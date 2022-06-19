@@ -6,6 +6,7 @@ export type IEpisode = Pick<Episode, 'id' | 'title' | 'url' | 'published' | 'ima
   feed: {
     title: string;
     description: string | null;
+    link: string | null;
   };
 };
 
@@ -32,6 +33,7 @@ const DEFAULT_EPISODE_QUERY = {
       select: {
         title: true,
         description: true,
+        link: true,
       },
     },
   },

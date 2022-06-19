@@ -13,13 +13,21 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
   return (
     <article key={url} data-episode data-card>
       <header data-episode-header>
-        <h2 className='h5 mb-0'>{title}</h2>
+        <h2 className="h5 mb-0">{title}</h2>
       </header>
 
-      <figure data-episode-media>{image && <img data-episode-image src={image} alt={title} width='100px' height='100px' />}</figure>
+      <figure data-episode-media>
+        {image && <img data-episode-image src={image} alt={title} width="100px" height="100px" />}
+      </figure>
 
       <div data-episode-meta>
-        <a href={url}>{feed.title}</a>
+        {feed.link ? (
+          <a href={feed.link} target="_blank" rel="noopener noreferrer">
+            {feed.title}
+          </a>
+        ) : (
+          <span>{feed.title}</span>
+        )}
         <time data-episode-datetime dateTime={new Date(published).toISOString()}>
           {Intl.DateTimeFormat(['sv-SE']).format(new Date(published))}
         </time>
@@ -39,7 +47,7 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
 };
 
 export const EpisodeList = ({ episodes }: IEpisodeListProps) => (
-  <div className='episodes'>
+  <div className="episodes">
     {episodes.map((episode) => (
       <EpisodeListItem key={episode.id} {...episode} />
     ))}
