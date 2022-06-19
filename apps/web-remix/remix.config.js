@@ -9,7 +9,9 @@ module.exports = {
   appDirectory: 'app',
   assetsBuildDirectory: '../../dist/apps/web-remix/public/build',
   publicPath: '/build/',
-  serverBuildDirectory: '../../dist/apps/web-remix/functions/server/build',
+  serverBuildTarget: "netlify-edge",
+  serverBuildDirectory: '../../dist/apps/web-remix/edge-functions/server/build',
+  server: "./server/index.ts",
   devServerPort: 8002,
   ignoredRouteFiles: ['.*'],
 };

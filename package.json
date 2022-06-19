@@ -3,6 +3,7 @@
   "license": "GNU AGPLv3",
   "version": "0.1.0",
   "scripts": {
+    "predev": "rimraf dist",
     "dev": "nx run-many --target=dev --all",
     "start": "nx serve",
     "generate": "nx run-many --target=generate --all",
@@ -21,9 +22,9 @@
     "npm": ">=8"
   },
   "dependencies": {
-    "@netlify/functions": "^0.10.0",
+    "@netlify/functions": "^1.0.0",
     "@prisma/client": "^3.15.1",
-    "@remix-run/netlify": "^1.5.1",
+    "@remix-run/netlify-edge": "^1.0.0",
     "@remix-run/node": "^1.5.1",
     "@remix-run/react": "^1.5.1",
     "@remix-run/server-runtime": "^1.5.1",
@@ -72,7 +73,7 @@
     "@testing-library/react": "13.3.0",
     "@types/jest": "27.4.1",
     "@types/lodash": "^4.14.178",
-    "@types/node": "^17.0.42",
+    "@types/node": "^17.0.45",
     "@types/object-hash": "^2.2.1",
     "@types/react": "18.0.12",
     "@types/react-dom": "18.0.5",
@@ -96,7 +97,7 @@
     "husky": "^7.0.4",
     "jest": "27.5.1",
     "lint-staged": "^12.4.1",
-    "netlify-cli": "^9.6.4",
+    "netlify-cli": "^10.5.1",
     "nx": "14.2.4",
     "prettier": "2.6.2",
     "prisma": "^3.15.1",

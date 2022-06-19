@@ -1,7 +1,7 @@
 const remixEslintConfig = require('@remix-run/eslint-config');
 
 module.exports = {
-  ignorePatterns: ['!**/*', "**/build/**", "**/node_modules/**", "**/.cache/**"],
+  ignorePatterns: ['!**/*', '**/build/**', '**/node_modules/**', '**/.cache/**'],
   extends: ['plugin:@nrwl/nx/react', '../../.eslintrc.json'],
   rules: {
     ...remixEslintConfig.rules,
@@ -27,5 +27,11 @@ module.exports = {
       rules: {},
     },
     remixEslintConfig.overrides[1],
+    {
+      files: ['server/**/*.ts', 'server/**/*.tsx'],
+      globals: {
+        Deno: true,
+      },
+    },
   ],
 };

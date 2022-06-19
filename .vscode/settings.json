@@ -1,5 +1,6 @@
 {
   "exportall.config.folderListener": [
     "/libs/ui/src"
-  ]
+  ],
+  "deno.enable": true
 }

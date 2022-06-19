@@ -8,7 +8,7 @@
     "dev": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": ["node scripts/prebuild.js", "cross-env NODE_ENV=development netlify dev"],
+        "commands": ["node apps/web-remix/scripts/prebuild.js", "cross-env NODE_ENV=development netlify dev"],
         "cwd": ""
       }
     },

@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
   functions = "dist/apps/web-remix/functions"
+  edge_functions = "dist/apps/web-remix/edge-functions"
   publish = "dist/apps/web-remix/public"
 
 [dev]
@@ -10,6 +11,10 @@
 
 [functions."function-aggregate"]
 schedule = "@hourly"
+
+[[edge_functions]]
+path = "/*"
+function = "server"
 
 [[redirects]]
   from = "https://pdcstrrss.netlify.app/*"
@@ -32,7 +37,7 @@ schedule = "@hourly"
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/edge-functions/server"
   status = 200
 
 [[headers]]
