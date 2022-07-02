@@ -1,9 +1,8 @@
 import { getUserSponsorship, getUserById, IUserSponsorship } from '../../../services/core.server';
-import { Link, useLoaderData } from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import { LoaderFunction } from '@remix-run/server-runtime';
 import { authenticator } from '../../../services/auth.server';
 import type { User } from '@pdcstrrss/database';
-// import { AccountIndexView } from '@pdcstrrss/ui';
 import clsx from 'clsx';
 
 interface AccountIndexLoaderResponse {
@@ -15,7 +14,7 @@ export const loader: LoaderFunction = async ({ request }): Promise<AccountIndexL
   try {
     const { id: userId, accessToken } = (await authenticator.isAuthenticated(request)) || {};
     const user = userId ? await getUserById(userId) : null;
-    const sponsorship = user && accessToken ? await getUserSponsorship({ githubId: user.githubId, accessToken }) : null;
+    const sponsorship = user && accessToken ? await getUserSponsorship({ accessToken }) : null;
     return { user, sponsorship };
   } catch (error: any) {
     throw new Error(error);
@@ -24,13 +23,14 @@ export const loader: LoaderFunction = async ({ request }): Promise<AccountIndexL
 
 export default function AccountIndex() {
   const { user, sponsorship } = useLoaderData<AccountIndexLoaderResponse>();
+  const sponsorOrMember = sponsorship?.sponsor || sponsorship?.member;
   return (
     <div className="page container">
       <header className="page-header">
         <h1 className="page-header-title">{user ? 'Account' : 'Create an account'}</h1>
       </header>
       <div className="page-account-container">
-        <div className={clsx('card clear-inner-space', { 'card-success': !!user })}  inert={user ? 'true' : undefined}>
+        <div className={clsx('card clear-inner-space', { 'card-success': !!user })} inert={user ? 'true' : undefined}>
           <div className="card-header">
             <h2 className="h4">{user ? 'Logged in' : 'Login'}</h2>
           </div>
@@ -63,14 +63,14 @@ export default function AccountIndex() {
           </div>
         </div>
         <div
-          className={clsx('card clear-inner-space', { 'card-success': !!sponsorship, disabled: !user || !sponsorship })}
-          inert={user ? 'true' : undefined}
+          className={clsx('card clear-inner-space', { 'card-success': sponsorOrMember })}
+          inert={sponsorOrMember ? 'true' : undefined}
         >
           <div className="card-header">
             <h2 className="h4">Sponsor</h2>
           </div>
           <div className="card-body">
-            {sponsorship ? (
+            {sponsorOrMember ? (
               <p>Thank you for sponsoring PDCSTRRSS! With your support, we can keep our servers running.</p>
             ) : (
               <p>
@@ -82,20 +82,20 @@ export default function AccountIndex() {
           <div className="card-footer">
             <a
               className={clsx('button', {
-                'button-success': !!sponsorship,
-                'button-fuchsia': !sponsorship,
-                disabled: user && sponsorship,
+                'button-success': sponsorOrMember,
+                'button-fuchsia': !sponsorOrMember,
+                disabled: user && sponsorOrMember,
               })}
               href="/login"
             >
               <svg>
-                <use xlinkHref={sponsorship ? '#check' : '#heart'} />
+                <use xlinkHref={sponsorOrMember ? '#check' : '#heart'} />
               </svg>
               Sponsor{user ? 'ing' : ''} via GitHub
             </a>
           </div>
           <div className="card-badge">
-            {sponsorship ? (
+            {sponsorOrMember ? (
               <svg className="card-badge-icon">
                 <use xlinkHref="#check" />
               </svg>

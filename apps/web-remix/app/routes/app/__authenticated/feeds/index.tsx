@@ -29,9 +29,9 @@ export const loader: LoaderFunction = async ({ request }): Promise<Authenticated
     const user = await getUserById(userId);
     if (!user) throw new Response('User not found', { status: 400 });
 
-    const sponsorship = await getUserSponsorship({ githubId: user.githubId, accessToken });
+    const sponsorship = await getUserSponsorship({ accessToken });
     const canCreateFreeFeeds = await exceedsFreeFeedThreshold({ userId });
-    const canCreateFeed = canCreateFreeFeeds || sponsorship.sponsor || sponsorship.contributor;
+    const canCreateFeed = canCreateFreeFeeds || sponsorship.sponsor || sponsorship.member;
     const feedsData = await getFeedsOfUser({ userId });
     return { feedsData, canCreateFeed };
   } catch (error: any) {

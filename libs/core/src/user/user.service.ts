@@ -1,30 +1,21 @@
-import { db } from '@pdcstrrss/database';
-import { getUserById } from '..';
-
 export { getUserById } from '@pdcstrrss/database';
 
 export interface IUserSponsorship {
   sponsor: boolean;
-  contributor: boolean;
+  member: boolean;
 }
 
 export interface IGetUserSponsorshipParams {
-  githubId: string;
   accessToken: string;
 }
 
-export async function getUserSponsorship({
-  githubId,
-  accessToken,
-}: IGetUserSponsorshipParams): Promise<IUserSponsorship> {
+export async function getUserSponsorship({ accessToken }: IGetUserSponsorshipParams): Promise<IUserSponsorship> {
   const body = JSON.stringify({
     query: `
       {
-        user(login: "${githubId}") {
-          isSponsoredBy(accountLogin: "pdcstrrss")
-          contributionsCollection(organizationID: "O_kgDOBfNDuw") {
-            hasAnyContributions
-          }
+        organization(login: "pdcstrrss") {
+          viewerIsAMember
+          viewerIsSponsoring
         }
       }
     `,
@@ -42,8 +33,10 @@ export async function getUserSponsorship({
       throw new Error('Failed to fetch user sponsorship data \n ' + ex);
     });
 
+  console.log(data);
+
   return {
-    sponsor: !!data?.data?.user?.isSponsoredBy,
-    contributor: !!data?.data?.user?.contributionsCollection?.hasAnyContributions,
+    sponsor: !!data?.data?.organization?.viewerIsSponsoring,
+    member: !!data?.data?.organization?.viewerIsAMember,
   };
 }
