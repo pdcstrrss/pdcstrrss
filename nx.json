@@ -14,7 +14,7 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e", "typecheck", "build-storybook"]
+        "cacheableOperations": ["build", "lint", "test", "e2e", "typecheck", "build-storybook", "check"]
       }
     }
   },
@@ -45,5 +45,6 @@
       "pascalCaseDirectory": true
     }
   },
-  "$schema": "./node_modules/nx/schemas/nx-schema.json"
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "plugins": ["@nxtensions/astro"]
 }

@@ -1,0 +1,40 @@
+---
+import { getUser } from '@astro-auth/core';
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const user = getUser({ client: Astro });
+---
+
+<header>
+  {
+    user ? (
+      <button id="logout" type="button">
+        Logout
+      </button>
+    ) : (
+      <button id="login" type="button">
+        Login
+      </button>
+    )
+  }
+
+  {JSON.stringify(user)}
+</header>
+
+<script>
+  import { signIn, signOut } from '@astro-auth/client';
+
+  document.getElementById('login')?.addEventListener('click', () =>
+    signIn({
+      provider: 'github',
+    })
+  );
+  document.getElementById('logout')?.addEventListener('click', () => signOut('/'));
+</script>
+
+<h1>{title}</h1>
