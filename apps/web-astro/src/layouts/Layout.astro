@@ -17,9 +17,7 @@ const user = getUser({ client: Astro });
         Logout
       </button>
     ) : (
-      <button id="login" type="button">
-        Login
-      </button>
+      <a href="/api/auth/login">Login</a>
     )
   }
 
@@ -27,14 +25,8 @@ const user = getUser({ client: Astro });
 </header>
 
 <script>
-  import { signIn, signOut } from '@astro-auth/client';
-
-  document.getElementById('login')?.addEventListener('click', () =>
-    signIn({
-      provider: 'github',
-    })
-  );
-  document.getElementById('logout')?.addEventListener('click', () => signOut('/'));
+  import { logout } from '../lib/useAuth';
+  document.getElementById('logout')?.addEventListener('click', logout);
 </script>
 
 <h1>{title}</h1>
