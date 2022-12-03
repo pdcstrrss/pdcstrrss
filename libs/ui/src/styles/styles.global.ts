@@ -1,4 +1,5 @@
 import 'normalize.css';
+import './_fonts.css';
 import './_variables.css';
 import './_root.css';
 import './_alert.css';
@@ -14,5 +15,4 @@ import './_app.css';
 import './_logo.css';
 import './_hero.css';
 import './_dropdown.css';
-import '../../views/AccountIndexView/AccountIndexView.css';
 import './_utilities.css';
