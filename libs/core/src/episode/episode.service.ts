@@ -1,4 +1,5 @@
-import { db, Episode } from '@pdcstrrss/database';
+import type { Episode } from '@prisma/client';
+import { db } from '@pdcstrrss/database';
 import defaultsDeep from 'lodash/defaultsDeep';
 import { IRepositoryFilters, IRequiredRepositoryFilters } from '..';
 
@@ -20,6 +21,8 @@ export type IGetEpisodesParams = Partial<IGetEpisodeParams> & IRepositoryFilters
 export interface IEpisodesData extends Omit<IRequiredRepositoryFilters<IGetEpisodesParams>, 'orderBy'> {
   episodes: IEpisode[];
   totalCount: number;
+  limit: number;
+  offset: number;
 }
 
 const DEFAULT_EPISODE_QUERY = {

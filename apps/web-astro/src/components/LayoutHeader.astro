@@ -1,0 +1,26 @@
+---
+export interface Props {
+  user?: any;
+}
+
+const { user } = Astro.props;
+---
+
+<header>
+  {
+    user ? (
+      <button id="logout" type="button">
+        Logout
+      </button>
+    ) : (
+      <a href="/api/auth/login">Login</a>
+    )
+  }
+
+  {JSON.stringify(user)}
+</header>
+
+<script>
+  import { logout } from '../lib/useAuth';
+  document.getElementById('logout')?.addEventListener('click', logout);
+</script>

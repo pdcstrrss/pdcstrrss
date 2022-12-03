@@ -11,6 +11,9 @@
     "dev": "cd ../../ && cross-env NODE_ENV=development netlify dev"
   },
   "dependencies": {
+    "@pdcstrrss/ui": "*",
+    "@pdcstrrss/core": "*",
+    "@pdcstrrss/database": "*",
     "@netlify/functions": "^0.10.0",
     "@remix-run/netlify": "1.5.1",
     "@remix-run/node": "1.5.1",

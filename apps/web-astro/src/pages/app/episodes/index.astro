@@ -1,0 +1,10 @@
+---
+import { getEpisodes } from '../../../lib/useEpisodes.server';
+const data = await getEpisodes(Astro);
+---
+
+<pre>
+  <code>
+    {JSON.stringify(data , null, 2)}
+  </code>
+</pre>

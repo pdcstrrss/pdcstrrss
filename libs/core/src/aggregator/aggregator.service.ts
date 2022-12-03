@@ -1,5 +1,6 @@
 // TODO: Stick in background function
-import { db, Prisma } from '@pdcstrrss/database';
+import type { Prisma } from '@prisma/client';
+import { db } from '@pdcstrrss/database';
 import objectHash from 'object-hash';
 import isValid from 'date-fns/isValid';
 import pMap from 'p-map';
