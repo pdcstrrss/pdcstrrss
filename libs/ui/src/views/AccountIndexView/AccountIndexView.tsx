@@ -1,14 +1,14 @@
-import { IUserSponsorship } from '@pdcstrrss/core';
-import { User } from '@pdcstrrss/database';
-import clsx from 'clsx';
-import styles from './AccountIndexView.module.css';
+// import { IUserSponsorship } from '@pdcstrrss/core';
+// import type { User } from '@prisma/client';
+// import clsx from 'clsx';
+import './AccountIndexView.css';
 
-interface AccountIndexViewProps {
+/* interface AccountIndexViewProps {
   user: User | null;
   sponsorship?: IUserSponsorship | null;
-}
+} */
 
-export function AccountIndexView(props: AccountIndexViewProps) {
+export function AccountIndexView(/* props: AccountIndexViewProps */) {
   return (
     <div className="page-account-container">
       <div className="card">test</div>

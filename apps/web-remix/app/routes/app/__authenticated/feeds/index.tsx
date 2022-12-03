@@ -51,7 +51,7 @@ export default function AuthenticatedFeedsIndex() {
               <span>Add feed</span>
             </Link>
           ) : (
-            <Link to="/account">Want to add more feeds?</Link>
+            <a href="/account">Want to add more feeds?</Link>
           )}
         </div>
       </header>

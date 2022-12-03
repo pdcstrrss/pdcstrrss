@@ -1,15 +1,14 @@
-import { Link } from '@remix-run/react';
-
 import type { IEpisode } from '@pdcstrrss/core';
-import styles from './EpisodeList.css';
+import './EpisodeList.module.css';
 
 interface IEpisodeListProps {
   episodes: IEpisode[];
 }
 
-export const EpisodeListLinks = () => [{ rel: 'stylesheet', href: styles }];
-
 export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpisode) => {
+  const mediaUrl = new URL(window.location.toString());
+  mediaUrl.searchParams.set('episode', id);
+
   return (
     <article key={url} className="episode card">
       <header className="episode-header">
@@ -36,15 +35,15 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
           {Intl.DateTimeFormat(['sv-SE']).format(new Date(published))}
         </time>
       </div>
-      <Link
+      <a
         className="link-icon link-icon-primary episode-media-button"
-        to={{ search: `?episode=${id}` }}
+        href={mediaUrl.toString()}
         aria-label={`Play episode ${title} of ${feed.title}`}
       >
         <svg className="episode-media-icon" data-icon>
           <use xlinkHref="#play" />
         </svg>
-      </Link>
+      </a>
     </article>
   );
 };

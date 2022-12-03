@@ -38,7 +38,7 @@ export default function Index() {
         </h1>
         <p>Why the fancy marketing lingo?</p>
         <p>
-          <Link to={routes.account} className="button button-secondary button-wide">
+          <a href={routes.account} className="button button-secondary button-wide">
             Create a free account
           </Link>
         </p>
@@ -57,7 +57,7 @@ export default function Index() {
             By sponsoring only <strong className="text-primary">$2 a month</strong>, you’ll be able to add{' '}
             <strong className="text-primary">more than 3 feeds</strong> and you’ll help us keep our machines running.
           </p>
-          <Link to={routes.account} className="button button-primary button-wide">
+          <a href={routes.account} className="button button-primary button-wide">
             <svg>
               <use xlinkHref="#github" />
             </svg>

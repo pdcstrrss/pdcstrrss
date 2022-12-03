@@ -1,12 +1,11 @@
-import { NavLink, Link } from '@remix-run/react';
-import { User } from '@pdcstrrss/database';
-import type { To } from 'history';
+import type { User } from '@prisma/client';
+// import type { To } from 'history';
 import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
 import Dropdown from '../../Dropdown/Dropdown';
 
 export type AppHeaderUser = Pick<User, 'displayName' | 'image'>;
-export type AppHeaderNavLinks = { title: string; to: To }[];
+export type AppHeaderNavLinks = { title: string; to: string }[];
 
 export interface IAppHeaderProps {
   user?: AppHeaderUser;
@@ -37,9 +36,9 @@ const dropdownLinks: AppHeaderNavLinks = [
 
 function renderNavLinks(navLinks: AppHeaderNavLinks) {
   return navLinks.map(({ title, to }) => (
-    <NavLink key={title} className={({ isActive }) => clsx({ active: isActive }, 'app-header-nav-link')} to={to}>
+    <a key={title} className={clsx({ active: true }, 'app-header-nav-link')} href={to}>
       {title}
-    </NavLink>
+    </a>
   ));
 }
 
@@ -49,23 +48,23 @@ export function AppHeader(props: IAppHeaderProps) {
   return (
     <header className={clsx('app-header container', { 'app-header-inverted': inverted })}>
       <div className="app-header-logo">
-        <Link to="/" className="logo" aria-labelledby="appHeaderLogoText">
+        <a href="/" className="logo" aria-labelledby="appHeaderLogoText">
           <svg className="logo-icon" role="presentation">
             <use xlinkHref="#logo" />
           </svg>
           <div id="appHeaderLogoText" className="logo-text">
             {TRANSLATIONS.title}
           </div>
-        </Link>
+        </a>
       </div>
       <nav className="app-header-nav">
         {user ? (
           navLinks && renderNavLinks(navLinks)
         ) : (
           <>
-            <Link className="app-header-nav-link" to="/login">
+            <a className="app-header-nav-link" href="/login">
               {TRANSLATIONS.login}
-            </Link>
+            </a>
             <a
               href="https://github.com/pdcstrrss"
               target="_blank"

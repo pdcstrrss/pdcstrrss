@@ -1,6 +1,5 @@
-import { Link } from '@remix-run/react';
 import type { IFeed } from '@pdcstrrss/core';
-import styles from './FeedList.css';
+import './FeedList.css';
 
 export type IFeedListItemProps = IFeed;
 
@@ -8,7 +7,7 @@ interface IFeedListProps {
   feeds: IFeedListItemProps[];
 }
 
-export const FeedListLinks = () => [{ rel: 'stylesheet', href: styles }];
+// export const FeedListLinks = () => [{ rel: 'stylesheet', href: styles }];
 
 export const FeedListItem = ({ id, title, url, latestEpisodePublished, image }: IFeedListItemProps) => {
   return (
@@ -26,11 +25,11 @@ export const FeedListItem = ({ id, title, url, latestEpisodePublished, image }: 
       </div>
 
       <div data-feed-actions>
-        <Link className='link-icon' to={`/app/feeds/${id}/delete`}>
+        <a className='link-icon' href={`/app/feeds/${id}/delete`}>
           <svg>
             <use xlinkHref="#trash" />
           </svg>
-        </Link>
+        </a>
       </div>
     </article>
   );

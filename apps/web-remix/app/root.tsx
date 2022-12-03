@@ -3,7 +3,7 @@ import { BaseLayout, BaseLayoutLinks } from '@pdcstrrss/ui';
 import { useMatches, Meta, Links, Outlet, ScrollRestoration, Scripts, useCatch, useLoaderData } from '@remix-run/react';
 import { LoaderFunction, MetaFunction } from '@remix-run/server-runtime';
 import { authenticator } from './services/auth.server';
-import type { User } from '@pdcstrrss/database';
+import type { User } from '@prisma/client';
 import type { PropsWithChildren } from 'react';
 
 interface RootLoaderData {

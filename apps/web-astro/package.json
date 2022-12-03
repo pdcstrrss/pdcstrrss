@@ -1,19 +1,18 @@
 {
   "name": "@pdcstrrss/web-astro",
   "dependencies": {
-    "@pdcstrrss/core": "*",
-    "@pdcstrrss/ui": "*",
     "@astro-auth/client": "^1.0.5",
     "@astro-auth/core": "^1.0.12",
     "@astro-auth/providers": "^1.0.6",
     "@astro-auth/ui": "^1.0.5",
-    "@astrojs/netlify": "^1.2.1"
+    "@astrojs/netlify": "^1.2.1",
+    "@pdcstrrss/core": "*",
+    "@pdcstrrss/ui": "*"
   },
   "devDependencies": {
-    "astro": "^1.3.0",
-    "@astrojs/preact": "^1.2.0",
     "@astrojs/react": "^1.2.2",
     "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/turbolinks": "^0.1.4"
+    "@astrojs/turbolinks": "^0.1.4",
+    "astro": "^1.3.0"
   }
 }

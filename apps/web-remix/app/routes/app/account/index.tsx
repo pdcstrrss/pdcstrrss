@@ -2,7 +2,7 @@ import { getUserSponsorship, getUserById, IUserSponsorship } from '../../../serv
 import { useLoaderData } from '@remix-run/react';
 import { LoaderFunction } from '@remix-run/server-runtime';
 import { authenticator } from '../../../services/auth.server';
-import type { User } from '@pdcstrrss/database';
+import type { User } from '@prisma/client';
 import clsx from 'clsx';
 
 interface AccountIndexLoaderResponse {

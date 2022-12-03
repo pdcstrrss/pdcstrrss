@@ -19,13 +19,13 @@
         "cwd": "apps/web-remix"
       }
     },
-    "typecheck": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "tsc --noEmit",
-        "cwd": "apps/web-remix"
-      }
-    },
+    // "typecheck": {
+    //   "executor": "@nrwl/workspace:run-commands",
+    //   "options": {
+    //     "command": "tsc --noEmit",
+    //     "cwd": "apps/web-remix"
+    //   }
+    // },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
