@@ -1,16 +1,41 @@
 ---
+import '@pdcstrrss/ui/src/layouts/BaseLayout/styles.global';
+import clsx from 'clsx';
+import defaultsDeep from 'lodash/defaultsDeep';
+import { AppHeader, SvgSprite, AppFooter } from '@pdcstrrss/ui';
 import { getUser } from '@astro-auth/core';
-import LayoutHeader from '../components/LayoutHeader.astro';
 
-export interface Props {
-  title: string;
+interface Props {
+  hero?: boolean;
+  header?: boolean;
+  footer?: boolean;
 }
 
-const { title } = Astro.props;
+const defaultBaseLayoutProps: Partial<Props> = {
+  hero: false,
+  header: true,
+  footer: true,
+};
+
+const { header, footer, hero } = defaultsDeep({}, Astro.props, defaultBaseLayoutProps);
 const user = getUser({ client: Astro });
 ---
 
-<LayoutHeader user={user} />
-<h1>{title}</h1>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <slot name="head" />
+  </head>
 
-<slot />
+  <body class={clsx({ 'body-with-hero': !!hero })}>
+    <SvgSprite />
+    {header && <AppHeader {...{ user, inverted: hero }} />}
+    <main>
+      <slot />
+    </main>
+    {footer && <AppFooter />}
+  </body>
+</html>

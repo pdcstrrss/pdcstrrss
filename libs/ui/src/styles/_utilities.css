@@ -1,0 +1,16 @@
+.text-center {
+  text-align: center;
+}
+
+.text-no-wrap {
+  white-space: nowrap;
+}
+
+.text-primary {
+  color: var(--brand-primary);
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

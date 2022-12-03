@@ -4,7 +4,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Dropdown } from './Dropdown';
-import '../../layouts/BaseLayout/_dropdown.css';
+import '../../styles/_dropdown.css';
 
 export default {
   title: 'Dropdown',

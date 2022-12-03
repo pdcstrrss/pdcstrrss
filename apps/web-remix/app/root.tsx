@@ -88,7 +88,7 @@ export function ErrorBoundary({ error }: { error: any }) {
   console.error(error);
   return (
     <Layout title={title} header={false} footer={false}>
-      <div className="page container page-centered text-center">
+      <div class="page container page-centered text-center">
         <h1>Error</h1>
       </div>
     </Layout>
@@ -100,7 +100,7 @@ export function CatchBoundary() {
   const title = 'Oh no';
   return (
     <Layout title={title}>
-      <div className="page container page-centered text-center">
+      <div class="page container page-centered text-center">
         <div>
           <h1 style={{ fontSize: 'var(--step-10)' }}>{caught.status}</h1>
           <p>{caught.statusText}</p>
