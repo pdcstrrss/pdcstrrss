@@ -93,8 +93,8 @@
   --border-color: var(--foreground-color);
   --border-radius: 0.5em;
 
-  --font-family-base: 'Martian Grotesk', sans-serif;
-  --font-family-wide: 'Martian Grotesk Wide', sans-serif;
+  --font-family-base: 'Martian Grotesk', 'Martian Grotesk override', sans-serif;
+  --font-family-wide: 'Martian Grotesk Wide', 'Martian Grotesk Wide override', sans-serif;
 
   --logo-primary-color: var(--color-indigo-500);
   --logo-secondary-color: var(--color-teal-500);
