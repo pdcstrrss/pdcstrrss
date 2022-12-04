@@ -13,7 +13,8 @@
 
 .hero-title {
   font-family: var(--font-family-wide);
-  font-size: var(--step-8);
-  line-height: 1;
+  font-weight: 900;
+  font-size: var(--step-7);
+  line-height: 1.125;
   color: var(--hero-color);
 }

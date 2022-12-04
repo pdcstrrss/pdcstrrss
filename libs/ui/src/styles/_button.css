@@ -13,8 +13,8 @@
   --button-padding-base: clamp(1.125em, calc(0.9em + 0.49vw), 1.5em);
   --button-padding-shift: calc(1em / 15);
   --button-padding-block-base: calc(var(--button-padding-base) / 3);
-  --button-padding-block-start: calc(var(--button-padding-block-base) + var(--button-padding-shift));
-  --button-padding-block-end: calc(var(--button-padding-block-base) - var(--button-padding-shift));
+  --button-padding-block-start: calc(var(--button-padding-block-base));
+  --button-padding-block-end: calc(var(--button-padding-block-base));
   --button-padding-inline: calc(var(--button-padding-base) * 1);
   --button-border-radius: var(--border-radius);
 }

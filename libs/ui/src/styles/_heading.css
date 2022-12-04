@@ -47,4 +47,5 @@ h6,
 
 .display-heading {
   font-family: var(--font-family-wide);
+  font-weight: 900;
 }

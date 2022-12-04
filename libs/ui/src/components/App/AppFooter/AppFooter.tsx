@@ -2,10 +2,11 @@ import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
 
 export function AppFooter() {
+  const thisYear = new Date().getFullYear();
   return (
     <footer className={clsx('app-footer container')}>
       <div className="app-footer-logo">
-        <a href="/">{TRANSLATIONS.title}</a>
+        &copy; {thisYear} {TRANSLATIONS.title}
       </div>
 
       <a href="/privacy">Privacy</a>

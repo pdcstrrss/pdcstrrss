@@ -1,5 +1,5 @@
 import { getUser } from '@astro-auth/core';
-import { getUserByGitHubId, getUserInfo } from 'libs/core/src';
+import { getUserByGitHubId } from 'libs/core/src';
 import type { UserSession } from './useUserTypes';
 
 export async function getUserFromRequest({ request }: { request: Request }) {

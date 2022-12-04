@@ -6,8 +6,8 @@
   --link-padding-base: clamp(1.125em, calc(0.9em + 0.49vw), 1.5em);
   --link-padding-shift: calc(1em / 10);
   --link-padding-block-base: calc(var(--link-padding-base) / 8);
-  --link-padding-block-start: calc(var(--link-padding-block-base) + var(--link-padding-shift));
-  --link-padding-block-end: calc(var(--link-padding-block-base) - var(--link-padding-shift));
+  --link-padding-block-start: calc(var(--link-padding-block-base));
+  --link-padding-block-end: calc(var(--link-padding-block-base));
   --link-padding-inline: calc(var(--link-padding-base) / 3);
   --link-border-radius: var(--border-radius);
 

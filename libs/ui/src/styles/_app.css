@@ -44,8 +44,9 @@
 
 .app-header-nav-link,
 .app-footer-nav-link {
+  font-family: var(--font-family-wide);
   text-decoration: none;
-  font-weight: 800;
+  font-weight: 900;
   margin-block: 0;
 }
 
