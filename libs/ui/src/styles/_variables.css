@@ -38,6 +38,7 @@
   --color-teal-500: #14b8a6;
   --color-teal-700: #0f766e;
   --color-teal-800: #115e59;
+  --color-teal-900: #134e4a;
 
   --color-pink-50: #fdf2f8;
   --color-pink-100: #fce7f3;
@@ -89,9 +90,9 @@
 
   --space: var(--step-2, clamp(1.125rem, calc(0.9rem + 0.49vw), 1.5rem));
   --space-sm: calc(var(--space) / 2);
-  --border-width: 3px;
+  --border-width: .33rem;
   --border-color: var(--foreground-color);
-  --border-radius: 0.5em;
+  --border-radius: 1.5em;
 
   --font-family-base: 'Martian Grotesk', 'Martian Grotesk override', sans-serif;
   --font-family-wide: 'Martian Grotesk Wide', 'Martian Grotesk Wide override', sans-serif;

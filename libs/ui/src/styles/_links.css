@@ -1,49 +1,25 @@
 :root {
   --link-color: currentColor;
-  --link-color-hover: var(--brand-primary-contrast);
-  --link-background-color-hover: var(--brand-primary-dark);
-
-  --link-padding-base: clamp(1.125em, calc(0.9em + 0.49vw), 1.5em);
-  --link-padding-shift: calc(1em / 10);
-  --link-padding-block-base: calc(var(--link-padding-base) / 8);
-  --link-padding-block-start: calc(var(--link-padding-block-base));
-  --link-padding-block-end: calc(var(--link-padding-block-base));
-  --link-padding-inline: calc(var(--link-padding-base) / 3);
-  --link-border-radius: var(--border-radius);
-
-  --link-margin-block-start: calc(var(--link-padding-block-start) * -1);
-  --link-margin-block-end: calc(var(--link-padding-block-end) * -1);
-  --link-margin-inline: calc(var(--link-padding-inline) * -1);
-
   --link-icon-size: var(--step-3);
+  --link-underline-thickness: var(--border-width);
+  --link-underline-color: var(--brand-secondary);
 }
 
 a {
   display: inline-flex;
   color: var(--link-color);
-  border-radius: var(--link-border-radius);
   text-decoration: underline;
-
-  padding-block-start: var(--link-padding-block-start);
-  padding-block-end: var(--link-padding-block-end);
-  padding-inline: var(--link-padding-inline);
-
-  margin-block-start: var(--link-margin-block-start);
-  margin-block-end: var(--link-margin-block-end);
-  margin-inline: var(--link-margin-inline);
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--link-underline-color);
 }
 
 a:where(:hover, :focus-visible, .active) {
-  color: var(--link-color-hover);
-  background-color: var(--link-background-color-hover);
-  text-decoration: none;
+  --link-underline-color: var(--color-indigo-500);
 }
 
 .link-icon {
-  --link-padding-block: var(--link-padding-block-base);
   display: flex;
-  padding: 0;
-  margin: 0;
 }
 
 .link-icon svg {

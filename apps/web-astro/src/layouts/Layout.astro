@@ -19,6 +19,9 @@ const defaultBaseLayoutProps: Partial<Props> = {
 
 const { header, footer, hero } = defaultsDeep({}, Astro.props, defaultBaseLayoutProps);
 const user = getUser({ client: Astro });
+if (user && Astro.cookies.has('pdcstrrss.redirect')) {
+  Astro.cookies.delete('pdcstrrss.redirect');
+}
 ---
 
 <html lang="en">

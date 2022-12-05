@@ -62,7 +62,7 @@ export function AppHeader(props: IAppHeaderProps) {
           navLinks && renderNavLinks(navLinks)
         ) : (
           <>
-            <a className="app-header-nav-link" href="/login">
+            <a className="app-header-nav-link" href="/api/auth/login">
               {TRANSLATIONS.login}
             </a>
             <a

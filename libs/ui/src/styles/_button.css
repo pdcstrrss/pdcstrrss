@@ -11,7 +11,6 @@
   --button-border-color-hover: var(--button-border-color);
 
   --button-padding-base: clamp(1.125em, calc(0.9em + 0.49vw), 1.5em);
-  --button-padding-shift: calc(1em / 15);
   --button-padding-block-base: calc(var(--button-padding-base) / 3);
   --button-padding-block-start: calc(var(--button-padding-block-base));
   --button-padding-block-end: calc(var(--button-padding-block-base));
@@ -71,7 +70,7 @@ button:where(:hover, :focus-visible),
 }
 
 .button-wide {
-  --button-padding-inline: calc(var(--button-padding-base) * 2);
+  --button-padding-inline: calc(var(--button-padding-base) * 1.5);
 }
 
 .button-link {
@@ -91,7 +90,6 @@ button:where(:hover, :focus-visible),
 .button svg {
   inline-size: var(--space);
   block-size: var(--space);
-  margin-block-start: calc(var(--button-padding-block-end) / -2);
 }
 
 /* =================================
@@ -100,17 +98,19 @@ button:where(:hover, :focus-visible),
 .button-primary {
   --button-color: var(--color-indigo-50);
   --button-background-color: var(--color-indigo-500);
-  --button-border-color: var(--foreground-color);
+  --button-border-color: var(--color-indigo-800);
   --button-color-hover: var(--color-indigo-50);
   --button-background-color-hover: var(--color-indigo-800);
+  --button-border-color-hover: var(--color-indigo-800);
 }
 
 .button-secondary {
-  --button-color: var(--foreground-color);
+  --button-color: var(--color-teal-800);
   --button-background-color: var(--color-teal-300);
-  --button-border-color: var(--foreground-color);
+  --button-border-color: var(--color-teal-800);
   --button-color-hover: var(--color-teal-50);
-  --button-background-color-hover: var(--color-teal-500);
+  --button-background-color-hover: var(--color-teal-800);
+  --button-border-color-hover: var(--color-teal-800);
 }
 
 .button-success {
@@ -128,16 +128,16 @@ button:where(:hover, :focus-visible),
   --button-color: var(--color-pink-50);
   --button-background-color: var(--color-pink-600);
   --button-border-color: var(--color-pink-800);
-  --button-background-color-hover: var(--color-pink-800);
-  --button-border-color-hover: var(--color-pink-50);
+  --button-background-color-hover: var(--color-pink-700);
+  --button-border-color-hover: var(--color-pink-800);
 }
 
 .button-fuchsia {
   --button-color: var(--color-fuchsia-50);
   --button-background-color: var(--color-fuchsia-600);
   --button-border-color: var(--color-fuchsia-800);
-  --button-background-color-hover: var(--color-fuchsia-800);
-  --button-border-color-hover: var(--color-fuchsia-50);
+  --button-background-color-hover: var(--color-fuchsia-700);
+  --button-border-color-hover: var(--color-fuchsia-800);
 }
 
 /* =================================

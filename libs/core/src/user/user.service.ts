@@ -32,6 +32,11 @@ export async function getUserSponsorship({ accessToken }: IGetUserSponsorshipPar
   const data = await grapgqlRequest({ query, accessToken }).catch((ex) => {
     throw new Error('Failed to fetch user sponsorship data \n ' + ex);
   });
+
+  if (data.errors) {
+    throw new Error('Failed to fetch user sponsorship data \n ' + data.errors[0].message);
+  }
+
   return {
     sponsor: !!data?.data?.organization?.viewerIsSponsoring,
     member: !!data?.data?.organization?.viewerIsAMember,

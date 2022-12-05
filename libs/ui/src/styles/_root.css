@@ -1,5 +1,5 @@
 html {
-  font-size: clamp(14px, 2vw, 18px);
+  font-size: clamp(14px, 2vw, 17px);
   box-sizing: border-box;
 }
 
@@ -63,7 +63,7 @@ ul {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: var(--space);
+  gap: calc(var(--space) * 2);
   margin-block: var(--space);
 }
 
@@ -79,6 +79,8 @@ ul {
 }
 
 .page-header-title {
+  font-family: var(--font-family-wide);
+  font-weight: 900;
   flex-grow: 1;
   margin: 0;
   align-items: center;

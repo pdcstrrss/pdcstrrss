@@ -1,6 +1,7 @@
 {
   "name": "@pdcstrrss/web-astro",
   "dependencies": {
+    "clsx": "^1.1.1",
     "@astro-auth/client": "^1.0.5",
     "@astro-auth/core": "^1.0.12",
     "@astro-auth/providers": "^1.0.6",
@@ -14,7 +15,7 @@
     "@astrojs/react": "^1.2.2",
     "@astrojs/sitemap": "^1.0.0",
     "@astrojs/turbolinks": "^0.1.4",
-    "astro": "^1.6.11",
+    "astro": "^1.6.12",
     "fontaine": "^0.2.3"
   }
 }

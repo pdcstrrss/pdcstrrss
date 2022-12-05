@@ -8,7 +8,7 @@ export const all = AstroAuth({
     GithubProvider({
       clientId: import.meta.env.GH_OAUTH_CLIENT_ID || '',
       clientSecret: import.meta.env.GH_OAUTH_CLIENT_SECRET || '',
-      scope: 'identify email',
+      scope: 'user:email read:org',
     }),
   ],
   hooks: {
