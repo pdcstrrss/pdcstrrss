@@ -4,7 +4,7 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
-  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
@@ -17,7 +17,7 @@ model User {
   id            String            @id @default(uuid())
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
-  email         String            @unique
+  email         String
   githubId      String            @unique
   image         String?
   displayName   String
@@ -70,6 +70,7 @@ model Episode {
   feedId      String
 
   users EpisodesOfUsers[]
+
   @@index([feedId, published])
 }
 
@@ -96,7 +97,6 @@ enum EpisodeStatus {
 }
 
 model EpisodesOfUsers {
-
   user   User   @relation(fields: [userId], references: [id], onUpdate: NoAction)
   userId String
 
