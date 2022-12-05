@@ -19,24 +19,24 @@
 @font-face {
   font-family: 'Martian Grotesk Wide';
   font-weight: 900;
-  src: url('https://fonts.pdcstrrss.app/MartianGroteskXWdUlt/font.woff2') format('woff2'),
-    url('https://fonts.pdcstrrss.app/MartianGroteskXWdUlt/font.woff') format('woff');
+  font-display: block;
+  src: url('https://fonts.pdcstrrss.app/MartianGroteskXWdUlt/font.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Martian Grotesk';
   font-weight: 700;
-  src: url('https://fonts.pdcstrrss.app/MartianGroteskStdBl/font.woff2') format('woff2'),
-    url('https://fonts.pdcstrrss.app/MartianGroteskStdBl/font.woff') format('woff');
+  font-display: block;
+  src: url('https://fonts.pdcstrrss.app/MartianGroteskStdBl/font.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Martian Grotesk';
   font-weight: 500;
-  src: url('https://fonts.pdcstrrss.app/MartianGroteskStdRg/font.woff2') format('woff2'),
-    url('https://fonts.pdcstrrss.app/MartianGroteskStdRg/font.woff') format('woff');
+  font-display: block;
+  src: url('https://fonts.pdcstrrss.app/MartianGroteskStdRg/font.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Martian Grotesk Wide';
   font-weight: 800;
-  src: url('https://fonts.pdcstrrss.app/MartianGroteskSWdBl/font.woff2') format('woff2'),
-    url('https://fonts.pdcstrrss.app/MartianGroteskSWdBl/font.woff') format('woff');
+  font-display: block;
+  src: url('https://fonts.pdcstrrss.app/MartianGroteskSWdBl/font.woff2') format('woff2');
 }
