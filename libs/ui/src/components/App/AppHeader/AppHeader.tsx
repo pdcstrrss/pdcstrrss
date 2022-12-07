@@ -1,14 +1,14 @@
+import type { MouseEventHandler } from 'react';
 import type { User } from '@prisma/client';
-// import type { To } from 'history';
 import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
 import Dropdown from '../../Dropdown/Dropdown';
 
 export type AppHeaderUser = Pick<User, 'displayName' | 'image'>;
-export type AppHeaderNavLinks = { title: string; to: string }[];
+export type AppHeaderNavLinks = { title: string; to?: string; callback?: MouseEventHandler<HTMLButtonElement> }[];
 
 export interface IAppHeaderProps {
-  user?: AppHeaderUser;
+  user?: AppHeaderUser | null | undefined;
   inverted?: boolean;
 }
 
@@ -30,16 +30,30 @@ const dropdownLinks: AppHeaderNavLinks = [
   },
   {
     title: TRANSLATIONS.logout,
-    to: '/logout',
+    callback: async (event) => {
+      event.preventDefault();
+      await fetch(window.origin + '/api/auth/signout', { method: 'DELETE' });
+      window.location.reload();
+    },
   },
 ];
 
 function renderNavLinks(navLinks: AppHeaderNavLinks) {
-  return navLinks.map(({ title, to }) => (
-    <a key={title} className={clsx({ active: true }, 'app-header-nav-link')} href={to}>
-      {title}
-    </a>
-  ));
+  return navLinks.map(({ title, to, callback }) => {
+    if (callback) {
+      return (
+        <button key={title} className={clsx('app-header-nav-link')} onClick={callback} type="button">
+          {title}
+        </button>
+      );
+    }
+
+    return (
+      <a key={title} className={clsx('app-header-nav-link')} href={to}>
+        {title}
+      </a>
+    );
+  });
 }
 
 export function AppHeader(props: IAppHeaderProps) {
@@ -81,8 +95,20 @@ export function AppHeader(props: IAppHeaderProps) {
       {user && (
         <Dropdown
           toggle={({ visibility }) => (
-            <button type='button' className="button-reset" aria-label={`Click to ${visibility ? 'close' : 'open'} account options`}>
-              {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} width='100px' height='100px' />}
+            <button
+              type="button"
+              className="button-reset"
+              aria-label={`Click to ${visibility ? 'close' : 'open'} account options`}
+            >
+              {user?.image && (
+                <img
+                  className="app-header-image"
+                  src={user.image}
+                  alt={user.displayName}
+                  width="100px"
+                  height="100px"
+                />
+              )}
             </button>
           )}
         >

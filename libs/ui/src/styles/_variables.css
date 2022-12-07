@@ -91,11 +91,15 @@
   --space: var(--step-2, clamp(1.125rem, calc(0.9rem + 0.49vw), 1.5rem));
   --space-sm: calc(var(--space) / 2);
   --border-width: 0.33rem;
+  --border-width-sm: 0.16em;
   --border-color: var(--foreground-color);
   --border-radius: 1.5em;
+  --border-radius-sm: .75em;
 
   --font-family-base: 'Martian Grotesk', 'Martian Grotesk override', sans-serif;
   --font-family-wide: 'Martian Grotesk Wide', 'Martian Grotesk Wide override', sans-serif;
+
+  --line-height: --step-1;
 
   --logo-primary-color: var(--color-indigo-500);
   --logo-secondary-color: var(--color-teal-500);

@@ -4,6 +4,8 @@
 
 .app-header,
 .app-footer {
+  --app-link-underline-color: var(--color-indigo-500);
+
   display: flex;
   align-items: center;
   gap: calc(var(--space) / 1);
@@ -70,6 +72,7 @@
   block-size: calc(var(--space) * 2);
   aspect-ratio: 1 / 1;
   border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius-sm);
 }
 
 /* =================================

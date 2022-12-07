@@ -3,7 +3,7 @@ import '@pdcstrrss/ui/src/styles/styles.global';
 import clsx from 'clsx';
 import defaultsDeep from 'lodash/defaultsDeep';
 import { AppHeader, SvgSprite, AppFooter } from '@pdcstrrss/ui';
-import { getUser } from '@astro-auth/core';
+import { getUserFromRequest } from '../lib/useUser';
 
 interface Props {
   title?: string;
@@ -20,7 +20,7 @@ const defaultBaseLayoutProps: Partial<Props> = {
 };
 
 const { header, footer, hero, title } = defaultsDeep({}, Astro.props, defaultBaseLayoutProps);
-const user = getUser({ client: Astro });
+const user = await getUserFromRequest({ request: Astro.request });
 if (user && Astro.cookies.has('pdcstrrss.redirect')) {
   Astro.cookies.delete('pdcstrrss.redirect');
 }
@@ -40,7 +40,7 @@ if (user && Astro.cookies.has('pdcstrrss.redirect')) {
 
   <body class={clsx({ 'body-with-hero': !!hero })}>
     <SvgSprite />
-    {header && <AppHeader {...{ user, inverted: hero }} />}
+    {header && <AppHeader client:idle user={user} inverted={hero} />}
     <main>
       <slot />
     </main>
