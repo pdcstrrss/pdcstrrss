@@ -90,7 +90,7 @@
 
   --space: var(--step-2, clamp(1.125rem, calc(0.9rem + 0.49vw), 1.5rem));
   --space-sm: calc(var(--space) / 2);
-  --border-width: .33rem;
+  --border-width: 0.33rem;
   --border-color: var(--foreground-color);
   --border-radius: 1.5em;
 

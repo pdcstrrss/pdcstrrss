@@ -20,11 +20,11 @@
   --logo-layer-1: var(--color-teal-300);
   --logo-layer-2: var(--color-teal-50);
   --border-color: var(--color-indigo-800);
+  --app-link-underline-color: var(--color-teal-300);
 }
 
-.app-header-inverted .link-icon,
-.app-footer-inverted .link-icon {
-  --link-color-hover: var(--color-teal-300);
+:where(.app-header-inverted, .app-footer-inverted) .link-icon:where(:hover, :focus-visible) {
+  --link-color: var(--color-teal-300);
 }
 
 .app-header-logo .logo,
@@ -48,6 +48,13 @@
   text-decoration: none;
   font-weight: 900;
   margin-block: 0;
+}
+
+:is(.app-header-nav-link, .app-footer-nav-link):where(:hover, :focus-visible) {
+  text-decoration: underline;
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--app-link-underline-color);
 }
 
 .app-header-nav-icon,

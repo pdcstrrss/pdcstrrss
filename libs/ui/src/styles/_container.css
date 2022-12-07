@@ -1,0 +1,17 @@
+/* =================================
+ * Container
+ ================================= */
+
+.container {
+  padding-inline: clamp(1.5rem, calc(-0.21rem + 8.57vw), 7.5rem);
+  margin: 0 auto;
+  inline-size: 100%;
+}
+
+.container-md {
+  max-width: 1280px;
+}
+
+.container-xs {
+  max-width: 640px;
+}
