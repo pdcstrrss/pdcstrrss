@@ -108,6 +108,13 @@ export async function getEpisodes(params?: IGetEpisodesParams): Promise<IEpisode
   }));
 }
 
+export async function getEpisodeWithStatusPlaying(userId?: string) {
+  if (!userId) return null;
+  return db.episode.findFirst({
+    where: { users: { some: { userId, status: EpisodeStatus.PLAYING } } },
+  });
+}
+
 export function getTotalEpisodeCount(userId?: string) {
   if (!userId) return 0;
   return db.episodesOfUsers.count({ where: { userId } });

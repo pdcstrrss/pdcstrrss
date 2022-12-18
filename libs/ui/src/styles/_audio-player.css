@@ -9,6 +9,7 @@
   background-color: var(--background-color-intense);
   display: flex;
   align-items: center;
+  z-index: 1;
 }
 
 .audio-player audio {

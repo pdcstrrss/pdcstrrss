@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     // "types": ["node"],
-
+    "lib": ["ESNext", "DOM"],
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",

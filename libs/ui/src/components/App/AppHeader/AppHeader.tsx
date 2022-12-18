@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
 import Dropdown from '../../Dropdown/Dropdown';
 
-export type AppHeaderUser = Pick<User, 'displayName' | 'image'>;
+export type AppHeaderUser = Partial<Pick<User, 'displayName' | 'image'>>;
 export type AppHeaderNavLinks = { title: string; to?: string; callback?: MouseEventHandler<HTMLButtonElement> }[];
 
 export interface IAppHeaderProps {

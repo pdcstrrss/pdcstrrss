@@ -9,6 +9,7 @@
     "@pdcstrrss/core": "*",
     "@pdcstrrss/ui": "*",
     "clsx": "^1.1.1",
+    "swup": "^2.0.19",
     "zod": "^3.20.2"
   },
   "devDependencies": {

@@ -21,6 +21,10 @@ body {
   min-height: 100vh;
 }
 
+.body-with-audio {
+  padding-block-end: calc(var(--space) * 3);
+}
+
 main {
   display: flex;
   flex-direction: column;

@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import defaultsDeep from 'lodash/defaultsDeep';
 import { AppHeader, SvgSprite, AppFooter } from '@pdcstrrss/ui';
 import { getUserFromRequest } from '../lib/useUser';
+import { AudioPlayer } from '@pdcstrrss/ui';
 
 interface Props {
   title?: string;
@@ -39,12 +40,22 @@ if (user && Astro.cookies.has('pdcstrrss.redirect')) {
     <slot name="head" />
   </head>
 
-  <body class={clsx({ 'body-with-hero': !!hero })}>
+  <body class={clsx({ 'body-with-hero': !!hero, 'body-with-audio': user?.activeEpisode })}>
     <SvgSprite />
-    {header && <AppHeader client:idle user={user} inverted={hero} currentPath={currentPath} />}
-    <main>
-      <slot />
-    </main>
+    <div id="swup">
+      {header && <AppHeader client:idle user={user} inverted={hero} currentPath={currentPath} />}
+      <main>
+        <slot />
+      </main>
+    </div>
     {footer && <AppFooter />}
+    {
+      user?.activeEpisode && (
+        <div class="audio-player">
+          <AudioPlayer src={user.activeEpisode.url} />
+        </div>
+      )
+    }
   </body>
+  <script src="../assets/main.ts"></script>
 </html>
