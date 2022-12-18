@@ -1,14 +1,13 @@
-import type { IEpisode } from '@pdcstrrss/core';
-import './EpisodeList.module.css';
+import { EpisodeStatus } from '@prisma/client';
+import type { IEpisodeOfUser } from '@pdcstrrss/core';
+import { FORM_ACTIONS, FORM_SUBJECTS, Button } from '../../../';
+import './EpisodeList.css';
 
 interface IEpisodeListProps {
-  episodes: IEpisode[];
+  episodes: IEpisodeOfUser[];
 }
 
-export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpisode) => {
-  const mediaUrl = new URL(window.location.toString());
-  mediaUrl.searchParams.set('episode', id);
-
+export const EpisodeListItem = ({ id, title, url, feed, published, image, status }: IEpisodeOfUser) => {
   return (
     <article key={url} className="episode card">
       <header className="episode-header">
@@ -35,15 +34,23 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image }: IEpi
           {Intl.DateTimeFormat(['sv-SE']).format(new Date(published))}
         </time>
       </div>
-      <a
-        className="link-icon link-icon-primary episode-media-button"
-        href={mediaUrl.toString()}
-        aria-label={`Play episode ${title} of ${feed.title}`}
-      >
-        <svg className="episode-media-icon" data-icon>
-          <use xlinkHref="#play" />
-        </svg>
-      </a>
+      <form method="POST">
+        <input type="hidden" name="status" value={EpisodeStatus.PLAYING} />
+        <input type="hidden" name="id" value={id} />
+        <input type="hidden" name="action" value={FORM_ACTIONS.STATUS} />
+        <input type="hidden" name="subject" value={FORM_SUBJECTS.EPISODE} />
+        <Button
+          type="submit"
+          link
+          className="episode-media-button"
+          aria-label={`Play episode ${title} of ${feed.title}`}
+        >
+          <svg className="episode-media-icon" data-icon>
+            <use xlinkHref="#play" />
+          </svg>
+        </Button>
+      </form>
+      {status === EpisodeStatus.NEW && <div className="episode-status">{status}</div>}
     </article>
   );
 };

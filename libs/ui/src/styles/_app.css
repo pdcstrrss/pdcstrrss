@@ -52,7 +52,7 @@
   margin-block: 0;
 }
 
-:is(.app-header-nav-link, .app-footer-nav-link):where(:hover, :focus-visible) {
+:is(.app-header-nav-link, .app-footer-nav-link):where(:hover, :focus-visible, .active) {
   text-decoration: underline;
   text-decoration-thickness: var(--link-underline-thickness);
   text-decoration-skip-ink: none;

@@ -19,6 +19,7 @@ const defaultBaseLayoutProps: Partial<Props> = {
   footer: true,
 };
 
+const currentPath = new URL(Astro.request.url).pathname;
 const { header, footer, hero, title } = defaultsDeep({}, Astro.props, defaultBaseLayoutProps);
 const user = await getUserFromRequest({ request: Astro.request });
 if (user && Astro.cookies.has('pdcstrrss.redirect')) {
@@ -40,7 +41,7 @@ if (user && Astro.cookies.has('pdcstrrss.redirect')) {
 
   <body class={clsx({ 'body-with-hero': !!hero })}>
     <SvgSprite />
-    {header && <AppHeader client:idle user={user} inverted={hero} />}
+    {header && <AppHeader client:idle user={user} inverted={hero} currentPath={currentPath} />}
     <main>
       <slot />
     </main>

@@ -1,14 +1,15 @@
 {
   "name": "@pdcstrrss/web-astro",
   "dependencies": {
-    "clsx": "^1.1.1",
     "@astro-auth/client": "^1.0.5",
     "@astro-auth/core": "^1.0.12",
     "@astro-auth/providers": "^1.0.6",
     "@astro-auth/ui": "^1.0.5",
     "@astrojs/netlify": "^1.2.1",
     "@pdcstrrss/core": "*",
-    "@pdcstrrss/ui": "*"
+    "@pdcstrrss/ui": "*",
+    "clsx": "^1.1.1",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@astrojs/preact": "^1.2.0",

@@ -16,6 +16,8 @@
   --button-padding-block-end: calc(var(--button-padding-block-base));
   --button-padding-inline: calc(var(--button-padding-base) * 1);
   --button-border-radius: var(--border-radius);
+
+  --btn-svg-size: var(--step-3);
 }
 
 /* =================================
@@ -76,6 +78,11 @@ button:where(:hover, :focus-visible),
 .button-link {
   --button-color: var(--foreground-color);
   --button-background-color: transparent;
+
+  --button-color-hover: var(--color-indigo-500);
+  --button-background-color-hover: transparent;
+  --button-border-color-hover: transparent;
+
   --button-padding: var(--link-padding-block-start) var(--link-padding-inline) var(--link-padding-block-end);
   --button-padding-block-start: var(--link-padding-block-start);
   --button-padding-block-end: var(--link-padding-block-end);
@@ -88,8 +95,8 @@ button:where(:hover, :focus-visible),
  ================================= */
 
 .button svg {
-  inline-size: var(--space);
-  block-size: var(--space);
+  inline-size: var(--btn-svg-size);
+  block-size: var(--btn-svg-size);
 }
 
 /* =================================

@@ -37,7 +37,7 @@
 
 .episode-meta {
   margin: calc(var(--episode-icon-size) / -6) 0;
-  line-height: 1;
+  line-height: 1.25;
   grid-area: meta;
   display: flex;
   gap: calc(var(--space) / 2);
@@ -65,7 +65,7 @@
 }
 
 .episode-media-icon {
-  --link-icon-size: var(--step-6);
+  --btn-svg-size: var(--step-6);
 }
 
 .episode-media {
@@ -98,4 +98,20 @@
   object-fit: contain;
   inset: 50%;
   transform: translate(-50%, -50%);
+}
+
+.episode-status {
+  position: absolute;
+  inset-inline-end: calc(var(--space) / -2);
+  inset-block-start: calc(var(--space) / -2);
+  padding: calc(var(--space) / 8) calc(var(--space) / 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-teal-50);
+  border: var(--border-width) solid var(--color-teal-500);
+  border-radius: var(--border-radius);
+  color: var(--color-teal-500);
+  font-size: 0.75rem;
+  font-weight: 700;
 }

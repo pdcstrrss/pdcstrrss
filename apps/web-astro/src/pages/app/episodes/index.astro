@@ -1,10 +1,36 @@
 ---
-import { getEpisodes } from '../../../lib/useEpisodes.server';
+import { EpisodeList, FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
+import Layout from 'apps/web-astro/src/layouts/Layout.astro';
+import { getEpisodes, updateEpisodes } from '../../../lib/useEpisodes.server';
+import usePaginationFilters from 'apps/web-astro/src/lib/usePagination';
+
+await updateEpisodes(Astro);
 const data = await getEpisodes(Astro);
+const { Pagination, itemsPerPage, currentPage, urlTransformer } = usePaginationFilters({
+  ...data,
+  url: Astro.request.url,
+});
 ---
 
-<pre>
-  <code>
-    {JSON.stringify(data , null, 2)}
-  </code>
-</pre>
+<Layout>
+  <div class="page container container-md">
+    <header class="page-header sr-only">
+      <h1 class="page-header-title">Episodes</h1>
+    </header>
+    {
+      (data?.episodes.length || 0) > 0 ? (
+        <>
+          <EpisodeList episodes={data?.episodes || []} />
+          <Pagination
+            currentPage={currentPage}
+            totalAmountOfItems={data?.totalCount || 0}
+            itemsPerPage={itemsPerPage}
+            urlTransformer={urlTransformer}
+          />
+        </>
+      ) : (
+        <div class="card">No episodes found.</div>
+      )
+    }
+  </div>
+</Layout>

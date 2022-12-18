@@ -10,6 +10,11 @@ export type AppHeaderNavLinks = { title: string; to?: string; callback?: MouseEv
 export interface IAppHeaderProps {
   user?: AppHeaderUser | null | undefined;
   inverted?: boolean;
+  currentPath: string;
+}
+
+function isActiveNavLink(currentPath: string, to?: string) {
+  return to?.startsWith(currentPath);
 }
 
 const navLinks: AppHeaderNavLinks = [
@@ -38,7 +43,7 @@ const dropdownLinks: AppHeaderNavLinks = [
   },
 ];
 
-function renderNavLinks(navLinks: AppHeaderNavLinks) {
+function renderNavLinks(navLinks: AppHeaderNavLinks, currentPath: string) {
   return navLinks.map(({ title, to, callback }) => {
     if (callback) {
       return (
@@ -49,7 +54,11 @@ function renderNavLinks(navLinks: AppHeaderNavLinks) {
     }
 
     return (
-      <a key={title} className={clsx('app-header-nav-link')} href={to}>
+      <a
+        key={title}
+        className={clsx('app-header-nav-link', { 'active': isActiveNavLink(currentPath, to) })}
+        href={to}
+      >
         {title}
       </a>
     );
@@ -57,7 +66,7 @@ function renderNavLinks(navLinks: AppHeaderNavLinks) {
 }
 
 export function AppHeader(props: IAppHeaderProps) {
-  const { user, inverted } = props;
+  const { user, inverted, currentPath } = props;
 
   return (
     <header className={clsx('app-header container', { 'app-header-inverted': inverted })}>
@@ -73,7 +82,7 @@ export function AppHeader(props: IAppHeaderProps) {
       </div>
       <nav className="app-header-nav">
         {user ? (
-          navLinks && renderNavLinks(navLinks)
+          navLinks && renderNavLinks(navLinks, currentPath)
         ) : (
           <>
             <a className="app-header-nav-link" href="/api/auth/login">
@@ -112,7 +121,7 @@ export function AppHeader(props: IAppHeaderProps) {
             </button>
           )}
         >
-          {renderNavLinks(dropdownLinks)}
+          {renderNavLinks(dropdownLinks, currentPath)}
         </Dropdown>
       )}
     </header>
