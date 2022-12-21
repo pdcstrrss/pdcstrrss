@@ -212,6 +212,7 @@ export const getEpisodesFromFeedIdsWithEntries = async (feeds: IFeedIdsWithEntri
 export async function aggregateFeedsAndEpisodes(config: IAggregatorConfig) {
   const fullConfig = getFullConfig(config);
   const feeds = await getFeedsFromRss(fullConfig);
+  if (!feeds.length) return [];
   const feedIdsWithEntries = await saveFeeds(feeds);
   const episodesFromFeeds = await getEpisodesFromFeedIdsWithEntries(feedIdsWithEntries);
   await saveEpisodes(episodesFromFeeds);
@@ -222,6 +223,7 @@ export async function aggregateNewEpisodes() {
   const feedIdNUrls = await getFeedUrls();
   const fullConfig = getFullConfig({ feeds: feedIdNUrls.map(({ url }) => ({ url })) });
   const feedsData = await getFeedsFromRss(fullConfig);
+  if (!feedsData.length) return [];
   const feedIdsWithEntries = feedsData.reduce((acc, feedData) => {
     const feedIdNUrl = feedIdNUrls.find(({ url }) => url === feedData.url);
     if (!feedIdNUrl) return acc;

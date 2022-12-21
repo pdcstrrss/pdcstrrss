@@ -27,8 +27,6 @@ export const updateEpisodes = async ({ request, user }: { request: Request; user
   const dataEntries = await request.formData();
   const data = formPostSchema.parse(Object.fromEntries(dataEntries));
   if (data.action === FORM_ACTIONS.STATUS && data.subject === FORM_SUBJECTS.EPISODE) {
-    // const user = await getUserFromRequest({ request });
-    // if (!user?.id) throw new Response('User not found', { status: 401 });
     const { id, status } = toggleEpisodeSchema.parse(Object.fromEntries(dataEntries));
     console.log({
       id,

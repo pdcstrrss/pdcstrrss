@@ -94,7 +94,7 @@
   --border-width-sm: 0.16em;
   --border-color: var(--foreground-color);
   --border-radius: 1.5em;
-  --border-radius-sm: .75em;
+  --border-radius-sm: 0.75em;
 
   --font-family-base: 'Martian Grotesk', 'Martian Grotesk override', sans-serif;
   --font-family-wide: 'Martian Grotesk Wide', 'Martian Grotesk Wide override', sans-serif;

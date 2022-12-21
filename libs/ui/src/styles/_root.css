@@ -25,6 +25,8 @@ body {
   padding-block-end: calc(var(--space) * 3);
 }
 
+
+#swup,
 main {
   display: flex;
   flex-direction: column;

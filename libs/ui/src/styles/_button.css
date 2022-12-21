@@ -32,6 +32,7 @@ button,
   gap: calc(var(--space) / 2);
   align-items: center;
   cursor: pointer;
+  line-height: var(--line-height);
 }
 
 button,

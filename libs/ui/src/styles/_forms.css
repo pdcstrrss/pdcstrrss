@@ -1,3 +1,9 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) / 3);
+}
+
 label {
   display: block;
 }
@@ -5,7 +11,7 @@ label {
 input {
   width: 100%;
   display: block;
-  padding: calc(var(--space) / 4) calc(var(--space) / 2);
+  padding: calc(var(--space) / 2) calc(var(--space) / 1.5);
   border: var(--border-width) solid var(--border-color);
   background-color: var(--background-color-intense);
   color: var(--foreground-color);
@@ -14,7 +20,7 @@ input {
   font-family: var(--font-family-base);
   font-weight: 400;
   transition: border-color 0.2s ease-in-out;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-sm);
 }
 
 input:focus-visible {
@@ -28,4 +34,11 @@ input:not(:placeholder-shown):invalid {
 
 input:not(:placeholder-shown):valid {
   border-color: var(--brand-success);
+}
+
+.form-actions {
+  margin-block-start: var(--space);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space) / 2);
 }

@@ -157,7 +157,9 @@ export async function deleteFeedsOfUser({ feedIds, userId }: IAssignFeedToUserPa
 }
 
 export async function createFeedByUrl(url: string) {
+  console.log('url', url);
   const feedIds = await aggregateFeedsAndEpisodes({ feeds: [{ url }] });
+  if (feedIds.length === 0) return null;
   return getFeedById(feedIds[0]);
 }
 
