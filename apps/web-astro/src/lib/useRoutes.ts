@@ -1,4 +1,4 @@
-export default {
+export const ROUTES = {
   app: '/app',
   privacy: '/privacy',
   get feeds() {

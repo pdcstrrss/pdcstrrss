@@ -22,6 +22,10 @@ a:where(:hover, :focus-visible, .active) {
   display: flex;
 }
 
+.link-icon:where(:hover, :focus-visible, .active) {
+  color: var(--link-color-hover);
+}
+
 .link-icon svg {
   inline-size: var(--link-icon-size);
   block-size: var(--link-icon-size);

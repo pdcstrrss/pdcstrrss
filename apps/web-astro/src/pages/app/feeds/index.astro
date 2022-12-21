@@ -1,0 +1,42 @@
+---
+import { getFeedsOfUser } from '@pdcstrrss/core';
+import { FeedList } from '@pdcstrrss/ui';
+import Layout from '../../../layouts/Layout.astro';
+import { LOGIN_API_URL } from '../../../lib/useAuth';
+import { getUserFromRequest } from '../../../lib/useUser';
+import { ROUTES } from '../../../lib/useRoutes';
+
+const { request } = Astro;
+const { url, method } = request;
+
+const user = await getUserFromRequest(Astro);
+if (!user) return Astro.redirect(LOGIN_API_URL);
+
+const feedsData = await getFeedsOfUser({ userId: user.id });
+---
+
+<Layout>
+  <div class="page container container-md">
+    <header class="page-header">
+      <h1 class="page-header-title">Feeds</h1>
+      <div class="page-header-action">
+        {
+          user.permissions.canCreateFeed ? (
+            <a class="button button-primary" href={ROUTES.feedsCreate}>
+              <span>Add feed</span>
+            </a>
+          ) : (
+            <a href="/account">Want to add more feeds?</a>
+          )
+        }
+      </div>
+    </header>
+    {
+      feedsData.feeds.length ? (
+        <FeedList feeds={feedsData.feeds} getDeleteUrl={ROUTES.feedsDelete} />
+      ) : (
+        <div class="card">No feeds found</div>
+      )
+    }
+  </div>
+</Layout>

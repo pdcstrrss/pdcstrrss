@@ -1,5 +1,4 @@
-.card,
-[data-card] {
+.card {
   --card-border-color: var(--border-color);
   --card-background-color: var(--background-color-intense);
   --card-color: var(--foreground-color);
