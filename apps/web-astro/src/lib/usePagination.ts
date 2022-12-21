@@ -1,4 +1,5 @@
 import { Pagination, PaginationPropsUrlTransformerParams } from '@pdcstrrss/ui';
+import isNumeric from 'validator/lib/isNumeric';
 
 export type UsePaginationFiltersParams = {
   url: string;
@@ -23,7 +24,7 @@ const urlTransformer = (urlString: string) => (params: PaginationPropsUrlTransfo
   return url.toString();
 };
 
-function usePaginationFilters(data: UsePaginationFiltersParams) {
+export function usePaginationFilters(data: UsePaginationFiltersParams) {
   const itemsPerPage = (data?.limit || 0) - (data?.offset || 0);
   const currentPage = (itemsPerPage === 0 ? 0 : (data?.offset || 0) / itemsPerPage) + 1;
 
@@ -37,4 +38,20 @@ function usePaginationFilters(data: UsePaginationFiltersParams) {
   };
 }
 
-export default usePaginationFilters;
+export function getPaginationFromUrl(params: { url: string }) {
+  const url = new URL(params.url);
+  let limit: number | undefined;
+  let offset: number | undefined;
+  const limitParam = url.searchParams.get('limit');
+  const offsetParam = url.searchParams.get('offset');
+
+  if (limitParam) {
+    limit = isNumeric(limitParam) ? Number(limitParam) : undefined;
+  }
+
+  if (offsetParam) {
+    offset = isNumeric(offsetParam) ? Number(offsetParam) : undefined;
+  }
+
+  return { limit, offset };
+}

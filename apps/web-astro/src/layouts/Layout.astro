@@ -22,7 +22,8 @@ const defaultBaseLayoutProps: Partial<Props> = {
 
 const currentPath = new URL(Astro.request.url).pathname;
 const { header, footer, hero, title } = defaultsDeep({}, Astro.props, defaultBaseLayoutProps);
-const user = await getUserFromRequest({ request: Astro.request });
+const user = await getUserFromRequest(Astro);
+
 if (user && Astro.cookies.has('pdcstrrss.redirect')) {
   Astro.cookies.delete('pdcstrrss.redirect');
 }
