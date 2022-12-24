@@ -1,5 +1,5 @@
 ---
-import type { FORM_ACTIONS, FORM_SUBJECTS } from 'libs/ui/src';
+import type { FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
 
 type Props = {
   form: {
@@ -12,12 +12,20 @@ type Props = {
   };
   action: FORM_ACTIONS;
   subject: FORM_SUBJECTS;
+  error?: string;
 };
 
 const props = Astro.props as Props;
 ---
 
 <form {...props.form}>
+  {
+    props.error && (
+      <div data-alert data-alert-danger>
+        {props.error}
+      </div>
+    )
+  }
   <input type="hidden" name="action" value={props.action} />
   <input type="hidden" name="subject" value={props.subject} />
   <slot />

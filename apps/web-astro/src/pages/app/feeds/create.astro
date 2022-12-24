@@ -1,13 +1,14 @@
 ---
 import { FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
-import Layout from '../../../layouts/Layout.astro';
-import { LOGIN_API_URL } from '../../../lib/useAuth';
-import { getUserFromRequest } from '../../../lib/useUser';
-import { ROUTES } from '../../../lib/useRoutes';
-import Form from '../../../components/Forms/Form.astro';
-import { createFeed } from 'apps/web-astro/src/lib/useFeeds.server';
+import Layout from '@/layouts/Layout.astro';
+import { LOGIN_API_URL } from '@/lib/useAuth';
+import { getUserFromRequest } from '@/lib/useUser';
+import { ROUTES } from '@/lib/useRoutes';
+import Form from '@/components/Forms/Form.astro';
+import { createFeed } from '@/lib/useFeeds.server';
+import { logError } from '@/lib/useError';
 
-const { request } = Astro;
+const { request, redirect } = Astro;
 const { method } = request;
 
 const user = await getUserFromRequest(Astro);
@@ -15,13 +16,13 @@ if (!user) return Astro.redirect(LOGIN_API_URL);
 
 let error: string | undefined = undefined;
 if (method === 'POST') {
-  return createFeed({ user, request })
-    .then(() => {
-      return Astro.redirect(ROUTES.feeds);
-    })
-    .catch((err) => {
-      error = err.message;
-    });
+  try {
+    await createFeed({ user, request });
+    return redirect(ROUTES.feeds);
+  } catch (err: any) {
+    logError('deleteFeed', err);
+    error = 'Unable to create feed';
+  }
 }
 ---
 
@@ -30,14 +31,7 @@ if (method === 'POST') {
     <header class="page-header">
       <h1 class="page-header-title">Add feed</h1>
     </header>
-    <Form form={{ method: 'post' }} action={FORM_ACTIONS.CREATE} subject={FORM_SUBJECTS.FEED}>
-      {
-        error && (
-          <div data-alert data-alert-danger>
-            {error}
-          </div>
-        )
-      }
+    <Form form={{ method: 'post' }} action={FORM_ACTIONS.CREATE} subject={FORM_SUBJECTS.FEED} error={error}>
       <div class="form-group">
         <label for="url">RSS feed URL</label>
         <input id="url" type="url" name="url" required placeholder="https://example.com/feed" />

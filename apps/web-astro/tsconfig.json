@@ -22,6 +22,13 @@
     "importsNotUsedAsValues": "error",
     // Add Vite's client types
     "types": ["astro/client"],
-    "lib": ["DOM", "DOM.Iterable", "ESNext"]
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/data/*": ["data/*"],
+      "@/layouts/*": ["layouts/*"],
+      "@/lib/*": ["lib/*"]
+    }
   }
 }
