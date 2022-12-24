@@ -1,7 +1,6 @@
 ---
 import { FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
 import { getFeedById } from '@pdcstrrss/core';
-import { LOGIN_API_URL } from '@/lib/useAuth';
 import { ROUTES } from '@/lib/useRoutes';
 import { getUserFromRequest } from '@/lib/useUser';
 import Layout from '@/layouts/Layout.astro';
@@ -9,13 +8,15 @@ import { deleteFeed } from '@/lib/useFeeds.server';
 import Form from '@/components/Forms/Form.astro';
 import { logError } from '@/lib/useError';
 
-const user = await getUserFromRequest(Astro);
-if (!user) return Astro.redirect(LOGIN_API_URL);
 const {
   params: { id },
   request,
   redirect,
 } = Astro;
+
+const user = await getUserFromRequest({ request });
+if (!user) return redirect(ROUTES.login);
+
 if (!id) return new Response('Missing id', { status: 404 });
 
 let error: string | undefined = undefined;

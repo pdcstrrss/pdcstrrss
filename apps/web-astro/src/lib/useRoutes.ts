@@ -1,4 +1,6 @@
 export const ROUTES = {
+  // Pages
+  home: '/',
   app: '/app',
   privacy: '/privacy',
   get feeds() {
@@ -16,8 +18,16 @@ export const ROUTES = {
   get account() {
     return `${this.app}/account`;
   },
-  auth: '/auth',
-  get github() {
-    return `${this.auth}/github`;
+
+  // API
+  api: '/api',
+  get auth() {
+    return `${this.api}/auth`;
+  },
+  get login() {
+    return `${this.auth}/auth`;
+  },
+  get logout() {
+    return `${this.auth}/signout`;
   },
 };

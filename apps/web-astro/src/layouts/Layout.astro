@@ -3,7 +3,7 @@ import '@pdcstrrss/ui/src/styles/styles.global';
 import clsx from 'clsx';
 import defaultsDeep from 'lodash/defaultsDeep';
 import { AppHeader, SvgSprite, AppFooter } from '@pdcstrrss/ui';
-import { getUserFromRequest } from '../lib/useUser';
+import { getUserFromRequest } from '@/lib/useUser';
 import { AudioPlayer } from '@pdcstrrss/ui';
 
 interface Props {
@@ -37,7 +37,6 @@ if (user && Astro.cookies.has('pdcstrrss.redirect')) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.pdcstrrss.app" crossorigin />
-
     <slot name="head" />
   </head>
 

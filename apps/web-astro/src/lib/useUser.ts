@@ -30,7 +30,7 @@ export async function getUserPermissions({ user, userSession }: { user: User; us
   };
 }
 
-export async function getUserFromRequest({ request }: Readonly<AstroGlobal<Record<string, any>>>) {
+export async function getUserFromRequest({ request }: { request: Request }) {
   const userSession = getUserSessionFromRequest({ request });
   if (!userSession) return;
   const user = await getUserByGitHubId(userSession.user.id);

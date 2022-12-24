@@ -1,10 +1,8 @@
 import { EpisodeStatus } from '@prisma/client';
 import { getEpisodesData, updateEpisodeStatus } from '@pdcstrrss/core';
 import { FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
-import type { AstroGlobal } from 'astro';
-import isNumeric from 'validator/lib/isNumeric';
 import { z } from 'zod';
-import type { getUserFromRequest, UserFromRequest } from './useUser';
+import type { UserFromRequest } from './useUser';
 import { getPaginationFromUrl } from './usePagination';
 
 export const getEpisodes = async ({ url, user }: { url: string; user: UserFromRequest }) => {
@@ -28,11 +26,6 @@ export const updateEpisodes = async ({ request, user }: { request: Request; user
   const data = formPostSchema.parse(Object.fromEntries(dataEntries));
   if (data.action === FORM_ACTIONS.STATUS && data.subject === FORM_SUBJECTS.EPISODE) {
     const { id, status } = toggleEpisodeSchema.parse(Object.fromEntries(dataEntries));
-    console.log({
-      id,
-      userId: user?.id,
-      status,
-    });
     await updateEpisodeStatus(id, user?.id, status);
   }
 };

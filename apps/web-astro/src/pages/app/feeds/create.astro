@@ -1,7 +1,6 @@
 ---
 import { FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
 import Layout from '@/layouts/Layout.astro';
-import { LOGIN_API_URL } from '@/lib/useAuth';
 import { getUserFromRequest } from '@/lib/useUser';
 import { ROUTES } from '@/lib/useRoutes';
 import Form from '@/components/Forms/Form.astro';
@@ -9,13 +8,12 @@ import { createFeed } from '@/lib/useFeeds.server';
 import { logError } from '@/lib/useError';
 
 const { request, redirect } = Astro;
-const { method } = request;
 
-const user = await getUserFromRequest(Astro);
-if (!user) return Astro.redirect(LOGIN_API_URL);
+const user = await getUserFromRequest({ request });
+if (!user) return Astro.redirect(ROUTES.login);
 
 let error: string | undefined = undefined;
-if (method === 'POST') {
+if (request.method === 'POST') {
   try {
     await createFeed({ user, request });
     return redirect(ROUTES.feeds);

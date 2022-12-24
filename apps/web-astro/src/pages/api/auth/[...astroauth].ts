@@ -1,7 +1,7 @@
 import AstroAuth from '@astro-auth/core';
 import { GithubProvider } from '@astro-auth/providers';
 import { upsertUser } from '@pdcstrrss/database';
-import type { UserSession } from '../../../lib/useUserTypes';
+import type { UserSession } from '@/lib/useUserTypes';
 
 export const all = AstroAuth({
   authProviders: [

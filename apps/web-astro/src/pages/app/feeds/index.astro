@@ -1,16 +1,14 @@
 ---
 import { getFeedsOfUser } from '@pdcstrrss/core';
 import { FeedList } from '@pdcstrrss/ui';
-import Layout from '../../../layouts/Layout.astro';
-import { LOGIN_API_URL } from '../../../lib/useAuth';
-import { getUserFromRequest } from '../../../lib/useUser';
-import { ROUTES } from '../../../lib/useRoutes';
+import Layout from '@/layouts/Layout.astro';
+import { getUserFromRequest } from '@/lib/useUser';
+import { ROUTES } from '@/lib/useRoutes';
 
 const { request } = Astro;
-const { url, method } = request;
 
-const user = await getUserFromRequest(Astro);
-if (!user) return Astro.redirect(LOGIN_API_URL);
+const user = await getUserFromRequest({ request });
+if (!user) return Astro.redirect(ROUTES.login);
 
 const feedsData = await getFeedsOfUser({ userId: user.id });
 ---

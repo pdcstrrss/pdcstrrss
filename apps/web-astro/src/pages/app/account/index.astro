@@ -1,9 +1,11 @@
 ---
 import { clsx } from 'clsx';
 import { getUserByGitHubId, getUserSponsorship } from '@pdcstrrss/core';
-import { getUserSessionFromRequest } from '../../../lib/useUser';
-import Layout from 'apps/web-astro/src/layouts/Layout.astro';
-const userSession = getUserSessionFromRequest({ request: Astro.request });
+import { getUserSessionFromRequest } from '@/lib/useUser';
+import Layout from '@/layouts/Layout.astro';
+
+const { request } = Astro;
+const userSession = getUserSessionFromRequest({ request });
 const user = userSession ? await getUserByGitHubId(userSession.user.id) : null;
 const sponsorship = userSession?.accessToken
   ? await getUserSponsorship({ accessToken: userSession.accessToken }).catch(() => null)

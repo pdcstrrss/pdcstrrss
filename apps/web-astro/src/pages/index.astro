@@ -1,13 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getPassedGo, setPassedGo } from '../lib/usePassedGo';
-import { getUserFromRequest } from '../lib/useUser';
-const user = await getUserFromRequest({ request: Astro.request });
-const { cookies } = Astro;
+import Layout from '@/layouts/Layout.astro';
+import { getPassedGo, setPassedGo } from '@/lib/usePassedGo';
+import { getUserFromRequest } from '@/lib/useUser';
+
+const { cookies, request, redirect } = Astro;
+const user = await getUserFromRequest({ request });
 
 if (user && getPassedGo({ cookies })) {
   setPassedGo({ cookies, value: true });
-  Astro.redirect('/app');
+  redirect('/app');
 }
 ---
 
@@ -49,7 +50,7 @@ if (user && getPassedGo({ cookies })) {
 </Layout>
 
 <style>
-  .call-to-action-button-wrapper{
+  .call-to-action-button-wrapper {
     margin-block-end: var(--space-sm);
   }
 </style>
