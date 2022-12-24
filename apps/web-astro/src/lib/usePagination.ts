@@ -1,5 +1,6 @@
 import { Pagination, PaginationPropsUrlTransformerParams } from '@pdcstrrss/ui';
-import isNumeric from 'validator/lib/isNumeric';
+import { z } from 'zod';
+import { logError } from './useError';
 
 export type UsePaginationFiltersParams = {
   url: string;
@@ -38,20 +39,20 @@ export function usePaginationFilters(data: UsePaginationFiltersParams) {
   };
 }
 
+const paginationSchema = z.object({
+  limit: z.coerce.number().optional(),
+  offset: z.coerce.number().optional(),
+});
+
 export function getPaginationFromUrl(params: { url: string }) {
   const url = new URL(params.url);
-  let limit: number | undefined;
-  let offset: number | undefined;
-  const limitParam = url.searchParams.get('limit');
-  const offsetParam = url.searchParams.get('offset');
+  let { limit: limitParam, offset: offsetParam } = Object.fromEntries(url.searchParams.entries());
+  const parsed = paginationSchema.safeParse({ limit: limitParam, offset: offsetParam });
 
-  if (limitParam) {
-    limit = isNumeric(limitParam) ? Number(limitParam) : undefined;
+  if (!parsed.success) {
+    logError('PAGINATION', parsed.error);
+    return { limit: undefined, offset: undefined };
   }
 
-  if (offsetParam) {
-    offset = isNumeric(offsetParam) ? Number(offsetParam) : undefined;
-  }
-
-  return { limit, offset };
+  return parsed.data;
 }
