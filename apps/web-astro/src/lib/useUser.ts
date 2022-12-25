@@ -7,7 +7,6 @@ import {
   exceedsFreeFeedThreshold,
 } from '@pdcstrrss/core';
 import type { UserSession } from './useUserTypes';
-import type { AstroGlobal } from 'astro';
 
 export const getUserSessionFromRequest = ({ request }: { request: Request }): UserSession | null =>
   getUser({ server: request });

@@ -1,10 +1,10 @@
 [build]
-  command = "npm run build"
-  functions = "dist/apps/web-remix/functions"
-  publish = "dist/apps/web-remix/public"
+  command = "npx nx build web-astro:build"
+  functions = "dist/apps/web-astro/functions"
+  publish = "dist/apps/web-astro/public"
 
 [dev]
-  command = "npm run watch --workspace=@pdcstrrss/web-remix"
+  command = "npx nx build web-astro:dev"
   port = 3000
   autoLaunch = false
 

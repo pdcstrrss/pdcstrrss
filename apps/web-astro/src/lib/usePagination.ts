@@ -46,7 +46,7 @@ const paginationSchema = z.object({
 
 export function getPaginationFromUrl(params: { url: string }) {
   const url = new URL(params.url);
-  let { limit: limitParam, offset: offsetParam } = Object.fromEntries(url.searchParams.entries());
+  const { limit: limitParam, offset: offsetParam } = Object.fromEntries(url.searchParams.entries());
   const parsed = paginationSchema.safeParse({ limit: limitParam, offset: offsetParam });
 
   if (!parsed.success) {

@@ -3,14 +3,34 @@
   "projectType": "application",
   "sourceRoot": "apps/web-astro/src",
   "targets": {
-    "build": {
-      "outputs": ["dist/apps/web-astro"],
-      "executor": "@nxtensions/astro:build",
-      "options": {}
-    },
     "dev": {
       "executor": "@nxtensions/astro:dev",
-      "options": {}
+      "options": {
+        "config": "astro.config.ts"
+      }
+    },
+    "pre-build": {
+      "executor": "@nxtensions/astro:build",
+      "options": {
+        "config": "astro.config.ts"
+      }
+    },
+    "post-build": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "move-file apps/web-astro/.netlify/functions-internal/entry.mjs dist/apps/web-astro/functions/index.mjs",
+          "move-file apps/web-astro/dist dist/apps/web-astro/public"
+        ],
+        "parallel": false
+      }
+    },
+    "build": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx run web-astro:pre-build", "nx run web-astro:post-build"],
+        "parallel": false
+      }
     },
     "preview": {
       "dependsOn": [
@@ -24,6 +44,21 @@
     },
     "check": {
       "executor": "@nxtensions/astro:check"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web-astro/**/*.{js,ts}"],
+        "ignorePath": ".gitignore"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "echo 'No tests yet'",
+        "cwd": "apps/web-remix"
+      }
     }
   },
   "tags": []
