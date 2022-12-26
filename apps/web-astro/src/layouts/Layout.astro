@@ -42,12 +42,11 @@ if (user && Astro.cookies.has('pdcstrrss.redirect')) {
 
   <body class={clsx({ 'body-with-hero': !!hero, 'body-with-audio': user?.activeEpisode })}>
     <SvgSprite />
-    <div id="swup">
-      {header && <AppHeader client:idle user={user} inverted={hero} currentPath={currentPath} />}
-      <main>
-        <slot />
-      </main>
-    </div>
+
+    {header && <AppHeader client:idle user={user} inverted={hero} currentPath={currentPath} />}
+    <main id="swup">
+      <slot />
+    </main>
     {footer && <AppFooter />}
     {
       user?.activeEpisode && (
@@ -59,3 +58,18 @@ if (user && Astro.cookies.has('pdcstrrss.redirect')) {
   </body>
   <script src="../assets/main.ts"></script>
 </html>
+
+<style is:global>
+  .swup-transition-main {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  html.is-animating .swup-transition-main {
+    opacity: 0;
+  }
+
+  main[tabindex='-1'] {
+    outline: none;
+  }
+</style>

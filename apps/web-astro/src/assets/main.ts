@@ -1,15 +1,18 @@
-import './polyfills';
-
-import { handleFormSubmit } from './form';
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import Swup from 'swup';
+import SwupFadeTheme from '@swup/fade-theme';
+import SwupHeadPlugin from '@swup/head-plugin';
+import SwupA11yPlugin from '@swup/a11y-plugin';
+
+import './polyfills';
+import { handleFormSubmit } from './form';
 
 //
 // Page transitions
 //
-const swup = new Swup();
+const swupOptions = {
+  plugins: [new SwupFadeTheme(), new SwupHeadPlugin(), new SwupA11yPlugin()],
+};
+const swup = new Swup(swupOptions);
 
 //
 // Form submissions
