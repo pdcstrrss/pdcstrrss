@@ -11,6 +11,9 @@
 [functions."function-aggregate"]
 schedule = "@hourly"
 
+[functions."function-maintenance"]
+schedule = "@hourly"
+
 [[redirects]]
   from = "https://pdcstrrss.netlify.app/*"
   to = "https://pdcstrrss.app/:splat"

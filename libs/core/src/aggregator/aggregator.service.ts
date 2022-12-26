@@ -223,7 +223,7 @@ export async function aggregateNewEpisodes() {
   const feedIdNUrls = await getFeedUrls();
   const fullConfig = getFullConfig({ feeds: feedIdNUrls.map(({ url }) => ({ url })) });
   const feedsData = await getFeedsFromRss(fullConfig);
-  if (!feedsData.length) return [];
+  if (!feedsData.length) throw new Error('No feeds found');
   const feedIdsWithEntries = feedsData.reduce((acc, feedData) => {
     const feedIdNUrl = feedIdNUrls.find(({ url }) => url === feedData.url);
     if (!feedIdNUrl) return acc;

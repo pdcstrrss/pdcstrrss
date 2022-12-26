@@ -41,6 +41,8 @@ model OauthSession {
   refreshToken String?
   User         User     @relation(fields: [userId], references: [id])
   userId       String
+
+  @@index([userId])
 }
 
 model Feed {
@@ -85,6 +87,7 @@ model FeedsOfUsers {
 
   @@id([userId, feedId])
   @@index([userId, feedId])
+  @@index([feedId])
 }
 
 enum EpisodeStatus {
@@ -108,4 +111,5 @@ model EpisodesOfUsers {
 
   @@id([userId, episodeId])
   @@index([userId, episodeId])
+  @@index([episodeId])
 }

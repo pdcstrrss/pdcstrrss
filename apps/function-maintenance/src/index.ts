@@ -1,10 +1,10 @@
 import type { Handler } from '@netlify/functions';
-import { aggregateNewEpisodes } from '@pdcstrrss/core';
+import { cleanupUnlinkedData } from '@pdcstrrss/core';
 
 const handler: Handler = async () => {
   try {
-    const { episodesCount, feedCount, linkedEpisodesCount } = await aggregateNewEpisodes();
-    console.debug(`Successfully aggregated ${episodesCount} episodes from ${feedCount} feeds. \nSynced ${linkedEpisodesCount} new episodes.`);
+    const { episodeCount, feedCount } = await cleanupUnlinkedData();
+    console.debug(`Successfully cleaned up \n${episodeCount} episodes \n${feedCount} feeds.`);
     return {
       statusCode: 204,
     };
@@ -18,4 +18,3 @@ const handler: Handler = async () => {
 };
 
 module.exports.handler = handler;
-

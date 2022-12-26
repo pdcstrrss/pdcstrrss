@@ -1,0 +1,52 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/function-maintenance/src",
+  "root": "libs/function-maintenance",
+  "targets": {
+    "build": {
+      "executor": "@wanews/nx-esbuild:build",
+      "options": {
+        "platform": "node",
+        "target": "node16",
+        "outfile": "./dist/apps/web-remix/functions/function-maintenance/index.js",
+        "entryPoints": ["./apps/function-maintenance/src/index.ts"],
+        "external": ["@prisma/client"]
+      }
+    },
+    "package": {
+      "executor": "@wanews/nx-esbuild:package",
+      "options": {
+        "platform": "node",
+        "target": "node16",
+        "outfile": "./dist/apps/web-remix/functions/function-maintenance/index.js",
+        "entryPoints": ["./apps/function-maintenance/src/index.ts"],
+        "external": ["@prisma/client"]
+      }
+    },
+    "dev": {
+      "executor": "@wanews/nx-esbuild:serve",
+      "options": {
+        "platform": "node",
+        "target": "node16",
+        "outfile": "./dist/apps/web-remix/functions/function-maintenance/index.js",
+        "entryPoints": ["./apps/function-maintenance/src/index.ts"],
+        "external": ["@prisma/client"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/function-maintenance/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx vitest --run",
+        "cwd": "apps/function-maintenance"
+      }
+    }
+  },
+  "tags": []
+}
