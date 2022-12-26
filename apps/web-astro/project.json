@@ -19,6 +19,8 @@
       "builder": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
+          "rimraf dist/hosting/netlify/functions/function-astro",
+          "rimraf dist/hosting/netlify/public",
           "move-file apps/web-astro/.netlify/functions-internal/entry.mjs dist/hosting/netlify/functions/function-astro/index.mjs",
           "move-file apps/web-astro/dist dist/hosting/netlify/public"
         ],
