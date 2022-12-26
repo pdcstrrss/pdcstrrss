@@ -62,6 +62,7 @@
   grid-area: button;
   display: flex;
   align-items: center;
+  border: 0;
 }
 
 .episode-media-icon {

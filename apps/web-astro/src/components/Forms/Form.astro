@@ -30,14 +30,3 @@ const props = Astro.props as Props;
   <input type="hidden" name="subject" value={props.subject} />
   <slot />
 </form>
-
-<script>
-  document.getElementsByTagName('form')[0].addEventListener('submit', (e) => {
-    const form = e.target as HTMLFormElement;
-    const submitBtns = form.querySelectorAll('[data-text-content-on-submit]');
-    submitBtns.forEach((btn) => {
-      btn.setAttribute('disabled', 'disabled');
-      btn.textContent = btn.getAttribute('data-text-content-on-submit');
-    });
-  });
-</script>

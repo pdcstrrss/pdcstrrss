@@ -151,6 +151,8 @@ button:where(:hover, :focus-visible),
 /* =================================
  * Disabled
  ================================= */
-.button.disabled {
+.button.disabled,
+.button:disabled {
   --button-border-color: var(--button-background-color);
+  opacity: 0.75;
 }

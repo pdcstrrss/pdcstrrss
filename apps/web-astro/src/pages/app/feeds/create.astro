@@ -18,7 +18,7 @@ if (request.method === 'POST') {
     await createFeed({ user, request });
     return redirect(ROUTES.feeds);
   } catch (err: any) {
-    logError('deleteFeed', err);
+    logError('createFeed', err);
     error = 'Unable to create feed';
   }
 }
