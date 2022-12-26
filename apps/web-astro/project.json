@@ -57,7 +57,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "command": "echo 'No tests yet'",
-        "cwd": "apps/web-remix"
+        "cwd": "apps/web-astro"
       }
     }
   },

@@ -38,7 +38,7 @@
       }
     ]
   },
-  "defaultProject": "web-remix",
+  "defaultProject": "web-astro",
   "generators": {
     "@nrwl/react:component": {
       "pascalCaseFiles": true,
