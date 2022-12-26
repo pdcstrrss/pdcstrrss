@@ -9,7 +9,7 @@
       "options": {
         "platform": "node",
         "target": "node16",
-        "outfile": "./dist/apps/web-remix/functions/function-maintenance/index.js",
+        "outfile": "./dist/hosting/netlify/functions/function-maintenance/index.js",
         "entryPoints": ["./apps/function-maintenance/src/index.ts"],
         "external": ["@prisma/client"]
       }
@@ -19,7 +19,7 @@
       "options": {
         "platform": "node",
         "target": "node16",
-        "outfile": "./dist/apps/web-remix/functions/function-maintenance/index.js",
+        "outfile": "./dist/hosting/netlify/functions/function-maintenance/index.js",
         "entryPoints": ["./apps/function-maintenance/src/index.ts"],
         "external": ["@prisma/client"]
       }
@@ -29,7 +29,7 @@
       "options": {
         "platform": "node",
         "target": "node16",
-        "outfile": "./dist/apps/web-remix/functions/function-maintenance/index.js",
+        "outfile": "./dist/hosting/netlify/functions/function-maintenance/index.js",
         "entryPoints": ["./apps/function-maintenance/src/index.ts"],
         "external": ["@prisma/client"]
       }

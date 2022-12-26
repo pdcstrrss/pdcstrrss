@@ -1,7 +1,7 @@
 [build]
   command = "npx nx build web-astro:build"
-  functions = "dist/apps/web-astro/functions"
-  publish = "dist/apps/web-astro/public"
+  functions = "dist/hosting/netlify/functions"
+  publish = "dist/hosting/netlify/public"
 
 [dev]
   command = "npx nx build web-astro:dev"
@@ -35,7 +35,7 @@ schedule = "@hourly"
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/function-astro"
   status = 200
 
 [[headers]]

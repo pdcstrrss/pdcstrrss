@@ -19,8 +19,8 @@
       "builder": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "move-file apps/web-astro/.netlify/functions-internal/entry.mjs dist/apps/web-astro/functions/index.mjs",
-          "move-file apps/web-astro/dist dist/apps/web-astro/public"
+          "move-file apps/web-astro/.netlify/functions-internal/entry.mjs dist/hosting/netlify/functions/function-astro/index.mjs",
+          "move-file apps/web-astro/dist dist/hosting/netlify/public"
         ],
         "parallel": false
       }
