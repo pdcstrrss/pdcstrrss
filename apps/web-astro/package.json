@@ -20,7 +20,6 @@
     "@astrojs/preact": "^1.2.0",
     "@astrojs/react": "^1.2.2",
     "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/turbolinks": "^0.1.4",
     "astro": "^1.6.12",
     "fontaine": "^0.2.3"
   }
