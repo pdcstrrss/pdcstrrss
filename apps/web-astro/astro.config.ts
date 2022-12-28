@@ -10,9 +10,12 @@ export default defineConfig({
   integrations: [react(), sitemap()],
   output: 'server',
   adapter: netlify(),
-  // vite: {
-  //   plugins: [
-  //     FontaineTransform.vite({ fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'] }),
-  //   ],
-  // },
+  vite: {
+    ssr: {
+      noExternal: ['path-to-regexp'],
+    },
+    //   plugins: [
+    //     FontaineTransform.vite({ fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'] }),
+    //   ],
+  },
 });

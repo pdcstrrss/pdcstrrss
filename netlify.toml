@@ -33,11 +33,6 @@ schedule = "@hourly"
   to = "/.netlify/functions/function-aggregate"
   status = 200
 
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/function-astro"
-  status = 200
-
 [[headers]]
   for = "/build/*"
   [headers.values]
