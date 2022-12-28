@@ -10,7 +10,7 @@ import { handleFormSubmit } from './form';
 // Page transitions
 //
 const swupOptions = {
-  plugins: [new SwupFadeTheme(), new SwupHeadPlugin(), new SwupA11yPlugin()],
+  plugins: [/* new SwupFadeTheme(), */ new SwupHeadPlugin(), new SwupA11yPlugin()],
 };
 const swup = new Swup(swupOptions);
 
