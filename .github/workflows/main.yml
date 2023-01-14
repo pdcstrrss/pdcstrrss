@@ -13,6 +13,8 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       GH_OAUTH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
       GH_OAUTH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
+      ASTROAUTH_SECRET: ${{ secrets.ASTROAUTH_SECRET }}
+      ASTROAUTH_URL: ${{ secrets.ASTROAUTH_URL }}
       BASE_URL: ${{ secrets.BASE_URL }}
       SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
