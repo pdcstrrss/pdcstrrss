@@ -1,16 +1,20 @@
-import { NavLink, Link } from '@remix-run/react';
-import { User } from '@pdcstrrss/database';
-import type { To } from 'history';
+import type { MouseEventHandler } from 'react';
+import type { User } from '@prisma/client';
 import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
 import Dropdown from '../../Dropdown/Dropdown';
 
-export type AppHeaderUser = Pick<User, 'displayName' | 'image'>;
-export type AppHeaderNavLinks = { title: string; to: To }[];
+export type AppHeaderUser = Partial<Pick<User, 'displayName' | 'image'>>;
+export type AppHeaderNavLinks = { title: string; to?: string; callback?: MouseEventHandler<HTMLButtonElement> }[];
 
 export interface IAppHeaderProps {
-  user?: AppHeaderUser;
+  user?: AppHeaderUser | null | undefined;
   inverted?: boolean;
+  currentPath: string;
+}
+
+function isActiveNavLink(currentPath: string, to?: string) {
+  return to?.startsWith(currentPath);
 }
 
 const navLinks: AppHeaderNavLinks = [
@@ -31,41 +35,59 @@ const dropdownLinks: AppHeaderNavLinks = [
   },
   {
     title: TRANSLATIONS.logout,
-    to: '/logout',
+    callback: async (event) => {
+      event.preventDefault();
+      await fetch(window.origin + '/api/auth/signout', { method: 'DELETE' });
+      window.location.reload();
+    },
   },
 ];
 
-function renderNavLinks(navLinks: AppHeaderNavLinks) {
-  return navLinks.map(({ title, to }) => (
-    <NavLink key={title} className={({ isActive }) => clsx({ active: isActive }, 'app-header-nav-link')} to={to}>
-      {title}
-    </NavLink>
-  ));
+function renderNavLinks(navLinks: AppHeaderNavLinks, currentPath: string) {
+  return navLinks.map(({ title, to, callback }) => {
+    if (callback) {
+      return (
+        <button key={title} className={clsx('app-header-nav-link')} onClick={callback} type="button">
+          {title}
+        </button>
+      );
+    }
+
+    return (
+      <a
+        key={title}
+        className={clsx('app-header-nav-link', { 'active': isActiveNavLink(currentPath, to) })}
+        href={to}
+      >
+        {title}
+      </a>
+    );
+  });
 }
 
 export function AppHeader(props: IAppHeaderProps) {
-  const { user, inverted } = props;
+  const { user, inverted, currentPath } = props;
 
   return (
     <header className={clsx('app-header container', { 'app-header-inverted': inverted })}>
       <div className="app-header-logo">
-        <Link to="/" className="logo" aria-labelledby="appHeaderLogoText">
+        <a href="/" className="logo" aria-labelledby="appHeaderLogoText">
           <svg className="logo-icon" role="presentation">
             <use xlinkHref="#logo" />
           </svg>
           <div id="appHeaderLogoText" className="logo-text">
             {TRANSLATIONS.title}
           </div>
-        </Link>
+        </a>
       </div>
       <nav className="app-header-nav">
         {user ? (
-          navLinks && renderNavLinks(navLinks)
+          navLinks && renderNavLinks(navLinks, currentPath)
         ) : (
           <>
-            <Link className="app-header-nav-link" to="/login">
+            <a className="app-header-nav-link" href="/api/auth/login">
               {TRANSLATIONS.login}
-            </Link>
+            </a>
             <a
               href="https://github.com/pdcstrrss"
               target="_blank"
@@ -82,12 +104,24 @@ export function AppHeader(props: IAppHeaderProps) {
       {user && (
         <Dropdown
           toggle={({ visibility }) => (
-            <button type='button' className="button-reset" aria-label={`Click to ${visibility ? 'close' : 'open'} account options`}>
-              {user?.image && <img className="app-header-image" src={user.image} alt={user.displayName} width='100px' height='100px' />}
+            <button
+              type="button"
+              className="button-reset"
+              aria-label={`Click to ${visibility ? 'close' : 'open'} account options`}
+            >
+              {user?.image && (
+                <img
+                  className="app-header-image"
+                  src={user.image}
+                  alt={user.displayName}
+                  width="100px"
+                  height="100px"
+                />
+              )}
             </button>
           )}
         >
-          {renderNavLinks(dropdownLinks)}
+          {renderNavLinks(dropdownLinks, currentPath)}
         </Dropdown>
       )}
     </header>

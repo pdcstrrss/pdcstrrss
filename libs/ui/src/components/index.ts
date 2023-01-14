@@ -5,3 +5,4 @@ export * from './Episode';
 export * from './Feed';
 export * from './Pagination';
 export * from './SvgSprite';
+export * from './AudioPlayer';

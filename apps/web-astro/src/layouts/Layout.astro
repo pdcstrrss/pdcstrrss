@@ -1,0 +1,76 @@
+---
+import '@pdcstrrss/ui/src/styles/styles.global';
+import clsx from 'clsx';
+import defaultsDeep from 'lodash/defaultsDeep';
+import { AppHeader, SvgSprite, AppFooter } from '@pdcstrrss/ui';
+import { getUserFromRequest } from '@/lib/useUser';
+import { AudioPlayer } from '@pdcstrrss/ui';
+
+interface Props {
+  title?: string;
+  hero?: boolean;
+  header?: boolean;
+  footer?: boolean;
+}
+
+const defaultBaseLayoutProps: Partial<Props> = {
+  title: 'PDCSTRRSS',
+  hero: false,
+  header: true,
+  footer: true,
+};
+
+const currentPath = new URL(Astro.request.url).pathname;
+const { header, footer, hero, title } = defaultsDeep({}, Astro.props, defaultBaseLayoutProps);
+const user = await getUserFromRequest(Astro);
+
+if (user && Astro.cookies.has('pdcstrrss.redirect')) {
+  Astro.cookies.delete('pdcstrrss.redirect');
+}
+---
+
+<html lang="en">
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.pdcstrrss.app" crossorigin />
+    <slot name="head" />
+  </head>
+
+  <body class={clsx({ 'body-with-hero': !!hero, 'body-with-audio': user?.activeEpisode })}>
+    <SvgSprite />
+    <div id="swup">
+      {header && <AppHeader client:idle user={user} inverted={hero} currentPath={currentPath} />}
+      <main>
+        <slot />
+      </main>
+    </div>
+    {footer && <AppFooter />}
+    {
+      user?.activeEpisode && (
+        <div class="audio-player">
+          <AudioPlayer src={user.activeEpisode.url} />
+        </div>
+      )
+    }
+  </body>
+  <script src="../assets/main.ts"></script>
+</html>
+
+<style is:global>
+  .swup-transition-main {
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  html.is-animating .swup-transition-main {
+    opacity: 1;
+  }
+
+  main[tabindex='-1'] {
+    outline: none;
+  }
+</style>

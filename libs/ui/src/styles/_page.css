@@ -1,0 +1,30 @@
+/* =================================
+ * Page
+ ================================= */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: calc(var(--space) * 2);
+  margin-block: var(--space);
+}
+
+.page-centered {
+  align-items: center;
+  justify-content: center;
+}
+
+.page-header {
+  display: flex;
+  align-items: end;
+  gap: var(--space);
+}
+
+.page-header-title {
+  font-family: var(--font-family-wide);
+  font-weight: 900;
+  flex-grow: 1;
+  margin: 0;
+  align-items: center;
+}

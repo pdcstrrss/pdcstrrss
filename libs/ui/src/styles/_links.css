@@ -1,0 +1,45 @@
+:root {
+  --link-color: currentColor;
+  --link-icon-size: var(--step-3);
+  --link-underline-thickness: var(--border-width);
+  --link-underline-color: var(--brand-secondary);
+}
+
+a {
+  display: inline-flex;
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--link-underline-color);
+}
+
+a:where(:hover, :focus-visible, .active) {
+  --link-underline-color: var(--color-indigo-500);
+}
+
+.link-icon {
+  display: flex;
+}
+
+.link-icon:where(:hover, :focus-visible, .active) {
+  color: var(--link-color-hover);
+}
+
+.link-icon svg {
+  inline-size: var(--link-icon-size);
+  block-size: var(--link-icon-size);
+}
+
+.link-icon:where(:hover, :focus-visible) {
+  --link-color-hover: var(--brand-primary);
+  --link-background-color-hover: transparent;
+}
+
+.link-icon-primary {
+  --link-color: var(--brand-primary);
+}
+
+.link-icon-primary:where(:hover, :focus-visible) {
+  --link-color-hover: var(--brand-secondary);
+}

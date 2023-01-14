@@ -1,0 +1,56 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getPassedGo, setPassedGo } from '@/lib/usePassedGo';
+import { getUserFromRequest } from '@/lib/useUser';
+
+const { cookies, request, redirect } = Astro;
+const user = await getUserFromRequest({ request });
+
+if (user && getPassedGo({ cookies })) {
+  setPassedGo({ cookies, value: true });
+  redirect('/app');
+}
+---
+
+<Layout hero={true}>
+  <section class="container hero" style={{ paddingBlockEnd: 'var(--step-8)' }}>
+    <h1 class="hero-title">
+      Play podcasts <span class="text-no-wrap">via RSS</span>
+    </h1>
+    <p>Why the fancy marketing lingo?</p>
+    <p>
+      <a href="/app/account" class="button button-secondary button-wide"> Create a free account</a>
+    </p>
+    <small>... and connect 3 feeds</small>
+  </section>
+  <section class="container container-lg" style={{ paddingBlock: 'var(--step-8)', textAlign: 'center' }}>
+    <h2 class="display-heading">More than 3 feeds?</h2>
+    <div style={{ margin: '0 auto', maxInlineSize: '760px' }}>
+      <p>Become a supporter!</p>
+      <p>
+        PDCSTRRSS is <strong class="text-primary">Open Source</strong>, cares about your{' '}
+        <strong class="text-primary">privacy</strong> and that’s why we only find it{' '}
+        <strong class="text-primary">fair</strong> to ask for sponsoring instead of selling your data.
+      </p>
+      <p>
+        By sponsoring only <strong class="text-primary">$2 a month</strong>, you’ll be able to add{' '}
+        <strong class="text-primary">more than 3 feeds</strong> and you’ll help us keep our machines running.
+      </p>
+      <p class="call-to-action-button-wrapper">
+        <a href="/app/account" class="button button-primary button-wide">
+          <svg>
+            <use xlink:href="#github"></use>
+          </svg>
+          Sponsor via GitHub
+        </a>
+      </p>
+      <small><a href="/privacy">Read our privacy policy</a></small>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .call-to-action-button-wrapper {
+    margin-block-end: var(--space-sm);
+  }
+</style>

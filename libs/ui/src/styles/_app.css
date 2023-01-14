@@ -1,0 +1,83 @@
+/* =================================
+ * App Header
+ ================================= */
+
+.app-header,
+.app-footer {
+  --app-link-underline-color: var(--color-indigo-500);
+
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space) / 1);
+  padding-block: var(--space);
+  position: relative;
+  z-index: 1;
+  inline-size: 100%;
+}
+
+.app-header-inverted,
+.app-footer-inverted {
+  color: var(--color-indigo-50);
+  --foreground-color-intense: var(--color-teal-50);
+  --logo-layer-1: var(--color-teal-300);
+  --logo-layer-2: var(--color-teal-50);
+  --border-color: var(--color-indigo-800);
+  --app-link-underline-color: var(--color-teal-300);
+}
+
+:where(.app-header-inverted, .app-footer-inverted) .link-icon:where(:hover, :focus-visible) {
+  --link-color: var(--color-teal-300);
+}
+
+.app-header-logo .logo,
+.app-footer-logo .logo {
+  padding-block: var(--link-padding-inline);
+  margin-block: 0;
+}
+
+.app-header-nav,
+.app-footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+  gap: calc(var(--space) / 1);
+}
+
+.app-header-nav-link,
+.app-footer-nav-link {
+  font-family: var(--font-family-wide);
+  text-decoration: none;
+  font-weight: 900;
+  margin-block: 0;
+}
+
+:is(.app-header-nav-link, .app-footer-nav-link):where(:hover, :focus-visible, .active) {
+  text-decoration: underline;
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--app-link-underline-color);
+}
+
+.app-header-nav-icon,
+.app-footer-nav-icon {
+  --nav-icon-size: var(--step-4);
+  inline-size: var(--nav-icon-size);
+  block-size: var(--nav-icon-size);
+}
+
+.app-header-image,
+.app-footer-image {
+  inline-size: calc(var(--space) * 2);
+  block-size: calc(var(--space) * 2);
+  aspect-ratio: 1 / 1;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+}
+
+/* =================================
+ * App Footer
+ ================================= */
+.app-footer-logo {
+  flex-grow: 1;
+}

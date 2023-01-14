@@ -1,46 +1,46 @@
-import { Link } from '@remix-run/react';
 import type { IFeed } from '@pdcstrrss/core';
-import styles from './FeedList.css';
+import './FeedList.css';
 
-export type IFeedListItemProps = IFeed;
+export type IFeedListItemProps = IFeed & {
+  deleteUrl: string;
+};
 
 interface IFeedListProps {
-  feeds: IFeedListItemProps[];
+  getDeleteUrl: (id: string) => string;
+  feeds: IFeed[];
 }
 
-export const FeedListLinks = () => [{ rel: 'stylesheet', href: styles }];
-
-export const FeedListItem = ({ id, title, url, latestEpisodePublished, image }: IFeedListItemProps) => {
+export const FeedListItem = ({ id, title, url, latestEpisodePublished, image, deleteUrl }: IFeedListItemProps) => {
   return (
-    <article key={id} data-feed data-card>
-      <header data-feed-header>
-        <h2 className='h4 feed-title'>{title}</h2>
+    <article key={id} className="feed card">
+      <header className="feed-header">
+        <h2 className="h5 feed-title">{title}</h2>
       </header>
 
-      <figure data-feed-media>{image && <img data-feed-image src={image} alt={title} />}</figure>
+      <figure className="feed-media">{image && <img className="feed-image" src={image} alt={title} />}</figure>
 
-      <div data-feed-meta>
-        <time data-feed-datetime dateTime={latestEpisodePublished.toString()}>
+      <div className="feed-meta">
+        <time className="feed-datetime" dateTime={latestEpisodePublished.toString()}>
           {Intl.DateTimeFormat(['sv-SE']).format(new Date(latestEpisodePublished))}
         </time>
       </div>
 
-      <div data-feed-actions>
-        <Link className='link-icon' to={`/app/feeds/${id}/delete`}>
+      <div className="feed-actions">
+        <a className="link-icon" href={deleteUrl}>
           <svg>
             <use xlinkHref="#trash" />
           </svg>
-        </Link>
+        </a>
       </div>
     </article>
   );
 };
 
-export const FeedList = ({ feeds }: IFeedListProps) => {
+export const FeedList = ({ feeds, getDeleteUrl }: IFeedListProps) => {
   return (
-    <div data-feed-list>
+    <div className="feed-list">
       {feeds.map((feed) => (
-        <FeedListItem key={feed.url} {...feed} />
+        <FeedListItem key={feed.url} {...feed} deleteUrl={getDeleteUrl(feed.id)} />
       ))}
     </div>
   );

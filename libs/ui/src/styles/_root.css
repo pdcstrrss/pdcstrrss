@@ -1,0 +1,45 @@
+html {
+  font-size: clamp(14px, 2vw, 17px);
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--step-0);
+  font-weight: 500;
+  line-height: 1.66;
+  color: var(--foreground-color);
+  background-color: var(--background-color-mild);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.body-with-audio {
+  padding-block-end: calc(var(--space) * 3);
+}
+
+
+#swup,
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+p,
+ul {
+  margin-top: 0;
+  margin-bottom: var(--space);
+}
+
+.list-unstyled {
+  list-style: none;
+  padding: 0;
+}

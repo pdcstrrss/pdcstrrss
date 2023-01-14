@@ -1,8 +1,5 @@
 import type { Handler } from '@netlify/functions';
 import { aggregateNewEpisodes } from '@pdcstrrss/core';
-import { installGlobals } from '@remix-run/node';
-
-installGlobals();
 
 const handler: Handler = async () => {
   try {

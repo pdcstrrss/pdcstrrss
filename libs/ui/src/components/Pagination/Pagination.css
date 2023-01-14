@@ -1,4 +1,4 @@
-.rc-pagination {
+.pagination {
   padding: 0;
   margin: 0 auto;
   display: flex;
@@ -7,54 +7,58 @@
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   overflow: hidden;
+  background-color: var(--background-color);
+  color: var(--foreground-color-intense);
+  background-color: var(--background-color-intense);
 }
 
-.rc-pagination li {
+.pagination li {
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   justify-content: center;
-  margin: 0 calc(var(--border-width) * -1);
+}
+
+.pagination li:not(:first-child) {
   border-left: var(--border-width) solid var(--border-color);
+  margin-inline-start: calc(var(--border-width) / -2);
 }
 
-.rc-pagination li:last-child {
+.pagination li:not(:last-child) {
   border-right: var(--border-width) solid var(--border-color);
+  margin-inline-end: calc(var(--border-width) / -2);
 }
 
-.rc-pagination li.rc-pagination-disabled {
+.pagination li.pagination-disabled {
   display: none;
 }
 
-.rc-pagination .rc-pagination-simple-pager {
-  flex-direction: row;
-  align-items: center;
-  color: var(--foreground-color-intense);
-  background-color: var(--background-color-intense);
-  padding: calc(var(--space) / 2) var(--space);
-  gap: calc(var(--space) / 3);
-}
-
-.rc-pagination :where(button, a) {
+.pagination :where(button, a, span) {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  flex-shrink: 0;
   color: var(--foreground-color-intense);
   background-color: var(--background-color-intense);
   border: 0;
-  padding: calc(var(--space) / 2) var(--space);
+  padding: calc(var(--space) / 2) calc(var(--space) / 1);
   border-radius: 0;
+  text-decoration: none;
 }
 
-.rc-pagination :where(button, a):where(:hover, :focus-visible) {
+.pagination :where(button, a):where(:hover, :focus-visible) {
   background-color: var(--brand-primary);
   color: var(--brand-primary-contrast);
   cursor: pointer;
 }
 
-.rc-pagination svg {
+.pagination svg {
   --pagination-icon-size: var(--space);
   height: var(--pagination-icon-size);
   width: var(--pagination-icon-size);
+}
+
+.pagination svg + svg {
+  margin-inline-start: calc(var(--space) / -1.5);
 }

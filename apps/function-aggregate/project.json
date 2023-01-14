@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/function-aggregate/src",
   "root": "libs/function-aggregate",
@@ -9,7 +9,7 @@
       "options": {
         "platform": "node",
         "target": "node16",
-        "outfile": "./dist/apps/web-remix/functions/function-aggregate/index.js",
+        "outfile": "./dist/hosting/netlify/functions/function-aggregate/index.js",
         "entryPoints": ["./apps/function-aggregate/src/index.ts"],
         "external": ["@prisma/client"]
       }
@@ -19,7 +19,7 @@
       "options": {
         "platform": "node",
         "target": "node16",
-        "outfile": "./dist/apps/web-remix/functions/function-aggregate/index.js",
+        "outfile": "./dist/hosting/netlify/functions/function-aggregate/index.js",
         "entryPoints": ["./apps/function-aggregate/src/index.ts"],
         "external": ["@prisma/client"]
       }
@@ -29,7 +29,7 @@
       "options": {
         "platform": "node",
         "target": "node16",
-        "outfile": "./dist/apps/web-remix/functions/function-aggregate/index.js",
+        "outfile": "./dist/hosting/netlify/functions/function-aggregate/index.js",
         "entryPoints": ["./apps/function-aggregate/src/index.ts"],
         "external": ["@prisma/client"]
       }

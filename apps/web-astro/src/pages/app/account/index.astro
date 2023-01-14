@@ -1,0 +1,120 @@
+---
+import { clsx } from 'clsx';
+import { getUserByGitHubId, getUserSponsorship } from '@pdcstrrss/core';
+import { getUserSessionFromRequest } from '@/lib/useUser';
+import Layout from '@/layouts/Layout.astro';
+
+const { request } = Astro;
+const userSession = getUserSessionFromRequest({ request });
+const user = userSession ? await getUserByGitHubId(userSession.user.id) : null;
+const sponsorship = userSession?.accessToken
+  ? await getUserSponsorship({ accessToken: userSession.accessToken }).catch(() => null)
+  : null;
+const sponsorOrMember = sponsorship?.sponsor || sponsorship?.member;
+---
+
+<Layout>
+  <div class="page container">
+    <header class="page-header">
+      <h1 class="page-header-title">{user ? 'Account' : 'Create an account'}</h1>
+    </header>
+    <div class="page-account-container">
+      <div class={clsx('card clear-inner-space', { 'card-success': !!user })} inert={user ? 'true' : undefined}>
+        <div class="card-header">
+          <h2 class="h4">{user ? 'Logged in' : 'Login'}</h2>
+        </div>
+        <div class="card-body">
+          {
+            user ? (
+              <p>
+                Great! You've already logged in with GitHub. This way you can add 3 RSS podcast feeds and listen to the
+                episodes.
+              </p>
+            ) : (
+              <p>Login with GitHub to add 3 RSS podcast feeds.</p>
+            )
+          }
+        </div>
+        <div class="card-footer">
+          <a class={clsx('button', { 'button-success disabled': !!user })} href="/api/auth/login">
+            <svg>
+              <use xlink:href={user ? '#check' : '#github'}></use>
+            </svg>
+            {user ? 'Logged in' : 'Login'} with GitHub
+          </a>
+        </div>
+        <div class="card-badge">
+          {
+            user ? (
+              <svg class="card-badge-icon">
+                <use xlink:href="#check" />
+              </svg>
+            ) : (
+              <div class="card-badge-text">1</div>
+            )
+          }
+        </div>
+      </div>
+      <div
+        class={clsx('card clear-inner-space', { 'card-success': sponsorOrMember })}
+        inert={sponsorOrMember ? 'true' : undefined}
+      >
+        <div class="card-header">
+          <h2 class="h4">Sponsor</h2>
+        </div>
+        <div class="card-body">
+          {
+            sponsorOrMember ? (
+              <p>Thank you for sponsoring PDCSTRRSS! With your support, we can keep our servers running.</p>
+            ) : (
+              <p>
+                Support PDCSTRRSS, starting at only <strong>$2 / month</strong> via GitHub sponsors, and add{' '}
+                <strong>unlimited</strong> RSS podcast feeds.
+              </p>
+            )
+          }
+        </div>
+        <div class="card-footer">
+          <a
+            class={clsx('button', {
+              'button-success': sponsorOrMember,
+              'button-fuchsia': !sponsorOrMember,
+              disabled: user && sponsorOrMember,
+            })}
+            href="/login"
+          >
+            <svg>
+              <use xlink:href={sponsorOrMember ? '#check' : '#heart'}></use>
+            </svg>
+            Sponsor{user ? 'ing' : ''} via GitHub
+          </a>
+        </div>
+        <div class="card-badge">
+          {
+            sponsorOrMember ? (
+              <svg class="card-badge-icon">
+                <use xlink:href="#check" />
+              </svg>
+            ) : (
+              <div class="card-badge-text">2</div>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-account-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(var(--space) * 2);
+  }
+
+  @media (min-width: 1000px) {
+    .page-account-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

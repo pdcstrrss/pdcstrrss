@@ -1,4 +1,5 @@
-import { db, Feed } from '@pdcstrrss/database';
+import type { Feed } from '@prisma/client';
+import { db } from '@pdcstrrss/database';
 import defaultsDeep from 'lodash/defaultsDeep';
 import { IRepositoryFilters, IRequiredRepositoryFilters } from '..';
 import { aggregateFeedsAndEpisodes } from '../aggregator';
@@ -120,19 +121,22 @@ interface IAssignFeedToUserParams {
 
 export async function addFeedsToUser({ feedIds, userId }: IAssignFeedToUserParams) {
   const episodesOfFeeds = await db.episode.findMany({ where: { feedId: { in: feedIds } } });
-  await Promise.all(
-    feedIds.map(async (feedId) => {
-      return db.$transaction([
-        db.feedsOfUsers.create({ data: { userId, feedId } }),
-        db.episodesOfUsers.createMany({
-          data: episodesOfFeeds.map(({ id }) => ({
-            userId,
-            episodeId: id,
-          })),
-        }),
-      ]);
-    })
-  );
+  await db.$transaction([
+    db.feedsOfUsers.createMany({
+      skipDuplicates: true,
+      data: feedIds.map((feedId) => ({
+        userId,
+        feedId,
+      })),
+    }),
+    db.episodesOfUsers.createMany({
+      skipDuplicates: true,
+      data: episodesOfFeeds.map(({ id }) => ({
+        userId,
+        episodeId: id,
+      })),
+    }),
+  ]);
 }
 
 export async function deleteFeedsOfUser({ feedIds, userId }: IAssignFeedToUserParams) {
@@ -157,6 +161,7 @@ export async function deleteFeedsOfUser({ feedIds, userId }: IAssignFeedToUserPa
 
 export async function createFeedByUrl(url: string) {
   const feedIds = await aggregateFeedsAndEpisodes({ feeds: [{ url }] });
+  if (feedIds.length === 0) return null;
   return getFeedById(feedIds[0]);
 }
 

@@ -4,7 +4,7 @@ import Dropdown from './Dropdown';
 
 describe('Dropdown', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Dropdown />);
+    const { baseElement } = render(<Dropdown toggle={({ visibility }) => <button>{visibility ? 'Close' : 'Open'}</button>} />);
     expect(baseElement).toBeTruthy();
   });
 });

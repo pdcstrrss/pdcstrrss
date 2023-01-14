@@ -2,5 +2,8 @@
   "name": "function-aggregate",
   "version": "0.0.1",
   "main": "./dist/index.js",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@pdcstrrss/core": "*"
+  }
 }

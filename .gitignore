@@ -41,14 +41,5 @@ Thumbs.db
 # Envrionment variables
 .env
 
-# Remix files
-build
-.cache
-.vercel
-.output
-public/build
-api/_build
-netlify/functions/server/build
-
 # Local Netlify folder
 .netlify

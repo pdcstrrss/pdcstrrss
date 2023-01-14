@@ -1,14 +1,17 @@
 [build]
-  command = "npm run build"
-  functions = "dist/apps/web-remix/functions"
-  publish = "dist/apps/web-remix/public"
+  command = "npx nx build web-astro:build"
+  functions = "dist/hosting/netlify/functions"
+  publish = "dist/hosting/netlify/public"
 
 [dev]
-  command = "npm run watch --workspace=@pdcstrrss/web-remix"
+  command = "npx nx build web-astro:dev"
   port = 3000
   autoLaunch = false
 
 [functions."function-aggregate"]
+schedule = "@hourly"
+
+[functions."function-maintenance"]
 schedule = "@hourly"
 
 [[redirects]]
@@ -28,11 +31,6 @@ schedule = "@hourly"
 [[redirects]]
   from = "/api/aggregate"
   to = "/.netlify/functions/function-aggregate"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/server"
   status = 200
 
 [[headers]]

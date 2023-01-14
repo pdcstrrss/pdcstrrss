@@ -4,9 +4,10 @@
     "core": "libs/core",
     "database": "libs/database",
     "function-aggregate": "apps/function-aggregate",
+    "function-maintenance": "apps/function-maintenance",
     "ui": "libs/ui",
-    "web-remix": "apps/web-remix",
-    "web-remix-e2e": "apps/web-remix-e2e"
+    "web-astro": "apps/web-astro",
+    "web-astro-e2e": "apps/web-astro-e2e"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

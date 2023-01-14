@@ -1,5 +1,6 @@
 // TODO: Stick in background function
-import { db, Prisma } from '@pdcstrrss/database';
+import type { Prisma } from '@prisma/client';
+import { db } from '@pdcstrrss/database';
 import objectHash from 'object-hash';
 import isValid from 'date-fns/isValid';
 import pMap from 'p-map';
@@ -211,6 +212,7 @@ export const getEpisodesFromFeedIdsWithEntries = async (feeds: IFeedIdsWithEntri
 export async function aggregateFeedsAndEpisodes(config: IAggregatorConfig) {
   const fullConfig = getFullConfig(config);
   const feeds = await getFeedsFromRss(fullConfig);
+  if (!feeds.length) return [];
   const feedIdsWithEntries = await saveFeeds(feeds);
   const episodesFromFeeds = await getEpisodesFromFeedIdsWithEntries(feedIdsWithEntries);
   await saveEpisodes(episodesFromFeeds);
@@ -221,6 +223,7 @@ export async function aggregateNewEpisodes() {
   const feedIdNUrls = await getFeedUrls();
   const fullConfig = getFullConfig({ feeds: feedIdNUrls.map(({ url }) => ({ url })) });
   const feedsData = await getFeedsFromRss(fullConfig);
+  if (!feedsData.length) throw new Error('No feeds found');
   const feedIdsWithEntries = feedsData.reduce((acc, feedData) => {
     const feedIdNUrl = feedIdNUrls.find(({ url }) => url === feedData.url);
     if (!feedIdNUrl) return acc;

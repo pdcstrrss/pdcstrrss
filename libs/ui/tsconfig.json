@@ -3,7 +3,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowJs": true,
-    "esModuleInterop": true,
+    // "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -12,17 +12,17 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./.storybook/tsconfig.json"
-    }
-  ]
+  // "files": [],
+  // "include": [],
+  // "references": [
+  //   {
+  //     "path": "./tsconfig.lib.json"
+  //   },
+  //   {
+  //     "path": "./tsconfig.spec.json"
+  //   },
+  //   {
+  //     "path": "./.storybook/tsconfig.json"
+  //   }
+  // ]
 }
