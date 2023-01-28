@@ -8,14 +8,5 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  // "files": [],
-  // "include": [],
-  // "references": [
-  //   {
-  //     "path": "./tsconfig.lib.json"
-  //   },
-  //   {
-  //     "path": "./tsconfig.spec.json"
-  //   }
-  // ]
+  "exclude": ["./jest.config.ts", "jest.config.ts"]
 }

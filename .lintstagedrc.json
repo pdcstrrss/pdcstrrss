@@ -1,4 +1,4 @@
 {
-  "*.{json,js,ts,jsx,tsx}": "npm run lint",
-  "*.{ts,tsx}": "npm run typecheck"
+  "**/*.{ts,js,css,json,tsx,jsx}": ["prettier --write"],
+  "**/*.{ts,js,tsx,jsx}": ["eslint --fix"]
 }

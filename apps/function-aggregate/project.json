@@ -1,8 +1,8 @@
 {
+  "name": "function-aggregate",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/function-aggregate/src",
-  "root": "libs/function-aggregate",
   "targets": {
     "build": {
       "executor": "@wanews/nx-esbuild:build",
@@ -41,7 +41,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx vitest --run",
         "cwd": "apps/function-aggregate"
