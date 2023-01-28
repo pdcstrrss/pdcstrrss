@@ -2,15 +2,13 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
-  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
-  provider             = "mysql"
-  url                  = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -39,7 +37,7 @@ model OauthSession {
   updatedAt    DateTime @updatedAt
   accessToken  String   @unique
   refreshToken String?
-  User         User     @relation(fields: [userId], references: [id])
+  User         User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId       String
 
   @@index([userId])
@@ -68,7 +66,7 @@ model Episode {
   description String?  @db.Text
   published   DateTime
   image       String?  @db.VarChar(length: 4096)
-  feed        Feed     @relation(fields: [feedId], references: [id])
+  feed        Feed     @relation(fields: [feedId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   feedId      String
 
   users EpisodesOfUsers[]
@@ -79,10 +77,10 @@ model Episode {
 // https://github.com/prisma/prisma/issues/10758#issuecomment-1098430578
 
 model FeedsOfUsers {
-  user   User   @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  user   User   @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId String
 
-  feed   Feed   @relation(fields: [feedId], references: [id], onUpdate: NoAction)
+  feed   Feed   @relation(fields: [feedId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   feedId String
 
   @@id([userId, feedId])
@@ -100,10 +98,10 @@ enum EpisodeStatus {
 }
 
 model EpisodesOfUsers {
-  user   User   @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  user   User   @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId String
 
-  episode   Episode @relation(fields: [episodeId], references: [id], onUpdate: NoAction)
+  episode   Episode @relation(fields: [episodeId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   episodeId String
 
   currentTime Float         @default(0)
