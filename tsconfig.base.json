@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@pdcstrrss/astro-mvc": ["libs/astro-mvc/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp", "**/.*/"]
 }

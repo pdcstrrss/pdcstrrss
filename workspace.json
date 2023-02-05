@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "astro-mvc": "libs/astro-mvc",
     "core": "libs/core",
     "database": "libs/database",
     "function-aggregate": "apps/function-aggregate",
