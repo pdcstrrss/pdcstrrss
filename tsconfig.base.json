@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@pdcstrrss/audio": ["libs/audio/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp", "**/.*/"]
 }

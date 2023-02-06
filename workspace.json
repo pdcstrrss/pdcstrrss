@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "audio": "libs/audio",
     "core": "libs/core",
     "database": "libs/database",
     "function-aggregate": "apps/function-aggregate",
