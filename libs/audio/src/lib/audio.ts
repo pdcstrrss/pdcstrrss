@@ -1,5 +1,5 @@
-import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { LitElement, html, css } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
 
 @customElement('pdcstrrss-audio')
 export class PdcstrrssAudio extends LitElement {
@@ -9,15 +9,34 @@ export class PdcstrrssAudio extends LitElement {
   @property({ type: Boolean }) muted = false;
   @property({ type: Number }) volume = 1;
 
-  override render() {
-    return html`
-      <audio
-        src="${this.src}"
-        ?autoplay="${this.autoplay}"
-        ?loop="${this.loop}"
-        ?muted="${this.muted}"
-        .volume="${this.volume}"
-      ></audio>
-    `;
+  @state()
+  playState: 'playing' | 'paused' = 'paused';
+
+  audioElement: HTMLAudioElement;
+
+  constructor() {
+    super();
+    this.audioElement = new Audio();
   }
+
+  override connectedCallback() {
+    super.connectedCallback();
+    this.audioElement.src = this.src;
+  }
+
+  togglePlayState() {
+    if (this.audioElement.paused) {
+      this.audioElement.play();
+      this.playState = 'playing';
+    } else {
+      this.audioElement.pause();
+      this.playState = 'paused';
+    }
+  }
+
+  override render() {
+    return html` <button @click=${this.togglePlayState}>${this.playState === 'playing' ? 'Pause' : 'Play'}</button> `;
+  }
+
+  static override styles = css``;
 }
