@@ -2,7 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    // "types": ["node"],
     "lib": ["ESNext", "DOM"],
     "strict": true,
     "target": "ESNext",
@@ -13,7 +12,11 @@
     "jsx": "react",
     "noEmit": true,
     "isolatedModules": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   },
   "exclude": [
     "**/*.spec.ts",
