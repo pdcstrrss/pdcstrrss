@@ -1,5 +1,6 @@
 {
   "name": "@pdcstrrss/web-astro",
+  "type": "module",
   "dependencies": {
     "@astro-auth/client": "^1.0.5",
     "@astro-auth/core": "^1.0.12",

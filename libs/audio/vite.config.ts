@@ -7,6 +7,8 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/audio',
 
   plugins: [
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     viteTsConfigPaths({
       root: '../../',
     }),

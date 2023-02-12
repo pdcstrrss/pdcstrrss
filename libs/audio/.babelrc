@@ -3,7 +3,8 @@
     [
       "@nrwl/js/babel",
       {
-        "useBuiltIns": "usage"
+        "useBuiltIns": "usage",
+        "allowDeclareFields": true
       }
     ]
   ]
