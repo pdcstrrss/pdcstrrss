@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { TimeController } from './time-controller.js';
 
 @customElement('pdcstrrss-audio')
 export class PdcstrrssAudio extends LitElement {
@@ -13,41 +14,20 @@ export class PdcstrrssAudio extends LitElement {
   @state()
   playState: 'playing' | 'paused' = 'paused';
 
-  get currentTime() {
-    return this.audioElement.currentTime;
-  }
-
-  set currentTime(value: number) {
-    this.audioElement.currentTime = value;
-    this.requestUpdate();
-  }
-
-  get duration() {
-    const { currentTime, duration } = this.audioElement;
-    const sanitizedDuration = isNaN(duration) ? currentTime : duration;
-    return sanitizedDuration;
-  }
-
-  get progressPercentage() {
-    return (this.currentTime / this.duration) * 100;
-  }
-
   audioElement: HTMLAudioElement;
+
+  timeController: TimeController;
 
   constructor() {
     super();
     this.audioElement = new Audio();
+    this.timeController = new TimeController(this, this.audioElement);
   }
 
   override connectedCallback() {
     super.connectedCallback();
     this.audioElement.src = this.source;
-    this.audioElement.addEventListener('timeupdate', () => {
-      this.requestUpdate();
-    });
-    this.audioElement.addEventListener('loadedmetadata', () => {
-      this.requestUpdate();
-    });
+    this.audioElement.addEventListener('loadedmetadata', () => this.requestUpdate());
   }
 
   togglePlayState() {
@@ -60,71 +40,36 @@ export class PdcstrrssAudio extends LitElement {
     }
   }
 
-  formatSecondsToHumanTime(seconds: number) {
-    if (isNaN(seconds)) return '--:--';
-    const minutes = Math.floor(seconds / 60);
-    const secondsLeft = Math.floor(seconds % 60);
-    const formattedSeconds = secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft;
-    return `${minutes}:${formattedSeconds}`;
-  }
-
-  getCurrentTimeFromPercentage(percentage: number) {
-    return (percentage / 100) * this.duration;
-  }
-
   handleRangeChange(event: InputEvent) {
     const target = event.target as HTMLInputElement;
     const value = target.value;
-    this.currentTime = this.getCurrentTimeFromPercentage(Number(value));
+    this.timeController.currentTime = this.timeController.getCurrentTimeFromPercentage(Number(value));
     this.requestUpdate();
-  }
-
-  canRewind() {
-    return this.currentTime === 0;
-  }
-
-  rewind(seconds: number) {
-    if (this.canRewind()) return;
-    if (this.currentTime - seconds < 0) {
-      this.currentTime = 0;
-    }
-    this.currentTime -= seconds;
-  }
-
-  canForward() {
-    return this.duration === this.currentTime;
-  }
-
-  forward(seconds: number) {
-    if (this.canForward()) return;
-    if (this.currentTime + seconds > this.duration) {
-      this.currentTime = this.duration;
-    }
-    this.currentTime += seconds;
   }
 
   override render() {
     return html` <div class="root">
       <button @click=${this.togglePlayState}>${this.playState === 'playing' ? 'Pause' : 'Play'}</button>
+
       <div>
-        <span>${this.formatSecondsToHumanTime(this.currentTime)}</span>
+        <span>${this.timeController.getHumanCurrentTime}</span>
         <span>/</span>
-        <span>${this.formatSecondsToHumanTime(this.duration)}</span>
+        <span>${this.timeController.getHumanDuration}</span>
       </div>
 
-      <button ?disabled=${this.canRewind()} @click=${() => this.rewind(15)}>-15s</button>
+      <button ?disabled=${this.timeController.canRewind} @click=${() => this.timeController.rewind(15)}>-15s</button>
 
       <input
         aria-label="Progress for ${this.label}"
         type="range"
         min="0"
         max="100"
-        .value="${this.progressPercentage.toString()}"
+        .value="${this.timeController.progressPercentage.toString()}"
         step="1"
         @change=${this.handleRangeChange}
       />
 
-      <button ?disabled=${this.canForward()} @click=${() => this.forward(15)}>+15s</button>
+      <button ?disabled=${this.timeController.canForward} @click=${() => this.timeController.forward(15)}>+15s</button>
     </div>`;
   }
 
