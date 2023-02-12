@@ -1,8 +1,8 @@
-import { Meta, Story } from '@storybook/web-components';
+import { Meta, StoryFn } from '@storybook/web-components';
 import { html } from 'lit';
 // import { ifDefined } from 'lit/directives/if-defined.js';
 
-import { PdcstrrssAudio } from './audio';
+import type { PdcstrrssAudio } from './audio';
 import './audio';
 
 export default {
@@ -19,9 +19,9 @@ export default {
   // },
 } as Meta;
 
-const Template: Story<PdcstrrssAudio> = ({ src }) => html`<pdcstrrss-audio src="${src}"></pdcstrrss-audio>`;
+const Template: StoryFn<PdcstrrssAudio> = ({ source }) => html`<pdcstrrss-audio source="${source}"></pdcstrrss-audio>`;
 
-export const Default: Story<PdcstrrssAudio> = Template.bind({});
+export const Default: StoryFn<PdcstrrssAudio> = Template.bind({});
 Default.args = {
-  src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+  source: 'https://assets.mixkit.co/sfx/preview/mixkit-game-show-suspense-waiting-667.mp3',
 };
