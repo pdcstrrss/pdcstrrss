@@ -23,6 +23,13 @@ export class AudioTimeController extends TimeController implements ReactiveContr
     return sanitizedDuration;
   }
 
+  handleTimeRangeChange(event: InputEvent) {
+    const target = event.target as HTMLInputElement;
+    const value = target.value;
+    this.currentTime = this.getCurrentTimeFromPercentage(Number(value));
+    this.host.requestUpdate();
+  }
+
   hostConnected() {
     this.audioElement.addEventListener('timeupdate', () => this.host.requestUpdate());
   }

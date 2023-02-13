@@ -1,30 +1,33 @@
 import { ReactiveController, ReactiveControllerHost } from 'lit';
-import { Utilities } from './utilities.js';
 
-export class AudioVolumeController implements ReactiveController {
+export class AudioSpeedController implements ReactiveController {
   constructor(private host: ReactiveControllerHost, private audioElement: HTMLAudioElement) {
     (this.host = host).addController(this);
     this.audioElement = audioElement;
   }
 
-  get currentVolume() {
-    return this.audioElement.volume;
+  get currentPlaybackRate() {
+    return this.audioElement.playbackRate;
   }
 
-  set currentVolume(value: number) {
-    this.audioElement.volume = value;
+  set currentPlaybackRate(value: number) {
+    this.audioElement.playbackRate = value;
     this.host.requestUpdate();
   }
 
-  handleVolumeRangeChange(event: InputEvent) {
+  get playbackRateOptions() {
+    return [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+  }
+
+  handleSpeedChange(event: InputEvent) {
     const target = event.target as HTMLInputElement;
     const value = target.value;
-    this.currentVolume = Utilities.roundToDecimalPlaces(Number(value), 2);
+    this.currentPlaybackRate = Number(value);
     this.host.requestUpdate();
   }
 
   hostConnected() {
-    this.audioElement.addEventListener('onvolumechange', () => this.host.requestUpdate());
+    // Do nothing
   }
 
   hostDisconnected() {

@@ -1,8 +1,9 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
+import { AudioPlayStateController } from './audio-play-state-controller.js';
+import { AudioSpeedController } from './audio-speed-controller.js';
 import { AudioTimeController } from './audio-time-controller.js';
 import { AudioVolumeController } from './audio-volume-controller.js';
-import { Utilities } from './utilities.js';
 
 @customElement('pdcstrrss-audio')
 export class PdcstrrssAudio extends LitElement {
@@ -13,77 +14,56 @@ export class PdcstrrssAudio extends LitElement {
   @property({ type: Boolean }) muted = false;
   @property({ type: Number }) volume = 1;
 
-  @state()
-  private playState: 'playing' | 'paused' = 'paused';
-
-  private audioElement: HTMLAudioElement;
-
-  private timeController: AudioTimeController;
-
-  private volumeController: AudioVolumeController;
+  #audioElement: HTMLAudioElement;
+  #playStateController: AudioPlayStateController;
+  #timeController: AudioTimeController;
+  #volumeController: AudioVolumeController;
+  #speedController: AudioSpeedController;
 
   constructor() {
     super();
-    this.audioElement = new Audio();
-    this.timeController = new AudioTimeController(this, this.audioElement);
-    this.volumeController = new AudioVolumeController(this, this.audioElement);
+    this.#audioElement = new Audio();
+    this.#playStateController = new AudioPlayStateController(this, this.#audioElement);
+    this.#timeController = new AudioTimeController(this, this.#audioElement);
+    this.#volumeController = new AudioVolumeController(this, this.#audioElement);
+    this.#speedController = new AudioSpeedController(this, this.#audioElement);
   }
 
   override connectedCallback() {
     super.connectedCallback();
-    this.audioElement.src = this.source;
-    this.audioElement.addEventListener('loadedmetadata', () => this.requestUpdate());
-  }
-
-  togglePlayState() {
-    if (this.audioElement.paused) {
-      this.audioElement.play();
-      this.playState = 'playing';
-    } else {
-      this.audioElement.pause();
-      this.playState = 'paused';
-    }
-  }
-
-  handleTimeRangeChange(event: InputEvent) {
-    const target = event.target as HTMLInputElement;
-    const value = target.value;
-    this.timeController.currentTime = this.timeController.getCurrentTimeFromPercentage(Number(value));
-    this.requestUpdate();
-  }
-
-  handleVolumeRangeChange(event: InputEvent) {
-    const target = event.target as HTMLInputElement;
-    const value = target.value;
-    this.volumeController.currentVolume = Utilities.roundToDecimalPlaces(Number(value), 2);
-    this.requestUpdate();
+    this.#audioElement.src = this.source;
+    this.#audioElement.addEventListener('loadedmetadata', () => this.requestUpdate());
   }
 
   override render() {
     return html`
       <fieldset>
         <legend>Time</legend>
-        <button @click=${this.togglePlayState}>${this.playState === 'playing' ? 'Pause' : 'Play'}</button>
+        <button @click=${() => this.#playStateController.togglePlayState()}>
+          ${this.#playStateController.playState === 'playing' ? 'Pause' : 'Play'}
+        </button>
       </fieldset>
 
       <fieldset>
         <legend>Time</legend>
         <div>
-          <span>${this.timeController.getHumanCurrentTime}</span>
+          <span>${this.#timeController.getHumanCurrentTime}</span>
           <span>/</span>
-          <span>${this.timeController.getHumanDuration}</span>
+          <span>${this.#timeController.getHumanDuration}</span>
         </div>
-        <button ?disabled=${!this.timeController.canRewind} @click=${() => this.timeController.rewind(15)}>-15s</button>
+        <button ?disabled=${!this.#timeController.canRewind} @click=${() => this.#timeController.rewind(15)}>
+          -15s
+        </button>
         <input
           aria-label="Progress for ${this.label}"
           type="range"
           min="0"
           max="100"
-          .value="${this.timeController.progressPercentage.toString()}"
+          .value="${this.#timeController.progressPercentage.toString()}"
           step="1"
-          @change=${this.handleTimeRangeChange}
+          @change=${this.#timeController.handleTimeRangeChange}
         />
-        <button ?disabled=${!this.timeController.canForward} @click=${() => this.timeController.forward(15)}>
+        <button ?disabled=${!this.#timeController.canForward} @click=${() => this.#timeController.forward(15)}>
           +15s
         </button>
       </fieldset>
@@ -95,13 +75,35 @@ export class PdcstrrssAudio extends LitElement {
           type="range"
           min="0"
           max="1"
-          .value="${this.volumeController.currentVolume.toString()}"
+          .value="${this.#volumeController.currentVolume.toString()}"
           step=".01"
-          @input=${this.handleVolumeRangeChange}
+          @input=${this.#volumeController.handleVolumeRangeChange}
         />
         <div>
-          <span>${this.volumeController.currentVolume}</span>
+          <span>${this.#volumeController.currentVolume}</span>
         </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Playback speed</legend>
+        <select @change=${this.#speedController.handleSpeedChange}>
+          ${this.#speedController.playbackRateOptions.map(
+            (option) =>
+              html`<option ?selected=${option === this.#speedController.currentPlaybackRate}>${option}</option>`
+          )}
+        </select>
+        <table>
+          <tbody>
+            <tr>
+              <td>Playback rate</td>
+              <td>${this.#audioElement.playbackRate}</td>
+            </tr>
+            <tr>
+              <td>Speedcontroller</td>
+              <td>${this.#speedController.currentPlaybackRate}</td>
+            </tr>
+          </tbody>
+        </table>
       </fieldset>
     `;
   }
