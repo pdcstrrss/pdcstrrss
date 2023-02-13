@@ -34,13 +34,14 @@ export class TimeController {
   }
 
   get canRewind() {
-    return this.currentTime < 0;
+    return this.currentTime > 0;
   }
 
   rewind(seconds: number) {
-    if (this.canRewind) return;
+    if (!this.canRewind) return;
     if (this.currentTime - seconds < 0) {
       this.currentTime = 0;
+      return;
     }
     this.currentTime -= seconds;
   }
@@ -50,10 +51,11 @@ export class TimeController {
   }
 
   forward(seconds: number) {
-    if (this.canForward) return;
+    if (!this.canForward) return;
     if (this.currentTime + seconds > this.duration) {
       this.currentTime = this.duration;
+      return;
     }
-    this.currentTime += seconds;
+    this.currentTime = this.currentTime + seconds;
   }
 }
