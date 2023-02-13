@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { HTMLAudioElementEventMap } from './audio-event-controller.js';
 import { AudioPlayStateController } from './audio-play-state-controller.js';
 import { AudioSpeedController } from './audio-speed-controller.js';
 import { AudioTimeController } from './audio-time-controller.js';
@@ -33,6 +34,12 @@ export class PdcstrrssAudio extends LitElement {
     super.connectedCallback();
     this.#audioElement.src = this.source;
     this.#audioElement.addEventListener('loadedmetadata', () => this.requestUpdate());
+
+    HTMLAudioElementEventMap.forEach((eventName) => {
+      this.#audioElement.addEventListener(eventName, () => {
+        this.dispatchEvent(new CustomEvent(eventName, { detail: this.#audioElement, bubbles: true, composed: true }));
+      });
+    });
   }
 
   override render() {
@@ -61,7 +68,7 @@ export class PdcstrrssAudio extends LitElement {
           max="100"
           .value="${this.#timeController.progressPercentage.toString()}"
           step="1"
-          @change=${this.#timeController.handleTimeRangeChange}
+          @change=${(e: InputEvent) => this.#timeController.handleTimeRangeChange(e)}
         />
         <button ?disabled=${!this.#timeController.canForward} @click=${() => this.#timeController.forward(15)}>
           +15s
@@ -77,7 +84,7 @@ export class PdcstrrssAudio extends LitElement {
           max="1"
           .value="${this.#volumeController.currentVolume.toString()}"
           step=".01"
-          @input=${this.#volumeController.handleVolumeRangeChange}
+          @input=${(e: InputEvent) => this.#volumeController.handleVolumeRangeChange(e)}
         />
         <div>
           <span>${this.#volumeController.currentVolume}</span>
@@ -86,24 +93,13 @@ export class PdcstrrssAudio extends LitElement {
 
       <fieldset>
         <legend>Playback speed</legend>
-        <select @change=${this.#speedController.handleSpeedChange}>
+        <select @change=${(e: InputEvent) => this.#speedController.handleSpeedChange(e)}>
           ${this.#speedController.playbackRateOptions.map(
             (option) =>
               html`<option ?selected=${option === this.#speedController.currentPlaybackRate}>${option}</option>`
           )}
         </select>
-        <table>
-          <tbody>
-            <tr>
-              <td>Playback rate</td>
-              <td>${this.#audioElement.playbackRate}</td>
-            </tr>
-            <tr>
-              <td>Speedcontroller</td>
-              <td>${this.#speedController.currentPlaybackRate}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div>${this.#speedController.currentPlaybackRate}</div>
       </fieldset>
     `;
   }
