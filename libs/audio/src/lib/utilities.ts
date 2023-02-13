@@ -15,4 +15,8 @@ export class Utilities {
   static transformAbsoluteFromPercentage(percentage: number, total: number) {
     return (percentage / 100) * total;
   }
+
+  static roundToDecimalPlaces(number: number, decimalPlaces: number) {
+    return Math.round(number * 10 ** decimalPlaces) / 10 ** decimalPlaces;
+  }
 }
