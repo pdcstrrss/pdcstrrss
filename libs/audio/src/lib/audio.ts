@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { TimeController } from './time-controller.js';
+import { AudioTimeController } from './audio-time-controller.js';
 
 @customElement('pdcstrrss-audio')
 export class PdcstrrssAudio extends LitElement {
@@ -12,16 +12,16 @@ export class PdcstrrssAudio extends LitElement {
   @property({ type: Number }) volume = 1;
 
   @state()
-  playState: 'playing' | 'paused' = 'paused';
+  private playState: 'playing' | 'paused' = 'paused';
 
-  audioElement: HTMLAudioElement;
+  private audioElement: HTMLAudioElement;
 
-  timeController: TimeController;
+  private timeController: AudioTimeController;
 
   constructor() {
     super();
     this.audioElement = new Audio();
-    this.timeController = new TimeController(this, this.audioElement);
+    this.timeController = new AudioTimeController(this, this.audioElement);
   }
 
   override connectedCallback() {

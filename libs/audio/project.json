@@ -41,6 +41,11 @@
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/libs/audio"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
       }
     },
     "storybook": {
