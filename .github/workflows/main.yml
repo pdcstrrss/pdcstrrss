@@ -23,13 +23,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20.x
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: nrwl/nx-set-shas@v2
+      - uses: nrwl/nx-set-shas@v3
       - uses: bahmutov/npm-install@v1
         with:
-          install-command: npm ci --legacy-peer-deps --ignore-scripts
+          install-command: npm ci --legacy-peer-deps
       - run: npm run generate
       - run: npm run typecheck
       - run: npm run lint
