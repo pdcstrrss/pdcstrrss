@@ -75,5 +75,11 @@
   "workspaces": [
     "apps/*",
     "libs/*"
-  ]
+  ],
+  "volta": {
+    "node": "20.0.0"
+  },
+  "optionalDependencies": {
+    "esbuild-android-arm64": "^0.15.18"
+  }
 }
