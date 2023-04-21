@@ -7,7 +7,7 @@ on:
 
 jobs:
   workspace:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
