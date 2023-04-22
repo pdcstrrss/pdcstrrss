@@ -29,7 +29,7 @@ jobs:
       - uses: nrwl/nx-set-shas@v3
       - uses: bahmutov/npm-install@v1
         with:
-          install-command: npm ci --legacy-peer-deps
+          install-command: npm ci --legacy-peer-deps --force
       - run: npm run generate
       - run: npm run typecheck
       - run: npm run lint
