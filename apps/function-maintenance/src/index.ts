@@ -4,7 +4,7 @@ import { cleanupUnlinkedData } from '@pdcstrrss/core';
 const handler: Handler = async () => {
   try {
     const { episodeCount, feedCount } = await cleanupUnlinkedData();
-    console.debug(`Successfully cleaned up \n${episodeCount} episodes \n${feedCount} feeds.`);
+    console.debug(`Successfully cleaned up \n${episodeCount.count} episodes \n${feedCount.count} feeds.`);
     return {
       statusCode: 204,
     };
