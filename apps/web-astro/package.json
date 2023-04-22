@@ -5,7 +5,7 @@
     "@astro-auth/core": "^1.0.12",
     "@astro-auth/providers": "^1.0.6",
     "@astro-auth/ui": "^1.0.5",
-    "@astrojs/netlify": "^2.0.0",
+    "@astrojs/netlify": "^2.2.2",
     "@pdcstrrss/core": "*",
     "@pdcstrrss/ui": "*",
     "@swup/a11y-plugin": "^2.1.0",
