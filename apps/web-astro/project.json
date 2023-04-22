@@ -23,6 +23,7 @@
           "rimraf dist/hosting/netlify/functions/function-astro",
           "rimraf dist/hosting/netlify/public",
           "move-file apps/web-astro/.netlify/functions-internal/entry.mjs dist/hosting/netlify/functions/entry.mjs",
+          "move-file apps/web-astro/.netlify/functions-internal/chunks dist/hosting/netlify/functions/chunks",
           "move-file apps/web-astro/dist dist/hosting/netlify/public"
         ],
         "parallel": false
