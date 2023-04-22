@@ -2,7 +2,7 @@
 import type { Prisma } from '@prisma/client';
 import { db } from '@pdcstrrss/database';
 import objectHash from 'object-hash';
-import isValid from 'date-fns/isValid';
+import { isValid } from 'date-fns';
 import pMap from 'p-map';
 import { IRssFeedData, parseRSS } from '../rss/rss.service';
 import defaultsDeep from 'lodash/defaultsDeep';
