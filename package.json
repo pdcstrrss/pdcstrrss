@@ -28,6 +28,7 @@
   "devDependencies": {
     "@nrwl/cli": "15.9.2",
     "@nrwl/cypress": "15.9.2",
+    "@nrwl/esbuild": "^15.9.2",
     "@nrwl/eslint-plugin-nx": "15.9.2",
     "@nrwl/jest": "15.9.2",
     "@nrwl/js": "15.9.2",
@@ -48,7 +49,6 @@
     "@types/validator": "^13.7.1",
     "@typescript-eslint/eslint-plugin": "5.49.0",
     "@typescript-eslint/parser": "5.49.0",
-    "@wanews/nx-esbuild": "^0.26.1",
     "cross-env": "^7.0.3",
     "cypress": "^9.1.0",
     "eslint": "^8.17.0",

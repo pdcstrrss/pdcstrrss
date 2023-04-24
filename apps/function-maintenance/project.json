@@ -5,33 +5,39 @@
   "sourceRoot": "apps/function-maintenance/src",
   "targets": {
     "build": {
-      "executor": "@wanews/nx-esbuild:build",
+      "executor": "@nrwl/esbuild:esbuild",
       "options": {
         "platform": "node",
-        "target": "node16",
-        "outfile": "./dist/hosting/netlify/functions/function-maintenance/index.js",
-        "entryPoints": ["./apps/function-maintenance/src/index.ts"],
-        "external": ["@prisma/client"]
+        "target": "node18",
+        "outputPath": "dist/hosting/netlify/functions",
+        "tsConfig": "apps/function-maintenance/tsconfig.json",
+        "main": "apps/function-maintenance/src/maintenance.ts",
+        "external": ["@prisma/client"],
+        "generatePackageJson": false
       }
     },
     "package": {
-      "executor": "@wanews/nx-esbuild:package",
+      "executor": "@nrwl/esbuild:esbuild",
       "options": {
         "platform": "node",
-        "target": "node16",
-        "outfile": "./dist/hosting/netlify/functions/function-maintenance/index.js",
-        "entryPoints": ["./apps/function-maintenance/src/index.ts"],
-        "external": ["@prisma/client"]
+        "target": "node18",
+        "outputPath": "dist/hosting/netlify/functions",
+        "tsConfig": "apps/function-maintenance/tsconfig.json",
+        "main": "apps/function-maintenance/src/maintenance.ts",
+        "external": ["@prisma/client"],
+        "generatePackageJson": false
       }
     },
     "dev": {
-      "executor": "@wanews/nx-esbuild:serve",
+      "executor": "@nrwl/esbuild:esbuild",
       "options": {
         "platform": "node",
-        "target": "node16",
-        "outfile": "./dist/hosting/netlify/functions/function-maintenance/index.js",
-        "entryPoints": ["./apps/function-maintenance/src/index.ts"],
-        "external": ["@prisma/client"]
+        "target": "node18",
+        "outputPath": "dist/hosting/netlify/functions",
+        "tsConfig": "apps/function-maintenance/tsconfig.json",
+        "main": "apps/function-maintenance/src/maintenance.ts",
+        "external": ["@prisma/client"],
+        "generatePackageJson": false
       }
     },
     "lint": {

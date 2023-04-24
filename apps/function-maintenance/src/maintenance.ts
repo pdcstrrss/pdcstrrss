@@ -1,7 +1,7 @@
 import type { Handler } from '@netlify/functions';
 import { cleanupUnlinkedData } from '@pdcstrrss/core';
 
-const handler: Handler = async () => {
+export const handler: Handler = async () => {
   try {
     const { episodeCount, feedCount } = await cleanupUnlinkedData();
     console.debug(`Successfully cleaned up \n${episodeCount.count} episodes \n${feedCount.count} feeds.`);
@@ -16,5 +16,3 @@ const handler: Handler = async () => {
     };
   }
 };
-
-module.exports.handler = handler;
