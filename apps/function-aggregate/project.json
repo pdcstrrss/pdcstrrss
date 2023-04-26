@@ -12,7 +12,6 @@
         "outputPath": "dist/hosting/netlify/functions",
         "tsConfig": "apps/function-aggregate/tsconfig.json",
         "main": "apps/function-aggregate/src/aggregate.ts",
-        "additionalEntryPoints": ["apps/function-aggregate/src/aggregate-background.ts"],
         "external": ["@prisma/client"],
         "generatePackageJson": false
       }
@@ -25,7 +24,6 @@
         "outputPath": "dist/hosting/netlify/functions",
         "tsConfig": "apps/function-aggregate/tsconfig.json",
         "main": "apps/function-aggregate/src/aggregate.ts",
-        "additionalEntryPoints": ["apps/function-aggregate/src/aggregate-background.ts"],
         "external": ["@prisma/client"],
         "generatePackageJson": false
       }
@@ -38,7 +36,6 @@
         "outputPath": "dist/hosting/netlify/functions",
         "tsConfig": "apps/function-aggregate/tsconfig.json",
         "main": "apps/function-aggregate/src/aggregate.ts",
-        "additionalEntryPoints": ["apps/function-aggregate/src/aggregate-background.ts"],
         "external": ["@prisma/client"],
         "generatePackageJson": false
       }
