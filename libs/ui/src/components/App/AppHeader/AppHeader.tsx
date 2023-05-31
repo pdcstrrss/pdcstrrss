@@ -2,15 +2,16 @@ import type { MouseEventHandler } from 'react';
 import type { User } from '@prisma/client';
 import clsx from 'clsx';
 import { TRANSLATIONS } from '../../../constants';
-import Dropdown from '../../Dropdown/Dropdown';
+import { Dropdown } from '../../Dropdown/Dropdown';
 
-export type AppHeaderUser = Partial<Pick<User, 'displayName' | 'image'>>;
+export type AppHeaderUser = Partial<Pick<User, 'name' | 'image' | 'id'>>;
 export type AppHeaderNavLinks = { title: string; to?: string; callback?: MouseEventHandler<HTMLButtonElement> }[];
 
 export interface IAppHeaderProps {
   user?: AppHeaderUser | null | undefined;
   inverted?: boolean;
   currentPath: string;
+  loginButton?: React.ElementType;
 }
 
 function isActiveNavLink(currentPath: string, to?: string) {
@@ -35,11 +36,7 @@ const dropdownLinks: AppHeaderNavLinks = [
   },
   {
     title: TRANSLATIONS.logout,
-    callback: async (event) => {
-      event.preventDefault();
-      await fetch(window.origin + '/api/auth/signout', { method: 'DELETE' });
-      window.location.reload();
-    },
+    to: '/app/logout',
   },
 ];
 
@@ -54,11 +51,7 @@ function renderNavLinks(navLinks: AppHeaderNavLinks, currentPath: string) {
     }
 
     return (
-      <a
-        key={title}
-        className={clsx('app-header-nav-link', { 'active': isActiveNavLink(currentPath, to) })}
-        href={to}
-      >
+      <a key={title} className={clsx('app-header-nav-link', { active: isActiveNavLink(currentPath, to) })} href={to}>
         {title}
       </a>
     );
@@ -66,7 +59,7 @@ function renderNavLinks(navLinks: AppHeaderNavLinks, currentPath: string) {
 }
 
 export function AppHeader(props: IAppHeaderProps) {
-  const { user, inverted, currentPath } = props;
+  const { user, inverted, currentPath, loginButton } = props;
 
   return (
     <header className={clsx('app-header container', { 'app-header-inverted': inverted })}>
@@ -85,9 +78,7 @@ export function AppHeader(props: IAppHeaderProps) {
           navLinks && renderNavLinks(navLinks, currentPath)
         ) : (
           <>
-            <a className="app-header-nav-link" href="/api/auth/login">
-              {TRANSLATIONS.login}
-            </a>
+            {loginButton}
             <a
               href="https://github.com/pdcstrrss"
               target="_blank"
@@ -113,7 +104,7 @@ export function AppHeader(props: IAppHeaderProps) {
                 <img
                   className="app-header-image"
                   src={user.image}
-                  alt={user.displayName}
+                  alt={user.name || user.id}
                   width="100px"
                   height="100px"
                 />
