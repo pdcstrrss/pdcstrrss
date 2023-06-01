@@ -3,7 +3,6 @@ import SwupHeadPlugin from '@swup/head-plugin';
 import SwupA11yPlugin from '@swup/a11y-plugin';
 import { signIn } from 'auth-astro/client';
 
-import './polyfills';
 import { handleFormSubmit } from './form';
 
 //
