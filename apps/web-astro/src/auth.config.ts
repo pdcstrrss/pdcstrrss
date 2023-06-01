@@ -4,7 +4,6 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { db } from '@pdcstrrss/database';
 
 const config: AuthConfig = {
-  secret: import.meta.env.AUTH_SECRET,
   //@ts-expect-error issue
   adapter: PrismaAdapter(db),
   providers: [
