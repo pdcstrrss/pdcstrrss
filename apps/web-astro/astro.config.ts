@@ -3,6 +3,7 @@ import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import auth from 'auth-astro';
+import path from 'path';
 
 // import { FontaineTransform } from 'fontaine';
 
@@ -23,8 +24,7 @@ export default defineConfig({
         },
         {
           find: 'auth:config',
-          // replacement: path.resolve('./node_modules/auth-astro/src/config.ts'),
-          replacement: './auth.config.ts',
+          replacement: path.resolve('./apps/web-astro/src/auth.config.ts'),
         },
       ],
     },
