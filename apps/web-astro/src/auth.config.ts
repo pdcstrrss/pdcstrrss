@@ -10,6 +10,7 @@ const config: AuthConfig = {
   providers: [
     //@ts-expect-error issue https://github.com/nextauthjs/next-auth/issues/6174
     GitHub({
+      allowDangerousEmailAccountLinking: true,
       clientId: import.meta.env.GH_OAUTH_CLIENT_ID,
       clientSecret: import.meta.env.GH_OAUTH_CLIENT_SECRET,
       authorization: {
