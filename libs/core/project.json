@@ -35,6 +35,11 @@
       "options": {
         "jestConfig": "libs/core/jest.config.ts",
         "passWithNoTests": true
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
       }
     }
   },
