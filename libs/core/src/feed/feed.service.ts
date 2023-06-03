@@ -3,6 +3,7 @@ import { db } from '@pdcstrrss/database';
 import defaultsDeep from 'lodash/defaultsDeep';
 import { IRepositoryFilters, IRequiredRepositoryFilters } from '..';
 import { aggregateFeedsAndEpisodes } from '../aggregator';
+import { normalizeUrl } from '../url/url.service';
 
 export type IFeed = Feed & {
   image?: string;
@@ -160,7 +161,8 @@ export async function deleteFeedsOfUser({ feedIds, userId }: IAssignFeedToUserPa
 }
 
 export async function createFeedByUrl(url: string) {
-  const feedIds = await aggregateFeedsAndEpisodes({ feeds: [{ url }] });
+  const normalizedUrl = await normalizeUrl(url);
+  const feedIds = await aggregateFeedsAndEpisodes({ feeds: [{ url: normalizedUrl }] });
   if (feedIds.length === 0) return null;
   return getFeedById(feedIds[0]);
 }
