@@ -13,7 +13,7 @@
   },
   "defaultProject": "web-astro",
   "generators": {
-    "@nrwl/react:component": {
+    "@nx/react:component": {
       "pascalCaseFiles": true,
       "pascalCaseDirectory": true
     }

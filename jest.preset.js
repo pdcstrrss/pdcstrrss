@@ -1,7 +1,7 @@
 export default {
   // This is one of the patterns that jest finds by default https://jestjs.io/docs/configuration#testmatch-arraystring
   testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
-  resolver: '@nrwl/jest/plugins/resolver',
+  resolver: '@nx/jest/plugins/resolver',
   moduleFileExtensions: ['ts', 'js', 'mjs', 'html'],
   coverageReporters: ['html'],
   transform: {

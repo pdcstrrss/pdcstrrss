@@ -5,7 +5,7 @@
   "sourceRoot": "apps/function-aggregate/src",
   "targets": {
     "build": {
-      "executor": "@nrwl/esbuild:esbuild",
+      "executor": "@nx/esbuild:esbuild",
       "options": {
         "platform": "node",
         "target": "node18",
@@ -13,11 +13,12 @@
         "tsConfig": "apps/function-aggregate/tsconfig.json",
         "main": "apps/function-aggregate/src/aggregate.ts",
         "external": ["@prisma/client"],
-        "generatePackageJson": false
+        "generatePackageJson": false,
+        "thirdParty": true
       }
     },
     "package": {
-      "executor": "@nrwl/esbuild:esbuild",
+      "executor": "@nx/esbuild:esbuild",
       "options": {
         "platform": "node",
         "target": "node18",
@@ -25,11 +26,12 @@
         "tsConfig": "apps/function-aggregate/tsconfig.json",
         "main": "apps/function-aggregate/src/aggregate.ts",
         "external": ["@prisma/client"],
-        "generatePackageJson": false
+        "generatePackageJson": false,
+        "thirdParty": true
       }
     },
     "dev": {
-      "executor": "@nrwl/esbuild:esbuild",
+      "executor": "@nx/esbuild:esbuild",
       "options": {
         "platform": "node",
         "target": "node18",
@@ -37,11 +39,12 @@
         "tsConfig": "apps/function-aggregate/tsconfig.json",
         "main": "apps/function-aggregate/src/aggregate.ts",
         "external": ["@prisma/client"],
-        "generatePackageJson": false
+        "generatePackageJson": false,
+        "thirdParty": true
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["apps/function-aggregate/**/*.ts"]
       }
