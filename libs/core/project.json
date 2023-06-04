@@ -39,6 +39,20 @@
       "configurations": {
         "watch": {
           "watch": true
+        },
+        "unit": {
+          "testMatch": ["**/+(*.)+(test).+(ts|js)?(x)"]
+        },
+        "unit:watch": {
+          "testMatch": ["**/+(*.)+(test).+(ts|js)?(x)"],
+          "watch": true
+        },
+        "integration": {
+          "testMatch": ["**/+(*.)+(spec).+(ts|js)?(x)"]
+        },
+        "integration:watch": {
+          "testMatch": ["**/+(*.)+(spec).+(ts|js)?(x)"],
+          "watch": true
         }
       }
     }
