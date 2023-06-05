@@ -46,7 +46,7 @@ export async function getFeeds(params?: IGetFeedsParams): Promise<Feed[]> {
   });
 }
 
-export async function getFeedUrls(): Promise<
+export async function getFeedUrls({ ids }: { ids?: Feed['id'][] }): Promise<
   {
     id: string;
     url: string;
@@ -54,6 +54,7 @@ export async function getFeedUrls(): Promise<
 > {
   return db.feed.findMany({
     select: { id: true, url: true },
+    where: { id: { in: ids } },
   });
 }
 

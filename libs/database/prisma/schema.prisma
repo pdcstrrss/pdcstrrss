@@ -31,7 +31,7 @@ model Episode {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   title       String   @db.VarChar(length: 4096)
-  url         String   @unique @db.VarChar(length: 255)
+  url         String   @db.VarChar(length: 255)
   description String?  @db.Text
   published   DateTime
   image       String?  @db.VarChar(length: 4096)

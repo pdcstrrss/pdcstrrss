@@ -1,5 +1,5 @@
 // TODO: Stick in background function
-import type { Prisma } from '@prisma/client';
+import type { Prisma, Feed } from '@prisma/client';
 import { db } from '@pdcstrrss/database';
 import objectHash from 'object-hash';
 import { isValid } from 'date-fns';
@@ -75,14 +75,24 @@ export const getFullConfig = (config: IAggregatorConfig): IAggregatorMergedConfi
 };
 
 export const getFeedsFromRss = async (config: IAggregatorMergedConfig): Promise<IGetFeedData[]> => {
-  const feedsRss = await Promise.all(config.feeds.map((feed) => fetch(feed.url).then((res) => res.text())));
-  return feedsRss
-    .map(parseRSS)
-    .filter((feedRssObj) => !!feedRssObj)
-    .map((data: any, index: number) => ({
-      ...config.feeds[index],
-      ...data,
-    }));
+  const feedsRss = await Promise.allSettled(config.feeds.map((feed) => fetch(feed.url).then((res) => res.text())));
+
+  feedsRss.forEach((feedRss, index) => {
+    if (feedRss.status === 'rejected')
+      console.error({ config: config.feeds[index], reason: (feedRss as PromiseRejectedResult).reason });
+  });
+
+  return (
+    feedsRss
+      .filter((feedRss) => feedRss.status === 'fulfilled')
+      .map((feedRss) => parseRSS((feedRss as PromiseFulfilledResult<string>).value))
+      .filter((feedRssObj) => !!feedRssObj)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .map((data: any, index: number) => ({
+        ...config.feeds[index],
+        ...data,
+      }))
+  );
 };
 
 export async function saveFeeds(feeds: IGetFeedData[]): Promise<IFeedIdsWithEntries[]> {
@@ -132,8 +142,8 @@ export async function getEpisodesToUpsert(episodes: IEpisodeFromFeed[]) {
     }
 
     const episode: Prisma.EpisodeCreateManyInput = {
-      title,
-      description,
+      title: `${title}`,
+      description: `${description}`,
       published: datePublished,
       url,
       image,
@@ -219,8 +229,8 @@ export async function aggregateFeedsAndEpisodes(config: IAggregatorConfig) {
   return feedIdsWithEntries.map(({ feedId }) => feedId);
 }
 
-export async function aggregateNewEpisodes() {
-  const feedIdNUrls = await getFeedUrls();
+export async function aggregateNewEpisodes({ feedIds }: { feedIds?: Feed['id'][] } = {}) {
+  const feedIdNUrls = await getFeedUrls({ ids: feedIds });
   const fullConfig = getFullConfig({ feeds: feedIdNUrls.map(({ url }) => ({ url })) });
   const feedsData = await getFeedsFromRss(fullConfig);
   if (!feedsData.length) throw new Error('No feeds found');
