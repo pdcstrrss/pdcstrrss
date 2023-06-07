@@ -1,1 +1,1 @@
-export * from './feedMerger.service';
+export * from './feedMerger.service.js';

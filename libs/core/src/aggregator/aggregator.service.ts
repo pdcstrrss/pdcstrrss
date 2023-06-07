@@ -3,11 +3,11 @@ import type { Prisma, Feed } from '@prisma/client';
 import { db } from '@pdcstrrss/database';
 import objectHash from 'object-hash';
 import { isValid } from 'date-fns';
-import { IRssFeedData, parseRSS } from '../rss/rss.service';
+import { IRssFeedData, parseRSS } from '../rss/rss.service.js';
 import { defaultsDeep } from 'lodash';
 import { get, partition } from 'lodash';
-import { linkUnlinkedEpisodes } from '../episode';
-import { getFeedUrls } from '../feed';
+import { linkUnlinkedEpisodes } from '../episode/index.js';
+import { getFeedUrls } from '../feed/index.js';
 
 export interface IAggregatorFeedDefaultConfig {
   keyMapping: Record<string, string | string[]>;
