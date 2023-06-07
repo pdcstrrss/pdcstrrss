@@ -1,0 +1,704 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feed can create feed for user 1`] = `
+Array [
+  Object {
+    "episodes": Array [
+      Object {
+        "published": 2023-05-03T12:02:41.000Z,
+        "title": "Nerdland maandoverzicht mei 2023 (Live in Antwerpen)",
+        "url": "https://feeds.soundcloud.com/stream/1505068753-lieven-scheire-nerdland-maandoverzicht-mei-2023.mp3",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-03T12:15:07.000Z,
+        "title": "Nerdland maandoverzicht april 2023",
+        "url": "https://feeds.soundcloud.com/stream/1483955950-lieven-scheire-nerdland-maandoverzicht-april-2023.mp3",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-03-09T15:24:45.000Z,
+        "title": "Nerdland maandoverzicht maart 2023",
+        "url": "https://feeds.soundcloud.com/stream/1465019827-lieven-scheire-nerdland-maandoverzicht-maart-2023.mp3",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-02-03T13:15:00.000Z,
+        "title": "Nerdland maandoverzicht februari 2023",
+        "url": "https://feeds.soundcloud.com/stream/1438309666-lieven-scheire-nerdland-maandoverzicht-februari-2023.mp3",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-01-03T13:15:07.000Z,
+        "title": "Nerdland maandoverzicht januari 2023",
+        "url": "https://feeds.soundcloud.com/stream/1415418769-lieven-scheire-nerdland-maandoverzicht-januari-2023.mp3",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2022-12-15T09:20:17.000Z,
+        "title": "Nerdland Special: Alcohol & Brouwen (Live bij St. Bernardus)",
+        "url": "https://feeds.soundcloud.com/stream/1403116912-lieven-scheire-nerdland-special-alcohol-brouwen-live.mp3",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2022-12-03T13:15:04.000Z,
+        "title": "Nerdland maandoverzicht december 2022",
+        "url": "https://feeds.soundcloud.com/stream/1395354886-lieven-scheire-nerdland-maandoverzicht-december-2022.mp3",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+    ],
+    "generator": null,
+    "language": "nl",
+    "title": "Nerdland maandoverzicht wetenschap en technologie",
+    "url": "https://nerdland.be/feed.xml",
+    "users": Array [
+      Object {
+        "user": Object {
+          "email": "abc@def.com",
+          "githubId": "abc",
+        },
+      },
+    ],
+  },
+  Object {
+    "episodes": Array [
+      Object {
+        "published": 2023-06-05T19:53:09.000Z,
+        "title": "568: Display Contents, Passkeys Follow Up, Yellow Fade Technique, and TOTK Talk",
+        "url": "https://shoptalkshow.com/568/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-29T09:00:16.000Z,
+        "title": "567: Full Stack Dev, Load Bearing Developer, and Being Zod Curious",
+        "url": "https://shoptalkshow.com/567/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-22T07:21:58.000Z,
+        "title": "566: View Transitions and Passkeys",
+        "url": "https://shoptalkshow.com/566/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-15T08:20:15.000Z,
+        "title": "565: The Hurdy-Gurdy, OKLCH, Edge Dev Tools, and Ad Blocking",
+        "url": "https://shoptalkshow.com/565/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-08T08:45:29.000Z,
+        "title": "564: Render ATL, New Colors Available, Gradients, HDR, and More",
+        "url": "https://shoptalkshow.com/564/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-01T08:51:30.000Z,
+        "title": "563: Getting Pulled by the Algorithm, AI Training Data, and SVG Drawing",
+        "url": "https://shoptalkshow.com/563/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-24T08:01:44.000Z,
+        "title": "562: Podcast Apps, Zaraz, Future CSS Thoughts, and Arc",
+        "url": "https://shoptalkshow.com/562/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-17T08:00:36.000Z,
+        "title": "561: Web Perf News, Web Sommelier, Data Analytics, and Passkeys",
+        "url": "https://shoptalkshow.com/561/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-10T08:53:57.000Z,
+        "title": "560: Oh Biscuits! Cascade Layers, Block Links, Emoji Lists, and more CSS!",
+        "url": "https://shoptalkshow.com/560/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-03T07:14:35.000Z,
+        "title": "559: Fidget Apps, Coding with AI, Dialog Element Navs, Getting Rid of CSS",
+        "url": "https://cdn.simplecast.com/audio/167887a0-ac00-4cf9-bc69-b5ca845997db/episodes/df45f577-4346-4883-9216-2109b25a5554/audio/17921a84-2e89-4f70-ae4a-91418c4483e4/default_tc.mp3?nocache",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-03-27T07:34:54.000Z,
+        "title": "558: Esoteric Weird Content Editable Problems with Kristin Valentine",
+        "url": "https://shoptalkshow.com/558/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-03-20T07:01:51.000Z,
+        "title": "557: ChatGPT, Conferences, Fidgets on the Web, and Modern CSS in Real Life",
+        "url": "https://cdn.simplecast.com/audio/167887a0-ac00-4cf9-bc69-b5ca845997db/episodes/b2207f7c-423f-4db6-846a-50fc60591131/audio/f1c37819-7d91-446d-ab9a-d24e28cc9a89/default_tc.mp3?nocache",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-03-13T16:38:12.000Z,
+        "title": "556: Andrey Sitnik and Using OKLCH for Color",
+        "url": "https://shoptalkshow.com/556/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-03-06T09:39:37.000Z,
+        "title": "555: React Documentary, Front of the Front End, Fast Fallacy, and Best Practices",
+        "url": "https://shoptalkshow.com/555/",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+    ],
+    "generator": "https://wordpress.org/?v=6.1.3",
+    "language": "en-US",
+    "title": "ShopTalk",
+    "url": "https://shoptalkshow.be/feed.xml",
+    "users": Array [
+      Object {
+        "user": Object {
+          "email": "abc@def.com",
+          "githubId": "abc",
+        },
+      },
+    ],
+  },
+  Object {
+    "episodes": Array [
+      Object {
+        "published": 2023-06-05T10:00:00.000Z,
+        "title": "Nothing in CSS - 0 vs 0px, no, none, hidden, initial and unset",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_623.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-06-02T10:00:00.000Z,
+        "title": "Supper Club × Matt Rothenberg and Idan Gazit on Github Next",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_622.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-31T10:00:00.000Z,
+        "title": "The New Syntax Site × Ingest, Stack, AI and more",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_621.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-29T10:00:00.000Z,
+        "title": "JavaScript.exe - Standalone Executables",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_620.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-26T10:00:00.000Z,
+        "title": "Supper Club × Bramus Van Damme on CSS",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_619.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-24T10:00:00.000Z,
+        "title": "Potluck × JR Devs & Copilot × CSS Variable Limitations × SvelteKit",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_618.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-22T10:00:00.000Z,
+        "title": "Why Is node_modules So Big?",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_617.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-19T10:00:00.000Z,
+        "title": "Supper Club × Adam Argyle on What's New in CSS",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_616.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-17T10:00:00.000Z,
+        "title": "Where Should You Host Your App? Hosting Providers Compared",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_615.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-15T10:00:00.000Z,
+        "title": "WTF Are Signals And Why Is Everyone So Hot On Them All Of The Sudden?",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_611.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-12T10:00:00.000Z,
+        "title": "Supper Club × Dylan Jhaveri - Video for the Web and MUX",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_613.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-10T10:00:00.000Z,
+        "title": "UI Elements - Basics, Best Practice, and Built Ins",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_612.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-08T10:00:00.000Z,
+        "title": "Bluesky + AT Protocol",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_611-new.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-05T10:00:00.000Z,
+        "title": "Supper Club × Zach Lloyd from Warp",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_610.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-03T10:00:00.000Z,
+        "title": "The Syntax Giveaway Site - Codes, Bots, Tech Stack and More!",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_609.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-05-01T10:00:00.000Z,
+        "title": "RPC in JavaScript!",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_608.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-28T10:00:00.000Z,
+        "title": "Supper Club × Privacy, Cookie Banners, GDPR with Donata and Hans Skillrud",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_607.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-26T10:00:00.000Z,
+        "title": "Potluck × Crypto × SEO × Status Pages × Learning Tools",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_606.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-24T10:00:00.000Z,
+        "title": "CSS Color Functions",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_605.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-21T10:00:00.000Z,
+        "title": "Supper Club × ESLint with Nicholas Zakas",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_604.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-19T10:00:00.000Z,
+        "title": "Can Vanilla CSS Replace Sass Yet?",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_603.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-17T10:00:00.000Z,
+        "title": "Modals, Popups, Popovers, Lightboxes",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_602.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-14T10:00:00.000Z,
+        "title": "Supper Club × Nate Weinert and Tamagui",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_601.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-12T10:00:00.000Z,
+        "title": "600th Episode! Major Announcement + SWAG Giveaway!",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_600-jZ8nX5DfKp.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-10T10:00:00.000Z,
+        "title": "oAuth APIs Explained",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_599.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-07T10:00:00.000Z,
+        "title": "Supper Club × Fabian Kägy - Modern WordPress - Blocks, Page builders, Headless, Custom Fields",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_598.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-05T10:00:00.000Z,
+        "title": "Stump’d Gameshow! Answering Coding Interview Questions from AI",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_597.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-04-03T10:00:00.000Z,
+        "title": "The New Import Map Standard",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_596.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+      Object {
+        "published": 2023-03-31T10:00:00.000Z,
+        "title": "Supper Club × Web Components and Lit with Justin Fagnani of Google",
+        "url": "https://traffic.libsyn.com/secure/syntax/Syntax_-_595_wsponsor.mp3?dest-id=532671",
+        "users": Array [
+          Object {
+            "user": Object {
+              "email": "abc@def.com",
+              "githubId": "abc",
+            },
+          },
+        ],
+      },
+    ],
+    "generator": "Libsyn WebEngine 2.0",
+    "language": "en",
+    "title": "Syntax - Tasty Web Development Treats",
+    "url": "https://syntax.fm/feed.xml",
+    "users": Array [
+      Object {
+        "user": Object {
+          "email": "abc@def.com",
+          "githubId": "abc",
+        },
+      },
+    ],
+  },
+]
+`;

@@ -48,10 +48,13 @@
           "watch": true
         },
         "integration": {
-          "testMatch": ["**/+(*.)+(spec).+(ts|js)?(x)"]
+          "testMatch": ["**/+(*.)+(spec).+(ts|js)?(x)"],
+          "runInBand": true,
+          "verbose": true
         },
         "integration:watch": {
           "testMatch": ["**/+(*.)+(spec).+(ts|js)?(x)"],
+          "runInBand": true,
           "watch": true
         }
       }
