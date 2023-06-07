@@ -30,31 +30,10 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
+      "executor": "@nx/vite:test",
       "outputs": ["{workspaceRoot}/coverage/libs/core"],
-      "options": {
-        "jestConfig": "libs/core/jest.config.ts",
-        "passWithNoTests": true
-      },
       "configurations": {
         "watch": {
-          "watch": true
-        },
-        "unit": {
-          "testMatch": ["**/+(*.)+(test).+(ts|js)?(x)"]
-        },
-        "unit:watch": {
-          "testMatch": ["**/+(*.)+(test).+(ts|js)?(x)"],
-          "watch": true
-        },
-        "integration": {
-          "testMatch": ["**/+(*.)+(spec).+(ts|js)?(x)"],
-          "runInBand": true,
-          "verbose": true
-        },
-        "integration:watch": {
-          "testMatch": ["**/+(*.)+(spec).+(ts|js)?(x)"],
-          "runInBand": true,
           "watch": true
         }
       }

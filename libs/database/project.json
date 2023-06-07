@@ -70,12 +70,8 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/libs/database"],
-      "options": {
-        "jestConfig": "libs/database/jest.config.ts",
-        "passWithNoTests": true
-      }
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/libs/database"]
     }
   },
   "tags": []

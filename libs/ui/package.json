@@ -22,7 +22,6 @@
     "@storybook/manager-webpack5": "^6.5.8",
     "@storybook/react": "^6.5.3",
     "@testing-library/react": "13.3.0",
-    "babel-jest": "27.5.1",
     "babel-loader": "^8.2.5",
     "core-js": "^3.6.5",
     "regenerator-runtime": "0.13.7"

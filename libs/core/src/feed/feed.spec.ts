@@ -1,30 +1,34 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { describe, it, vi, expect, beforeEach, afterEach } from 'vitest';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-// import { promisify } from 'node:util';
-// import { exec as execSync } from 'node:child_process';
 import { db } from '@pdcstrrss/database';
-import { createFeedByForUser } from './feed.service';
-
-jest.retryTimes(3, { logErrorsBeforeRetry: true });
+import { createFeedByForUser } from './feed.service.js';
 
 function getFixturePath(name: string) {
   return resolve(__dirname, `../../test/fixtures/${name}`);
 }
 
-describe.only('Feed', () => {
-  it('can create feed for user', async () => {
-    async function cleanup() {
-      await db.$transaction([
-        db.episodesOfUsers.deleteMany(),
-        db.feedsOfUsers.deleteMany(),
-        db.user.deleteMany(),
-        db.feed.deleteMany(),
-        db.episode.deleteMany(),
-      ]);
-    }
+describe('Feed', () => {
+  async function cleanup() {
+    await db.$transaction([
+      db.episodesOfUsers.deleteMany(),
+      db.feedsOfUsers.deleteMany(),
+      db.user.deleteMany(),
+      db.feed.deleteMany(),
+      db.episode.deleteMany(),
+    ]);
+  }
 
+  beforeEach(async () => {
     await cleanup();
+  });
+
+  afterEach(async () => {
+    await cleanup();
+  });
+
+  it('can create feed for user', async () => {
 
     // Mock feeds to ingest
     const feedsToIngest = [
@@ -44,7 +48,7 @@ describe.only('Feed', () => {
 
     // Mock fetch
     // @ts-ignore
-    global.fetch = jest.fn((url) => {
+    global.fetch = vi.fn((url) => {
       const feed = feedsToIngest.find((feed) => feed.url === url);
       return Promise.resolve({
         text: () => feed?.xml,
@@ -110,17 +114,12 @@ describe.only('Feed', () => {
         },
       });
 
-      console.log(JSON.stringify(receivedFeeds, null, 2));
-
       // Match received feeds against snapshot
       expect(receivedFeeds).toMatchSnapshot();
     } catch (error) {
       expect(error).toBeUndefined();
       console.error(error);
     }
-
-    // Cleanup
-    await cleanup();
   });
 
   // it('can aggregate new episodes', () => {});

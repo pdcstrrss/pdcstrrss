@@ -1,7 +1,6 @@
+import { describe, it, beforeEach, afterEach, expect } from 'vitest';
 import { db } from '@pdcstrrss/database';
-import { findAndMergeFeeds } from './feedMerger.service';
-
-jest.retryTimes(3, { logErrorsBeforeRetry: true });
+import { findAndMergeFeeds } from './feedMerger.service.js';
 
 async function cleanUpDatabase() {
   const deleteAllEpisodesOfUsers = db.episodesOfUsers.deleteMany();
