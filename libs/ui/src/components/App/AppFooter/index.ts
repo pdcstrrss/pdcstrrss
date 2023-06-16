@@ -1,1 +1,1 @@
-export * from './AppFooter';
+export * from './AppFooter.js';

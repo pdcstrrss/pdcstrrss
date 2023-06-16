@@ -1,2 +1,2 @@
-export * from './AppFooter';
-export * from './AppHeader';
+export * from './AppFooter/index.js';
+export * from './AppHeader/index.js';

@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import { TRANSLATIONS } from '../../../constants';
+import { clsx } from 'clsx';
+import { TRANSLATIONS } from '../../../constants/index.js';
 
 export function AppFooter() {
   const thisYear = new Date().getFullYear();

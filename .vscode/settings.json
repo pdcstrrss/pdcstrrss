@@ -1,6 +1,4 @@
 {
-  "exportall.config.folderListener": [
-    "/libs/ui/src"
-  ],
+  "exportall.config.folderListener": [],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

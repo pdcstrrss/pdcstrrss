@@ -1,1 +1,1 @@
-export * from './AuthenticatedLayout';
+export * from './AuthenticatedLayout.js';

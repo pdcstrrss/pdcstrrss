@@ -1,1 +1,1 @@
-export * from './IndexView';
+export * from './IndexView.js';

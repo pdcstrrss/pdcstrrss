@@ -1,1 +1,1 @@
-export * from './EpisodeList';
+export * from './EpisodeList/index.js';

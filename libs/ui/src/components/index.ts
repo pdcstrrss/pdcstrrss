@@ -1,8 +1,8 @@
 // export * from './AudioPlayer';
-export * from './App';
-export * from './Button';
-export * from './Episode';
-export * from './Feed';
-export * from './Pagination';
-export * from './SvgSprite';
-export * from './AudioPlayer';
+export * from './App/index.js';
+export * from './Button/index.js';
+export * from './Episode/index.js';
+export * from './Feed/index.js';
+export * from './Pagination/index.js';
+export * from './SvgSprite/index.js';
+export * from './AudioPlayer/index.js';
