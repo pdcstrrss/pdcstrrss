@@ -6,3 +6,4 @@ export * from './Feed';
 export * from './Pagination';
 export * from './SvgSprite';
 export * from './AudioPlayer';
+export * from './Form';
