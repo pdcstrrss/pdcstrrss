@@ -1,11 +1,10 @@
 ---
-import { FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
+import { Form, FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
 import { getFeedById } from '@pdcstrrss/core';
 import { ROUTES } from '@/lib/useRoutes';
 import { getUserFromRequest } from '@/lib/useUser';
 import Layout from '@/layouts/Layout.astro';
 import { deleteFeed } from '@/lib/useFeeds.server';
-import Form from '@/components/Forms/Form.astro';
 import { logError } from '@/lib/useError';
 
 const {
@@ -39,15 +38,28 @@ if (!feed) return new Response('Feed not found', { status: 404 });
     <header class="page-header">
       <h1 class="page-header-title">Remove feed</h1>
     </header>
-    <Form form={{ method: 'post' }} action={FORM_ACTIONS.DELETE} subject={FORM_SUBJECTS.FEED} error={error}>
+    <Form
+      form={{ method: 'post' }}
+      action={FORM_ACTIONS.DELETE}
+      subject={FORM_SUBJECTS.FEED}
+      error={error}
+      clientSideHandling={true}
+    >
       <div class="card clear-inner-space">
         <p>
-          Are you sure you want to remove <strong>{feed?.title}</strong> from your list of feeds?
+          Are you sure you want to remove <strong>{feed?.title}</strong> from your
+          list of feeds?
         </p>
-        <p>This action will remove all episode data and preferences of this feed linked to your account.</p>
+        <p>
+          This action will remove all episode data and preferences of this feed
+          linked to your account.
+        </p>
       </div>
       <div class="form-actions">
-        <button class="button button-danger" type="submit" data-text-content-on-submit="Deleting feed...">Delete</button
+        <button
+          class="button button-danger"
+          type="submit"
+          data-text-content-on-submit="Deleting feed...">Delete</button
         >
         <a class="button button-link" href={ROUTES.feeds}> Cancel</a>
       </div>

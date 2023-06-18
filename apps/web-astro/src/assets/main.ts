@@ -18,7 +18,10 @@ const swup = new Swup(swupOptions);
 // Form submissions
 //
 document.body.addEventListener('submit', (event) => {
-  if (event.target instanceof HTMLFormElement) return handleFormSubmit({ event, swup });
+  if (!(event.target instanceof HTMLFormElement)) return;
+  if (event.target.dataset.clientSideHandling !== 'true') {
+    return handleFormSubmit({ event, swup });
+  }
 });
 
 //
