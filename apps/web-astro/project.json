@@ -56,13 +56,6 @@
         "lintFilePatterns": ["apps/web-astro/**/*.{js,ts}"],
         "ignorePath": ".gitignore"
       }
-    },
-    "test": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "echo 'No tests yet'",
-        "cwd": "apps/web-astro"
-      }
     }
   },
   "tags": []

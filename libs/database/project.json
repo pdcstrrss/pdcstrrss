@@ -68,10 +68,6 @@
       "options": {
         "lintFilePatterns": ["libs/database/**/*.ts"]
       }
-    },
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{workspaceRoot}/coverage/libs/database"]
     }
   },
   "tags": []
