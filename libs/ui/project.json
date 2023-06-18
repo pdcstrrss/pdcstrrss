@@ -21,6 +21,10 @@
     },
     "test": {
       "executor": "@nx/vite:test",
+      "options": {
+        "config": "libs/ui/vite.config.ts",
+        "verbose": true
+      },
       "outputs": ["{workspaceRoot}/coverage/libs/ui"]
     },
     "storybook": {

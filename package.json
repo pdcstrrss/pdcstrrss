@@ -4,13 +4,14 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "postinstall": "npx patch-package",
     "dev": "nx run-many --target=dev",
     "start": "nx serve",
     "generate": "nx run-many --target=generate",
     "build": "nx run-many --target=build",
     "predeploy": "rimraf node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node",
     "deploy": "netlify deploy --dir ./dist/hosting/netlify/public --functions ./dist/hosting/netlify/functions --debug",
-    "test": "nx test",
+    "test": "nx run-many --target=test",
     "lint": "nx run-many --target=lint",
     "typecheck": "nx run-many --target=typecheck",
     "prepare": "husky install"

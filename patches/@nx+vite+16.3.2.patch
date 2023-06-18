@@ -1,0 +1,42 @@
+diff --git a/node_modules/@nx/vite/src/executors/test/vitest.impl.js b/node_modules/@nx/vite/src/executors/test/vitest.impl.js
+index cfeff8f..7f6d8be 100644
+--- a/node_modules/@nx/vite/src/executors/test/vitest.impl.js
++++ b/node_modules/@nx/vite/src/executors/test/vitest.impl.js
+@@ -52,7 +52,7 @@ let NxReporter = class NxReporter {
+ };
+ async function* vitestExecutor(options, context) {
+     const projectRoot = context.projectsConfigurations.projects[context.projectName].root;
+-    (0, _internal.registerTsConfigPaths)((0, _path.resolve)(projectRoot, 'tsconfig.json'));
++    (0, _internal.registerTsConfigPaths)((0, _path.resolve)(_devkit.workspaceRoot, projectRoot, 'tsconfig.json'));
+     const { startVitest  } = await Function('return import("vitest/node")')();
+     const nxReporter = new NxReporter(options.watch);
+     const settings = await getSettings(options, context);
+@@ -94,7 +94,17 @@ async function getSettings(options, context) {
+         reportsDirectory: options.reportsDirectory,
+         provider: 'c8'
+     } : {};
+-    const viteConfigPath = options.config ? (0, _devkit.joinPathFragments)(context.root, options.config) : findViteConfig((0, _devkit.joinPathFragments)(context.root, projectRoot));
++    const viteConfigPath = options.config ? options.config : findViteConfig((0, _devkit.joinPathFragments)(context.root, projectRoot));
++
++
++
++    const resolvedProjectRoot = (0, _path.resolve)(_devkit.workspaceRoot, projectRoot);
++    const resolvedViteConfigPath = (0, _path.resolve)(
++      _devkit.workspaceRoot,
++      projectRoot,
++      (0, _path.relative)(resolvedProjectRoot, viteConfigPath)
++    )
++
+     const resolved = await (0, _vite.loadConfigFromFile)({
+         mode: options.mode,
+         command: 'serve'
+@@ -111,7 +121,8 @@ You can manually set the config in the project, ${context.projectName}, configur
+         // when running nx from the project root, the root will get appended to the cwd.
+         // creating an invalid path and no tests will be found.
+         // instead if we are not at the root, let the cwd be root.
+-        root: offset === '' ? projectRoot : '',
++        root: offset === '' ? resolvedProjectRoot : _devkit.workspaceRoot,
++        config: resolvedViteConfigPath,
+         reporters: [
+             ...(_options_reporters = options.reporters) != null ? _options_reporters : [],
+             ...(_ref = resolved == null ? void 0 : (_resolved_config1 = resolved.config) == null ? void 0 : (_resolved_config_test = _resolved_config1['test']) == null ? void 0 : _resolved_config_test.reporters) != null ? _ref : [],
