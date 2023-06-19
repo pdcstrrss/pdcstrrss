@@ -4,15 +4,18 @@ import { cleanupUnlinkedData, findAndMergeFeeds } from '@pdcstrrss/core';
 export const handler: Handler = async () => {
   try {
     const { feedGroupsFound, episodesUpdated, episodesDeleted } = await findAndMergeFeeds();
-    console.debug(
-      `FEED MERGER `,
-      `Found ${feedGroupsFound} feed groups to merge`,
-      `Updated ${episodesUpdated} episodes`,
-      `Deleted ${episodesDeleted} episodes`
+    console.log(`
+      [Feed Merger]
+        Found ${feedGroupsFound} feed groups to merge
+        Updated ${episodesUpdated} episodes
+        Deleted ${episodesDeleted} episodes`
     );
 
     const { episodeCount, feedCount } = await cleanupUnlinkedData();
-    console.debug(`Successfully cleaned up \n${episodeCount.count} episodes \n${feedCount.count} feeds.`);
+    console.log(`
+      [Clean up linked data]
+        Successfully cleaned up \n${episodeCount.count} episodes \n${feedCount.count} feeds.
+    `);
 
     return {
       statusCode: 204,

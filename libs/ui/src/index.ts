@@ -1,3 +1,2 @@
-export * from './components';
-export * from './constants';
-export * from './views';
+export * from './components/index.js';
+export * from './constants/index.js';

@@ -1,4 +1,4 @@
-import type { FORM_ACTIONS, FORM_SUBJECTS } from '../../';
+import type { FORM_ACTIONS, FORM_SUBJECTS } from '../../constants/forms.js';
 
 export type FormProps = JSX.IntrinsicElements['form'] & {
   form: {

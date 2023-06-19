@@ -1,5 +1,5 @@
 import { cloneElement, ReactElement, useRef, useState } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 export type DropdownProps = React.PropsWithChildren<{
   toggle: ({ visibility }: { visibility: boolean }) => ReactElement;

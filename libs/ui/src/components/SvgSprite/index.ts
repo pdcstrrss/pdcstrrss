@@ -1,1 +1,1 @@
-export * from './SvgSprite';
+export * from './SvgSprite.js';

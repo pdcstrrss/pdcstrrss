@@ -2,6 +2,7 @@
   "name": "@pdcstrrss/ui",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "type": "module",
   "dependencies": {
     "clsx": "^1.1.1",
     "core-js": "^3.6.5",
@@ -21,10 +22,13 @@
     "@storybook/core-server": "^6.5.8",
     "@storybook/manager-webpack5": "^6.5.8",
     "@storybook/react": "^6.5.3",
-    "@testing-library/react": "13.3.0",
-    "babel-jest": "27.5.1",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/user-event": "^14.4.3",
+    "@vitejs/plugin-react": "4.0.0",
     "babel-loader": "^8.2.5",
     "core-js": "^3.6.5",
-    "regenerator-runtime": "0.13.7"
+    "regenerator-runtime": "0.13.7",
+    "jsdom": "latest"
   }
 }

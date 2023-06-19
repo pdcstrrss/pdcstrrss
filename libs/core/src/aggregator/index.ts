@@ -1,1 +1,1 @@
-export * from './aggregator.service';
+export * from './aggregator.service.js';

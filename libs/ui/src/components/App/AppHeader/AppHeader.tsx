@@ -1,8 +1,8 @@
 import type { MouseEventHandler } from 'react';
 import type { User } from '@prisma/client';
-import clsx from 'clsx';
-import { TRANSLATIONS } from '../../../constants';
-import { Dropdown } from '../../Dropdown/Dropdown';
+import { clsx } from 'clsx';
+import { TRANSLATIONS } from '../../../constants/index.js';
+import { Dropdown } from '../../Dropdown/Dropdown.js';
 
 export type AppHeaderUser = Partial<Pick<User, 'name' | 'image' | 'id'>>;
 export type AppHeaderNavLinks = { title: string; to?: string; callback?: MouseEventHandler<HTMLButtonElement> }[];

@@ -3,13 +3,11 @@ import type { Prisma, Feed } from '@prisma/client';
 import { db } from '@pdcstrrss/database';
 import objectHash from 'object-hash';
 import { isValid } from 'date-fns';
-import pMap from 'p-map';
-import { IRssFeedData, parseRSS } from '../rss/rss.service';
-import defaultsDeep from 'lodash/defaultsDeep';
-import partition from 'lodash/partition';
-import get from 'lodash/get';
-import { linkUnlinkedEpisodes } from '../episode';
-import { getFeedUrls } from '../feed';
+import { IRssFeedData, parseRSS } from '../rss/rss.service.js';
+import { defaultsDeep } from 'lodash';
+import { get, partition } from 'lodash';
+import { linkUnlinkedEpisodes } from '../episode/index.js';
+import { getFeedUrls } from '../feed/index.js';
 
 export interface IAggregatorFeedDefaultConfig {
   keyMapping: Record<string, string | string[]>;
@@ -96,6 +94,8 @@ export const getFeedsFromRss = async (config: IAggregatorMergedConfig): Promise<
 };
 
 export async function saveFeeds(feeds: IGetFeedData[]): Promise<IFeedIdsWithEntries[]> {
+  const { default: pMap } = await import('p-map');
+
   const feedsToCreate = feeds.reduce((previousData, currentFeed) => {
     const { link, title, description, generator, language, url } = currentFeed;
     if (!title || !url) {

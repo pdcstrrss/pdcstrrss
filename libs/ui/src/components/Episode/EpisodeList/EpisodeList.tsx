@@ -1,6 +1,6 @@
 import { EpisodeStatus } from '@prisma/client';
 import type { IEpisodeOfUser } from '@pdcstrrss/core';
-import { Form, FORM_ACTIONS, FORM_SUBJECTS, Button } from '../../../';
+import { Form, FORM_ACTIONS, FORM_SUBJECTS, Button } from '../../../index.js';
 import './EpisodeList.css';
 
 interface IEpisodeListProps {

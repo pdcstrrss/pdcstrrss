@@ -8,7 +8,7 @@ import {
   getFeedsWithIdUrl,
   updateEpisodesOfUsersEpisodeId,
 } from '@pdcstrrss/database';
-import { normalizeUrl } from '../../url/url.service';
+import { normalizeUrl } from '../../url/url.service.js';
 
 export type FeedForMerging = {
   id: Feed['id'];

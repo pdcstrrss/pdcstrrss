@@ -1,24 +1,25 @@
-import { Feed, Episode } from '@prisma/client';
+import { vi, it, expect } from 'vitest';
+import { Feed } from '@prisma/client';
 import {
   FeedForMerging,
   getEpisodeGroupsByFeedGroups,
   getEpisodesOfUserUpdateData,
   getFeedGroupsToMerge,
-} from './feedMerger.service';
+} from './feedMerger.service.js';
 
-jest.mock('@pdcstrrss/database', () => {
-  const originalModule = jest.requireActual('@pdcstrrss/database');
+vi.mock('@pdcstrrss/database', () => {
+  const originalModule = vi.importActual('@pdcstrrss/database');
   const mockedFeedsWithEpisodeIds = (feedIds: Feed['id'][]): { id: Feed['id']; episodes: { id: string }[] }[] =>
     feedIds.map((id) => ({ id, episodes: Array.from({ length: 3 }, (_, i) => ({ id: `${id}-${i}` })) }));
 
   return {
     __esModule: true,
     ...originalModule,
-    getFeedsWithEpisodeIds: jest.fn(mockedFeedsWithEpisodeIds),
+    getFeedsWithEpisodeIds: vi.fn(mockedFeedsWithEpisodeIds),
   };
 });
 
-test('can get FeedGroups with feeds with equal normalized URLs', async () => {
+it('can get FeedGroups with feeds with equal normalized URLs', async () => {
   const feeds: FeedForMerging[] = [
     {
       id: '1',
@@ -51,7 +52,7 @@ test('can get FeedGroups with feeds with equal normalized URLs', async () => {
   expect(feedGroups).toStrictEqual(expectedFeedGroups);
 });
 
-test('can getEpisodeGroupsByFeedGroups', async () => {
+it('can getEpisodeGroupsByFeedGroups', async () => {
   const feeds: Feed['id'][][] = [
     ['1', '3'],
     ['2', '4', '5'],
@@ -73,7 +74,7 @@ test('can getEpisodeGroupsByFeedGroups', async () => {
   expect(episodeGroups).toStrictEqual(exceptedEpisodeGroups);
 });
 
-test('can getEpisodesOfUserUpdateData', async () => {
+it('can getEpisodesOfUserUpdateData', async () => {
   const feedsGroupsWithEpisodeIds = [
     [
       ['1-0', '1-1', '1-2'],

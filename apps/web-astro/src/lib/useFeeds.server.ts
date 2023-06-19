@@ -1,5 +1,5 @@
 import type { Feed } from '@prisma/client';
-import { addFeedsToUser, createFeedByUrl, getFeedByUrl, getFeedsOfUser, deleteFeedsOfUser } from '@pdcstrrss/core';
+import { createFeedByForUser, getFeedsOfUser, deleteFeedsOfUser } from '@pdcstrrss/core';
 import { formPostSchema, FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
 import { z } from 'zod';
 import type { UserFromRequest } from './useUser';
@@ -24,10 +24,7 @@ export const createFeed = async ({ request, user }: { request: Request; user: Us
   const data = formPostSchema.safeParse(Object.fromEntries(dataEntries));
   if (!data.success) throw new Error('Invalid form data');
   const { url } = createFeedSchema.parse(Object.fromEntries(dataEntries));
-  let feed = await getFeedByUrl(url, { userId: user.id });
-  if (!feed) feed = await createFeedByUrl(url);
-  if (!feed) throw new Error('Feed could not be retrieved');
-  await addFeedsToUser({ userId: user.id, feedIds: [feed.id] });
+  await createFeedByForUser({ url, userId: user.id });
 };
 
 //
