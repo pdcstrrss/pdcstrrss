@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Dropdown } from './Dropdown';
+import { Dropdown } from './Dropdown.js';
 import '../../styles/_dropdown.css';
 
 export default {

@@ -1,2 +1,2 @@
-export * from './translations';
-export * from './forms';
+export * from './translations.js';
+export * from './forms.js';

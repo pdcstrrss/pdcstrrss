@@ -1,8 +1,9 @@
 import type { Feed } from '@prisma/client';
 import { db } from '@pdcstrrss/database';
-import defaultsDeep from 'lodash/defaultsDeep';
-import { IRepositoryFilters, IRequiredRepositoryFilters } from '..';
-import { aggregateFeedsAndEpisodes } from '../aggregator';
+import { defaultsDeep } from 'lodash';
+import type { IRepositoryFilters, IRequiredRepositoryFilters } from '../types.js';
+import { aggregateFeedsAndEpisodes } from '../aggregator/aggregator.service.js';
+import { normalizeUrl } from '../url/url.service.js';
 
 export type IFeed = Feed & {
   image?: string;
@@ -45,7 +46,7 @@ export async function getFeeds(params?: IGetFeedsParams): Promise<Feed[]> {
   });
 }
 
-export async function getFeedUrls(): Promise<
+export async function getFeedUrls({ ids }: { ids?: Feed['id'][] }): Promise<
   {
     id: string;
     url: string;
@@ -53,6 +54,7 @@ export async function getFeedUrls(): Promise<
 > {
   return db.feed.findMany({
     select: { id: true, url: true },
+    where: { id: { in: ids } },
   });
 }
 
@@ -160,7 +162,8 @@ export async function deleteFeedsOfUser({ feedIds, userId }: IAssignFeedToUserPa
 }
 
 export async function createFeedByUrl(url: string) {
-  const feedIds = await aggregateFeedsAndEpisodes({ feeds: [{ url }] });
+  const normalizedUrl = await normalizeUrl(url);
+  const feedIds = await aggregateFeedsAndEpisodes({ feeds: [{ url: normalizedUrl }] });
   if (feedIds.length === 0) return null;
   return getFeedById(feedIds[0]);
 }
@@ -168,4 +171,12 @@ export async function createFeedByUrl(url: string) {
 export async function exceedsFreeFeedThreshold({ userId }: { userId: string }) {
   const feedCount = await db.feed.count({ where: { users: { some: { userId } } } });
   return feedCount < FREE_FEED_THRESHOLD;
+}
+
+export async function createFeedByForUser({ url, userId }: { url: string; userId: string }) {
+  const normalizedUrl = await normalizeUrl(url);
+  let feed = await getFeedByUrl(normalizedUrl, { userId });
+  if (!feed) feed = await createFeedByUrl(normalizedUrl);
+  if (!feed) throw new Error('Feed could not be retrieved');
+  await addFeedsToUser({ userId, feedIds: [feed.id] });
 }

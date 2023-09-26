@@ -1,16 +1,15 @@
 ---
 import { clsx } from 'clsx';
-import { getUserByGitHubId, getUserSponsorship } from '@pdcstrrss/core';
-import { getUserSessionFromRequest } from '@/lib/useUser';
+import { getUserSponsorship } from '@pdcstrrss/core';
+import { getUserFromRequest, getUserAccountByProvider } from '@/lib/useUser';
 import Layout from '@/layouts/Layout.astro';
+import SignIn from '@/components/auth/SignIn.astro';
 
 const { request } = Astro;
-const userSession = getUserSessionFromRequest({ request });
-const user = userSession ? await getUserByGitHubId(userSession.user.id) : null;
-const sponsorship = userSession?.accessToken
-  ? await getUserSponsorship({ accessToken: userSession.accessToken }).catch(() => null)
-  : null;
-const sponsorOrMember = sponsorship?.sponsor || sponsorship?.member;
+const user = await getUserFromRequest({ request });
+const { access_token: accessToken } = (await getUserAccountByProvider({ user, provider: 'github' })) || {};
+const sponsorship = await getUserSponsorship({ accessToken }).catch(() => null);
+const sponsorOrMember = !!sponsorship?.sponsor || !!sponsorship?.member;
 ---
 
 <Layout>
@@ -36,12 +35,12 @@ const sponsorOrMember = sponsorship?.sponsor || sponsorship?.member;
           }
         </div>
         <div class="card-footer">
-          <a class={clsx('button', { 'button-success disabled': !!user })} href="/api/auth/login">
+          <SignIn class={clsx('button', { 'button-success disabled': !!user })} provider="github" type="button">
             <svg>
               <use xlink:href={user ? '#check' : '#github'}></use>
             </svg>
             {user ? 'Logged in' : 'Login'} with GitHub
-          </a>
+          </SignIn>
         </div>
         <div class="card-badge">
           {
@@ -75,19 +74,21 @@ const sponsorOrMember = sponsorship?.sponsor || sponsorship?.member;
           }
         </div>
         <div class="card-footer">
-          <a
+          <SignIn
             class={clsx('button', {
               'button-success': sponsorOrMember,
               'button-fuchsia': !sponsorOrMember,
               disabled: user && sponsorOrMember,
             })}
-            href="/login"
+            provider="github"
+            type="button"
+            options={{ callbackUrl: '/app/episodes' }}
           >
             <svg>
               <use xlink:href={sponsorOrMember ? '#check' : '#heart'}></use>
             </svg>
             Sponsor{user ? 'ing' : ''} via GitHub
-          </a>
+          </SignIn>
         </div>
         <div class="card-badge">
           {

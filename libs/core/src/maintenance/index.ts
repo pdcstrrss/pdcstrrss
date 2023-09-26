@@ -1,1 +1,2 @@
-export * from './maintenance.service';
+export * from './feedMerger/index.js';
+export * from './maintenance.service.js';

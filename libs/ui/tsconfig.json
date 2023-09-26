@@ -10,11 +10,5 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
-  },
-  "exclude": ["./jest.config.ts", "jest.config.ts"],
-  "references": [
-    {
-      "path": "./.storybook/tsconfig.json"
-    }
-  ]
+  }
 }

@@ -1,10 +1,11 @@
 ---
 import '@pdcstrrss/ui/src/styles/styles.global';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import defaultsDeep from 'lodash/defaultsDeep';
-import { AppHeader, SvgSprite, AppFooter } from '@pdcstrrss/ui';
+import { AppHeader, SvgSprite, AppFooter, TRANSLATIONS } from '@pdcstrrss/ui';
 import { getUserFromRequest } from '@/lib/useUser';
 import { AudioPlayer } from '@pdcstrrss/ui';
+import SignIn from '@/components/auth/SignIn.astro';
 
 interface Props {
   title?: string;
@@ -43,7 +44,21 @@ if (user && Astro.cookies.has('pdcstrrss.redirect')) {
   <body class={clsx({ 'body-with-hero': !!hero, 'body-with-audio': user?.activeEpisode })}>
     <SvgSprite />
     <div id="swup">
-      {header && <AppHeader client:idle user={user} inverted={hero} currentPath={currentPath} />}
+      {
+        header && (
+          <AppHeader client:idle user={user} inverted={hero} currentPath={currentPath}>
+            <SignIn
+              slot="loginButton"
+              provider="github"
+              class="app-header-nav-link button-reset"
+              type="button"
+              options={{ callbackUrl: '/app/episodes', redirect: true }}
+            >
+              {TRANSLATIONS.login}
+            </SignIn>
+          </AppHeader>
+        )
+      }
       <main>
         <slot />
       </main>

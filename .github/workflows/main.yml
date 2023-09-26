@@ -6,34 +6,45 @@ on:
   pull_request:
 
 jobs:
-  workspace:
+  prep:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v3
+      - uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm ci --force
 
+  build:
+    runs-on: ubuntu-latest
+    needs: prep
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       GH_OAUTH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
       GH_OAUTH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
+      AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
       ASTROAUTH_SECRET: ${{ secrets.ASTROAUTH_SECRET }}
       ASTROAUTH_URL: ${{ secrets.ASTROAUTH_URL }}
       BASE_URL: ${{ secrets.BASE_URL }}
       SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
-      - uses: actions/checkout@v2
+          node-version: 18.x
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: nrwl/nx-set-shas@v2
       - uses: bahmutov/npm-install@v1
         with:
-          install-command: npm ci --legacy-peer-deps
+          install-command: npm ci --force
       - run: npm run generate
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run test
+
       - run: npm run build
       - name: Deploy to production
         if: github.ref == 'refs/heads/main'
@@ -57,3 +68,24 @@ jobs:
         with:
           environment: production
           ignore_empty: true
+
+  test:
+    runs-on: ubuntu-latest
+    needs: prep
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL_TEST }}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm ci --force
+      - name: Reset test database
+        run: npx nx run database:push:reset
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test

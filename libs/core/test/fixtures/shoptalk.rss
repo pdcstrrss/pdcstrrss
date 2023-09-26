@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>ShopTalk</title>
+	<atom:link href="https://shoptalkshow.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://shoptalkshow.com/</link>
+	<description>A live podcast about front end web design and UX.</description>
+	<lastBuildDate>Mon, 05 Jun 2023 22:04:41 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.1.3</generator>
+<site xmlns="com-wordpress:feed-additions:1">54408968</site>	<item>
+		<title>568: Display Contents, Passkeys Follow Up, Yellow Fade Technique, and TOTK Talk</title>
+		<link>https://shoptalkshow.com/568/</link>
+					<comments>https://shoptalkshow.com/568/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 05 Jun 2023 19:53:09 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[Astro]]></category>
+		<category><![CDATA[botw]]></category>
+		<category><![CDATA[passkeys]]></category>
+		<category><![CDATA[totk]]></category>
+		<category><![CDATA[yellow fade]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6861</guid>
+
+					<description><![CDATA[Macho Man Randy Standards stops by for a quick chat, Passkeys follow up, discussing the safety of Display: contents, the yellow fade technique, how hot CSS is right now (so hot), and a check in on how everyone's doing with Tears of the Kingdom.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>Macho Man Randy Standards stops by for a quick chat, Passkeys follow up, discussing the safety of Display: contents, the yellow fade technique, how hot CSS is right now (so hot), and a check in on how everyone's doing with Tears of the Kingdom.</p>
+<p><a href='https://shoptalkshow.com/568/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Links</h2><ul>
+<li><a href="https://ericwbailey.website/published/display-contents-considered-harmful/">display: contents considered harmful – Eric Bailey</a></li>
+<li><a href="https://www.bram.us/2023/05/24/the-yellow-fade-technique-with-modern-css-using-starting-style/">The Yellow Fade Technique with Modern CSS using @starting-style – Bram.us</a></li>
+<li><a href="https://github.com/oddbird/popover-polyfill">GitHub - oddbird/popover-polyfill</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://notion.com/shoptalk'>Notion</a></h3><p>Do your most efficient work with Notion Projects. You can try it for free today at [notion.com/shoptalk](https://notion.com/shoptalk). When you use our link, you’re supporting our show!</p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/568/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6861</post-id>	</item>
+		<item>
+		<title>567: Full Stack Dev, Load Bearing Developer, and Being Zod Curious</title>
+		<link>https://shoptalkshow.com/567/</link>
+					<comments>https://shoptalkshow.com/567/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 29 May 2023 09:00:16 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[full stack]]></category>
+		<category><![CDATA[Jquery]]></category>
+		<category><![CDATA[Zod]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6838</guid>
+
+					<description><![CDATA[What do you do if your computer dies? Chris applies to work at Luro, Dave applies at CodePen, Dave's Zod curious, TypeScript, sorting out a 10MB blog post, and how much do you miss jQuery?]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>What do you do if your computer dies? Chris applies to work at Luro, Dave applies at CodePen, Dave's Zod curious, TypeScript, sorting out a 10MB blog post, and how much do you miss jQuery?</p>
+<p><a href='https://shoptalkshow.com/567/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Links</h2><ul>
+<li><a href="https://www.apple.com/ca/mac-studio/">Mac Studio - Apple</a></li>
+<li><a href="https://zod.dev/">Zod | Documentation</a></li>
+<li><a href="https://www.executeprogram.com/">Execute Program</a></li>
+<li><a href="https://wesbos.com/courses">Courses - Wes Bos</a></li>
+<li><a href="https://blog.almaer.com/building-a-modern-design-system-in-layers/">Building a modern design system in layers</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://www.patreon.com/shoptalkshow'>Join us on Patreon!</a></h3><p>Dave and Chris have been making ShopTalk Show for over 8 years! We thought we'd give y'all a way to support the show directly, and as a cool bonus, join us in a Discord. </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/567/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6838</post-id>	</item>
+		<item>
+		<title>566: View Transitions and Passkeys</title>
+		<link>https://shoptalkshow.com/566/</link>
+					<comments>https://shoptalkshow.com/566/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 22 May 2023 07:21:58 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[baseline]]></category>
+		<category><![CDATA[passkey]]></category>
+		<category><![CDATA[view transitions]]></category>
+		<category><![CDATA[wendy's]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6850</guid>
+
+					<description><![CDATA[How should a podcast start? Talking View transitions, Google's Baseline, Passkeys, how to start a company, and ordering a spicy chicken combo at Wendy's.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>How should a podcast start? Talking View transitions, Google's Baseline, Passkeys, how to start a company, and ordering a spicy chicken combo at Wendy's.</p>
+<p><a href='https://shoptalkshow.com/566/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Links</h2><ul>
+<li><a href="https://daverupert.com/">The Homepage of Dave Rupert | daverupert.com</a></li>
+<li><a href="https://nuxt.studio/">The Frontend Studio for Nuxt Developers and Teams · Nuxt Studio</a></li>
+<li><a href="https://web.dev/introducing-baseline/">Introducing Baseline</a></li>
+<li><a href="https://caniuse.com/">Can I use... Support tables for HTML5, CSS3, etc</a></li>
+<li><a href="https://g.co/passkeys">Google Passkeys</a></li>
+<li><a href="https://support.apple.com/en-ca/guide/iphone/iphf538ea8d0/ios">Apple Passkeys</a></li>
+<li><a href="https://1password.com/">1Password - Password Manager for Families, Businesses, Teams</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://www.patreon.com/shoptalkshow'>Join us on Patreon!</a></h3><p>Dave and Chris have been making ShopTalk Show for over 8 years! We thought we'd give y'all a way to support the show directly, and as a cool bonus, join us in a Discord. </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/566/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6850</post-id>	</item>
+		<item>
+		<title>565: The Hurdy-Gurdy, OKLCH, Edge Dev Tools, and Ad Blocking</title>
+		<link>https://shoptalkshow.com/565/</link>
+					<comments>https://shoptalkshow.com/565/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 15 May 2023 08:20:15 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[Accessibility]]></category>
+		<category><![CDATA[edge]]></category>
+		<category><![CDATA[oklch]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6820</guid>
+
+					<description><![CDATA[Dave doesn't hate the hurdy-gurdy, but it's creation is an interesting parallel to software development. OKLCH follow up, @media, Edge drops new dev tools, CSS and Astro theming, JavaScript devs discover PHP, how many people block ads, and accessibility and grids.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>Dave doesn't hate the hurdy-gurdy, but it's creation is an interesting parallel to software development. OKLCH follow up, @media, Edge drops new dev tools, CSS and Astro theming, JavaScript devs discover PHP, how many people block ads, and accessibility and grids.</p>
+<p><a href='https://shoptalkshow.com/565/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Links</h2><ul>
+<li><a href="https://daverupert.com/">The Homepage of Dave Rupert | daverupert.com</a></li>
+<li><a href="https://www.microsoft.com/en-us/edge?form=MA13FJ&exp=e00">Get to Know Microsoft Edge</a></li>
+<li><a href="https://arcboosts.com/boosts">Boosts - Arc Boosts</a></li>
+<li><a href="https://accessibility.day/">Home - GAAD</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid">grid - CSS: Cascading Style Sheets | MDN</a></li>
+<li><a href="https://nuxt.studio/">The Frontend Studio for Nuxt Developers and Teams · Nuxt Studio</a></li>
+<li><a href="https://www.appcues.com/">Appcues | Product adoption made easy</a></li>
+<li><a href="https://daverupert.com/2023/05/hurdy-gurdy-software-engineer/">The Hurdy-Gurdy software engineer | daverupert.com</a></li>
+<li><a href="https://www.youtube.com/watch?v=o1MYGnEEE6Y">5 Linkin Park riffs on hurdy gurdy</a></li>
+<li><a href="https://aboard.com/podcast-episode-1-an-apology-regarding-aboard/">Podcast Episode 1: An Apology Regarding Aboard - Aboard</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>Frontend Master learning paths is the place to go for you (or your whole company) for a skill buff in a particular technology, or a generic level-up in skill level. </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/565/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6820</post-id>	</item>
+		<item>
+		<title>564: Render ATL, New Colors Available, Gradients, HDR, and More</title>
+		<link>https://shoptalkshow.com/564/</link>
+					<comments>https://shoptalkshow.com/564/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 08 May 2023 08:45:29 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[color]]></category>
+		<category><![CDATA[gradient]]></category>
+		<category><![CDATA[render ATL]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6805</guid>
+
+					<description><![CDATA[Chris previews a bit of his Render ATL 2023 talk, and then we mouth blog some color ideas, thoughts, and shame you for your non-HD websites.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>Chris previews a bit of his Render ATL 2023 talk, and then we mouth blog some color ideas, thoughts, and shame you for your non-HD websites.</p>
+<p><a href='https://shoptalkshow.com/564/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Guests</h2><h3>Davina George</h3><p><a href='https://www.youtube.com/watch?v=eKUlOEHu7Uc'>Guest's Main URL</a> • <a href=''>Guest's Twitter</a></p><p><p>Get in loser we're going to make fun of people for having standard def websites.</p>
+</p><h2>Links</h2><ul>
+<li><a href="https://www.renderatl.com/">RenderATL 2023 | May 31 - June 2, 2023. | 80+ Speakers</a></li>
+<li><a href="https://changelog.com/jsparty/273">CSS Color Party with Adam Argyle (JS Party #273) |> Changelog</a></li>
+<li><a href="https://shoptalkshow.com/556/">556: Andrey Sitnik and Using OKLCH for Color - ShopTalk</a></li>
+<li><a href="https://www.apple.com/ca/keynote/">Keynote - Apple (CA)</a></li>
+<li><a href="https://tailscale.com/">Tailscale · Best VPN Service for Secure Networks</a></li>
+<li><a href="https://oklch.com/#70,0.1,39,100">OKLCH Color Picker &amp; Converter</a></li>
+<li><a href="https://panic.com/">Panic - Shockingly Good Software.</a></li>
+<li><a href="https://abookapart.com/products/making-sense-of-color-management">Making Sense of Color Management, A Book Apart</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>The best of the best teachers, especially for all-y'all intermediate developers to learn new technologies are on Frontend Masters. Including Dave! Go learn now! </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/564/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6805</post-id>	</item>
+		<item>
+		<title>563: Getting Pulled by the Algorithm, AI Training Data, and SVG Drawing</title>
+		<link>https://shoptalkshow.com/563/</link>
+					<comments>https://shoptalkshow.com/563/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 01 May 2023 08:51:30 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[JetBrains]]></category>
+		<category><![CDATA[PHP]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6786</guid>
+
+					<description><![CDATA[There's a special guest on the show who takes aim at the billionaires in web dev, do we know better than the algorithm for news, why is AI training data such a secret, Chris and Dave discover JetBrains, monorepo struggles, and SVG drawing tools.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>There's a special guest on the show who takes aim at the billionaires in web dev, do we know better than the algorithm for news, why is AI training data such a secret, Chris and Dave discover JetBrains, monorepo struggles, and SVG drawing tools.</p>
+<p><a href='https://shoptalkshow.com/563/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Guests</h2><h3>Bernie Standards</h3><p><a href='https://en.wikipedia.org/wiki/Microsoft_FrontPage'>Guest's Main URL</a> • <a href='https://front-end.social/@shoptalkshow'>Guest's Twitter</a></p><p><p>Trying to get billionaires out of the JavaScript ecosystem.</p>
+</p><h2>Links</h2><ul>
+<li><a href="https://elk.zone/m.webtoo.ls/public/local">Local Timeline | Elk</a></li>
+<li><a href="https://www.washingtonpost.com/technology/interactive/2023/ai-chatbot-learning/">See the websites that make AI bots like ChatGPT sound so smart - Washington Post</a></li>
+<li><a href="https://chriscoyier.net/2023/04/21/the-secret-list-of-websites/">"the secret list of websites" - Chris Coyier</a></li>
+<li><a href="https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web">ChatGPT Is a Blurry JPEG of the Web | The New Yorker</a></li>
+<li><a href="https://www.jetbrains.com/phpstorm/">PhpStorm: PHP IDE and Code Editor from JetBrains</a></li>
+<li><a href="https://www.jetbrains.com/webstorm/">WebStorm: The Smartest JavaScript IDE, by JetBrains</a></li>
+<li><a href="https://turbo.build/">Turbo</a></li>
+<li><a href="https://github.com/tmux/tmux/wiki/Installing">Installing · tmux/tmux Wiki · GitHub</a></li>
+<li><a href="https://boxy-svg.com/">Boxy SVG Editor</a></li>
+<li><a href="https://github.com/steveruizok/perfect-freehand">GitHub - steveruizok/perfect-freehand: Draw perfect pressure-sensitive freehand lines.</a></li>
+<li><a href="https://www.perfectfreehand.com/">perfect-freehand</a></li>
+<li><a href="https://mermaid.js.org/">Mermaid | Diagramming and charting tool</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>The Learning Paths on Frontend Masters will take you from start to finish on actually learning something of your choice, whether it's upping a your skill level in a particular genre or a specific technology</p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/563/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6786</post-id>	</item>
+		<item>
+		<title>562: Podcast Apps, Zaraz, Future CSS Thoughts, and Arc</title>
+		<link>https://shoptalkshow.com/562/</link>
+					<comments>https://shoptalkshow.com/562/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 24 Apr 2023 08:01:44 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[arc]]></category>
+		<category><![CDATA[CSS]]></category>
+		<category><![CDATA[zaraz]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6762</guid>
+
+					<description><![CDATA[What if Taylor Swift lyrics hold the answers to web dev questions? Podcast app thoughts, using Cloudflare Zaraz, what we're excited about with CSS, Arc browser updates, and are we even developers or are we specialized systems whisperers?]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>What if Taylor Swift lyrics hold the answers to web dev questions? Podcast app thoughts, using Cloudflare Zaraz, what we're excited about with CSS, Arc browser updates, and are we even developers or are we specialized systems whisperers?</p>
+<p><a href='https://shoptalkshow.com/562/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Guests</h2><h3>Tswifinator</h3><p><a href=''>Guest's Main URL</a> • <a href=''>Guest's Twitter</a></p><p><p>Sent from the future to de-monetize the podcast by combining two very famous and litigious IPs.</p>
+</p><h2>Links</h2><ul>
+<li><a href="https://pocketcasts.com/">Listen to podcasts with the best free podcasting app - built by listeners, for listeners.</a></li>
+<li><a href="https://overcast.fm/">Overcast</a></li>
+<li><a href="https://crooked.com/podcast-series/pod-save-america/">Pod Save America | Crooked Media</a></li>
+<li><a href="https://jibjabpodcast.com/">The Laws of War Podcast</a></li>
+<li><a href="https://www.nintendo.com/en-ca/switch/">Nintendo Switch<img src="https://s.w.org/images/core/emoji/14.0.0/72x72/2122.png" alt="™" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Family </a></li>
+<li><a href="https://chriscoyier.net/2023/04/17/%f0%9f%8e%ae-switch/">Switch - Chris Coyier</a></li>
+<li><a href="https://www.cloudflare.com/products/zaraz/">Cloudflare Zaraz - Third-party tool manager | Cloudflare</a></li>
+<li><a href="https://segment.com/docs/">Segment Documentation | Segment Documentation</a></li>
+<li><a href="https://www.youtube.com/watch?v=ZXm7vXEqRtg">Going all in on Roads and Cities - Episode 6 Catan Gameplay</a></li>
+<li><a href="https://support.apple.com/en-ca/guide/safari/ibrw1075/mac">Change Advanced settings in Safari on Mac - Apple Support (CA)</a></li>
+<li><a href="https://arc.net/">Arc from The Browser Company</a></li>
+<li><a href="https://ia.net/topics/domo-arigato-mr-roboto-tell-us-your-secret">Domo Arigato: Why Bots Should to be Required to Self-Identify</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>Frontend Master learning paths is the place to go for you (or your whole company) for a skill buff in a particular technology, or a generic level-up in skill level. </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/562/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6762</post-id>	</item>
+		<item>
+		<title>561: Web Perf News, Web Sommelier, Data Analytics, and Passkeys</title>
+		<link>https://shoptalkshow.com/561/</link>
+					<comments>https://shoptalkshow.com/561/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 17 Apr 2023 08:00:36 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[arc]]></category>
+		<category><![CDATA[passkey]]></category>
+		<category><![CDATA[sommelier]]></category>
+		<category><![CDATA[Web Components]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6753</guid>
+
+					<description><![CDATA[Topics for this one include how do you learn about web performance news? Do you need a web components sommelier? Our thoughts on Syntax going to Sentry, and being able to focus on the things you want to focus on. Passkeys, Arc split screen, and vibe driven development.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>Topics for this one include how do you learn about web performance news? Do you need a web components sommelier? Our thoughts on Syntax going to Sentry, and being able to focus on the things you want to focus on. Passkeys, Arc split screen, and vibe driven development.</p>
+<p><a href='https://shoptalkshow.com/561/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Links</h2><ul>
+<li><a href="https://front-end.social/@samkap">Sameera (@samkap@front-end.social) - Front-End Social</a></li>
+<li><a href="https://calibreapp.com/blog/interaction-to-next-paint">Interaction to Next Paint (INP): What is it and How to Improve It - Calibre</a></li>
+<li><a href="https://timkadlec.com/remembers/2023-04-10-the-golden-rule-revisited/">The Performance Golden Rule Revisited - Web Performance Consulting | TimKadlec.com</a></li>
+<li><a href="https://luroapp.com/">Luro | Expand your design system to your entire product development process</a></li>
+<li><a href="https://slack.com/help/articles/4402059015315-Use-huddles-in-Slack">Use huddles in Slack | Slack</a></li>
+<li><a href="https://web.dev/optimize-ttfb/">Optimize Time to First Byte</a></li>
+<li><a href="https://electricui.com/blog/switching-to-cloudflare-pages#how-to-disable-the-trailing-slash-on-cloudflare-pages">Why We Switched CDNs: How Google's Core Web Vitals Led Us to Cloudflare Pages - Electric UI</a></li>
+<li><a href="https://blog.sentry.io/2023/04/12/syntax-sentry-mmxxiii/">Syntax × Sentry MMXXIII | Product Blog • Sentry</a></li>
+<li><a href="https://philipwalton.com/articles/dynamic-lcp-priority/">Dynamic LCP Priority: Learning from Past Visits — Philip Walton</a></li>
+<li><a href="https://partytown.builder.io/">Welcome To Partytown</a></li>
+<li><a href="https://auth0.com/">Auth0: Secure access for everyone. But not just anyone.</a></li>
+<li><a href="https://css-tricks.com/passkeys-what-the-heck-and-why/">Passkeys: What the Heck and Why? | CSS-Tricks - CSS-Tricks</a></li>
+<li><a href="https://www.robinrendle.com/notes/vibe-driven-development/">Vibe Driven Development</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>The best of the best teachers, especially for all-y'all intermediate developers to learn new technologies are on Frontend Masters. Including Dave! Go learn now! </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/561/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6753</post-id>	</item>
+		<item>
+		<title>560: Oh Biscuits! Cascade Layers, Block Links, Emoji Lists, and more CSS!</title>
+		<link>https://shoptalkshow.com/560/</link>
+					<comments>https://shoptalkshow.com/560/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 10 Apr 2023 08:53:57 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[cascade layers]]></category>
+		<category><![CDATA[cite]]></category>
+		<category><![CDATA[emoji]]></category>
+		<category><![CDATA[trigonometric]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6737</guid>
+
+					<description><![CDATA[After a brief visit from Hip Hop Dad Dave, we're talking cascade layers updates, block link practices, search element getting dropped, how to use cite, emoji list accessibility, scrollbar state, and trigonometric functions in CSS.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>After a brief visit from Hip Hop Dad Dave, we're talking cascade layers updates, block link practices, search element getting dropped, how to use cite, emoji list accessibility, scrollbar state, and trigonometric functions in CSS.</p>
+<p><a href='https://shoptalkshow.com/560/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Guests</h2><h3>Hip Hop Dad Dave</h3><p><a href='https://www.bluey.tv/'>Guest's Main URL</a> • <a href='https://www.pinterest.co.uk/OfficialBlueyTV/'>Guest's Twitter</a></p><p><p>Oh Biscuits!</p>
+</p><h2>Links</h2><ul>
+<li><a href="https://chriscoyier.net/2023/04/07/emoji-lists-the-good-way/">Emoji Lists, The Good Way? - Chris Coyier</a></li>
+<li><a href="https://www.nuance.com/dragon.html">Dragon Speech Recognition - Get More Done by Voice | Nuance</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter">scrollbar-gutter - CSS: Cascading Style Sheets | MDN</a></li>
+<li><a href="https://danielcwilson.com/posts/css-shapes-with-trig-functions/">Improving CSS Shapes with Trigonometric Functions</a></li>
+<li><a href="https://web.dev/css-trig-functions/">Trigonometric functions in CSS</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>The Learning Paths on Frontend Masters will take you from start to finish on actually learning something of your choice, whether it's upping a your skill level in a particular genre or a specific technology</p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/560/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6737</post-id>	</item>
+		<item>
+		<title>559: Fidget Apps, Coding with AI, Dialog Element Navs, Getting Rid of CSS</title>
+		<link>https://shoptalkshow.com/559/</link>
+					<comments>https://shoptalkshow.com/559/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 03 Apr 2023 07:14:35 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[chatgpt]]></category>
+		<category><![CDATA[dialog]]></category>
+		<category><![CDATA[Go]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6720</guid>
+
+					<description><![CDATA[Is there still any value in specializing in front-of-the-frontend dev? Would you ever use the dialog element for a mobile navigation? Why did CodePen decide to use Go for its GraphQL server?]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>Is there still any value in specializing in front-of-the-frontend dev? Would you ever use the dialog element for a mobile navigation? Why did CodePen decide to use Go for its GraphQL server?</p>
+<p><a href='https://shoptalkshow.com/559/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Links</h2><ul>
+<li><a href="https://www.joshwcomeau.com/blog/the-end-of-frontend-development/">The End of Front-End Development</a></li>
+<li><a href="https://www.scottohara.me/blog/2023/01/26/use-the-dialog-element.html">Scott O'Hara on Using the dialog element</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>Frontend Master learning paths is the place to go for you (or your whole company) for a skill buff in a particular technology, or a generic level-up in skill level. </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/559/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+		<enclosure url="https://cdn.simplecast.com/audio/167887a0-ac00-4cf9-bc69-b5ca845997db/episodes/df45f577-4346-4883-9216-2109b25a5554/audio/17921a84-2e89-4f70-ae4a-91418c4483e4/default_tc.mp3?nocache" length="0" type="" />
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6720</post-id>	</item>
+		<item>
+		<title>558: Esoteric Weird Content Editable Problems with Kristin Valentine</title>
+		<link>https://shoptalkshow.com/558/</link>
+					<comments>https://shoptalkshow.com/558/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 27 Mar 2023 07:34:54 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[CMS]]></category>
+		<category><![CDATA[editor]]></category>
+		<category><![CDATA[vox]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6707</guid>
+
+					<description><![CDATA[Kristin Valentine from Vox joins the show to talk about text editor CMS fun across multiple sites, Vox's Chorus, The Verge redesign, sharing Design Systems, theming articles, and a fun new game called "Can Your Text Editor Do This??"]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>Kristin Valentine from Vox joins the show to talk about text editor CMS fun across multiple sites, Vox's Chorus, The Verge redesign, sharing Design Systems, theming articles, and a fun new game called "Can Your Text Editor Do This??"</p>
+<p><a href='https://shoptalkshow.com/558/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Guests</h2><h3>Kristin Valentine</h3><p><a href='https://www.linkedin.com/in/kristinvalentine/'>Guest's Main URL</a> • <a href='https://twitter.com/KristinJVal'>Guest's Twitter</a></p><p><p>Engineer at<br />
+Vox Media Product.</p>
+</p><h2>Links</h2><ul>
+<li><a href="https://tiptap.dev/">Headless WYSIWYG Text Editor – Tiptap Editor</a></li>
+<li><a href="https://quilljs.com/">Quill - Your powerful rich text editor</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Vox_Media#:~:text=Vox%20Media%20owns%20editorial%20brands,while%20Racked%20was%20shut%20down.">Vox Media</a></li>
+<li><a href="https://www.vox.com/">Vox - Understand the News</a></li>
+<li><a href="https://www.thedodo.com/">The Dodo - For Animal People</a></li>
+<li><a href="https://www.sbnation.com/">SBNation.com | Sports news, video, live coverage, community</a></li>
+<li><a href="https://cult.honeypot.io/originals/react-the-documentary">React.js: The Documentary | .cult by Honeypot</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>The best of the best teachers, especially for all-y'all intermediate developers to learn new technologies are on Frontend Masters. Including Dave! Go learn now! </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/558/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6707</post-id>	</item>
+		<item>
+		<title>557: ChatGPT, Conferences, Fidgets on the Web, and Modern CSS in Real Life</title>
+		<link>https://shoptalkshow.com/557/</link>
+					<comments>https://shoptalkshow.com/557/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 20 Mar 2023 07:01:51 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[chatgpt]]></category>
+		<category><![CDATA[Conferences]]></category>
+		<category><![CDATA[CSS]]></category>
+		<category><![CDATA[fidgets]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6681</guid>
+
+					<description><![CDATA[When will AI be able to tell you the risk / reward of cleaning up trees? Are conferences back? Bringing fidgets to the web, internet as an anxiety machine, and Chris is working on talk on modern CSS in real life.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>When will AI be able to tell you the risk / reward of cleaning up trees? Are conferences back? Bringing fidgets to the web, internet as an anxiety machine, and Chris is working on talk on modern CSS in real life.</p>
+<p><a href='https://shoptalkshow.com/557/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Links</h2><ul>
+<li><a href="https://www.renderatl.com/">RenderATL 2023 | May 31 - June 2, 2023. | 80+ Speakers</a></li>
+<li><a href="https://beyondtellerrand.com/">Beyond Tellerrand – an event about web, design, development, technology and more</a></li>
+<li><a href="https://chriscoyier.net/2023/03/14/doing-computer/">Doing Computer - Chris Coyier</a></li>
+<li><a href="https://bradfrost.com/">Brad Frost | Design system consultant, author of Atomic Design, web designer, and musician</a></li>
+<li><a href="https://www.tiktok.com/@everydayalex/video/7204303782719638789">How's my driving chaos stickers</a></li>
+<li><a href="https://www.gowalla.com/">Gowalla >> keep up with your friends IRL</a></li>
+<li><a href="https://brandnewbox.com/inthestacks/">In the Stacks (Maisie's Tune), by Robin Sloan</a></li>
+<li><a href="https://www.cnn.com/interactive/2022/10/us/black-women-nonbinary-surfers-cec-cnnphotos/">Black women and nonbinary surfers are rarely in the spotlight. This photographer changes that</a></li>
+<li><a href="https://chat.openai.com/chat">Open AI Chat</a></li>
+<li><a href="https://chriscoyier.net/2023/03/17/jeepers-frigging-cripes-crypto-and-nfts-are-so-stupid-and-dumb-and-bad-and-i-cant-even-im-out-goodbye-burn-it-down-please/">Jeepers Frigging Cripes Crypto and NFTs are so stupid and dumb and bad and I can’t even. I’m out. Goodbye. Burn it down please. - Chris Coyier</a></li>
+<li><a href="https://charlottedann.com/project/ceramics">Ceramics • charlottedann.com</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>The Learning Paths on Frontend Masters will take you from start to finish on actually learning something of your choice, whether it's upping a your skill level in a particular genre or a specific technology</p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/557/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+		<enclosure url="https://cdn.simplecast.com/audio/167887a0-ac00-4cf9-bc69-b5ca845997db/episodes/b2207f7c-423f-4db6-846a-50fc60591131/audio/f1c37819-7d91-446d-ab9a-d24e28cc9a89/default_tc.mp3?nocache" length="0" type="" />
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6681</post-id>	</item>
+		<item>
+		<title>556: Andrey Sitnik and Using OKLCH for Color</title>
+		<link>https://shoptalkshow.com/556/</link>
+					<comments>https://shoptalkshow.com/556/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 13 Mar 2023 16:38:12 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[color]]></category>
+		<category><![CDATA[Design]]></category>
+		<category><![CDATA[oklch]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6664</guid>
+
+					<description><![CDATA[Andrey Sitnik from Evil Martians talks with us about why OKCLH is the best way forward for color on the web, how to incorporate it into design systems, getting your designers to use OKCLH, and what kind of fallback support is needed.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>Andrey Sitnik from Evil Martians talks with us about why OKCLH is the best way forward for color on the web, how to incorporate it into design systems, getting your designers to use OKCLH, and what kind of fallback support is needed.</p>
+<p><a href='https://shoptalkshow.com/556/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Guests</h2><h3>Andrey Sitnik</h3><p><a href='https://sitnik.ru/en/'>Guest's Main URL</a> • <a href='https://twitter.com/sitnikcode'>Guest's Twitter</a></p><p><p>Author of<br />
+PostCSS<br />
+,<br />
+Autoprefixer<br />
+, and<br />
+Logux_io</p>
+</p><h2>Links</h2><ul>
+<li><a href="https://evilmartians.com/">Evil Martians</a></li>
+<li><a href="https://evilmartians.com/chronicles/oklch-a-color-picker-made-to-help-think-perceptively">OK, OKLCH: a color picker made to help think perceptively</a></li>
+<li><a href="https://huetone.ardov.me/">Huetone</a></li>
+<li><a href="https://color-playground.ardov.me/">https://color-playground.ardov.me/</a></li>
+<li><a href="https://evilmartians.com/chronicles/oklch-a-color-picker-made-to-help-think-perceptively">Design challenges behind OKLCH color picker</a></li>
+<li><a href="https://huetone.ardov.me/">Huetone palette generator</a></li>
+<li><a href="https://color-playground.ardov.me/">A tool which will generate the whole theme based only on hue and a few contrasts</a></li>
+<li><a href="https://www.myndex.com/APCA/">APCA contrast calculator</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>Frontend Master learning paths is the place to go for you (or your whole company) for a skill buff in a particular technology, or a generic level-up in skill level. </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/556/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6664</post-id>	</item>
+		<item>
+		<title>555: React Documentary, Front of the Front End, Fast Fallacy, and Best Practices</title>
+		<link>https://shoptalkshow.com/555/</link>
+					<comments>https://shoptalkshow.com/555/#respond</comments>
+
+		<dc:creator><![CDATA[ShopTalk Show]]></dc:creator>
+		<pubDate>Mon, 06 Mar 2023 09:39:37 +0000</pubDate>
+				<category><![CDATA[All Episodes]]></category>
+		<category><![CDATA[applying for a job]]></category>
+		<category><![CDATA[React]]></category>
+		<category><![CDATA[Tests]]></category>
+		<guid isPermaLink="false">https://shoptalkshow.com/?p=6643</guid>
+
+					<description><![CDATA[Reacting to the React.js documentary, is there still jobs for front of the front end anymore? The fast fallacy in frameworks, best practices, dealing with too much or too little isolation, and AI test generation.]]></description>
+										<content:encoded><![CDATA[<h2>Show Description</h2><p>Reacting to the React.js documentary, is there still jobs for front of the front end anymore? The fast fallacy in frameworks, best practices, dealing with too much or too little isolation, and AI test generation.</p>
+<p><a href='https://shoptalkshow.com/555/' style='background: #ca6533; color: black; padding: 8px 20px; text-decoration: none;'>Listen on Website &rarr;</a></p><h2>Links</h2><ul>
+<li><a href="https://www.youtube.com/watch?v=8pDqJVdNa44">React.js: The Documentary</a></li>
+<li><a href="https://www.11ty.dev">Eleventy</a></li>
+<li><a href="https://codepen.io/challenges">CodePen Challenges</a></li>
+<li><a href="https://codepen.io/spark">CodePen Spark</a></li>
+<li><a href="https://turbo.build">Turbo</a></li>
+<li><a href="https://blog.janestreet.com/the-joy-of-expect-tests/#:~:text=What%20if%20writing%20tests%20was%20a%20joyful%20experience%3F,fast%20and%20joyful%20that%20it%20feels%20almost%20tactile.">What if writing tests was a joyful experience?</a></li>
+<li><a href="https://www.tabnine.com/blog/ai-unit-test-generation/">Tabnine -  Introducing AI-powered unit testing generation! Accelerate your software development lifecycle</a></li>
+<li><a href="https://github.com/features/copilot">GitHub Copilot</a></li>
+</ul><h2>Sponsors</h2><h3><a href='https://frontendmasters.com/learn/'>Frontend Masters</a></h3><p>The best of the best teachers, especially for all-y'all intermediate developers to learn new technologies are on Frontend Masters. Including Dave! Go learn now! </p>
+]]></content:encoded>
+
+					<wfw:commentRss>https://shoptalkshow.com/555/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+
+
+		<post-id xmlns="com-wordpress:feed-additions:1">6643</post-id>	</item>
+	</channel>
+</rss>

@@ -1,6 +1,6 @@
 import { EpisodeStatus } from '@prisma/client';
 import type { IEpisodeOfUser } from '@pdcstrrss/core';
-import { FORM_ACTIONS, FORM_SUBJECTS, Button } from '../../../';
+import { Form, FORM_ACTIONS, FORM_SUBJECTS, Button } from '../../../index.js';
 import './EpisodeList.css';
 
 interface IEpisodeListProps {
@@ -34,11 +34,9 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image, status
           {Intl.DateTimeFormat(['sv-SE']).format(new Date(published))}
         </time>
       </div>
-      <form method="POST">
+      <Form form={{ method: 'post' }} action={FORM_ACTIONS.STATUS} subject={FORM_SUBJECTS.EPISODE}>
         <input type="hidden" name="status" value={EpisodeStatus.PLAYING} />
         <input type="hidden" name="id" value={id} />
-        <input type="hidden" name="action" value={FORM_ACTIONS.STATUS} />
-        <input type="hidden" name="subject" value={FORM_SUBJECTS.EPISODE} />
         <Button
           type="submit"
           link
@@ -49,7 +47,7 @@ export const EpisodeListItem = ({ id, title, url, feed, published, image, status
             <use xlinkHref="#play" />
           </svg>
         </Button>
-      </form>
+      </Form>
       {status === EpisodeStatus.NEW && <div className="episode-status">{status}</div>}
     </article>
   );

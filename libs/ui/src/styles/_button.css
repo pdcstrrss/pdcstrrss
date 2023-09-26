@@ -62,6 +62,9 @@ button:where(:hover, :focus-visible),
 .button-reset {
   padding: 0;
   border: 0;
+  --button-background-color: transparent;
+  --button-background-color-hover: transparent;
+  --button-border-radius: 0;
 }
 
 /* =================================

@@ -22,7 +22,9 @@
         "commands": [
           "rimraf dist/hosting/netlify/functions/function-astro",
           "rimraf dist/hosting/netlify/public",
+          "rimraf dist/hosting/netlify/functions/chunks",
           "move-file apps/web-astro/.netlify/functions-internal/entry.mjs dist/hosting/netlify/functions/entry.mjs",
+          "move-file apps/web-astro/.netlify/functions-internal/chunks dist/hosting/netlify/functions/chunks",
           "move-file apps/web-astro/dist dist/hosting/netlify/public"
         ],
         "parallel": false
@@ -38,8 +40,7 @@
     "preview": {
       "dependsOn": [
         {
-          "target": "build",
-          "projects": "self"
+          "target": "build"
         }
       ],
       "executor": "@nxtensions/astro:preview",
@@ -49,18 +50,11 @@
       "executor": "@nxtensions/astro:check"
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/web-astro/**/*.{js,ts}"],
         "ignorePath": ".gitignore"
-      }
-    },
-    "test": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "echo 'No tests yet'",
-        "cwd": "apps/web-astro"
       }
     }
   },

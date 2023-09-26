@@ -1,9 +1,8 @@
 ---
-import { FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
+import { Form, FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
 import Layout from '@/layouts/Layout.astro';
 import { getUserFromRequest } from '@/lib/useUser';
 import { ROUTES } from '@/lib/useRoutes';
-import Form from '@/components/Forms/Form.astro';
 import { createFeed } from '@/lib/useFeeds.server';
 import { logError } from '@/lib/useError';
 
@@ -29,13 +28,29 @@ if (request.method === 'POST') {
     <header class="page-header">
       <h1 class="page-header-title">Add feed</h1>
     </header>
-    <Form form={{ method: 'post' }} action={FORM_ACTIONS.CREATE} subject={FORM_SUBJECTS.FEED} error={error}>
+    <Form
+      form={{ method: 'post' }}
+      action={FORM_ACTIONS.CREATE}
+      subject={FORM_SUBJECTS.FEED}
+      error={error}
+      clientSideHandling={true}
+    >
       <div class="form-group">
         <label for="url">RSS feed URL</label>
-        <input id="url" type="url" name="url" required placeholder="https://example.com/feed" />
+        <input
+          id="url"
+          type="url"
+          name="url"
+          required
+          placeholder="https://example.com/feed"
+        />
       </div>
       <div class="form-actions">
-        <button class="button button-primary" type="submit" data-text-content-on-submit="Adding feed...">
+        <button
+          class="button button-primary"
+          type="submit"
+          data-text-content-on-submit="Adding feed..."
+        >
           Add feed
         </button>
         <a class="button button-link" href={ROUTES.feeds}>Cancel</a>
