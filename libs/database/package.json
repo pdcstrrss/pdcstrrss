@@ -4,9 +4,9 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
-    "@prisma/client": "^4.9.0"
+    "@prisma/client": "^5.7.1"
   },
   "devDependencies": {
-    "prisma": "^4.9.0"
+    "prisma": "^5.7.1"
   }
 }

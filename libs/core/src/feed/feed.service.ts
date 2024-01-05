@@ -69,7 +69,7 @@ export async function getFeedById(feedId: string, params?: IGetFeedParams): Prom
   return db.feed.findUnique({ where: { id: feedId }, include: { users: true } });
 }
 
-export async function getFeedByUrl(url: string, { userId }: IGetFeedParams): Promise<Feed | null> {
+export async function getFeedByUrl(url: string): Promise<Feed | null> {
   return db.feed.findUnique({ where: { url: url } });
 }
 
@@ -87,7 +87,7 @@ export async function getFeedsData(params?: IGetFeedsParams): Promise<IGetFeedsD
 }
 
 export async function getFeedsOfUser(params?: IGetFeedsParams): Promise<IGetFeedsOfUserData> {
-  const { userId, orderBy, offset, limit } = defaultsDeep(params, defaultGetFeedsParams);
+  const { userId, offset, limit } = defaultsDeep(params, defaultGetFeedsParams);
 
   const allFeedsOfUser = await db.feed.findMany({
     where: { users: { some: { userId } } },
@@ -175,7 +175,7 @@ export async function exceedsFreeFeedThreshold({ userId }: { userId: string }) {
 
 export async function createFeedByForUser({ url, userId }: { url: string; userId: string }) {
   const normalizedUrl = await normalizeUrl(url);
-  let feed = await getFeedByUrl(normalizedUrl, { userId });
+  let feed = await getFeedByUrl(normalizedUrl);
   if (!feed) feed = await createFeedByUrl(normalizedUrl);
   if (!feed) throw new Error('Feed could not be retrieved');
   await addFeedsToUser({ userId, feedIds: [feed.id] });

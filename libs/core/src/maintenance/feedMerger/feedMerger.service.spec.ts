@@ -92,6 +92,7 @@ async function setupDatabase() {
     .flat();
 
   const episodes = await db.$transaction(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     episodesToCreate.map(({ feedId, userId, ...data }) =>
       db.episode.create({
         data: { ...data, feed: { connect: { id: feedId } } },
@@ -99,6 +100,7 @@ async function setupDatabase() {
     )
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const linkedEpisodes = await db.$transaction(
     episodes.map((episode, index) =>
       db.episodesOfUsers.create({

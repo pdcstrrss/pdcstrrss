@@ -4,7 +4,7 @@ import { formPostSchema, FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
 import { z } from 'zod';
 import type { UserFromRequest } from './useUser';
 
-export const getFeeds = async ({ url, user }: { url: string; user: UserFromRequest }) => {
+export const getFeeds = async ({ user }: { url: string; user: UserFromRequest }) => {
   // const { limit, offset } = getPaginationFromUrl({ url });
   const feedsData = await getFeedsOfUser({ userId: user.id });
   return feedsData;

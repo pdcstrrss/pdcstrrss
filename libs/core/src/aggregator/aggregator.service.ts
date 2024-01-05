@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // TODO: Stick in background function
 import type { Prisma, Feed } from '@prisma/client';
 import { db } from '@pdcstrrss/database';
@@ -163,6 +164,7 @@ export async function getEpisodesToUpsert(episodes: IEpisodeFromFeed[]) {
       const { title, description = null, published, url, image = null } = episodeToUpsert;
       const existingEpisodeFound = existingEpisodes.find(({ url: existingEpisodeUrl }) => existingEpisodeUrl === url);
       if (!existingEpisodeFound) return false;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { feedId, ...existingEpisode } = existingEpisodeFound;
       const sameContent = compareEpisodes({ title, description, published, url, image }, existingEpisode);
       return !sameContent;

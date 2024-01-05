@@ -1,4 +1,4 @@
-export function handleFormSubmit({ event, swup }: { event: SubmitEvent; swup: any }) {
+export function handleFormSubmit({ event, swup }: { event: SubmitEvent; swup: typeof import('swup') }) {
   event.preventDefault();
 
   const form = event.target as HTMLFormElement;

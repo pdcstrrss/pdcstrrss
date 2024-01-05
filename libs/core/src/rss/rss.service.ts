@@ -1,5 +1,5 @@
-import { XMLParser } from "fast-xml-parser";
-import {} from "validator"
+import { XMLParser } from 'fast-xml-parser';
+import {} from 'validator';
 
 export interface IRssFeedData {
   link?: string;
@@ -8,7 +8,7 @@ export interface IRssFeedData {
   generator?: string;
   language?: string;
   published?: Date;
-  entries?: Array<any>;
+  entries?: Array<unknown>;
 }
 
 export function parseRSS(rss: string): IRssFeedData | undefined {

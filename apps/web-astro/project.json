@@ -10,30 +10,11 @@
         "config": "astro.config.ts"
       }
     },
-    "pre-build": {
-      "executor": "@nxtensions/astro:build",
-      "options": {
-        "config": "astro.config.ts"
-      }
-    },
-    "post-build": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "rimraf dist/hosting/netlify/functions/function-astro",
-          "rimraf dist/hosting/netlify/public",
-          "rimraf dist/hosting/netlify/functions/chunks",
-          "move-file apps/web-astro/.netlify/functions-internal/entry.mjs dist/hosting/netlify/functions/entry.mjs",
-          "move-file apps/web-astro/.netlify/functions-internal/chunks dist/hosting/netlify/functions/chunks",
-          "move-file apps/web-astro/dist dist/hosting/netlify/public"
-        ],
-        "parallel": false
-      }
-    },
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx run web-astro:pre-build", "nx run web-astro:post-build"],
+        "cwd": "apps/web-astro",
+        "commands": ["astro build", "node scripts/post.build.mjs"],
         "parallel": false
       }
     },

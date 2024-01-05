@@ -8,7 +8,7 @@ import path from 'path';
 // import { FontaineTransform } from 'fontaine';
 
 export default defineConfig({
-  outDir: '../../dist/apps/web-astro',
+  outDir: 'dist',
   integrations: [react(), sitemap(), auth()],
   output: 'server',
   adapter: netlify(),
@@ -20,15 +20,20 @@ export default defineConfig({
       alias: [
         {
           find: '.prisma/client/index-browser',
-          replacement: './node_modules/.prisma/client/index-browser.js',
+          replacement: '../../node_modules/.prisma/client/index-browser.js',
         },
         {
           find: 'auth:config',
-          replacement: path.resolve('./apps/web-astro/src/auth.config.ts'),
+          replacement: path.resolve('./src/auth.config.ts'),
         },
       ],
     },
     optimizeDeps: { exclude: ['auth:config'] },
+    build: {
+      rollupOptions: {
+        external: ['sharp'],
+      },
+    },
 
     //   plugins: [
     //     FontaineTransform.vite({ fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'] }),

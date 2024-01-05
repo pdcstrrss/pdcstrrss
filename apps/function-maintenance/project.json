@@ -9,7 +9,7 @@
       "options": {
         "platform": "node",
         "target": "node18",
-        "outputPath": "dist/hosting/netlify/functions",
+        "outputPath": "dist/hosting/netlify/functions/maintenance",
         "tsConfig": "apps/function-maintenance/tsconfig.json",
         "main": "apps/function-maintenance/src/maintenance.ts",
         "external": ["@prisma/client"],
@@ -22,7 +22,7 @@
       "options": {
         "platform": "node",
         "target": "node18",
-        "outputPath": "dist/hosting/netlify/functions",
+        "outputPath": "dist/hosting/netlify/functions/maintenance",
         "tsConfig": "apps/function-maintenance/tsconfig.json",
         "main": "apps/function-maintenance/src/maintenance.ts",
         "external": ["@prisma/client"],
@@ -35,7 +35,7 @@
       "options": {
         "platform": "node",
         "target": "node18",
-        "outputPath": "dist/hosting/netlify/functions",
+        "outputPath": "dist/hosting/netlify/functions/maintenance",
         "tsConfig": "apps/function-maintenance/tsconfig.json",
         "main": "apps/function-maintenance/src/maintenance.ts",
         "external": ["@prisma/client"],

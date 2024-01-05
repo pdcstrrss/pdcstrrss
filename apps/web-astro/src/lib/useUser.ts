@@ -8,6 +8,8 @@ import {
 } from '@pdcstrrss/core';
 import type { Session } from '@auth/core';
 
+export type UserFromRequest = Session['user'];
+
 export const getUserSessionFromRequest = ({ request }: { request: Request }) =>
   getSession(request) as Promise<Session | null>;
 
@@ -28,7 +30,7 @@ export async function getUserFromRequest({ request }: { request: Request }) {
   if (!user) return;
   const activeEpisode = await getEpisodeWithStatusPlaying(user.id);
   const { access_token: gitHubAccessToken } = (await getUserAccountByProvider({ provider: 'github', user })) || {};
-  const permissions = await getUserPermissions({ userId: user.id, accessToken: gitHubAccessToken });
+  const permissions = await getUserPermissions({ userId: user.id, accessToken: gitHubAccessToken || undefined });
 
   return {
     ...user,
