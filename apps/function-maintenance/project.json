@@ -44,10 +44,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": ["apps/function-maintenance/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint"
     }
   },
   "tags": []

@@ -50,10 +50,9 @@
       "executor": "@nxtensions/astro:check"
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/web-astro/**/*.{js,ts}"],
         "ignorePath": ".gitignore"
       }
     }
