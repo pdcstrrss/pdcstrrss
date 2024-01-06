@@ -1,14 +1,12 @@
 import GitHub from '@auth/core/providers/github';
 import type { AuthConfig } from '@auth/core';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import { db } from '@pdcstrrss/database';
 
 const config: AuthConfig = {
   secret: import.meta.env.AUTH_SECRET,
-  //@ts-expect-error issue
   adapter: PrismaAdapter(db),
   providers: [
-    //@ts-expect-error issue https://github.com/nextauthjs/next-auth/issues/6174
     GitHub({
       allowDangerousEmailAccountLinking: true,
       clientId: import.meta.env.GH_OAUTH_CLIENT_ID,

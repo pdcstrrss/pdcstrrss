@@ -18,6 +18,14 @@
         "parallel": false
       }
     },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/web-astro",
+        "commands": ["astro check"],
+        "parallel": false
+      }
+    },
     "preview": {
       "dependsOn": [
         {
