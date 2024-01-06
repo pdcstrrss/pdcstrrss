@@ -5,9 +5,10 @@
   "sourceRoot": "apps/web-astro/src",
   "targets": {
     "dev": {
-      "executor": "@nxtensions/astro:dev",
+      "executor": "nx:run-commands",
       "options": {
-        "config": "astro.config.ts"
+        "cwd": "apps/web-astro",
+        "commands": ["astro dev"]
       }
     },
     "build": {

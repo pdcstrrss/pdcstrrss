@@ -3,7 +3,7 @@ import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import auth from 'auth-astro';
-import path from 'path';
+import path from 'node:path';
 
 // import { FontaineTransform } from 'fontaine';
 
@@ -12,6 +12,9 @@ export default defineConfig({
   integrations: [react(), sitemap(), auth()],
   output: 'server',
   adapter: netlify(),
+  server: {
+    port: 3000,
+  },
   vite: {
     ssr: {
       noExternal: ['path-to-regexp'],
