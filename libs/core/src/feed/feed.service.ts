@@ -7,7 +7,7 @@ import { normalizeUrl } from '../url/url.service.js';
 
 export type IFeed = Feed & {
   image?: string;
-  latestEpisodePublished: Date;
+  latestEpisodePublished?: Date;
 };
 
 const defaultGetFeedsParams = {

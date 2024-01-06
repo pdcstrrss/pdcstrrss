@@ -20,9 +20,11 @@ export const FeedListItem = ({ id, title, url, latestEpisodePublished, image, de
       <figure className="feed-media">{image && <img className="feed-image" src={image} alt={title} />}</figure>
 
       <div className="feed-meta">
-        <time className="feed-datetime" dateTime={latestEpisodePublished.toString()}>
-          {Intl.DateTimeFormat(['sv-SE']).format(new Date(latestEpisodePublished))}
-        </time>
+        {latestEpisodePublished && (
+          <time className="feed-datetime" dateTime={latestEpisodePublished.toString()}>
+            {Intl.DateTimeFormat(['sv-SE']).format(new Date(latestEpisodePublished))}
+          </time>
+        )}
       </div>
 
       <div className="feed-actions">
