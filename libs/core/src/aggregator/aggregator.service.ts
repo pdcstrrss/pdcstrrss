@@ -5,8 +5,8 @@ import { db } from '@pdcstrrss/database';
 import objectHash from 'object-hash';
 import { isValid } from 'date-fns';
 import { IRssFeedData, parseRSS } from '../rss/rss.service.js';
-import { defaultsDeep } from 'lodash';
-import { get, partition } from 'lodash';
+import { defaultsDeep } from 'lodash-es';
+import { get, partition } from 'lodash-es';
 import { linkUnlinkedEpisodes } from '../episode/index.js';
 import { getFeedUrls } from '../feed/index.js';
 

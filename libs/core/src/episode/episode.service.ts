@@ -1,6 +1,6 @@
 import { Episode, EpisodeStatus, User } from '@prisma/client';
 import { db } from '@pdcstrrss/database';
-import { defaultsDeep } from 'lodash';
+import { defaultsDeep } from 'lodash-es';
 import type { IRepositoryFilters, IRequiredRepositoryFilters } from '../types.js';
 
 export type IEpisode = Pick<Episode, 'id' | 'title' | 'url' | 'published' | 'image'> & {

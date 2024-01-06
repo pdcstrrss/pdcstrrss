@@ -8,7 +8,7 @@
     "@pdcstrrss/database": "*",
     "date-fns": "^3.1.0",
     "fast-xml-parser": "^4.3.2",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "node-html-parser": "^6.1.12",
     "normalize-url": "^8.0.0",
     "object-hash": "^3.0.0",

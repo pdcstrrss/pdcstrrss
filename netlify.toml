@@ -1,7 +1,9 @@
 [build]
-  command = "npx nx build web-astro:build"
-  functions = "dist/hosting/netlify/functions"
-  publish = "dist/hosting/netlify/public"
+  ignore = "exit 0"
+  # base = "."
+  # command = "npm run build"
+  # functions = "dist/hosting/netlify/functions"
+  # publish = "dist/hosting/netlify/public"
 
 [dev]
   command = "npx nx build web-astro:dev"

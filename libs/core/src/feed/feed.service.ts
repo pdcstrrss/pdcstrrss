@@ -1,6 +1,6 @@
 import type { Feed } from '@prisma/client';
 import { db } from '@pdcstrrss/database';
-import { defaultsDeep } from 'lodash';
+import { defaultsDeep } from 'lodash-es';
 import type { IRepositoryFilters, IRequiredRepositoryFilters } from '../types.js';
 import { aggregateFeedsAndEpisodes } from '../aggregator/aggregator.service.js';
 import { normalizeUrl } from '../url/url.service.js';
