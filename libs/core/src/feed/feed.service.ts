@@ -109,8 +109,8 @@ export async function getFeedsOfUser(params?: IGetFeedsParams): Promise<IGetFeed
   const feeds = allFeedsOfUser
     .map(({ episodes, ...feed }) => ({
       ...feed,
-      image: episodes[0].image || undefined,
-      latestEpisodePublished: episodes[0].published,
+      image: episodes[0]?.image || undefined,
+      latestEpisodePublished: episodes[0]?.published,
     }))
     .filter((_, index) => index >= offset && index < limit);
   return { feeds, totalCount, limit, offset };
