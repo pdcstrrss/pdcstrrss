@@ -1,5 +1,7 @@
-export function handleFormSubmit({ event, swup }: { event: SubmitEvent; swup: typeof import('swup') }) {
-  event.preventDefault();
+// import { navigate } from 'astro:transitions/client';
+
+export function handleFormSubmit({ event }: { event: SubmitEvent }) {
+  // event.preventDefault();
 
   const form = event.target as HTMLFormElement;
   form.inert = true;
@@ -10,10 +12,7 @@ export function handleFormSubmit({ event, swup }: { event: SubmitEvent; swup: ty
     btn.textContent = btn.getAttribute('data-text-content-on-submit');
   });
 
-  const url = form.action.length > 0 ? form.action : window.location.href;
-  swup.loadPage({
-    url,
-    method: form.method,
-    data: new FormData(form),
-  });
+  // const url = form.action.length > 0 ? form.action : window.location.href;
+
+  // navigate(url);
 }

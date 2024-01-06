@@ -1,5 +1,6 @@
 ---
 import { Form, FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
+import Page from '@/components/page/Page.astro';
 import Layout from '@/layouts/Layout.astro';
 import { getUserFromRequest } from '@/lib/useUser';
 import { ROUTES } from '@/lib/useRoutes';
@@ -24,10 +25,7 @@ if (request.method === 'POST') {
 ---
 
 <Layout>
-  <div class="page container container-md">
-    <header class="page-header">
-      <h1 class="page-header-title">Add feed</h1>
-    </header>
+  <Page title="Add feed" size="md">
     <Form
       form={{ method: 'post' }}
       action={FORM_ACTIONS.CREATE}
@@ -56,5 +54,5 @@ if (request.method === 'POST') {
         <a class="button button-link" href={ROUTES.feeds}>Cancel</a>
       </div>
     </Form>
-  </div>
+  </Page>
 </Layout>

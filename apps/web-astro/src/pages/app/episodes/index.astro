@@ -1,5 +1,6 @@
 ---
 import { EpisodeList } from '@pdcstrrss/ui';
+import Page from '@/components/page/Page.astro';
 import { ROUTES } from '@/lib/useRoutes';
 import Layout from '@/layouts/Layout.astro';
 import { getEpisodes, updateEpisodes } from '@/lib/useEpisodes.server';
@@ -21,10 +22,7 @@ const { Pagination, itemsPerPage, currentPage, urlTransformer } = usePaginationF
 ---
 
 <Layout>
-  <div class="page container container-md">
-    <header class="page-header sr-only">
-      <h1 class="page-header-title">Episodes</h1>
-    </header>
+  <Page title="Episodes" size="md" headerSrOnly={true}>
     {
       (data?.episodes.length || 0) > 0 ? (
         <>
@@ -40,5 +38,5 @@ const { Pagination, itemsPerPage, currentPage, urlTransformer } = usePaginationF
         <div class="card">No episodes found.</div>
       )
     }
-  </div>
+  </Page>
 </Layout>

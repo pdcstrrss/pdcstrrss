@@ -1,6 +1,7 @@
 ---
 import { clsx } from 'clsx';
 import { getUserSponsorship } from '@pdcstrrss/core';
+import Page from '@/components/page/Page.astro';
 import { getUserFromRequest, getUserAccountByProvider } from '@/lib/useUser';
 import Layout from '@/layouts/Layout.astro';
 import SignIn from '@/components/auth/SignIn.astro';
@@ -13,10 +14,7 @@ const sponsorOrMember = !!sponsorship?.sponsor || !!sponsorship?.member;
 ---
 
 <Layout>
-  <div class="page container">
-    <header class="page-header">
-      <h1 class="page-header-title">{user ? 'Account' : 'Create an account'}</h1>
-    </header>
+  <Page title={user ? 'Account' : 'Create an account'}>
     <div class="page-account-container">
       <div class={clsx('card clear-inner-space', { 'card-success': !!user })} inert={user ? 'true' : undefined}>
         <div class="card-header">
@@ -103,7 +101,7 @@ const sponsorOrMember = !!sponsorship?.sponsor || !!sponsorship?.member;
         </div>
       </div>
     </div>
-  </div>
+  </Page>
 </Layout>
 
 <style>

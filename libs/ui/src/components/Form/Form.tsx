@@ -16,7 +16,7 @@ export type FormProps = JSX.IntrinsicElements['form'] & {
 };
 
 export const Form = ({ form, action, subject, error, clientSideHandling, children }: FormProps) => (
-  <form {...form} data-client-side-handling={clientSideHandling || false}>
+  <form {...form} data-client-side-handling={clientSideHandling || false} data-astro-reload>
     {error && (
       <div data-alert data-alert-danger>
         {error}

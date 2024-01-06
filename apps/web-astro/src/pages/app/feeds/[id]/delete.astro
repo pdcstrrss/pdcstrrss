@@ -1,6 +1,7 @@
 ---
 import { Form, FORM_ACTIONS, FORM_SUBJECTS } from '@pdcstrrss/ui';
 import { getFeedById } from '@pdcstrrss/core';
+import Page from '@/components/page/Page.astro';
 import { ROUTES } from '@/lib/useRoutes';
 import { getUserFromRequest } from '@/lib/useUser';
 import Layout from '@/layouts/Layout.astro';
@@ -34,10 +35,7 @@ if (!feed) return new Response('Feed not found', { status: 404 });
 ---
 
 <Layout>
-  <div class="page container container-md">
-    <header class="page-header">
-      <h1 class="page-header-title">Remove feed</h1>
-    </header>
+  <Page title="Remove feed" size="md">
     <Form
       form={{ method: 'post' }}
       action={FORM_ACTIONS.DELETE}
@@ -64,5 +62,5 @@ if (!feed) return new Response('Feed not found', { status: 404 });
         <a class="button button-link" href={ROUTES.feeds}> Cancel</a>
       </div>
     </Form>
-  </div>
+  </Page>
 </Layout>

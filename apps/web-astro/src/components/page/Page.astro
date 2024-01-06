@@ -1,0 +1,28 @@
+---
+import { clsx } from 'clsx';
+import { defu } from 'defu';
+
+interface Props {
+  title: string;
+  size?: 'sm' | 'md' | 'lg';
+  headerSrOnly?: boolean;
+}
+
+const { title, size, headerSrOnly } = defu(Astro.props, { size: 'md', headerSrOnly: false });
+---
+
+<div class={clsx("page container", {
+  [`container-${size}`]: size,
+})}>
+  <header
+  class={clsx({
+    'page-header': true,
+    'sr-only': headerSrOnly,
+  })}>
+    <h1 class="page-header-title" transition:name="page-header-title">{title}</h1>
+    <div class="page-header-action">
+      <slot name="action"/>
+    </div>
+  </header>
+  <slot />
+</div>
